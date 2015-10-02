@@ -80,6 +80,5 @@ test:
 #
 production:
   <<: *default
-  database: codelegy_production
   username: codelegy
   password: <%= ENV['CODELEGY_DATABASE_PASSWORD'] %>
