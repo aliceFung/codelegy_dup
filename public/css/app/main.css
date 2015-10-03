@@ -1,0 +1,238 @@
+.skins {
+  list-style: none;
+  padding: 0;
+  margin: 0 15px;
+  height: 50px;
+}
+.skins li {
+  display: inline-block;
+  margin-top: 16.5px;
+}
+.skins li span {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+.skins li.loading {
+  top: -3px;
+  position: relative;
+  width: 16px;
+}
+.skins li.loading span {
+  display: none;
+}
+.skins li.loading:after {
+  width: 16px;
+  text-align: center;
+  display: block;
+  content: "\f1ce";
+  -webkit-animation: fa-spin 2s infinite linear;
+          animation: fa-spin 2s infinite linear;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+.cover.overlay {
+  margin-top: -30px;
+}
+.cover.overlay.home {
+  max-height: 700px;
+}
+.cover.overlay.tutors {
+  height: 240px;
+  background: url('../../images/photodune-6745585-modern-creative-workspace-m.jpg') 300px bottom;
+  background-size: cover;
+}
+.sidebar .media .media-heading {
+  margin: 5px 0 0;
+}
+body.survey {
+  position: relative;
+  background: url('../../images/photodune-6745585-modern-creative-workspace-m.jpg') top left no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+body.survey #content {
+  min-height: 700px;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+}
+body.survey .lock-container {
+  margin: auto;
+  width: 500px;
+  top: 100px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+}
+@media (max-width: 480px) {
+  body.survey .lock-container {
+    width: auto;
+  }
+}
+body.survey .lock-container .panel {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 5px #999;
+  position: relative;
+}
+body.survey .lock-container .panel .panel-heading {
+  padding: 20px;
+  background: -webkit-linear-gradient(top, #ffffff, rgba(255, 255, 255, 0));
+  background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0));
+  border: none;
+}
+body.survey .lock-container .panel .panel-body {
+  padding: 20px;
+}
+body.survey .lock-container .panel .panel-footer {
+  padding: 20px;
+  background: -webkit-linear-gradient(bottom, #ffffff, rgba(255, 255, 255, 0));
+  background: linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0));
+  border: none;
+}
+body.survey .lock-container .panel .panel-footer .small {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+.curriculum .collapse-status {
+  display: none;
+  border: 1px solid #e2e9e6;
+  background: #fff;
+  border-radius: 0 0 5px 5px;
+  position: absolute;
+  top: -1px;
+  right: 20px;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+.curriculum .collapse-open {
+  display: block;
+}
+.curriculum.open .collapse-open {
+  display: none;
+}
+.curriculum.open .collapse-close {
+  display: block;
+}
+.curriculum > .panel-heading {
+  cursor: pointer;
+  position: relative;
+}
+.curriculum .list-group {
+  color: #929292;
+}
+.curriculum .list-group .list-group-item {
+  cursor: pointer;
+}
+.curriculum .list-group .list-group-item td:first-of-type {
+  font-size: 16px;
+  color: #a8a8a8;
+}
+.curriculum .list-group .list-group-item td:last-of-type {
+  color: #a8a8a8;
+  font-size: 13px;
+}
+.curriculum .list-group .list-group-item:hover {
+  background: #fdfdfd;
+  border-color: #f5f5f5;
+}
+.curriculum .list-group .list-group-item.active {
+  background: #fafafa;
+  border-color: #f0f0f0;
+  color: #303030;
+  font-weight: bold;
+}
+.curriculum .list-group .list-group-item.active td {
+  color: #303030;
+}
+.icon-block {
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  display: inline-block;
+  font-size: 35px;
+}
+.icon-block.half {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 25px;
+}
+.icon-block.double {
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  font-size: 45px;
+}
+.media .media-heading {
+  margin-bottom: 10px;
+}
+.media > .pull-left {
+  margin-right: 20px;
+}
+.media > .pull-right {
+  margin-left: 20px;
+}
+body.login {
+  position: initial;
+  background: url('../../images/lock-1.jpg');
+  padding-top: 0;
+}
+body.login #content {
+  max-width: 760px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+body.login .lock-container {
+  margin: auto;
+  width: 300px;
+}
+@media (min-width: 480px) {
+  body.login .lock-container {
+    bottom: 0;
+    height: 550px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+body.login .lock-container h1 {
+  text-align: center;
+  color: #fff;
+  font-size: 28px;
+}
+body.login .lock-container .panel {
+  max-width: 300px !important;
+  background: #fff;
+  position: relative;
+}
+body.login .lock-container .panel img {
+  margin: 20px 0 10px;
+}
+body.login .lock-container .panel input {
+  margin-bottom: 10px;
+}
+body.login .lock-container .panel .btn {
+  margin-top: 10px;
+}
+body.login .lock-container .panel .forgot-password {
+  margin: 10px 0 0;
+  font-weight: 500;
+  color: #26a69a;
+  display: block;
+}

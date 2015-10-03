@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'git-hooks'
 gem 'figaro'
+gem 'angularjs-rails'
+gem 'angular_rails_csrf'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use postgresql as the database for Active Record
