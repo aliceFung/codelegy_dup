@@ -1,5 +1,5 @@
 # Change these
-server '104.131.17.140', port: 80, roles: [:web, :app, :db], primary: true
+server '104.131.17.140', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:mikebutts/codelegy.git'
 set :application,     'codelegy'
