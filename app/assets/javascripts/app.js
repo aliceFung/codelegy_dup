@@ -15,9 +15,15 @@ var app = angular.module('app', ['ui.router', 'restangular'])
       .state('home', {
         url: '/',
         views: {
-        'layout': {templateUrl: 'templates/sign-up.html'},
+        '': {templateUrl: 'templates/sign-up.html'},
   
         'navbar': {templateUrl: 'templates/header-1.html'}
+        }
+      })
+      .state('signIn',{
+        url:'/sign-in',
+        views: {
+          '': {templateUrl: 'templates/login.html'}
         }
       })
 
