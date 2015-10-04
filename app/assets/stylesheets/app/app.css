@@ -185,7 +185,7 @@ body.survey .lock-container .panel .panel-footer .small {
 }
 div.login {
   position: initial;
-  background: url('../../images/lock-1.jpg');
+  background: url('.jpg');
   padding-top: 0;
 }
 div.login #content {

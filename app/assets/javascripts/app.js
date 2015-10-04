@@ -20,12 +20,11 @@ var app = angular.module('app', ['ui.router', 'restangular'])
         'navbar': {templateUrl: 'templates/header-1.html'}
         }
       })
-      .state('signIn',{
-        url:'/sign-in',
-        views: {
-          '': {templateUrl: 'templates/login.html'}
-        }
+      .state('home.login', {
+        url: 'login',
+        templateUrl: 'templates/login.html'
       })
+    
 
 
   }]);
