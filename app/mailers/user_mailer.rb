@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default :from => "test@codelegy.xyz"
+  default :from => "no-reply@codelegy.xyz"
 
   def request_membership(user, project)
     @user = user
