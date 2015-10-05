@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+
+Language.create(name: 'Ruby/Rails')
+Language.create(name: 'JavaScript')
+Language.create(name: 'Python')
+Language.create(name: 'C')
+Language.create(name: 'Swift')
+Language.create(name: 'Java')
+Language.create(name: 'PHP')
