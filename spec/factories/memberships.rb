@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :membership do
+    participant_type "pending"
     association :user
     association :project
-    participant_type 'pending'
   end
 
 end
