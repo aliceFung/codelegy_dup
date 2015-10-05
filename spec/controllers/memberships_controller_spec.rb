@@ -6,22 +6,19 @@ RSpec.describe MembershipsController, type: :controller do
   let(:member){create(:user)}
   let(:project){create(:project)}
   let!(:owner_membership){create(:membership, project: project,
-                            user: user, participant_type: "owner")}
+                            user: owner, participant_type: "owner")}
 
   context 'not logged in user' do
 
-    it 'cannot create membership' do
+    it 'cannot see membership' do
       allow(controller).to receive(:current_user) { nil }
-      get :show, user_id: user.id
+      get :show, id: owner_membership.id, format: :json
       expect(response.status).to eq(401)
     end
 
   end
 
   context 'logged in user' do
-    before :each do
-      # allow(controller).to receive(:current_user) { owner }
-    end
 
     describe 'POST #create' do
 
@@ -30,7 +27,7 @@ RSpec.describe MembershipsController, type: :controller do
         expect do
           post :create, membership: attributes_for(:membership,
                         user_id:       member,
-                        project_id:   project)
+                        project_id:   project), format: :json
         end.to change(Membership, :count).by(1)
       end
 
@@ -42,7 +39,7 @@ RSpec.describe MembershipsController, type: :controller do
         expect do
           post :create, membership: attributes_for(:membership,
                         user_id:       new_member,
-                        project_id:   project)
+                        project_id:   project), format: :json
         end.to change(Membership, :count).by(0)
       end
     end
@@ -50,13 +47,14 @@ RSpec.describe MembershipsController, type: :controller do
     describe 'PATCH #update' do
 
       let!(:existing_membership){create(:membership,
-                                    project: project, user: member))}
+                                    project: project, user: member)}
 
       it 'project owner can update membership' do
         allow(controller).to receive(:current_user) { owner }
 
-        post :update, user_id: user.id,
-                membership: attributes_for(:existing_membership,
+        post :update, id: existing_membership.id, format: :json,
+              membership: attributes_for(:membership,
+                                        id: existing_membership.id,
                                         participant_type: 'member')
 
         existing_membership.reload
@@ -66,8 +64,9 @@ RSpec.describe MembershipsController, type: :controller do
       it "others cannot update membership" do
         allow(controller).to receive(:current_user) { member }
 
-        post :update, user_id: user.id,
-                membership: attributes_for(:existing_membership,
+        post :update, id: existing_membership.id, format: :json,
+                membership: attributes_for(:membership,
+                                        id: existing_membership.id,
                                         participant_type: 'member')
 
         existing_membership.reload
