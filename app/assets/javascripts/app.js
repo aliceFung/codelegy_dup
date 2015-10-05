@@ -54,8 +54,21 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular'])
     $stateProvider
       .state('projects', {
         url: '/projects',
+        resolve: {
+            projects: [ '$http', function($http){
+                        return $http.get('/projects').
+                        then(function(response){
+                            return response.data
+                        }, function(error){
+                            return error
+                        })
+                      }]
+     },
         views: {
-        '': {templateUrl: 'templates/projects/projects.html'},
+        '': {
+              templateUrl: 'templates/projects/projects.html',
+              controller: 'projectsCtrl',
+            },
 
         'navbar': {templateUrl: 'templates/header-1.html'}
         }

@@ -17,7 +17,13 @@ Language.create(name: 'Java')
 Language.create(name: 'PHP')
 
 Difficulty.create(name: 'Beginnger')
-Difficulty.create(name: 'Medium')
+Difficulty.create(name: 'Intermediate')
 Difficulty.create(name: 'Expert')
 Difficulty.create(name: 'Master')
 
+Project.create(title: "my first project", difficulty_id: 2,
+              availability: "weekends")
+
+User.create(email: "abc@123.com")
+
+Membership.create(project_id: 1, user_id: 1, participant_type: "owner")
