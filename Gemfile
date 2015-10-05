@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'git-hooks'
 gem 'figaro'
@@ -46,7 +47,6 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'guard-rspec'
   gem 'guard-jasmine'
-  gem 'angularjs-rails'
   gem 'pry'
 end
 
@@ -56,10 +56,13 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'letter_opener'
+
   gem 'capistrano',         require: false
   gem 'capistrano-rvm',     require: false
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
+  gem 'capistrano3-delayed-job', require: false
   gem 'capistrano3-puma',   require: false
 end
 
