@@ -1,0 +1,8 @@
+<p>Dear <%= @user.email %>, </p>
+
+<p>You have a new member request for <%= @project.title %>! </p>
+<p>
+<%= link_to "Go to your codelegy dashboard", user_url(@user.id) %> to see the details.
+</p>
+
+To unsubscribe to email notifications, login to your codelegy account to change settings.

@@ -13,6 +13,6 @@ class Membership < ActiveRecord::Base
 
   def self.send_request_email(id, project_id)
     user = User.find(id)
-    UserMailer.request_membership(user, project_id)
+    UserMailer.request_membership(user, project_id).deliver!
   end
 end
