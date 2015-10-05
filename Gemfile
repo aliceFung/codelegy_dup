@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+# Devise
+gem 'devise'
 
 gem 'git-hooks'
 gem 'figaro'
