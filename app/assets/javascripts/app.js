@@ -15,16 +15,19 @@ var app = angular.module('app', ['ui.router', 'restangular'])
       .state('home', {
         url: '/',
         views: {
-        '': {templateUrl: 'templates/sign-up.html'},
+        '': {templateUrl: 'templates/home.html'},
   
         'navbar': {templateUrl: 'templates/header-1.html'}
         }
       })
-      .state('home.login', {
-        url: 'login',
-        templateUrl: 'templates/login.html'
+      .state('home.signup',{
+        url:'signup',
+        templateUrl: 'templates/signup.html'
       })
-    
+      .state('home.login', {
+            url: 'login',
+            templateUrl: 'templates/login.html'
+      });
 
 
   }]);
