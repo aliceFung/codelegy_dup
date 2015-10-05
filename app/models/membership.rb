@@ -11,8 +11,9 @@ class Membership < ActiveRecord::Base
     Membership.delay.send_request_email(self.user_id, self.project_id)
   end
 
-  def self.send_request_email(id, project_id)
-    user = User.find(id)
-    UserMailer.request_membership(user, project_id).deliver!
+  def self.send_request_email(user_id, project_id)
+    user = User.find_by_id(user_id)
+    project = Project.find_by_id(project_id)
+    UserMailer.request_membership(user, project_id) if user && project
   end
 end

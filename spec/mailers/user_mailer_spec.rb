@@ -1,22 +1,37 @@
 require "rails_helper"
 
 RSpec.describe UserMailer, type: :mailer do
-  describe 'project membership request' do
-    let(:user) {create(:user)}
-    let(:project){create(:project)}
-    let(:mail) { UserMailer.request_membership(user, project.id) }
+  let(:sender_email) { "no-reply@codelegy.xyz" }
 
-    it 'renders the subject' do
-      expect(mail.subject).to eq("#{user.email} wants to join #{project.title}")
+  before :each do
+    @project = create(:project)
+    @owner = create(:user)
+    @project.members.push(@owner)
+    @project.memberships[0].update(participant_type: 'owner')
+  end
+
+  describe 'send_request_email' do
+    it 'should send an email' do
+      expect{
+        UserMailer.request_membership(@owner, @project).deliver_now
+      }.to change { ActionMailer::Base.deliveries.count }.by(1)
     end
 
-    it 'renders the receiver email' do
-      expect(mail.to).to eq(user.email)
-    end
+    describe 'mail properties' do
+      let(:requester) { build(:user) }
+      let(:mail) { UserMailer.request_membership(requester, @project) }
 
-    it 'renders the sender email' do
-      expect(mail.from).to eq('no-reply@codelegy.xyz')
-    end
+      it 'should send the email to the project owner' do
+        expect(mail.to).to eq([@owner.email])
+      end
 
+      it 'should use the proper sender email' do
+        expect(mail.from).to eq([sender_email])
+      end
+
+      it 'should send the email with the proper subject' do
+        expect(mail.subject).to eq("#{requester.email} wants to join #{@project.title}")
+      end
+    end
   end
 end

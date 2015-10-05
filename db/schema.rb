@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20151005165827) do
   create_table "memberships", force: :cascade do |t|
     t.integer "user_id"
     t.integer "project_id"
-    t.string  "type",       default: "pending"
+    t.string  "participant_type", default: "pending"
   end
 
   create_table "projects", force: :cascade do |t|
