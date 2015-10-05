@@ -1,7 +1,7 @@
 class MembershipsController < ApplicationController
 
   # before_action :authenticate_user!
-  before_action :require_project_owner, except: [:show]
+  before_action :require_project_owner, except: [:create, :show]
 
   def create
     @membership = Membership.new(params_list)
@@ -58,11 +58,6 @@ class MembershipsController < ApplicationController
       project_owner = Project.find(params["membership"]['project_id']).owner
     end
     current_user.id == project_owner.id
-  end
-
-  #temp until devise set up and merged to master branch
-  def current_user
-    current_user = User.first
   end
 
 end
