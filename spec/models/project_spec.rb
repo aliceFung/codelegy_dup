@@ -22,7 +22,12 @@ RSpec.describe Project, type: :model do
     end
 
     it 'should be a have a difficulty_id' do
-      expect(myProject.difficulty_id).to eql(3)
+      expect(myProject.difficulty).to be_a(Difficulty)
+    end
+
+    it 'should be a have a difficulty_name' do
+      create :beginner
+      expect(myProject.difficulty.name).to eql('Beginner')
     end
   end
 
