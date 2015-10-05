@@ -26,22 +26,11 @@ RSpec.describe MembershipsController, type: :controller do
         allow(controller).to receive(:current_user) { owner }
         expect do
           post :create, membership: attributes_for(:membership,
-                        user_id:       member,
-                        project_id:   project), format: :json
+                        user_id:       member.id,
+                        project_id:   project.id), format: :json
         end.to change(Membership, :count).by(1)
       end
 
-      it 'project member cannot create a membership' do
-        allow(controller).to receive(:current_user) { member }
-        new_member = create(:user)
-        new_membership = create(:membership, project: project,
-                                user: member)
-        expect do
-          post :create, membership: attributes_for(:membership,
-                        user_id:       new_member,
-                        project_id:   project), format: :json
-        end.to change(Membership, :count).by(0)
-      end
     end
 
     describe 'PATCH #update' do

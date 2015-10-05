@@ -52,11 +52,10 @@ class MembershipsController < ApplicationController
 
   # only allows project owner to modify memberships
   def require_project_owner
-    # binding.pry
-    if params["id"]
-      project_owner = Membership.find(params["id"]).project.owner
+    if params["membership"]['id']
+      project_owner = Membership.find(params["membership"]['id']).project.owner
     else
-      project_owner = Project.find(params['project_id']).owner
+      project_owner = Project.find(params["membership"]['project_id']).owner
     end
     current_user.id == project_owner.id
   end
