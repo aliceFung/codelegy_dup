@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require angular
+//= require angular-devise/lib/devise
 //= require ui-router
 //= require angular-animate
 //= require lodash

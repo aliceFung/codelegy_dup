@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngAnimate','ui.router', 'restangular'])
+var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise'])
 
 // .config(["RestangularProvider", function(RestangularProvider){
 //   RestangularProvider.setBaseUrl("/api/v1")
