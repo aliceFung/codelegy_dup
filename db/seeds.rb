@@ -15,3 +15,8 @@ Language.create(name: 'C')
 Language.create(name: 'Swift')
 Language.create(name: 'Java')
 Language.create(name: 'PHP')
+
+Difficulty.create(name: 'Beginnger')
+Difficulty.create(name: 'Medium')
+Difficulty.create(name: 'Expert')
+Difficulty.create(name: 'Master')
