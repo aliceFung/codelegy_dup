@@ -32,12 +32,12 @@ RSpec.describe Project, type: :model do
   end
 
   context 'Associations with Users' do
-    let(:table) { create :member_table }
-    let(:owner) { table.user }
+    let(:table) { build :membership }
+    let(:member) { table.member }
     let(:myProject) { table.project }
 
-    it 'should have users' do
-      expect(myProject.users.count).to eql(1)
+    it 'should have members' do
+      expect(myProject).to respond_to(:members)
     end
   end
 

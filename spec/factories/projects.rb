@@ -4,8 +4,6 @@ FactoryGirl.define do
     availibility 'weeknights'
     description 'really awesome!'
     difficulty
-
-
   end
 
 end
