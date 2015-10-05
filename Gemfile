@@ -2,6 +2,9 @@ source 'http://rubygems.org'
 
 # Devise
 gem 'devise'
+source "https://rails-assets.org" do
+  gem "rails-assets-angular-devise"
+end
 
 # omniauth
 gem 'omniauth'
