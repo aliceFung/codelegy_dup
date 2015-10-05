@@ -57,10 +57,22 @@ ActiveRecord::Schema.define(version: 20151005182806) do
     t.string  "participant_type", default: "pending"
   end
 
+  create_table "project_languages", force: :cascade do |t|
+    t.integer  "language_id", null: false
+    t.integer  "project_id",  null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "project_languages", ["language_id", "project_id"], name: "index_project_languages_on_language_id_and_project_id", using: :btree
+
   create_table "projects", force: :cascade do |t|
-    t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "title",         null: false
+    t.string   "availibility"
+    t.string   "description"
+    t.integer  "difficulty_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|

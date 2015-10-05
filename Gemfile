@@ -1,8 +1,11 @@
 source 'http://rubygems.org'
 ruby '2.2.1'
 
+# Devise
+gem 'devise'
 gem 'daemons'
 gem 'delayed_job_active_record'
+
 gem 'git-hooks'
 gem 'figaro'
 gem 'angularjs-rails'
