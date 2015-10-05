@@ -15,3 +15,7 @@ Language.create(name: 'C')
 Language.create(name: 'Swift')
 Language.create(name: 'Java')
 Language.create(name: 'PHP')
+
+
+Project.create(title: "myProject", availibilty: "Weeknights",
+               description: "Really Awesome!")

@@ -35,4 +35,14 @@ RSpec.describe Project, type: :model do
       expect(myProject.users.count).to eql(1)
     end
   end
+
+  context 'Associations with Languages' do
+    let(:table) { create :project_language }
+    let(:language) { table.language }
+    let(:myProject) { table.project }
+
+    it 'should have languages' do
+      expect(myProject.languages.count).to eql(1)
+    end
+  end
 end
