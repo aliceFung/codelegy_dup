@@ -1,5 +1,5 @@
 module UserMailerHelper
-  def user_url(id)
-    return "abc123"
+  def domain_url
+    "http://codelegy.xyz"
   end
 end
