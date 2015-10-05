@@ -36,6 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
     angular_rails_csrf (1.0.4)
       rails (>= 3, < 5)
     angularjs-rails (1.4.7)
@@ -60,6 +61,8 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano3-delayed-job (1.4.1)
+      capistrano (>= 3.0.0)
     capistrano3-puma (1.2.1)
       capistrano (~> 3.0)
       puma (>= 2.6)
@@ -74,7 +77,13 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     colorize (0.7.7)
+    daemons (1.2.3)
     debug_inspector (0.0.2)
+    delayed_job (4.0.6)
+      activesupport (>= 3.0, < 5.0)
+    delayed_job_active_record (4.0.3)
+      activerecord (>= 3.0, < 5.0)
+      delayed_job (>= 3.0, < 4.1)
     diff-lcs (1.2.5)
     equalizer (0.0.11)
     erubis (2.7.0)
@@ -134,6 +143,10 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     listen (3.0.3)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -289,8 +302,11 @@ DEPENDENCIES
   capistrano-bundler
   capistrano-rails
   capistrano-rvm
+  capistrano3-delayed-job
   capistrano3-puma
   coffee-rails (~> 4.1.0)
+  daemons
+  delayed_job_active_record
   factory_girl_rails (~> 4.0)
   figaro
   git-hooks
@@ -299,6 +315,7 @@ DEPENDENCIES
   jasmine
   jbuilder (~> 2.0)
   jquery-rails
+  letter_opener
   pg
   pry
   puma
