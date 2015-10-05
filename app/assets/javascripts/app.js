@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router', 'restangular'])
+var app = angular.module('app', ['ngAnimate','ui.router', 'restangular'])
 
 // .config(["RestangularProvider", function(RestangularProvider){
 //   RestangularProvider.setBaseUrl("/api/v1")
@@ -20,14 +20,36 @@ var app = angular.module('app', ['ui.router', 'restangular'])
         'navbar': {templateUrl: 'templates/header-1.html'}
         }
       })
-      .state('home.signup',{
-        url:'signup',
-        templateUrl: 'templates/signup.html'
-      })
+      // nested routes for our home page
+
       .state('home.login', {
             url: 'login',
             templateUrl: 'templates/login.html'
-      });
-
+      })
+        // route to show our basic form (/form)
+        .state('home.form', {
+            url: '/form',
+            templateUrl: 'templates/registration/form.html',
+            controller: 'formController'
+        })
+        
+        // nested states  for our form
+        .state('home.form.profile', {
+            url: '/profile',
+            templateUrl: 'templates/registration/form-profile.html'
+        })
+        
+        // url will be /form/interests
+        .state('home.form.languages', {
+            url: '/languages',
+            templateUrl: 'templates/registration/form-lang.html'
+        })
+        
+        // url will be /form/payment
+        .state('home.form.availability', {
+            url: '/availability',
+            templateUrl: 'templates/registration/form-availability.html'
+        });
+       
 
   }]);
