@@ -12,8 +12,21 @@ app.controller('sessionController', ['$scope', 'session', '$state', function($sc
 
   $scope.signOut = session.signOut;
 
-  if (!$scope.authenticated.status){
-    $state.go('home.login');
-  }
+  $scope.signInWithGithub = session.signInWithGithub;
 
+  $scope.$on('devise:login', function(event, currentUser) {
+    $scope.currentUser.user = currentUser;
+    $scope.authenticated.status = true;
+    $state.go('home');
+  });
+
+  $scope.$on('devise:logout', function(event, oldCurrentUser) {
+    $scope.currentUser.user = null;
+    $scope.authenticated.status = false;
+    $state.go('home');
+  });
+
+  $scope.$on('devise:unauthorized', function() {
+    $state.go('home.login');
+  })
 }]);

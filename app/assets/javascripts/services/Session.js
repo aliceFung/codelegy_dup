@@ -1,4 +1,4 @@
-app.factory('session', ['Auth', '$state', function(Auth, $state){
+app.factory('session', ['Auth', '$state', 'Restangular', function(Auth, $state, Restangular){
   var authenticated = { status: Auth.isAuthenticated() };
   var currentUser = { user: Auth.currentUser() };
 
@@ -19,6 +19,11 @@ app.factory('session', ['Auth', '$state', function(Auth, $state){
       authenticated.status = false;
     });
 
+  }
+
+  function signInWithGithub() {
+    console.log('sign in with github');
+    Restangular.all('users').customGET('auth/github', {}, { 'Access-Control-Allow-Origin': 'http://localhost:3000' });
   }
 
   function signOut () {
@@ -42,6 +47,7 @@ app.factory('session', ['Auth', '$state', function(Auth, $state){
     authenticated: authenticated,
     currentUser: currentUser,
     signIn: signIn,
+    signInWithGithub: signInWithGithub,
     signOut: signOut
   };
 }]);
