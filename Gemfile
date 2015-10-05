@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+ruby '2.2.1'
 
 gem 'daemons'
 gem 'delayed_job_active_record'
@@ -40,6 +41,8 @@ gem 'puma'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
+  gem 'better_errors'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails'
