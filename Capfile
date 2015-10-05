@@ -2,6 +2,8 @@
 require 'capistrano/setup'
 require 'capistrano/deploy'
 
+require 'capistrano/delayed-job'
+
 require 'capistrano/rails'
 require 'capistrano/bundler'
 require 'capistrano/rvm'
