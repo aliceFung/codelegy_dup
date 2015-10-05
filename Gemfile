@@ -3,6 +3,10 @@ source 'http://rubygems.org'
 # Devise
 gem 'devise'
 
+# omniauth
+gem 'omniauth'
+gem 'omniauth-github'
+
 gem 'git-hooks'
 gem 'figaro'
 gem 'angularjs-rails'
