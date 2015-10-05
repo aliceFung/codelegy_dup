@@ -1,6 +1,9 @@
 FactoryGirl.define do
   factory :project do
-    title "My Awesome Project"
+    title 'myProject'
+    availibility 'weeknights'
+    description 'really awesome!'
+    difficulty
   end
 
 end

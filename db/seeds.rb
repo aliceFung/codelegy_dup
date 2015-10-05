@@ -20,3 +20,4 @@ Difficulty.create(name: 'Beginnger')
 Difficulty.create(name: 'Medium')
 Difficulty.create(name: 'Expert')
 Difficulty.create(name: 'Master')
+

@@ -16,7 +16,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular'])
         url: '/',
         views: {
         '': {templateUrl: 'templates/home.html'},
-  
+
         'navbar': {templateUrl: 'templates/header-1.html'}
         }
       })
@@ -32,24 +32,33 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular'])
             templateUrl: 'templates/registration/form.html',
             controller: 'formController'
         })
-        
+
         // nested states  for our form
         .state('home.form.profile', {
             url: '/profile',
             templateUrl: 'templates/registration/form-profile.html'
         })
-        
+
         // url will be /form/interests
         .state('home.form.languages', {
             url: '/languages',
             templateUrl: 'templates/registration/form-lang.html'
         })
-        
+
         // url will be /form/payment
         .state('home.form.availability', {
             url: '/availability',
             templateUrl: 'templates/registration/form-availability.html'
         });
-       
+
+    $stateProvider
+      .state('projects', {
+        url: '/projects',
+        views: {
+        '': {templateUrl: 'templates/projects/projects.html'},
+
+        'navbar': {templateUrl: 'templates/header-1.html'}
+        }
+      })
 
   }]);
