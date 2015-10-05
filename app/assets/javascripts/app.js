@@ -16,7 +16,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
         url: '/',
         views: {
         '': {templateUrl: 'templates/home.html'},
-  
+
         'navbar': {templateUrl: 'templates/header-1.html'}
         }
       })
@@ -24,7 +24,8 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
 
       .state('home.login', {
             url: 'login',
-            templateUrl: 'templates/login.html'
+            templateUrl: 'templates/login.html',
+            controller: 'sessionController'
       })
         // route to show our basic form (/form)
         .state('home.form', {
@@ -32,24 +33,24 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
             templateUrl: 'templates/registration/form.html',
             controller: 'formController'
         })
-        
+
         // nested states  for our form
         .state('home.form.profile', {
             url: '/profile',
             templateUrl: 'templates/registration/form-profile.html'
         })
-        
+
         // url will be /form/interests
         .state('home.form.languages', {
             url: '/languages',
             templateUrl: 'templates/registration/form-lang.html'
         })
-        
+
         // url will be /form/payment
         .state('home.form.availability', {
             url: '/availability',
             templateUrl: 'templates/registration/form-availability.html'
         });
-       
+
 
   }]);

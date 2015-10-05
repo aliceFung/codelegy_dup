@@ -9,15 +9,24 @@
       </a>
 
       <div class="form-group">
-        <input class="form-control" placeholder="Username">
+        <input class="form-control"
+                placeholder="Email"
+                ng-model="credentials.email">
       </div>
 
       <div class="form-group m-b-md">
-        <input type="password" class="form-control" placeholder="Password">
+        <input type="password"
+                class="form-control"
+                placeholder="Password"
+                ng-model="credentials.password">
       </div>
 
       <div class="m-b-lg">
-        <button class="btn btn-primary">Log In</button>
+        <button class="btn btn-primary"
+                ng-click="signIn()">
+                Log In
+        </button>
+
         <button class="btn btn-default">Sign up</button>
       </div>
 
@@ -29,11 +38,11 @@
 </div>
 
 
-    // <script>
-    //   // execute/clear BS loaders for docs
-    //   $(function(){
-    //     if (window.BS&&window.BS.loader&&window.BS.loader.length) {
-    //       while(BS.loader.length){(BS.loader.pop())()}
-    //     }
-    //   })
-    // </script>
+// <script>
+//   // execute/clear BS loaders for docs
+//   $(function(){
+//     if (window.BS&&window.BS.loader&&window.BS.loader.length) {
+//       while(BS.loader.length){(BS.loader.pop())()}
+//     }
+//   })
+// </script>

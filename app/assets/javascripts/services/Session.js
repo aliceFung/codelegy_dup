@@ -7,7 +7,7 @@ app.factory('session', ['Auth', function(Auth){
         headers: {
             'X-HTTP-Method-Override': 'POST'
         }
-    }
+    };
 
     Auth.login(credentials, config).then(function(user){
       console.log('Signed In');
@@ -17,7 +17,7 @@ app.factory('session', ['Auth', function(Auth){
     }, function(error){
       console.log('Sign In Failed:', error);
       authenticated.status = false;
-    })
+    });
 
   }
 
@@ -35,7 +35,7 @@ app.factory('session', ['Auth', function(Auth){
       // $state.go('home');
     }, function(error){
       console.log('Sign Out Failed:', error);
-    })
+    });
   }
 
   return {
@@ -43,5 +43,5 @@ app.factory('session', ['Auth', function(Auth){
     currentUser: currentUser,
     signIn: signIn,
     signOut: signOut
-  }
-}])
+  };
+}]);
