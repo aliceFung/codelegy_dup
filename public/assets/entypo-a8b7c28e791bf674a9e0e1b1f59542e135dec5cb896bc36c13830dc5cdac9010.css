@@ -1,0 +1,1749 @@
+@font-face {
+  font-family: 'entypo';
+  src: url(/assets/entypo-26bd893736a67024460c61c2505db1a2086092480e71228a2af27b093b8d0063.eot);
+  src: url(/assets/entypo-26bd893736a67024460c61c2505db1a2086092480e71228a2af27b093b8d0063.eot?#iefix) format("embedded-opentype"), url(/assets/entypo-2cb8017a4f7cd79688efcf321ea2f2ecc3bf96c8e0d3fbd8f32c67901d229e91.woff) format("woff"), url(/assets/entypo-47e568cbbeb1eac7a44996a3796c2e2120d486796744076cfdf4c8073ab779d5.ttf) format("truetype"), url(/assets/entypo-ae08ac58a5e13b2955b12a92defa2111712b5c3b2e243666f56f7175a45ba7d6.svg#entypo) format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* line 4, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+[class^="icon-"], [class*=" icon-"] {
+  font-family: entypo;
+  font-style: normal;
+  font-weight: normal;
+  display: inline-block;
+  width: 1.1em;
+  margin-right: .1em;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* main icon map */
+/* line 16, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-phone:before {
+  content: '\1f4de';
+}
+
+/* 1f4de */
+/* line 17, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-mobile:before {
+  content: '\1f4f1';
+}
+
+/* 1f4f1 */
+/* line 18, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-mouse:before {
+  content: '\e789';
+}
+
+/* e789 */
+/* line 19, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-address:before {
+  content: '\e723';
+}
+
+/* e723 */
+/* line 20, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-mail:before {
+  content: '\2709';
+}
+
+/* 2709 */
+/* line 21, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-paper-plane:before {
+  content: '\e79b';
+}
+
+/* e79b */
+/* line 22, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-pencil:before {
+  content: '\270e';
+}
+
+/* 270e */
+/* line 23, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-feather:before {
+  content: '\2712';
+}
+
+/* 2712 */
+/* line 24, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-attach:before {
+  content: '\1f4ce';
+}
+
+/* 1f4ce */
+/* line 25, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-inbox:before {
+  content: '\e777';
+}
+
+/* e777 */
+/* line 26, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-reply:before {
+  content: '\e712';
+}
+
+/* e712 */
+/* line 27, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-reply-all:before {
+  content: '\e713';
+}
+
+/* e713 */
+/* line 28, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-forward:before {
+  content: '\27a6';
+}
+
+/* 27a6 */
+/* line 29, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-user:before {
+  content: '\1f464';
+}
+
+/* 1f464 */
+/* line 30, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-users:before {
+  content: '\1f465';
+}
+
+/* 1f465 */
+/* line 31, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-add-user:before {
+  content: '\e700';
+}
+
+/* e700 */
+/* line 32, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-vcard:before {
+  content: '\e722';
+}
+
+/* e722 */
+/* line 33, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-export:before {
+  content: '\e715';
+}
+
+/* e715 */
+/* line 34, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-location:before {
+  content: '\e724';
+}
+
+/* e724 */
+/* line 35, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-map:before {
+  content: '\e727';
+}
+
+/* e727 */
+/* line 36, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-compass:before {
+  content: '\e728';
+}
+
+/* e728 */
+/* line 37, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-direction:before {
+  content: '\27a2';
+}
+
+/* 27a2 */
+/* line 38, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-share:before {
+  content: '\e73c';
+}
+
+/* e73c */
+/* line 39, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-shareable:before {
+  content: '\e73e';
+}
+
+/* e73e */
+/* line 40, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-heart:before {
+  content: '\2665';
+}
+
+/* 2665 */
+/* line 41, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-heart-empty:before {
+  content: '\2661';
+}
+
+/* 2661 */
+/* line 42, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-star:before {
+  content: '\2605';
+}
+
+/* 2605 */
+/* line 43, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-star-empty:before {
+  content: '\2606';
+}
+
+/* 2606 */
+/* line 44, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-thumbs-up:before {
+  content: '\1f44d';
+}
+
+/* 1f44d */
+/* line 45, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-thumbs-down:before {
+  content: '\1f44e';
+}
+
+/* 1f44e */
+/* line 46, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-chat:before {
+  content: '\e720';
+}
+
+/* e720 */
+/* line 47, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-comment:before {
+  content: '\e718';
+}
+
+/* e718 */
+/* line 48, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-quote:before {
+  content: '\275e';
+}
+
+/* 275e */
+/* line 49, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-home:before {
+  content: '\2302';
+}
+
+/* 2302 */
+/* line 50, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-popup:before {
+  content: '\e74c';
+}
+
+/* e74c */
+/* line 51, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-search:before {
+  content: '\1f50d';
+}
+
+/* 1f50d */
+/* line 52, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-flashlight:before {
+  content: '\1f526';
+}
+
+/* 1f526 */
+/* line 53, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-print:before {
+  content: '\e716';
+}
+
+/* e716 */
+/* line 54, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-bell:before {
+  content: '\1f514';
+}
+
+/* 1f514 */
+/* line 55, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-link:before {
+  content: '\1f517';
+}
+
+/* 1f517 */
+/* line 56, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-flag:before {
+  content: '\2691';
+}
+
+/* 2691 */
+/* line 57, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cog:before {
+  content: '\2699';
+}
+
+/* 2699 */
+/* line 58, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-tools:before {
+  content: '\2692';
+}
+
+/* 2692 */
+/* line 59, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-trophy:before {
+  content: '\1f3c6';
+}
+
+/* 1f3c6 */
+/* line 60, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-tag:before {
+  content: '\e70c';
+}
+
+/* e70c */
+/* line 61, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-camera:before {
+  content: '\1f4f7';
+}
+
+/* 1f4f7 */
+/* line 62, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-megaphone:before {
+  content: '\1f4e3';
+}
+
+/* 1f4e3 */
+/* line 63, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-moon:before {
+  content: '\263d';
+}
+
+/* 263d */
+/* line 64, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-palette:before {
+  content: '\1f3a8';
+}
+
+/* 1f3a8 */
+/* line 65, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-leaf:before {
+  content: '\1f342 ';
+}
+
+/* 1f342 */
+/* line 66, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-note:before {
+  content: '\266a';
+}
+
+/* 266a */
+/* line 67, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-beamed-note:before {
+  content: '\266b';
+}
+
+/* 266b */
+/* line 68, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-graduation-cap:before {
+  content: '\1f393 ';
+}
+
+/* 1f393 */
+/* line 69, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-book:before {
+  content: '\1f4d5 ';
+}
+
+/* 1f4d5 */
+/* line 70, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-newspaper:before {
+  content: '\1f4f0';
+}
+
+/* 1f4f0 */
+/* line 71, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-bag:before {
+  content: '\1f45c';
+}
+
+/* 1f45c */
+/* line 72, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-lifebuoy:before {
+  content: '\e788';
+}
+
+/* e788 */
+/* line 73, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-eye:before {
+  content: '\e70a';
+}
+
+/* e70a */
+/* line 74, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-clock:before {
+  content: '\1f554';
+}
+
+/* 1f554 */
+/* line 75, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-mic:before {
+  content: '\1f3a4';
+}
+
+/* 1f3a4 */
+/* line 76, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-calendar:before {
+  content: '\1f4c5';
+}
+
+/* 1f4c5 */
+/* line 77, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-flash:before {
+  content: '\26a1';
+}
+
+/* 26a1 */
+/* line 78, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-thunder-cloud:before {
+  content: '\26c8';
+}
+
+/* 26c8 */
+/* line 79, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-droplet:before {
+  content: '\1f4a7';
+}
+
+/* 1f4a7 */
+/* line 80, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cd:before {
+  content: '\1f4bf';
+}
+
+/* 1f4bf */
+/* line 81, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-briefcase:before {
+  content: '\1f4bc';
+}
+
+/* 1f4bc */
+/* line 82, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-air:before {
+  content: '\e753';
+}
+
+/* e753 */
+/* line 83, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-hourglass:before {
+  content: '\23f3';
+}
+
+/* 23f3 */
+/* line 84, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-gauge:before {
+  content: '\e7a2';
+}
+
+/* e7a2 */
+/* line 85, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-language:before {
+  content: '\e752';
+}
+
+/* e752 */
+/* line 86, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-network:before {
+  content: '\e776';
+}
+
+/* e776 */
+/* line 87, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-key:before {
+  content: '\1f511';
+}
+
+/* 1f511 */
+/* line 88, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-battery:before {
+  content: '\1f50b';
+}
+
+/* 1f50b */
+/* line 89, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-bucket:before {
+  content: '\e756';
+}
+
+/* e756 */
+/* line 90, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-magnet:before {
+  content: '\e7a1';
+}
+
+/* e7a1 */
+/* line 91, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-drive:before {
+  content: '\e755';
+}
+
+/* e755 */
+/* line 92, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cup:before {
+  content: '\2615';
+}
+
+/* 2615 */
+/* line 93, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-rocket:before {
+  content: '\1f680';
+}
+
+/* 1f680 */
+/* line 94, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-brush:before {
+  content: '\e79a';
+}
+
+/* e79a */
+/* line 95, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-suitcase:before {
+  content: '\e78e';
+}
+
+/* e78e */
+/* line 96, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-traffic-cone:before {
+  content: '\e7a3';
+}
+
+/* e7a3 */
+/* line 97, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-globe:before {
+  content: '\1f30e';
+}
+
+/* 1f30e */
+/* line 98, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-keyboard:before {
+  content: '\2328';
+}
+
+/* 2328 */
+/* line 99, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-publish:before {
+  content: '\e74d';
+}
+
+/* e74d */
+/* line 100, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-progress-3:before {
+  content: '\e76b';
+}
+
+/* e76b */
+/* line 101, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-progress-2:before {
+  content: '\e76a';
+}
+
+/* e76a */
+/* line 102, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-progress-1:before {
+  content: '\e769';
+}
+
+/* e769 */
+/* line 103, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-progress-0:before {
+  content: '\e768';
+}
+
+/* e768 */
+/* line 104, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-light-down:before {
+  content: '\1f505';
+}
+
+/* 1f505' */
+/* line 105, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-light-up:before {
+  content: '\1f506';
+}
+
+/* 1f506 */
+/* line 106, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-adjust:before {
+  content: '\25d1';
+}
+
+/* 25d1 */
+/* line 107, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-code:before {
+  content: '\e714';
+}
+
+/* e714 */
+/* line 108, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-monitor:before {
+  content: '\1f4bb';
+}
+
+/* 1f4bb */
+/* line 109, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-infinity:before {
+  content: '\221e';
+}
+
+/* 221e */
+/* line 110, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-credit-card:before {
+  content: '\1f4b3';
+}
+
+/* 1f4b3 */
+/* line 111, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-database:before {
+  content: '\e754';
+}
+
+/* e754 */
+/* line 112, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-clipboard:before {
+  content: '\1f4cb';
+}
+
+/* 1f4cb */
+/* line 113, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-box:before {
+  content: '\1f4e6';
+}
+
+/* 1f4e6 */
+/* line 114, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-ticket:before {
+  content: '\1f3ab';
+}
+
+/* 1f3ab */
+/* line 115, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-rss:before {
+  content: '\e73a';
+}
+
+/* e73a */
+/* line 116, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-signal:before {
+  content: '\1f4f6';
+}
+
+/* 1f4f6 */
+/* line 117, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-thermometer:before {
+  content: '\e757';
+}
+
+/* e757 */
+/* line 118, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-water:before {
+  content: '\1f4a6';
+}
+
+/* 1f4a6 */
+/* line 119, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-sweden:before {
+  content: '\f601';
+}
+
+/* f601 */
+/* line 120, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-lock:before {
+  content: '\1f512';
+}
+
+/* 1f512 */
+/* line 121, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-lock-open:before {
+  content: '\1f513';
+}
+
+/* 1f513 */
+/* line 122, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-logout:before {
+  content: '\e741';
+}
+
+/* e741 */
+/* line 123, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-login:before {
+  content: '\e740';
+}
+
+/* e740 */
+/* line 124, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-check:before {
+  content: '\2713';
+}
+
+/* 2713 */
+/* line 125, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-squared-plus:before {
+  content: '\229e';
+}
+
+/* 229e */
+/* line 126, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-squared-minus:before {
+  content: '\229f';
+}
+
+/* 229f */
+/* line 127, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-circled-plus:before {
+  content: '\2795';
+}
+
+/* 2795 */
+/* line 128, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-circled-minus:before {
+  content: '\2796';
+}
+
+/* 2796 */
+/* line 129, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-plus:before {
+  content: '\2b';
+}
+
+/* 2b */
+/* line 130, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-minus:before {
+  content: '\2d';
+}
+
+/* 2d */
+/* line 131, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-erase:before {
+  content: '\232b';
+}
+
+/* 232b */
+/* line 132, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-block:before {
+  content: '\1f6ab';
+}
+
+/* 1f6ab */
+/* line 133, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-info:before {
+  content: '\2139';
+}
+
+/* 2139 */
+/* line 134, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-circled-info:before {
+  content: '\e705';
+}
+
+/* e705 */
+/* line 135, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-help:before {
+  content: '\2753';
+}
+
+/* 2753 */
+/* line 136, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-circled-help:before {
+  content: '\e704';
+}
+
+/* e704 */
+/* line 137, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-ccw:before {
+  content: '\27f2';
+}
+
+/* 27f2 */
+/* line 138, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cw:before {
+  content: '\27f3';
+}
+
+/* 27f3 */
+/* line 139, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-shuffle:before {
+  content: '\1f500';
+}
+
+/* 1f500 */
+/* line 140, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-back:before {
+  content: '\1f519';
+}
+
+/* 1f519 */
+/* line 141, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-level-up:before {
+  content: '\21b0';
+}
+
+/* 21b0 */
+/* line 142, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-level-down:before {
+  content: '\21b3';
+}
+
+/* 21b3 */
+/* line 143, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-retweet:before {
+  content: '\e717';
+}
+
+/* e717 */
+/* line 144, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-loop:before {
+  content: '\1f501';
+}
+
+/* 1f501 */
+/* line 145, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-back-in-time:before {
+  content: '\e771';
+}
+
+/* e771 */
+/* line 146, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-switch:before {
+  content: '\21c6';
+}
+
+/* 21c6 */
+/* line 147, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-layout:before {
+  content: '\268f';
+}
+
+/* 268f */
+/* line 148, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-list:before {
+  content: '\2630';
+}
+
+/* 2630 */
+/* line 149, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-doc:before {
+  content: '\e730';
+}
+
+/* e730 */
+/* line 150, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-docs:before {
+  content: '\e736';
+}
+
+/* e736 */
+/* line 151, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-text-doc-inverted:before {
+  content: '\e731';
+}
+
+/* e731 */
+/* line 152, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-landscape-doc:before {
+  content: '\e737';
+}
+
+/* e737 */
+/* line 153, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-picture:before {
+  content: '\1f304';
+}
+
+/* 1f304 */
+/* line 154, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-video:before {
+  content: '\1f3ac';
+}
+
+/* 1f3ac */
+/* line 155, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-music:before {
+  content: '\1f3b5';
+}
+
+/* 1f3b5 */
+/* line 156, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-folder:before {
+  content: '\1f4c1 ';
+}
+
+/* 1f4c1 */
+/* line 157, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-archive:before {
+  content: '\e738';
+}
+
+/* e738 */
+/* line 158, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-trash:before {
+  content: '\e729';
+}
+
+/* e729 */
+/* line 159, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-upload:before {
+  content: '\1f4e4';
+}
+
+/* 1f4e4 */
+/* line 160, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-download:before {
+  content: '\1f4e5';
+}
+
+/* 1f4e5 */
+/* line 161, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-install:before {
+  content: '\e778';
+}
+
+/* e778 */
+/* line 162, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cloud:before {
+  content: '\2601';
+}
+
+/* 2601 */
+/* line 163, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-upload-cloud:before {
+  content: '\e711';
+}
+
+/* e711 */
+/* line 164, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-bookmark:before {
+  content: '\1f516';
+}
+
+/* 1f516 */
+/* line 165, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-bookmarks:before {
+  content: '\1f4d1';
+}
+
+/* 1f4d1 */
+/* line 166, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-play:before {
+  content: '\25b6';
+}
+
+/* 25b6 */
+/* line 167, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-paus:before {
+  content: '\2389';
+}
+
+/* 2389 */
+/* line 168, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-record:before {
+  content: '\26ab';
+}
+
+/* 26ab */
+/* line 169, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-stop:before {
+  content: '\25a0';
+}
+
+/* 25a0 */
+/* line 170, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-to-end:before {
+  content: '\23ed';
+}
+
+/* 23ed */
+/* line 171, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-to-start:before {
+  content: '\23ee';
+}
+
+/* 23ee */
+/* line 172, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-resize-full:before {
+  content: '\e744';
+}
+
+/* e744 */
+/* line 173, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-resize-small:before {
+  content: '\e746';
+}
+
+/* e746 */
+/* line 174, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-volume:before {
+  content: '\e742';
+}
+
+/* e742 */
+/* line 175, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-sound:before {
+  content: '\1f50a';
+}
+
+/* 1f50a */
+/* line 176, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-mute:before {
+  content: '\1f507';
+}
+
+/* 1f507 */
+/* line 177, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-flow-cascade:before {
+  content: '\e790';
+}
+
+/* e790 */
+/* line 178, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-flow-branch:before {
+  content: '\e791';
+}
+
+/* e791 */
+/* line 179, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-flow-tree:before {
+  content: '\e792';
+}
+
+/* e792 */
+/* line 180, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-flow-line:before {
+  content: '\e793';
+}
+
+/* e793 */
+/* line 181, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-flow-parallel:before {
+  content: '\e794';
+}
+
+/* e794 */
+/* line 182, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-left-bold:before {
+  content: '\e4ad';
+}
+
+/* e4ad */
+/* line 183, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-right-bold:before {
+  content: '\e4ae';
+}
+
+/* e4ae */
+/* line 184, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-up-bold:before {
+  content: '\e4af';
+}
+
+/* e4af */
+/* line 185, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-down-bold:before {
+  content: '\e4b0';
+}
+
+/* e4b0 */
+/* line 186, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-left:before {
+  content: '\261c';
+}
+
+/* 261c */
+/* line 187, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-up:before {
+  content: '\261d';
+}
+
+/* 261d */
+/* line 188, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-right:before {
+  content: '\261e';
+}
+
+/* 261e */
+/* line 189, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-down:before {
+  content: '\261f';
+}
+
+/* 261f */
+/* line 190, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-circled-down:before {
+  content: '\e758';
+}
+
+/* e758 */
+/* line 191, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-circled-left:before {
+  content: '\e759';
+}
+
+/* e759 */
+/* line 192, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-circled-right:before {
+  content: '\e75a';
+}
+
+/* e75a */
+/* line 193, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-circled-up:before {
+  content: '\e75b';
+}
+
+/* e75b */
+/* line 194, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-left-thin:before {
+  content: '\2190';
+}
+
+/* 2190 */
+/* line 195, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-up-thin:before {
+  content: '\2191';
+}
+
+/* 2191 */
+/* line 196, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-right-thin:before {
+  content: '\2192';
+}
+
+/* 2192 */
+/* line 197, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-down-thin:before {
+  content: '\2193';
+}
+
+/* 2193 */
+/* line 198, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-arrow-combo:before {
+  content: '\e74f';
+}
+
+/* e74f */
+/* line 199, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-dot:before {
+  content: '\e78b';
+}
+
+/* e78b */
+/* line 200, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-two-dots:before {
+  content: '\e78c';
+}
+
+/* e78c */
+/* line 201, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-three-dots:before {
+  content: '\e78d';
+}
+
+/* e78d */
+/* line 202, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cc:before {
+  content: '\e7a5';
+}
+
+/* e7a5 */
+/* line 203, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cc-by:before {
+  content: '\e7a6';
+}
+
+/* e7a6 */
+/* line 204, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cc-nc:before {
+  content: '\e7a7';
+}
+
+/* e7a7 */
+/* line 205, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cc-nc-eu:before {
+  content: '\e7a8';
+}
+
+/* e7a8 */
+/* line 206, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cc-nc-jp:before {
+  content: '\e7a9';
+}
+
+/* e7a9 */
+/* line 207, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cc-sa:before {
+  content: '\e7aa';
+}
+
+/* e7aa */
+/* line 208, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cc-nd:before {
+  content: '\e7ab';
+}
+
+/* e7ab */
+/* line 209, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cc-pd:before {
+  content: '\e7ac';
+}
+
+/* e7ac */
+/* line 210, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cc-zero:before {
+  content: '\e7ad';
+}
+
+/* e7ad */
+/* line 211, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cc-share:before {
+  content: '\e7ae';
+}
+
+/* e7ae */
+/* line 212, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cc-remix:before {
+  content: '\e7af';
+}
+
+/* e7af */
+/* line 213, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-db-logo:before {
+  content: '\f603';
+}
+
+/* f603 */
+/* line 214, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-db-shape:before {
+  content: '\f600';
+}
+
+/* f600 */
+/* line 215, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-save:before {
+  content: '\1f4be';
+}
+
+/* 1f4be */
+/* line 216, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-ff:before {
+  content: '\23e9';
+}
+
+/* 23e9 */
+/* line 217, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-fb:before {
+  content: '\23ea';
+}
+
+/* 23ea */
+/* line 218, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-pie-chart:before {
+  content: '\e751';
+}
+
+/* e751 */
+/* line 219, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-line-graph:before {
+  content: '\1f4c8';
+}
+
+/* 1f4c8 */
+/* line 220, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-bar-graph:before {
+  content: '\1f4ca ';
+}
+
+/* 1f4ca */
+/* line 221, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-area-graph:before {
+  content: '\1f53e';
+}
+
+/* 1f53e */
+/* line 222, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-chevron-down:before {
+  content: '\e75c';
+}
+
+/* e75c */
+/* line 223, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-chevron-left:before {
+  content: '\e75d';
+}
+
+/* e75d */
+/* line 224, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-chevron-right:before {
+  content: '\e75e';
+}
+
+/* e75e */
+/* line 225, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-chevron-up:before {
+  content: '\e75f';
+}
+
+/* e75f */
+/* line 226, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-chevron-small-down:before {
+  content: '\e760';
+}
+
+/* e760 */
+/* line 227, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-chevron-small-left:before {
+  content: '\e761';
+}
+
+/* e761 */
+/* line 228, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-chevron-small-right:before {
+  content: '\e762';
+}
+
+/* e762 */
+/* line 229, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-chevron-small-up:before {
+  content: '\e763';
+}
+
+/* e763 */
+/* line 230, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-chevron-thin-down:before {
+  content: '\e764';
+}
+
+/* e764 */
+/* line 231, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-chevron-thin-left:before {
+  content: '\e765';
+}
+
+/* e765 */
+/* line 232, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-chevron-thin-right:before {
+  content: '\e766';
+}
+
+/* e766 */
+/* line 233, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-chevron-thin-up:before {
+  content: '\e767';
+}
+
+/* e767 */
+/* line 234, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-text-doc:before {
+  content: '\1f4c4';
+}
+
+/* 1f4c4 */
+/* line 235, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-open-book:before {
+  content: '\1f4d6';
+}
+
+/* 1f4d6 */
+/* line 236, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-voicemail:before {
+  content: '\2707';
+}
+
+/* 2707 */
+/* line 237, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-triangle-right:before {
+  content: '\25b8';
+}
+
+/* 25b8 */
+/* line 238, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-triangle-up:before {
+  content: '\25b4';
+}
+
+/* 25b4 */
+/* line 239, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-triangle-down:before {
+  content: '\25be';
+}
+
+/* 25be */
+/* line 240, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-triangle-left:before {
+  content: '\25c2';
+}
+
+/* 25c2 */
+/* line 241, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-airplane:before {
+  content: '\2708';
+}
+
+/* 2708 */
+/* line 242, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-light-bulb:before {
+  content: '\1f4a1';
+}
+
+/* 1f4a1 */
+/* line 243, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-add-to-list:before {
+  content: '\e003';
+}
+
+/* e003 */
+/* line 244, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-browser:before {
+  content: '\e74e';
+}
+
+/* e74e */
+/* line 245, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cart:before {
+  content: '\e73d';
+}
+
+/* e73d */
+/* line 246, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cross-hair:before {
+  content: '\1f3af';
+}
+
+/* 1f3af */
+/* line 247, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-squared-cross:before {
+  content: '\274e';
+}
+
+/* 274e */
+/* line 248, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-circled-cross:before {
+  content: '\2716';
+}
+
+/* 2716 */
+/* line 249, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-warning:before {
+  content: '\26a0';
+}
+
+/* 26a0 */
+/* line 250, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cross:before {
+  content: '\2715';
+}
+
+/* 2715 */
+/* line 251, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-new:before {
+  content: '\1f4a5';
+}
+
+/* 1f4a5 */
+/* line 252, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-cycle:before {
+  content: '\1f504';
+}
+
+/* 1f504 */
+/* line 253, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-numbered-list:before {
+  content: '\e005';
+}
+
+/* e005 */
+/* line 254, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-right-1:before {
+  content: '\27a1';
+}
+
+/* 27a1 */
+/* line 255, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-left-1:before {
+  content: '\2b05';
+}
+
+/* 2b05 */
+/* line 256, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-up-1:before {
+  content: '\2b06';
+}
+
+/* 2b06 */
+/* line 257, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-down-1:before {
+  content: '\2b07';
+}
+
+/* 2b07 */
+/* social extention map */
+/* line 260, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-github:before {
+  content: '\f300';
+}
+
+/* f300 */
+/* line 261, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-social-c-github:before {
+  content: '\f301';
+}
+
+/* f301 */
+/* line 262, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-flickr:before {
+  content: '\f303';
+}
+
+/* f303 */
+/* line 263, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-c-flickr:before {
+  content: '\f304';
+}
+
+/* f304 */
+/* line 264, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-vimeo:before {
+  content: '\f306';
+}
+
+/* f306 */
+/* line 265, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-c-vimeo:before {
+  content: '\f307';
+}
+
+/* f307 */
+/* line 266, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-twitter:before {
+  content: '\f309';
+}
+
+/* f309 */
+/* line 267, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-c-twitter:before {
+  content: '\f30a';
+}
+
+/* f30a */
+/* line 268, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-facebook:before {
+  content: '\f30c';
+}
+
+/* f30c */
+/* line 269, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-c-facebook:before {
+  content: '\f30d';
+}
+
+/* f30d */
+/* line 270, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-s-facebook:before {
+  content: '\f30e';
+}
+
+/* f30e */
+/* line 271, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-google-plus:before {
+  content: '\f30f';
+}
+
+/* f30f */
+/* line 272, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-c-google-plus:before {
+  content: '\f310';
+}
+
+/* f310 */
+/* line 273, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-pinterest:before {
+  content: '\f312';
+}
+
+/* f312 */
+/* line 274, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-c-pinterest:before {
+  content: '\f313';
+}
+
+/* f313 */
+/* line 275, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-tumblr:before {
+  content: '\f315';
+}
+
+/* f315 */
+/* line 276, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-c-tumblr:before {
+  content: '\f316';
+}
+
+/* f316 */
+/* line 277, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-linkedin:before {
+  content: '\f318';
+}
+
+/* f318 */
+/* line 278, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-c-linkedin:before {
+  content: '\f319';
+}
+
+/* f319 */
+/* line 279, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-dribbble:before {
+  content: '\f31b';
+}
+
+/* f31b */
+/* line 280, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-c-dribbble:before {
+  content: '\f31c';
+}
+
+/* f31c */
+/* line 281, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-stumbleupon:before {
+  content: '\f31e';
+}
+
+/* f31e */
+/* line 282, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-c-stumbleupon:before {
+  content: '\f31f';
+}
+
+/* f31f */
+/* line 283, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-lastfm:before {
+  content: '\f321';
+}
+
+/* f321 */
+/* line 284, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-c-lastfm:before {
+  content: '\f322';
+}
+
+/* f322 */
+/* line 285, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-rdio:before {
+  content: '\f324';
+}
+
+/* f324 */
+/* line 286, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-c-rdio:before {
+  content: '\f325';
+}
+
+/* f325 */
+/* line 287, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-spotify:before {
+  content: '\f327';
+}
+
+/* f327 */
+/* line 288, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-c-spotify:before {
+  content: '\f328';
+}
+
+/* f328 */
+/* line 289, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-qq:before {
+  content: '\f32a';
+}
+
+/* f32a */
+/* line 290, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-instagram:before {
+  content: '\f32d';
+}
+
+/* f32d */
+/* line 291, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-dropbox:before {
+  content: '\f330';
+}
+
+/* f330 */
+/* line 292, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-evernote:before {
+  content: '\f333';
+}
+
+/* f333 */
+/* line 293, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-flattr:before {
+  content: '\f336';
+}
+
+/* f336 */
+/* line 294, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-skype:before {
+  content: '\f339';
+}
+
+/* f339 */
+/* line 295, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-c-skype:before {
+  content: '\f33a';
+}
+
+/* f33a */
+/* line 296, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-renren:before {
+  content: '\f33c';
+}
+
+/* f33c */
+/* line 297, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-sina-weibo:before {
+  content: '\f33f';
+}
+
+/* f33f */
+/* line 298, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-paypal:before {
+  content: '\f342';
+}
+
+/* f342 */
+/* line 299, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-picasa:before {
+  content: '\f345';
+}
+
+/* f345 */
+/* line 300, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-soundcloud:before {
+  content: '\f348';
+}
+
+/* f348 */
+/* line 301, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-mixi:before {
+  content: '\f34b';
+}
+
+/* f34b */
+/* line 302, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-behance:before {
+  content: '\f34e';
+}
+
+/* f34e */
+/* line 303, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-google-circles:before {
+  content: '\f351';
+}
+
+/* f351 */
+/* line 304, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-vk:before {
+  content: '\f354';
+}
+
+/* f354 */
+/* line 305, c:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/entypo-rails-2.2.3/app/assets/stylesheets/entypo.css.scss.erb */
+.icon-social-smashing:before {
+  content: '\f357';
+}
+
+/* f357 */

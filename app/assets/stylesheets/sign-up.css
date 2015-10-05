@@ -1,0 +1,40 @@
+
+header {
+  background: url('/images/photodune-6745579-modern-creative-man-relaxing-on-workspace-m.jpg');
+  background-size: cover;
+  height: 100vh;
+}
+.test{
+     background: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    )
+}
+.title {
+   
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
+h1 {
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 3rem;
+  white-space: nowrap;
+}
+h2 {
+  font-size: 2rem;
+}
+p {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+main {
+  max-width: 500px;
+  margin: 20px auto;
+}
+
