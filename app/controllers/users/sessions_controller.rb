@@ -1,7 +1,13 @@
 class Users::SessionsController < Devise::SessionsController
-  respond_to :json
 
 # before_filter :configure_sign_in_params, only: [:create]
+
+  after_filter :set_csrf_headers, only: [:create, :destroy]
+
+  protected
+  def set_csrf_headers
+    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+  end
 
   # GET /resource/sign_in
   # def new

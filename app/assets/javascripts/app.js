@@ -6,6 +6,12 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
 
 // }])
 
+.config(function(AuthProvider) {
+    AuthProvider.loginPath('/users/sign_in.json');
+    AuthProvider.loginMethod('POST');
+    AuthProvider.logoutPath('/users/sign_out.json');
+    AuthProvider.logoutMethod('DELETE');
+})
 
 .config(['$stateProvider', '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider){
@@ -17,7 +23,10 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
         views: {
         '': {templateUrl: 'templates/home.html'},
 
-        'navbar': {templateUrl: 'templates/header-1.html'}
+        'navbar': {
+                templateUrl: 'templates/header-1.html',
+                controller: 'sessionController'
+            }
         }
       })
       // nested routes for our home page
@@ -51,6 +60,5 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
             url: '/availability',
             templateUrl: 'templates/registration/form-availability.html'
         });
-
 
   }]);

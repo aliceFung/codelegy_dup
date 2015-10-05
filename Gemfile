@@ -1,4 +1,6 @@
 source 'http://rubygems.org'
+ruby '2.2.1'
+
 
 # Devise
 gem 'devise'
@@ -9,6 +11,10 @@ end
 # omniauth
 gem 'omniauth'
 gem 'omniauth-github'
+
+
+gem 'daemons'
+gem 'delayed_job_active_record'
 
 gem 'git-hooks'
 gem 'figaro'
@@ -70,10 +76,13 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'letter_opener'
+
   gem 'capistrano',         require: false
   gem 'capistrano-rvm',     require: false
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
+  gem 'capistrano3-delayed-job', require: false
   gem 'capistrano3-puma',   require: false
 end
 

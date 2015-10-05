@@ -1,4 +1,4 @@
-app.factory('session', ['Auth', function(Auth){
+app.factory('session', ['Auth', '$state', function(Auth, $state){
   var authenticated = { status: Auth.isAuthenticated() };
   var currentUser = { user: Auth.currentUser() };
 
@@ -13,7 +13,7 @@ app.factory('session', ['Auth', function(Auth){
       console.log('Signed In');
       currentUser.user = user;
       authenticated.status = true;
-      // $state.go('home.boards');
+      $state.go('home');
     }, function(error){
       console.log('Sign In Failed:', error);
       authenticated.status = false;
@@ -21,18 +21,18 @@ app.factory('session', ['Auth', function(Auth){
 
   }
 
-  function signOut (argument) {
+  function signOut () {
     var config = {
         headers: {
             'X-HTTP-Method-Override': 'DELETE'
         }
     };
 
-    Auth.logout(config).then(function(){
-      console.log('Signed Out');
+    Auth.logout(config).then(function(oldUser){
+      console.log('Signed Out' + oldUser);
       currentUser.user = null;
       authenticated.status = false;
-      // $state.go('home');
+      $state.go('home');
     }, function(error){
       console.log('Sign Out Failed:', error);
     });

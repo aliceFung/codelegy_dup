@@ -6,4 +6,4 @@ pre_commits:
   GitHooks::PreCommit::PreventMaster:
   # GitHooks::PreCommit::Rubocop:
   #   use_stash: false
-  GitHooks::PreCommit::Rspec:
+  # GitHooks::PreCommit::Rspec:

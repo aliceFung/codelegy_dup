@@ -1,4 +1,4 @@
-app.controller('sessionController', ['$scope', 'session', function($scope, session){
+app.controller('sessionController', ['$scope', 'session', '$state', function($scope, session, $state){
 
   $scope.authenticated = session.authenticated;
   $scope.currentUser = session.currentUser;
@@ -11,5 +11,9 @@ app.controller('sessionController', ['$scope', 'session', function($scope, sessi
   };
 
   $scope.signOut = session.signOut;
+
+  if (!$scope.authenticated.status){
+    $state.go('home.login');
+  }
 
 }]);
