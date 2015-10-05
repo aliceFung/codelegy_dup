@@ -1,5 +1,11 @@
 source 'http://rubygems.org'
 
+# Devise
+gem 'devise'
+
+# omniauth
+gem 'omniauth'
+gem 'omniauth-github'
 
 gem 'git-hooks'
 gem 'figaro'
@@ -46,7 +52,6 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'guard-rspec'
   gem 'guard-jasmine'
-  gem 'angularjs-rails'
   gem 'pry'
 end
 
