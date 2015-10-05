@@ -61,4 +61,11 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular'])
         }
       })
 
+      //request form to join project
+      .state('projects.join', {
+        url: '/:id/join',
+        controller: 'membershipCtrl',
+        templatesUrl: 'templates/projects/participation-request.html'
+      })
+
   }]);

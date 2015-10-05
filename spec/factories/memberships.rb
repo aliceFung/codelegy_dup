@@ -3,8 +3,6 @@ FactoryGirl.define do
     association :user
     association :project
 
-    participant_type 'pending'
-
   end
 
 end

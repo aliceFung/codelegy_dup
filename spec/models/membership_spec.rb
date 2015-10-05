@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Membership, type: :model do
+
+  it 'should create a membership with pending status' do
+    membership1 = create(:membership)
+    expect(membership1.participant_type).to eq('pending')
+  end
+
   it 'should not create membership if already exists' do
     membership1 = create(:membership)
     membership2 = build(:membership, user: membership1.user, project: membership1.project)
