@@ -1,5 +1,7 @@
 class MembershipsController < ApplicationController
 
+  #require project_owner, except: [:show]
+
   def create
     @membership = Membership.new(params_list)
     respond_to do |format|
@@ -42,8 +44,9 @@ class MembershipsController < ApplicationController
 
   private
 
-  def params_list #type only used internally from Project creation
-    params.require(:membership).permit(:project_id, :user_id, :id)
+  def params_list
+    params.require(:membership).permit( :project_id, :user_id,
+                                        :id, :type)
   end
 
 end
