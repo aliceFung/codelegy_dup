@@ -14,4 +14,8 @@ FactoryGirl.define do
   factory :master, class: Difficulty do
     name 'Master'
   end
+
+  factory :difficulty, class: Difficulty do
+    name 'Beginner'
+  end
 end
