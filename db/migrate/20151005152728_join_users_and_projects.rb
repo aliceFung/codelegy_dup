@@ -3,7 +3,7 @@ class JoinUsersAndProjects < ActiveRecord::Migration
     create_table :memberships do |t|
       t.references :user
       t.references :project
-      t.string :type, default: "pending"
+      t.string :participant_type, default: "pending"
     end
   end
 end

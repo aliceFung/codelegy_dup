@@ -1,1 +1,7 @@
-hi
+Dear <%= @user.email %>
+
+You have a new member request for <%= @project.title %>!
+
+<%= link_to "Go to your codelegy dashboard", user_url(@user.id) %>
+
+To unsubscribe to email notifications, login to your codelegy account to change settings.

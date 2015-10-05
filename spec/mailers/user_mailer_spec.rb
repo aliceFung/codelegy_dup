@@ -7,7 +7,7 @@ RSpec.describe UserMailer, type: :mailer do
     @project = create(:project)
     @owner = create(:user)
     @project.members.push(@owner)
-    @project.memberships[0].update(type: 'owner')
+    @project.memberships[0].update(participant_type: 'owner')
   end
 
   describe 'send_request_email' do

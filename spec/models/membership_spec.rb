@@ -22,4 +22,8 @@ RSpec.describe Membership, type: :model do
       create(:membership)
     }.to change(Delayed::Job, :count).by(1)
   end
+
+  xit "sends an email" do
+    expect { create(:membership) }.to change { ActionMailer::Base.deliveries.count }.by(1)
+  end
 end
