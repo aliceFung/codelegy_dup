@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require angular
 //= require ui-router
+//= require angular-animate
 //= require lodash
 //= require restangular
 //= require_tree .
