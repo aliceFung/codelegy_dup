@@ -3,6 +3,10 @@ source 'http://rubygems.org'
 # Devise
 gem 'devise'
 
+# omniauth
+gem 'omniauth'
+gem 'omniauth-github'
+
 gem 'git-hooks'
 gem 'figaro'
 gem 'angularjs-rails'
@@ -48,8 +52,13 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'guard-rspec'
   gem 'guard-jasmine'
-  gem 'angularjs-rails'
-  gem 'pry'
+  # gem 'pry' # included in jazz-hands as a dependency
+  gem 'jazz_hands',
+    github: 'nixme/jazz_hands',
+    branch: 'bring-your-own-debugger'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
 end
 
 group :development do
