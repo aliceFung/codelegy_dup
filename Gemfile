@@ -48,7 +48,6 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'guard-rspec'
   gem 'guard-jasmine'
-  gem 'angularjs-rails'
   gem 'pry'
 end
 
