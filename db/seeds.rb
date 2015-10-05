@@ -16,6 +16,8 @@ Language.create(name: 'Swift')
 Language.create(name: 'Java')
 Language.create(name: 'PHP')
 
+Difficulty.create(name: 'Beginnger')
+Difficulty.create(name: 'Medium')
+Difficulty.create(name: 'Expert')
+Difficulty.create(name: 'Master')
 
-Project.create(title: "myProject", availibilty: "Weeknights",
-               description: "Really Awesome!")
