@@ -2,7 +2,7 @@
 <hr><hr>
 <!-- Languages -->
 <div class="row">
-  <div class="col-sm-1 col-sm-offset-2">
+  <div class="col-sm-1">
 
   </div>
   <div class="col-sm-1" ng-repeat="language in languages">
@@ -12,23 +12,40 @@
 </div>
 <br>
 <!-- End Languages -->
-<main>
+
+<div class="container">
+
 <br>
 
 
 <div class="row">
-  <div class="col-md-10">
-    <h2>Projects</h2>
-    <hr>
-    <div class="col-md-6" ng-repeat="project in projects">
-      <h4>{{project.title}}</h4>
-      Project Owner: <h5>{{project.owner.email}}</h5>
-      Est. Difficulty:<h5>{{project.difficulty_name}}</h5>
+  <div class="col-sm-3"><h2>Projects</h2></div>
+  <div class="col-sm-4 col-sm-offset-3">
+  <button ui-sref="projects.new"
+  class="btn btn-primary pull-right">New Project</button>
+
+  </div>
+</div>
+<div class="row">
+  <hr>
+  <div class="col-sm-4" ng-repeat="project in projects">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4>{{project.title}}</h4>
+        <strong>Project Owner:</strong> {{project.owner.email}} <br>
+        <strong>Est. Difficulty:</strong>{{project.difficulty_name}} <br>
+        <strong>Times:</strong> {{project.availability}} <br>
+        <strong>Languages:</strong>
+         <img ng-repeat="lang in project.languages" src="{{lang.url}}" alt="{{lang.name}}"
+         style="width:20px;margin:5px">
+      </div>
     </div>
   </div>
-  <div class="col-md-1 col-md-offset-1">
-    <button ui-sref="projects.new" class="btn btn-primary pull-right">New Project</button>
-  </div>
-</main>
+
+
+</div>
+
+</div>
+
 </div>
 </ui-view>

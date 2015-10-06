@@ -82,7 +82,16 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
                         }, function(error){
                             return error
                         })
-                      }]
+                      }],
+            languages: [ 'Restangular', function(Restangular){
+                        return Restangular.all('languages').getList()
+                        .then(function(response){
+                            return response
+                        }, function(error){
+                            return error
+                        })
+                      }],
+
          },
         views: {
         '': {
