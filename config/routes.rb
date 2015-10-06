@@ -7,9 +7,6 @@ Rails.application.routes.draw do
   root to: 'main#index'
 
 
-
-
-
   scope :api do
     scope :v1 do
       resources :projects, only: [:index, :create]

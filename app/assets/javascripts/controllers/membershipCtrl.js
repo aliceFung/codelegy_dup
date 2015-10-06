@@ -1,5 +1,5 @@
-app.controller('membershipCtrl', ['$scope', '$stateParams', 'emailService', 'Restangular', 'session', '$location',
-  function($scope, $stateParams, emailService, Restangular, session, $location) {
+app.controller('membershipCtrl', ['$scope', '$stateParams', 'emailService', 'Restangular', 'session', '$state',
+  function($scope, $stateParams, emailService, Restangular, session, $state) {
 
   console.log('membershipCtrl initiated');
   // get updated project information, need owner info from API included or get it from the main page as params
@@ -26,10 +26,10 @@ app.controller('membershipCtrl', ['$scope', '$stateParams', 'emailService', 'Res
                 //adding it to inbox
                 createdRequest.content = $scope.content;
                 $scope.inbox.push(createdRequest);
-                $location.path('/#/projects');
+                $state.go('projects');
                   }, function(error){
                     console.log(error);
-                    $location.path('/#/projects');
+                    $state.go('projects');
                   });
   };
 

@@ -9,6 +9,7 @@ class Project < ActiveRecord::Base
 
   has_many :memberships
   has_many :members, through: :memberships, source: :user
+  has_many :emails
 
   def owner
     self.members.where('memberships.participant_type = ?', 'owner')[0]
@@ -16,6 +17,10 @@ class Project < ActiveRecord::Base
 
   def difficulty_name
     difficulty ? difficulty.name : "None"
+  end
+
+  def group_emails
+    self.emails.where('to_everyone = ?', true)
   end
 
 end

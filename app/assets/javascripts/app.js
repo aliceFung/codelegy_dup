@@ -126,5 +126,12 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
         //   }}
       })
 
+      //inbox
+      .state('inbox', {
+        url: '/inbox',
+        controller: 'emailCtrl',
+        templateUrl: 'templates/projects/inbox.html'
+      })
+
   }]);
 
