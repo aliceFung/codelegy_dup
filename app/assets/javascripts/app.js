@@ -27,6 +27,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
                 templateUrl: 'templates/header-1.html',
                 controller: 'sessionController'
             }
+
         }
       })
       // nested routes for our home page
@@ -60,5 +61,33 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
             url: '/availability',
             templateUrl: 'templates/registration/form-availability.html'
         });
+
+
+    $stateProvider
+      .state('projects', {
+        url: '/projects',
+        resolve: {
+            projects: [ '$http', function($http){
+                        return $http.get('/projects').
+                        then(function(response){
+                            return response.data
+                        }, function(error){
+                            return error
+                        })
+                      }]
+     },
+        views: {
+        '': {
+              templateUrl: 'templates/projects/projects.html',
+              controller: 'projectsCtrl',
+            },
+
+        'navbar': {
+            templateUrl: 'templates/header-1.html',
+            controller: 'sessionController'
+        }
+
+        }
+      })
 
   }]);

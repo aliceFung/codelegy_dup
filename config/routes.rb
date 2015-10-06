@@ -5,7 +5,8 @@ Rails.application.routes.draw do
                                         :registrations => 'users/registrations' }
 
   root to: 'main#index'
-
-  resources :emails, :only => [:index, :show]
+  resources :projects, only: [:index, :create]
+  resources :emails, only: [:index, :show]
 
 end
+

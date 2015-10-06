@@ -8,6 +8,7 @@ FactoryGirl.define do
     password_confirmation '12345678'
     provider 'Github'
     uid '1234'
+
   end
 
 end
