@@ -3,6 +3,15 @@ ruby '2.2.1'
 
 # Devise
 gem 'devise'
+source "https://rails-assets.org" do
+  gem "rails-assets-angular-devise"
+end
+
+# omniauth
+gem 'omniauth'
+gem 'omniauth-github'
+
+
 gem 'daemons'
 gem 'delayed_job_active_record'
 
@@ -44,8 +53,6 @@ gem 'puma'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
-  gem 'better_errors'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails'
@@ -53,7 +60,13 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'guard-rspec'
   gem 'guard-jasmine'
-  gem 'pry'
+  # gem 'pry' # included in jazz-hands as a dependency
+  gem 'jazz_hands',
+    github: 'nixme/jazz_hands',
+    branch: 'bring-your-own-debugger'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
 end
 
 group :development do

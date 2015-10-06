@@ -13,8 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require angular
+//= require angular-devise.min.js
 //= require ui-router
 //= require angular-animate
 //= require lodash
 //= require restangular
+
 //= require_tree .
