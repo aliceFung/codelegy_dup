@@ -5,11 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
 User.destroy_all
 Language.destroy_all
 Difficulty.destroy_all
 Project.destroy_all
 Membership.destroy_all
+
 
 Language.create(name: 'Ruby/Rails')
 Language.create(name: 'JavaScript')
@@ -33,5 +35,4 @@ Project.create(title: "my first project", difficulty_id: 2,
 end
 
 Membership.first.update(participant_type: "owner")
-
 
