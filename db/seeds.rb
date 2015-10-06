@@ -4,6 +4,7 @@ Difficulty.destroy_all
 Project.destroy_all
 Membership.destroy_all
 ProfileLanguage.destroy_all
+Email.destroy_all
 
 
 Language.create(name: 'HTML', url: '/logos/html.png')
@@ -37,3 +38,4 @@ ProjectLanguage.create(project_id: 1, language_id: 4)
 end
 
 Membership.first.update(participant_type: 'owner')
+User.create(email: "test@bar.com", password: '12345678')

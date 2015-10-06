@@ -3,14 +3,17 @@ app.controller('membershipCtrl', ['$scope', '$stateParams', 'emailService', 'Res
 
   console.log('membershipCtrl initiated');
 
+  $scope.project = {};
+
   // get updated project information
-  // Restangular.one('projects', $stateParams.id).get().then(function(response){
-  //   $scope.project= JSON.parse(response);
-  // });
+  Restangular.one('projects', $stateParams.id).get().then(function(response){
+    $scope.project.title = response.title;
+    $scope.project.owner_username = response.owner.username;
+  });
 
 
-  // below is temp until projects index page is complete
-  $scope.project= JSON.parse("{\"id\":152,\"title\":\"myProject\",\"availability\":\"weeknights\",\"description\":\"really awesome!\",\"difficulty_id\":171,\"created_at\":\"2015-10-06T21:45:33.502Z\",\"updated_at\":\"2015-10-06T21:45:33.502Z\",\"difficulty_name\":\"Beginner\",\"owner\":{\"id\":228,\"username\":\"foo11\",\"email\":\"myemail@user11.com\",\"created_at\":\"2015-10-06T21:45:33.499Z\",\"updated_at\":\"2015-10-06T21:45:33.499Z\",\"provider\":\"Github\",\"uid\":\"1234\"}}");
+  // // below is temp until projects index page is complete
+  // $scope.project= JSON.parse("{\"id\":152,\"title\":\"myProject\",\"availability\":\"weeknights\",\"description\":\"really awesome!\",\"difficulty_id\":171,\"created_at\":\"2015-10-06T21:45:33.502Z\",\"updated_at\":\"2015-10-06T21:45:33.502Z\",\"difficulty_name\":\"Beginner\",\"owner\":{\"id\":228,\"username\":\"foo11\",\"email\":\"myemail@user11.com\",\"created_at\":\"2015-10-06T21:45:33.499Z\",\"updated_at\":\"2015-10-06T21:45:33.499Z\",\"provider\":\"Github\",\"uid\":\"1234\"}}");
 
 
   //to allow changes to emailService
