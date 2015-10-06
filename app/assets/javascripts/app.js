@@ -73,7 +73,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
         url: '/projects',
         resolve: {
             projects: [ '$http', function($http){
-                        return $http.get('/projects').
+                        return $http.get('api/v1/projects').
                         then(function(response){
                             return response.data
                         }, function(error){
@@ -99,8 +99,13 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
       //request form to join project
       .state('projects.join', {
         url: '/:id/join',
-        controller: 'membershipCtrl',
-        templatesUrl: 'templates/projects/participation-request.html'
+        // controller: 'membershipCtrl',
+        // templateUrl: 'templates/projects/participation-request.html'
+        views: {
+          "": {
+            controller: 'membershipCtrl',
+            templateUrl: 'templates/projects/participation-request.html'
+          }}
       })
 
   }]);

@@ -1,11 +1,17 @@
-<div class="col-md-10 col-md-offset-1">
+<main>
+  <br>
+  <div class="container-content-middle">
+    <h3>Code with {{project.owner}}</h3>
+    <h4>{{project.title}}</h4>
 
-  <h3>Code with {{project.owner}}</h3>
-  <h4>{{project.title}}</h4>
+    <textarea placeholder="Why do you want to work on this project?"
+    ng-model="content" class='form-control'>
+    </textarea>
+    <br>
 
-  <textarea placeholder="Why do you want to work on this project?"
-  ng-model="content">
-  </textarea>
+    <button type="button" class="btn btn-default" ng-click="sendRequest()">
+      Send
+    </button>
 
-  <button type="button" ng-click="sendRequest()">Send</button>
-</div>
+  </div>
+</main>
