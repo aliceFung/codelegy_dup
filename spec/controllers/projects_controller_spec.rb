@@ -29,8 +29,30 @@ RSpec.describe ProjectsController, type: :controller do
     end
   end
 
-  context 'create' do
+  context 'show' do
+    before do
+      m = (create :membership)
+      get :show, {id: m.project.id}
+    end
 
+    it 'should have a response' do
+      expect(response.body).to_not be(nil)
+    end
+
+    it 'should have a project title' do
+      expect(JSON.parse(response.body)['title']).to eql('myProject')
+    end
+
+    it 'should have a difficulty name' do
+      expect(JSON.parse(response.body)['difficulty_name']).to eql('Beginner')
+    end
+
+    it 'should have a project_owner' do
+      expect(JSON.parse(response.body)['owner']['email']).to include('myemail@user', '.com')
+    end
+  end
+
+  context 'create' do
     it 'should create a new project' do
       diff = create :difficulty
       params = {project: {title: 'myProject', difficulty_id: diff.id}}

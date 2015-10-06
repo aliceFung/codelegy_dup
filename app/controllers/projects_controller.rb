@@ -5,6 +5,11 @@ class ProjectsController < ApplicationController
     render json: @projects, methods: [:difficulty_name, :owner, :languages]
   end
 
+  def show
+    @project = Project.find(params[:id])
+    render json: @project, methods: [:difficulty_name, :owner]
+  end
+
   def create
     @project = Project.new(project_params)
 
