@@ -2,16 +2,18 @@ app.controller('membershipCtrl', ['$scope', '$stateParams', 'emailService', 'Res
   function($scope, $stateParams, emailService, Restangular, session, $state) {
 
   console.log('membershipCtrl initiated');
-  // get updated project information, need owner info from API included or get it from the main page as params
+
+  // get updated project information
   // Restangular.one('projects', $stateParams.id).get().then(function(response){
-  //   $scope.project= response
-  //   console.log($scope.project);
+  //   $scope.project= JSON.parse(response);
   // });
 
-  // below is temp until projects index page is complete
-  $scope.project= {title: 'new project',
-                  owner: 'owner'};
 
+  // below is temp until projects index page is complete
+  $scope.project= JSON.parse("{\"id\":152,\"title\":\"myProject\",\"availability\":\"weeknights\",\"description\":\"really awesome!\",\"difficulty_id\":171,\"created_at\":\"2015-10-06T21:45:33.502Z\",\"updated_at\":\"2015-10-06T21:45:33.502Z\",\"difficulty_name\":\"Beginner\",\"owner\":{\"id\":228,\"username\":\"foo11\",\"email\":\"myemail@user11.com\",\"created_at\":\"2015-10-06T21:45:33.499Z\",\"updated_at\":\"2015-10-06T21:45:33.499Z\",\"provider\":\"Github\",\"uid\":\"1234\"}}");
+
+
+  //to allow changes to emailService
   $scope.inbox = emailService.inbox;
 
 
