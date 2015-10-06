@@ -2,6 +2,7 @@ class ProfilesController < ApplicationController
 
   def create
     @profile = Profile.new(whitelisted_profile_params)
+    binding.pry
     if @profile.save
       render json: @profile, status: 200
     else

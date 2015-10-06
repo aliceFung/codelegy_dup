@@ -11,7 +11,7 @@ Language.destroy_all
 Difficulty.destroy_all
 Project.destroy_all
 Membership.destroy_all
-
+ProfileLanguage.destroy_all
 
 Language.create(name: 'Ruby/Rails')
 Language.create(name: 'JavaScript')

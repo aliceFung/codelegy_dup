@@ -1,9 +1,10 @@
-app.controller('signUpCtrl', 
-  ['signUpService', 
-   'session', 
-   '$scope', 
-   'profileRegistration', 
-   function(signUpService, session, $scope, profileRegistration){
+app.controller('signUpCtrl',
+  ['signUpService',
+   'session',
+   '$scope',
+   'profileRegistration',
+   '$state',
+   function(signUpService, session, $scope, profileRegistration, $state){
 
   $scope.credentials = signUpService.credentials;
 
