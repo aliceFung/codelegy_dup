@@ -25,7 +25,7 @@ app.controller('membershipCtrl', ['$scope', '$stateParams', 'emailService', 'Res
               .then(function(createdRequest){
                 //adding it to inbox
                 createdRequest.content = $scope.content;
-                $scope.inbox.history.push(createdRequest);
+                $scope.inbox.push(createdRequest);
                 $location.path('/#/projects');
                   }, function(error){
                     console.log(error);

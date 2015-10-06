@@ -1,4 +1,4 @@
-describe("inbox", function(){
+describe("emailService", function(){
   beforeEach(module('app'))
   var ctrl, mockApi;
 
@@ -14,8 +14,8 @@ describe("inbox", function(){
       ])
   }))
 
-  it('should give 1 email', inject(function(inbox){
+  it('should give 1 email', inject(function(emailService){
     mockApi.flush();
-    expect(inbox.inbox.history.length).toEqual(1);
+    expect(emailService.inbox.length).toEqual(1);
   }))
 })
