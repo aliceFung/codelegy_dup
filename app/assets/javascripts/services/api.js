@@ -1,7 +1,7 @@
-app.factory('api', ['$http', function($http){
+app.factory('api', ['Restangular', function(Restangular){
 
   var post = function(data){
-    return $http.post('/projects', data)
+    return Restangular.all('projects').post(data)
   }
 
   return {post: post}
