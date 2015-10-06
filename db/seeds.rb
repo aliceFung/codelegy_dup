@@ -6,8 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
-
 Language.create(name: 'Ruby/Rails')
 Language.create(name: 'JavaScript')
 Language.create(name: 'Python')
@@ -21,9 +19,9 @@ Difficulty.create(name: 'Intermediate')
 Difficulty.create(name: 'Expert')
 Difficulty.create(name: 'Master')
 
-Project.create(title: "my first project", difficulty_id: 2,
-              availability: "weekends")
+Project.create(title: 'my first project', difficulty_id: 2,
+               availability: 'weekends')
 
-User.create(email: "abc@123.com")
+User.create(email: 'abc@123.com')
 
-Membership.create(project_id: 1, user_id: 1, participant_type: "owner")
+Membership.create(project_id: 1, user_id: 1, participant_type: 'owner')
