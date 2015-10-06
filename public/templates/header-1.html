@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
   <div class="container">
     <div class="navbar-header">
@@ -32,11 +33,16 @@
               <span class="icon icon-bell"></span>
             </a>
         </li>
-        <li><a ui-sref="home.login">Sign In</a></li>
-        <li><a ui-sref="home.form.profile">Sign Up </a></li>
+
+        <li><a ui-sref="home.login" ng-if='!authenticated.status'>Sign In</a></li>
+        <li><a ui-sref="home.form.profile" ng-if='!authenticated.status'>Sign Up</a></li>
+
+        <li ng-if='authenticated.status'>Welcome {{currentUser.user.username}}</li>
+        <li><a ui-sref="home.login" ng-if='authenticated.status' ng-click='signOut()'>Sign Out</a></li>
 
         </ul>
 
 
   </div>
+
 </nav>
