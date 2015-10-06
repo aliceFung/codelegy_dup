@@ -1,0 +1,34 @@
+<ui-view>
+<hr><hr>
+<!-- Languages -->
+<div class="row">
+  <div class="col-sm-1 col-sm-offset-2">
+
+  </div>
+  <div class="col-sm-1" ng-repeat="language in languages">
+      <button class="btn btn-default btn-block" ng-click='addLang(language)'
+              ng-class='{"active": langFilter[language]}'>{{language}}</button>
+  </div>
+</div>
+<br>
+<!-- End Languages -->
+<main>
+<br>
+
+
+<div class="row">
+  <div class="col-md-10">
+    <h2>Projects</h2>
+    <hr>
+    <div class="col-md-6" ng-repeat="project in projects">
+      <h4>{{project.title}}</h4>
+      Project Owner: <h5>{{project.owner.email}}</h5>
+      Est. Difficulty:<h5>{{project.difficulty_name}}</h5>
+    </div>
+  </div>
+  <div class="col-md-1 col-md-offset-1">
+    <button ui-sref="projects.new" class="btn btn-primary pull-right">New Project</button>
+  </div>
+</main>
+</div>
+</ui-view>

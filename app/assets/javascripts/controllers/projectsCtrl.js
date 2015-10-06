@@ -1,15 +1,57 @@
-app.controller("projectsCtrl", ['$scope', 'api', 'projects',
-  function($scope, api, projects){
+app.controller("projectsCtrl", ['$scope', '$state', 'api', 'projects',
+  function($scope, $state, api, projects){
 
 
   $scope.projects = projects
+  $scope.languages = ['Ruby/Rails','JavaScript','Python','C','Swift','Java','PHP']
+  $scope.langFilter = {
+                     'Ruby/Rails': false,
+                     'JavaScript': false,
+                     'Python': false,
+                     'C': false,
+                     'Swift': false,
+                     'Java': false,
+                     'PHP': false
+                   };
 
+  $scope.newProject = {languages: $scope.langFilter}
 
-  $scope.update = function(){
-    //replace the argument in api.post with actual data taken from form!
-    api.post({title: "api works", difficulty_id: 4}).then(function(response){
-      console.log(response)
+  $scope.submit = function(newProject){
+    // Convert language filter to array to submit
+    $scope.newProject.languages = [];
+    for (lang in $scope.langFilter){
+      if ($scope.langFilter[lang]) {
+        $scope.newProject.languages.push(lang)
+      }
+    }
+    // post the new project object to controller using api service
+    api.post(newProject).then(function(response){
+      $scope.projects.push(response)
+      $state.go('projects')
+    }, function(error){
+      console.log(error)
     })
+
+    // reset newProject
+    $scope.newProject = {languages: $scope.langFilter}
+  }
+
+  $scope.addLang = function(language){
+    // debugger
+    // $(event.target).toggleClass('active')
+    $scope.langFilter[language] = !$scope.langFilter[language]
+  }
+
+    $scope.updateLangFilter = function(language){
+    debugger
+    $(event.target).toggleClass('active')
+    var idx = $scope.langFilter.indexOf(language)
+    if ( idx === -1){
+      $scope.langFilter.push(language)
+    } else {
+      // debugger
+      $scope.langFilter.splice(idx, 1)
+    }
   }
 
 

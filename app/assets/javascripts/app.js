@@ -6,12 +6,17 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
 
 // }])
 
-.config(function(AuthProvider) {
-    AuthProvider.loginPath('/users/sign_in.json');
-    AuthProvider.loginMethod('POST');
-    AuthProvider.logoutPath('/users/sign_out.json');
-    AuthProvider.logoutMethod('DELETE');
-})
+.config(["AuthProvider", function(AuthProvider) {
+  AuthProvider.loginPath('/users/sign_in.json');
+  AuthProvider.loginMethod('POST');
+  AuthProvider.logoutPath('/users/sign_out.json');
+  AuthProvider.logoutMethod('DELETE');
+}])
+
+.config(["RestangularProvider", function(RestangularProvider) {
+  RestangularProvider.setBaseUrl('/api/v1');
+  RestangularProvider.setRequestSuffix('.json');
+}])
 
 .config(['$stateProvider', '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider){
@@ -70,24 +75,48 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
       .state('projects', {
         url: '/projects',
         resolve: {
-            projects: [ '$http', function($http){
-                        return $http.get('/projects').
-                        then(function(response){
-                            return response.data
+            projects: [ 'Restangular', function(Restangular){
+                        return Restangular.all('projects').getList()
+                        .then(function(response){
+                            return response
                         }, function(error){
                             return error
                         })
                       }]
-     },
+         },
         views: {
         '': {
-              templateUrl: 'templates/projects/projects.html',
+              templateUrl: 'templates/projects/index.html',
               controller: 'projectsCtrl',
             },
 
         'navbar': {
             templateUrl: 'templates/header-1.html',
             controller: 'sessionCtrl'
+        }
+
+        }
+      })
+      .state('projects.new', {
+        url: '/new',
+        // resolve: {
+        //     projects: [ 'Restangular', function(Restangular){
+        //                 return Restangular.all('projects').getList()
+        //                 .then(function(response){
+        //                     return response
+        //                 }, function(error){
+        //                     return error
+        //                 })
+        //               }]
+        //  },
+        views: {
+        '': {
+              templateUrl: 'templates/projects/new.html',
+            },
+
+        'navbar': {
+            templateUrl: 'templates/header-1.html',
+            controller: 'sessionController'
         }
 
         }
