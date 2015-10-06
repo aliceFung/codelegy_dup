@@ -48,7 +48,7 @@ class MembershipsController < ApplicationController
 
   #does not allow user_id to prevent malicious membership generation
   def params_list
-    params.require(:membership).permit( :project_id, :id, :type)
+    params.require(:membership).permit( :project_id, :id, :type, :participant_type)
   end
 
   # only allows project owner to modify memberships
@@ -58,7 +58,12 @@ class MembershipsController < ApplicationController
     else
       project_owner = Project.find(params["membership"]['project_id']).owner
     end
-    current_user.id == project_owner.id
+
+    unless (current_user.id == project_owner.id)
+      respond_to do |format|
+        format.json {render json: {errors: ["You must be the owner of this content!"]}, status: 403}
+      end
+    end
   end
 
 end

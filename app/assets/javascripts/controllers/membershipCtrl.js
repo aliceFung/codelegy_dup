@@ -1,5 +1,5 @@
-app.controller('membershipCtrl', ['$scope', '$stateParams', 'emailService', 'Restangular', 'session', '$state',
-  function($scope, $stateParams, emailService, Restangular, session, $state) {
+app.controller('membershipCtrl', ['$scope', '$stateParams', 'emailService', 'Restangular', '$state',
+  function($scope, $stateParams, emailService, Restangular, $state) {
 
   console.log('membershipCtrl initiated');
 
@@ -24,15 +24,15 @@ app.controller('membershipCtrl', ['$scope', '$stateParams', 'emailService', 'Res
     Restangular.all('memberships').post(
           { membership: { project_id: $stateParams.id},
             content: $scope.content})
-              .then(function(createdRequest){
+        .then(function(createdRequest){
                 //adding it to inbox
                 createdRequest.content = $scope.content;
                 $scope.inbox.push(createdRequest);
-                $state.go('projects');
-                  }, function(error){
+                $state.go('projects');},
+              function(error){
                     console.log(error);
                     $state.go('projects');
-                  });
+              });
   };
 
 }]);

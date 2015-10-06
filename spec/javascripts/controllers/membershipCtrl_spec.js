@@ -14,6 +14,9 @@ describe('Controller: membershipCtrl', function(){
         "to_everyone": false
       }]
     }
+    // Mock out the session dependancy to avoid redirection from not
+    // being logged in.
+    $provide.value("session", {})
     $provide.value("emailService", mockEmailService)
   }))
 

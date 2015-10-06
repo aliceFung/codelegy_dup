@@ -13,16 +13,5 @@ class Email < ActiveRecord::Base
                content: content)
   end
 
-  # def self.all_user_emails
-  #   all_emails = current_user.sent_emails
-  #   project_emails = current_user.project_emails
-
-  # end
-
-
-  #   t.integer "user_id"
-  #   t.integer "project_id"
-  #   t.text    "content"
-  #   t.boolean "to_everyone", default: false
 
 end

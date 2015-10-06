@@ -63,8 +63,14 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
             url: '/availability',
             templateUrl: 'templates/registration/form-availability.html',
             controller: 'signUpCtrl'
-        });
+        })
 
+      //inbox (ck where profile is nested under, should be same level)
+      .state('home.inbox', {
+        url: '/inbox',
+        controller: 'emailCtrl',
+        templateUrl: 'templates/inbox.html'
+      });
 
     $stateProvider
       .state('projects', {
@@ -127,13 +133,6 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
         //     controller: 'membershipCtrl',
         //     templateUrl: 'templates/projects/participation-request.html'
         //   }}
-      })
-
-      //inbox
-      .state('home.inbox', {
-        url: '/inbox',
-        controller: 'emailCtrl',
-        templateUrl: 'templates/inbox/inbox.html'
       })
 
   }]);

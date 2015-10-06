@@ -10,7 +10,7 @@ RSpec.describe MembershipsController, type: :controller do
 
   context 'not logged in user' do
 
-    xit 'cannot see membership' do
+    it 'cannot see membership' do
       get :show, id: owner_membership.id, format: :json
       expect(response.status).to eq(401)
     end
@@ -19,10 +19,14 @@ RSpec.describe MembershipsController, type: :controller do
 
   context 'logged in user' do
 
+    before do
+      allow(controller).to receive(:current_user) { member }
+      allow(controller).to receive(:authenticate_user!) { member }
+    end
+
     describe 'POST #create' do
 
-      xit 'can request project membership' do
-        allow(controller).to receive(:current_user) { member }
+      it 'can request project membership' do
         expect do
           post :create, membership: attributes_for(:membership,
                         user_id:       member.id,
@@ -37,8 +41,9 @@ RSpec.describe MembershipsController, type: :controller do
       let!(:existing_membership){create(:membership,
                                     project: project, user: member)}
 
-      xit 'project owner can update membership' do
+      it 'project owner can update membership' do
         allow(controller).to receive(:current_user) { owner }
+        allow(controller).to receive(:authenticate_user!) { owner }
 
         post :update, id: existing_membership.id, format: :json,
               membership: attributes_for(:membership,
@@ -49,7 +54,7 @@ RSpec.describe MembershipsController, type: :controller do
         expect(existing_membership.participant_type).to eq('member')
       end
 
-      xit "others cannot update membership" do
+      it "others cannot update membership" do
         allow(controller).to receive(:current_user) { member }
 
         post :update, id: existing_membership.id, format: :json,
