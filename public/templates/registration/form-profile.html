@@ -1,11 +1,22 @@
 <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" name="name" ng-model="formData.name">
+    <input type="text" class="form-control" name="name" ng-model="credentials.username">
 </div>
 
 <div class="form-group">
     <label for="email">Email</label>
-    <input type="text" class="form-control" name="email" ng-model="formData.email">
+    <input type="text" class="form-control" name="email" ng-model="credentials.email">
+</div>
+
+<div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" ng-model="credentials.password">
+</div>
+
+<div class="form-group">
+    <label for="password_confirmation">Password Confirmation</label>
+    <input  type="password" class="form-control"
+            name="email" ng-model="credentials.password_confirmation">
 </div>
 
 <div class="form-group row">

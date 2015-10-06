@@ -1,4 +1,4 @@
-app.controller('sessionController', ['$scope', 'session', '$state', function($scope, session, $state){
+app.controller('sessionCtrl', ['$scope', 'session', '$state', function($scope, session, $state){
 
   $scope.authenticated = session.authenticated;
   $scope.currentUser = session.currentUser;
@@ -28,5 +28,5 @@ app.controller('sessionController', ['$scope', 'session', '$state', function($sc
 
   $scope.$on('devise:unauthorized', function() {
     $state.go('home.login');
-  })
+  });
 }]);

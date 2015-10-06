@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:github]
 
-
+  has_one :profile, dependent: :destroy
   has_many :memberships
   has_many :projects, through: :memberships
   has_many :project_emails, through: :projects, source: :emails
