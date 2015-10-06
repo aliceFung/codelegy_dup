@@ -16,7 +16,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
 .config(function(RestangularProvider) {
   RestangularProvider.setBaseUrl('/api/v1');
   RestangularProvider.setRequestSuffix('.json');
-});
+})
 
 .config(['$stateProvider', '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider){
