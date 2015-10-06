@@ -8,7 +8,10 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
   context 'index' do
-    before { get :index }
+    before do
+      get :index
+    end
+
     it 'should have a response' do
       expect(response.body).to_not be(nil)
     end
@@ -41,7 +44,29 @@ RSpec.describe ProjectsController, type: :controller do
       post :create, params
       expect(JSON.parse(response.body)['title']).to eql('myProject')
       expect(JSON.parse(response.body)['difficulty_name']).to eql('Beginner')
+    end
 
+    it 'should redirect if there is no current_user' do
+      sign_out(user)
+      diff = create :difficulty
+      params = {project: {title: 'myProject', difficulty_id: diff.id}}
+      post :create, params
+      expect(response.status).to eql(302)
+    end
+
+    it 'should return errors if the project is invalid' do
+      diff = create :difficulty
+      params = {project: { difficulty_id: diff.id }}
+      post :create, params
+      expect(JSON.parse(response.body)['errors']).to eql(['Title can\'t be blank'])
+    end
+
+    it 'should add new project languages' do
+      diff = create :difficulty
+      langs = []
+      langs.push (create :language).name
+      params = {project: { title: "myProj", difficulty_id: diff.id }, languages: langs}
+      expect{post :create, params}.to change{ProjectLanguage.count}.by(1)
     end
   end
 end
