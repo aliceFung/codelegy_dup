@@ -1,18 +1,21 @@
 <form>
-<div class="checkbox custom-control custom-checkbox" ng-repeat="language in languages">
-  <label>
-    <input type="checkbox" ng-model="profileInput[language]" ng-true-value="'Select Exp Level'" ng-false-value="">
-    <span class="custom-control-indicator"></span>
-    {{language}}
-  </label>
 
-  <div class="dropdown" ng-show="profileInput[language]">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      {{profileInput[language]}}
+<div ng-repeat="language in languages" class="row">
+  <div class='col-sm-3'>
+  <h4>{{language}}</h4>
+  </div>
+
+  <div class="dropdown col-sm-6">
+    <button class="btn btn-default dropdown-toggle"
+            type="button" id="dropdownMenu1"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="true">
+      {{ profileInput[language] || 'Experience Level' }}
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      {{language}}
+      <li ng-click="setExpLevel(language, 'None')">None</li>
       <li ng-repeat="level in expLevel" ng-click="setExpLevel(language, level)">
         <span>{{level}}</span>
       </li>
@@ -21,7 +24,6 @@
 
 </div>
 </form>
-{{profileInput}}
 
 <div class="form-group row">
 <div class="col-xs-6 col-xs-offset-3">

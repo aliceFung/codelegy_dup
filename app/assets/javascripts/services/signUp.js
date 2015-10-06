@@ -1,4 +1,4 @@
-app.factory('signUpService', ['Auth', '$state', function(Auth, $state){
+app.factory('signUpService', ['Auth', '$state', 'Restangular', function(Auth, $state, Restangular){
 
   var credentials = {};
 
@@ -9,10 +9,15 @@ app.factory('signUpService', ['Auth', '$state', function(Auth, $state){
         }
     };
 
-    credentials.profile = profile;
+    // credentials.profile = profile;
 
     Auth.register(credentials, config).then(function(registeredUser) {
-      console.log(registeredUser); // => {id: 1, ect: '...'}
+
+      // CURRENTLY HERE
+      console.log(profile); // => {id: 1, ect: '...'}    // {user_id:}
+      // Send information to backend to create user profile
+      profile.user_id = registeredUser.id;
+      Restangular.all('profiles').post(profile);
     }, function(error) {
       alert('Registration failed');
     });

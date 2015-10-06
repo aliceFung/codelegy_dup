@@ -1,4 +1,5 @@
 app.factory('profileRegistration', function(){
+
   var languages = ['Ruby', 'JavaScript', 'HTML', 'CSS', 'Ruby on Rails', 'AngularJS'];
   var expLevel = ['Beginner', 'Intermediate', 'Advanced', 'Expert'];
 
@@ -8,5 +9,5 @@ app.factory('profileRegistration', function(){
     languages: languages,
     expLevel: expLevel,
     profileInput: profileInput
-  }
-})
+  };
+});

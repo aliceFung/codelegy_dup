@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005182806) do
+ActiveRecord::Schema.define(version: 20151006182155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,23 @@ ActiveRecord::Schema.define(version: 20151005182806) do
     t.integer "user_id"
     t.integer "project_id"
     t.string  "participant_type", default: "pending"
+  end
+
+  create_table "profile_languages", force: :cascade do |t|
+    t.integer  "language_id"
+    t.integer  "profile_id"
+    t.integer  "difficulty_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "about"
+    t.integer  "user_id",         null: false
+    t.integer  "availibility_id"
+    t.integer  "photo_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "project_languages", force: :cascade do |t|

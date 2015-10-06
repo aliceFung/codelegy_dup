@@ -1,6 +1,6 @@
-app.controller('profileRegistrationCtrl', 
-  ['$scope', 
-   'profileRegistration', 
+app.controller('profileRegistrationCtrl',
+  ['$scope',
+   'profileRegistration',
     function($scope, profileRegistration){
       $scope.profileInput = profileRegistration.profileInput;
       $scope.languages = profileRegistration.languages;
@@ -8,6 +8,11 @@ app.controller('profileRegistrationCtrl',
 
       $scope.setExpLevel = function(language, level) {
         console.log(language, level);
-        $scope.profileInput[language] = level;
+
+        if (level == 'None') {
+          delete $scope.profileInput[language];
+        } else {
+          $scope.profileInput[language] = level;
+        }
       };
 }]);

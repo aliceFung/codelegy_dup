@@ -5,6 +5,13 @@ class ApplicationController < ActionController::Base
 
   # clear_respond_to
   respond_to :json
+  before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :username
+  end
 
 end
