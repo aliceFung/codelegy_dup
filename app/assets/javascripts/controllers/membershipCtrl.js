@@ -26,10 +26,10 @@ app.controller('membershipCtrl', ['$scope', '$stateParams', 'emailService', 'Res
                 //adding it to inbox
                 createdRequest.content = $scope.content;
                 $scope.inbox.push(createdRequest);
-                $location.path('/#/projects');
+                // $location.path('/#/projects');
                   }, function(error){
                     console.log(error);
-                    $location.path('/#/projects');
+                    // $location.path('/#/projects');
                   });
   };
 
