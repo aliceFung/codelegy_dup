@@ -8,6 +8,7 @@ class MembershipsController < ApplicationController
     @membership.user_id = current_user.id
     respond_to do |format|
       if @membership.save
+        # Email.create(params["content"])
         format.json {render json: @membership}
       else
         format.json {render status: :unprocessable_entity}
@@ -46,6 +47,7 @@ class MembershipsController < ApplicationController
 
   private
 
+  #does not allow user_id to prevent malicious membership generation
   def params_list
     params.require(:membership).permit( :project_id, :id, :type)
   end

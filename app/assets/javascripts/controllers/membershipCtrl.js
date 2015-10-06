@@ -8,6 +8,7 @@ app.controller('membershipCtrl', ['$scope', '$stateParams', 'inbox',
 
   $scope.sendRequest = function(){
     console.log('send request');
+    // create pending membership, and send content
     Restangular.all('memberships').post(
           { membership: { project_id: $scope.project.id,
                             user_id: $scope.board.id },

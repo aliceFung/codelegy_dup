@@ -5,11 +5,19 @@ Rails.application.routes.draw do
                                         :registrations => 'users/registrations' }
 
   root to: 'main#index'
-  resources :projects, only: [:index, :create]
-  resources :emails, only: [:index, :show]
 
-  resources :memberships, :except => [:index, :new, :edit, :destroy]
 
+
+
+
+  scope :api do
+    scope :v1 do
+      resources :projects, only: [:index, :create]
+      resources :emails, only: [:index, :show]
+      resources :languages, only: [:index]
+      resources :memberships, :except => [:index, :new, :edit, :destroy]
+    end
+  end
 
 end
 
