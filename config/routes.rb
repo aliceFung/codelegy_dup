@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     scope :v1 do
       resources :projects, only: [:index, :create]
       resources :emails, only: [:index, :show]
+      resources :languages, only: [:index]
     end
   end
 end
