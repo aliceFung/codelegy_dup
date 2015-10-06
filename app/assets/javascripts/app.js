@@ -99,13 +99,13 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
       //request form to join project
       .state('projects.join', {
         url: '/:id/join',
-        // controller: 'membershipCtrl',
-        // templateUrl: 'templates/projects/participation-request.html'
-        views: {
-          "": {
-            controller: 'membershipCtrl',
-            templateUrl: 'templates/projects/participation-request.html'
-          }}
+        controller: 'membershipCtrl',
+        templateUrl: 'templates/projects/participation-request.html'
+        // views: {
+        //   "": {
+        //     controller: 'membershipCtrl',
+        //     templateUrl: 'templates/projects/participation-request.html'
+        //   }}
       })
 
   }]);

@@ -11,6 +11,7 @@ app.controller('membershipCtrl', ['$scope', '$stateParams', 'emailService', 'Res
   // below is temp until projects index page is complete
   $scope.project= {title: 'new project',
                   owner: 'owner'};
+
   $scope.inbox = emailService.inbox;
 
 
