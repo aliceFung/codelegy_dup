@@ -4,7 +4,7 @@ Difficulty.destroy_all
 Project.destroy_all
 Membership.destroy_all
 
-Language.create(name: 'HTML', url: '/logos/html.jpg')
+Language.create(name: 'HTML', url: '/logos/html.png')
 Language.create(name: 'Ruby', url: '/logos/ruby.jpg')
 Language.create(name: 'Rails', url: '/logos/rails.png')
 Language.create(name: 'JavaScript', url: '/logos/js.jpg')
@@ -27,6 +27,7 @@ ProjectLanguage.create(project_id: 1, language_id: 1)
 ProjectLanguage.create(project_id: 1, language_id: 2)
 ProjectLanguage.create(project_id: 1, language_id: 3)
 ProjectLanguage.create(project_id: 1, language_id: 4)
+
 
 4.times do |i|
   user = User.create(email: "foo#{i}@bar.com", password: '12345678')
