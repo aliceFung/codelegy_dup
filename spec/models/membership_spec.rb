@@ -23,7 +23,14 @@ RSpec.describe Membership, type: :model do
     }.to change(Delayed::Job, :count).by(1)
   end
 
-  xit "sends an email" do
-    expect { create(:membership) }.to change { ActionMailer::Base.deliveries.count }.by(1)
+  it "sends creates a delayed job email after creation" do
+    expect { create(:membership) }.to change(Delayed::Job, :count).by(1)
+  end
+
+  it "creates valid parameters for the delayed job after creation" do
+    create(:membership)
+    expect{
+      Delayed::Worker.new.work_off
+    }.to change(Delayed::Job, :count).by(-1)
   end
 end
