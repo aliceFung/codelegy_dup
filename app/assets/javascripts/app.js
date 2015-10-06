@@ -13,6 +13,11 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
     AuthProvider.logoutMethod('DELETE');
 })
 
+.config(function(RestangularProvider) {
+  RestangularProvider.setBaseUrl('/api/v1');
+  RestangularProvider.setRequestSuffix('.json');
+});
+
 .config(['$stateProvider', '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider){
     $urlRouterProvider.otherwise('/');
