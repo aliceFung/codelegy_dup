@@ -3,6 +3,7 @@ FactoryGirl.define do
     association :user
     association :project
 
+    # participant_type 'owner'
   end
 
 end

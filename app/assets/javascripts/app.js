@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngAnimate','ui.router', 'restangular'])
+var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise'])
 
 // .config(["RestangularProvider", function(RestangularProvider){
 //   RestangularProvider.setBaseUrl("/api/v1")
@@ -6,6 +6,12 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular'])
 
 // }])
 
+.config(function(AuthProvider) {
+    AuthProvider.loginPath('/users/sign_in.json');
+    AuthProvider.loginMethod('POST');
+    AuthProvider.logoutPath('/users/sign_out.json');
+    AuthProvider.logoutMethod('DELETE');
+})
 
 .config(['$stateProvider', '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider){
@@ -17,14 +23,19 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular'])
         views: {
         '': {templateUrl: 'templates/home.html'},
 
-        'navbar': {templateUrl: 'templates/header-1.html'}
+        'navbar': {
+                templateUrl: 'templates/header-1.html',
+                controller: 'sessionController'
+            }
+
         }
       })
       // nested routes for our home page
 
       .state('home.login', {
             url: 'login',
-            templateUrl: 'templates/login.html'
+            templateUrl: 'templates/login.html',
+            controller: 'sessionController'
       })
         // route to show our basic form (/form)
         .state('home.form', {
@@ -51,15 +62,34 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular'])
             templateUrl: 'templates/registration/form-availability.html'
         });
 
+
     $stateProvider
       .state('projects', {
         url: '/projects',
+        resolve: {
+            projects: [ '$http', function($http){
+                        return $http.get('/projects').
+                        then(function(response){
+                            return response.data
+                        }, function(error){
+                            return error
+                        })
+                      }]
+     },
         views: {
-        '': {templateUrl: 'templates/projects/projects.html'},
+        '': {
+              templateUrl: 'templates/projects/projects.html',
+              controller: 'projectsCtrl',
+            },
 
-        'navbar': {templateUrl: 'templates/header-1.html'}
+        'navbar': {
+            templateUrl: 'templates/header-1.html',
+            controller: 'sessionController'
+        }
+
         }
       })
+
 
       //request form to join project
       .state('projects.join', {
@@ -69,3 +99,4 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular'])
       })
 
   }]);
+
