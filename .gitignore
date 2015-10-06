@@ -16,3 +16,7 @@
 /config/application.yml
 
 /.git_hooks.yml
+
+.floo
+
+.flooignore

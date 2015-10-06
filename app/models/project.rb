@@ -14,4 +14,8 @@ class Project < ActiveRecord::Base
     self.members.where('memberships.participant_type = ?', 'owner')[0]
   end
 
+  def difficulty_name
+    difficulty.name
+  end
+
 end
