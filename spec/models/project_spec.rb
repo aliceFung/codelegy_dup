@@ -13,8 +13,8 @@ RSpec.describe Project, type: :model do
       expect{ no_title.save }.to change{ Project.count }.by(0)
     end
 
-    it 'should be a have a availibility' do
-      expect(myProject.availibility).to eql('weeknights')
+    it 'should be a have a availability' do
+      expect(myProject.availability).to eql('weeknights')
     end
 
     it 'should be a have a description' do
