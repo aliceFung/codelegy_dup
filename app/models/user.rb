@@ -22,18 +22,36 @@ class User < ActiveRecord::Base
     end
   end
 
+  # returns a collection of projects current_user is the owner of
   def projects_owned
     current_user.memberships.where('participant_type = ?', 'owner')
   end
 
+  # returns a collection of projects current_user is a member of
+  def project_member_in
+    current_user.memberships.where('participant_type = ?', 'member')
+  end
 
-  #gathers sent emails, project owner emails, group project emails
-  def user_emails
-    sent = current_user.sent_emails
-    received = []
-    projects_owned.each do |project|
-      received.push(project.emails)
+  # returns a collection of group emails from participating projects
+  def group_emails
+    emails=[]
+    project_member_in.each do |project|
+      emails.push(project.group_emails)
     end
+  end
+
+  # returns a collection of emails to project owner (current_user)
+  def project_owner_emails
+    emails=[]
+    projects_owned.each do |project|
+      emails.push(project.group_emails)
+    end
+  end
+
+  #gathers all current_user emails
+  def user_emails
+    # sent = current_user.sent_emails
+    received = project_owner_emails + group_emails
   end
 
 end
