@@ -3,6 +3,8 @@ Language.destroy_all
 Difficulty.destroy_all
 Project.destroy_all
 Membership.destroy_all
+ProfileLanguage.destroy_all
+
 
 Language.create(name: 'HTML', url: '/logos/html.png')
 Language.create(name: 'Ruby', url: '/logos/ruby.jpg')
@@ -17,8 +19,8 @@ Language.create(name: 'PHP', url: '/logos/php.png')
 
 Difficulty.create(name: 'Beginnger')
 Difficulty.create(name: 'Intermediate')
+Difficulty.create(name: 'Advanced')
 Difficulty.create(name: 'Expert')
-Difficulty.create(name: 'Master')
 
 Project.create(title: 'my first project', difficulty_id: 2,
                availability: 'weekends')

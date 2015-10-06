@@ -1,24 +1,28 @@
-<div class="checkbox custom-control custom-checkbox">
-  <label>
-    <input type="checkbox"  ng-model="formData.ruby">
-    <span class="custom-control-indicator"></span>
-    Check this custom checkbox
-  </label>
+<form>
+
+<div ng-repeat="(languageId, language) in languages" class="row">
+  <div class='col-sm-3'>
+  <h4>{{language}}</h4>
+  </div>
+  <div class="dropdown col-sm-6">
+    <button class="btn btn-default dropdown-toggle"
+            type="button" id="dropdownMenu1"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="true">
+      {{  expLevel[profileInput.profile_languages[languageId]] || 'Experience Level' }}
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <li ng-click="setExpLevel(languageId, 'None')">None</li>
+      <li ng-repeat="(levelId, level) in expLevel" ng-click="setExpLevel(languageId, levelId)">
+        <span>{{level}}</span>
+      </li>
+    </ul>
+  </div>
+
 </div>
-<div class="checkbox custom-control custom-checkbox">
-  <label>
-    <input type="checkbox"  ng-model="formData.javascript" checked>
-    <span class="custom-control-indicator"></span>
-    This custom checkbox is checked
-  </label>
-</div>
-<div class="checkbox custom-control custom-checkbox">
-  <label>
-    <input type="checkbox" disabled>
-    <span class="custom-control-indicator"></span>
-    This custom checkbox is disabled
-  </label>
-</div>
+</form>
 
 <div class="form-group row">
 <div class="col-xs-6 col-xs-offset-3">
