@@ -1,6 +1,5 @@
 class MembershipsController < ApplicationController
 
-  # before_action :authenticate_user!
   before_action :require_project_owner, except: [:create, :show]
 
   def create
@@ -8,7 +7,7 @@ class MembershipsController < ApplicationController
     @membership.user_id = current_user.id
     respond_to do |format|
       if @membership.save
-        # Email.create(params["content"])
+        Email.membership_history(params["content"], @membership)
         format.json {render json: @membership}
       else
         format.json {render status: :unprocessable_entity}
