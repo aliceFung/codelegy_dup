@@ -4,7 +4,7 @@ app.controller('membershipCtrl', ['$scope', '$stateParams', 'emailService', 'Res
   // get updated project information, need owner info from API included or get it from the main page
   // $scope.project= Restangular.one('projects', $stateParams.id).get();
 
-  $scope.inbox = inbox;
+  $scope.inbox = emailService.inbox;
 
   $scope.sendRequest = function(){
     console.log('send request');
