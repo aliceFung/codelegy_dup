@@ -1,18 +1,13 @@
-app.controller("projectsCtrl", ['$scope', '$state', 'api', 'projects',
-  function($scope, $state, api, projects){
-
+app.controller("projectsCtrl", ['$scope', '$state', 'api', 'projects', 'languages',
+  function($scope, $state, api, projects, languages){
 
   $scope.projects = projects
-  $scope.languages = ['Ruby/Rails','JavaScript','Python','C','Swift','Java','PHP']
-  $scope.langFilter = {
-                     'Ruby/Rails': false,
-                     'JavaScript': false,
-                     'Python': false,
-                     'C': false,
-                     'Swift': false,
-                     'Java': false,
-                     'PHP': false
-                   };
+  $scope.langFilter = {};
+  $scope.languages = [];
+  languages.forEach(function(el){
+    $scope.languages.push(el.name);
+    $scope.langFilter[el.name] = false;
+  })
 
   $scope.newProject = {languages: $scope.langFilter}
 

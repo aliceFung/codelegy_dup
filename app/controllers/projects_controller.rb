@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
-    render json: @projects, methods: [:difficulty_name, :owner]
+    render json: @projects, methods: [:difficulty_name, :owner, :languages]
   end
 
   def create
@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
       add_project_languages(params['languages'], @project) if params['languages']
       create_memberships(@project)
 
-      render json: @project, methods: [:difficulty_name, :owner]
+      render json: @project, methods: [:difficulty_name, :owner, :languages]
     else
       render json: { errors: @project.errors.full_messages }
     end
