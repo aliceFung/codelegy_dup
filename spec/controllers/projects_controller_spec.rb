@@ -25,7 +25,6 @@ RSpec.describe ProjectsController, type: :controller do
     end
 
     it 'should have a project_owner' do
-      p JSON.parse(response.body)
       expect(JSON.parse(response.body).first['owner']['email']).to include('myemail@user', '.com')
     end
   end

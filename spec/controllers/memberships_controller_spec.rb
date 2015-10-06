@@ -34,24 +34,80 @@ RSpec.describe MembershipsController, type: :controller do
         end.to change(Membership, :count).by(1)
       end
 
+      it 'cannot request project membership for non-existant project' do
+        expect do
+          post :create, membership: attributes_for(:membership,
+                        user_id:       member.id,
+                        project_id:   project.id + 123), format: :json
+        end.to change(Membership, :count).by(0)
+      end
+
+      it 'cannot make a second request if already requested' do
+        expect do
+          post :create, membership: attributes_for(:membership,
+                        user_id:       member.id,
+                        project_id:   project.id), format: :json
+          post :create, membership: attributes_for(:membership,
+                        user_id:       member.id,
+                        project_id:   project.id), format: :json
+        end.to change(Membership, :count).by(1)
+      end
+
+      it 'creates a delayed_job when project membership is requested' do
+        expect do
+          post :create, membership: attributes_for(:membership,
+                        user_id:       member.id,
+                        project_id:   project.id), format: :json
+        end.to change(Delayed::Job, :count).by(1)
+      end
+
     end
 
     describe 'PATCH #update' do
 
       let!(:existing_membership){create(:membership,
                                     project: project, user: member)}
+      describe 'Owner Paths' do
+        it 'project owner can update membership' do
+          allow(controller).to receive(:current_user) { owner }
+          allow(controller).to receive(:authenticate_user!) { owner }
 
-      it 'project owner can update membership' do
-        allow(controller).to receive(:current_user) { owner }
-        allow(controller).to receive(:authenticate_user!) { owner }
+          post :update, id: existing_membership.id, format: :json,
+                membership: attributes_for(:membership,
+                                          id: existing_membership.id,
+                                          participant_type: 'member')
 
-        post :update, id: existing_membership.id, format: :json,
-              membership: attributes_for(:membership,
-                                        id: existing_membership.id,
-                                        participant_type: 'member')
+          existing_membership.reload
+          expect(existing_membership.participant_type).to eq('member')
+        end
 
-        existing_membership.reload
-        expect(existing_membership.participant_type).to eq('member')
+        it 'should not allow owner to change user_id' do
+          allow(controller).to receive(:current_user) { owner }
+          allow(controller).to receive(:authenticate_user!) { owner }
+
+          post :update, id: existing_membership.id, format: :json,
+                membership: attributes_for(:membership,
+                                          user_id: 12345,
+                                          id: existing_membership.id,
+                                          participant_type: 'member')
+
+          existing_membership.reload
+          expect(existing_membership.user_id).to_not eq(12345)
+        end
+
+        it 'should not allow owner to change project_id' do
+          allow(controller).to receive(:current_user) { owner }
+          allow(controller).to receive(:authenticate_user!) { owner }
+
+          post :update, id: existing_membership.id, format: :json,
+                membership: attributes_for(:membership,
+                                          project_id: 12345,
+                                          id: existing_membership.id,
+                                          participant_type: 'member')
+
+          existing_membership.reload
+          expect(existing_membership.project_id).to_not eq(12345)
+        end
       end
 
       it "others cannot update membership" do

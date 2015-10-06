@@ -10,7 +10,7 @@ class MembershipsController < ApplicationController
         Email.membership_history(params["content"], @membership)
         format.json {render json: @membership}
       else
-        format.json {render status: :unprocessable_entity}
+        format.json {render json: {errors: ["There was an error with your request. Please try again."]}, status: 522}
       end
     end
   end
@@ -28,7 +28,7 @@ class MembershipsController < ApplicationController
       if @membership.update(params_list)
         format.json {render json: @membership}
       else
-        format.json {render status: :unprocessable_entity}
+        format.json {render json: {errors: ["There was an error with your request. Please try again."]}, status: 522}
       end
     end
   end
