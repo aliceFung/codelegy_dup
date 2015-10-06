@@ -1,50 +1,27 @@
-<div class="checkbox custom-control custom-checkbox">
+<form>
+<div class="checkbox custom-control custom-checkbox" ng-repeat="language in languages">
   <label>
-    <input type="checkbox"  ng-model="formData.ruby">
+    <input type="checkbox" ng-model="profileInput[language]" ng-true-value="'Select Exp Level'" ng-false-value="">
     <span class="custom-control-indicator"></span>
-    Ruby
+    {{language}}
   </label>
-</div>
 
-<div class="checkbox custom-control custom-checkbox">
-  <label>
-    <input type="checkbox"  ng-model="formData.javascript" checked>
-    <span class="custom-control-indicator"></span>
-    JavaScript
-  </label>
-</div>
+  <div class="dropdown" ng-show="profileInput[language]">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      {{profileInput[language]}}
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      {{language}}
+      <li ng-repeat="level in expLevel" ng-click="setExpLevel(language, level)">
+        <span>{{level}}</span>
+      </li>
+    </ul>
+  </div>
 
-<div class="checkbox custom-control custom-checkbox">
-  <label>
-    <input type="checkbox" disabled>
-    <span class="custom-control-indicator"></span>
-    HTML
-  </label>
 </div>
-
-<div class="checkbox custom-control custom-checkbox">
-  <label>
-    <input type="checkbox" disabled>
-    <span class="custom-control-indicator"></span>
-    CSS
-  </label>
-</div>
-
-<div class="checkbox custom-control custom-checkbox">
-  <label>
-    <input type="checkbox" disabled>
-    <span class="custom-control-indicator"></span>
-    Ruby on Rails
-  </label>
-</div>
-
-<div class="checkbox custom-control custom-checkbox">
-  <label>
-    <input type="checkbox" disabled>
-    <span class="custom-control-indicator"></span>
-    Angular JS
-  </label>
-</div>
+</form>
+{{profileInput}}
 
 <div class="form-group row">
 <div class="col-xs-6 col-xs-offset-3">

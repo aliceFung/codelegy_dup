@@ -1,4 +1,9 @@
-app.controller('signUpCtrl', ['signUpService', 'session', '$scope', function(signUpService, session, $scope){
+app.controller('signUpCtrl', 
+  ['signUpService', 
+   'session', 
+   '$scope', 
+   'profileRegistration', 
+   function(signUpService, session, $scope, profileRegistration){
 
   $scope.credentials = signUpService.credentials;
 
@@ -7,7 +12,7 @@ app.controller('signUpCtrl', ['signUpService', 'session', '$scope', function(sig
   $scope.currentUser = session.currentUser;
 
   $scope.register = function(){
-    signUpService.register($scope.credentials);
+    signUpService.register($scope.credentials, profileRegistration.profileInput);
   };
 
   $scope.$on('devise:new-registration', function(event, user) {

@@ -48,13 +48,14 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
         .state('home.form.profile', {
             url: '/profile',
             templateUrl: 'templates/registration/form-profile.html',
-            controller: 'profileRegisterCtrl'
+            controller: 'profileRegistrationCtrl'
         })
 
         // url will be /form/interests
         .state('home.form.languages', {
             url: '/languages',
-            templateUrl: 'templates/registration/form-lang.html'
+            templateUrl: 'templates/registration/form-lang.html',
+            controller: 'profileRegistrationCtrl'
         })
 
         // url will be /form/payment
