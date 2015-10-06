@@ -59,5 +59,13 @@ RSpec.describe ProjectsController, type: :controller do
       post :create, params
       expect(JSON.parse(response.body)['errors']).to eql(['Title can\'t be blank'])
     end
+
+    it 'should add new project languages' do
+      diff = create :difficulty
+      langs = []
+      langs.push (create :language).name
+      params = {project: { title: "myProj", difficulty_id: diff.id }, languages: langs}
+      expect{post :create, params}.to change{ProjectLanguage.count}.by(1)
+    end
   end
 end

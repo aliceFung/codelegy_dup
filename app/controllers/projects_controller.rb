@@ -8,10 +8,9 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
 
-
     if @project.save && current_user
 
-      add_project_languages(params['languages'], @project)
+      add_project_languages(params['languages'], @project) if params['languages']
       create_memberships(@project)
 
       render json: @project, methods: [:difficulty_name, :owner]
