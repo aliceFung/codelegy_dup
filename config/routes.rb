@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :projects, only: [:index, :create]
       resources :emails, only: [:index, :show]
       resources :languages, only: [:index]
+      resources :profiles, only: [:create, :update]
     end
   end
 end

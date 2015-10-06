@@ -3,6 +3,8 @@ Language.destroy_all
 Difficulty.destroy_all
 Project.destroy_all
 Membership.destroy_all
+ProfileLanguage.destroy_all
+
 
 Language.create(name: 'Ruby/Rails')
 Language.create(name: 'JavaScript')
@@ -14,8 +16,8 @@ Language.create(name: 'PHP')
 
 Difficulty.create(name: 'Beginnger')
 Difficulty.create(name: 'Intermediate')
+Difficulty.create(name: 'Advanced')
 Difficulty.create(name: 'Expert')
-Difficulty.create(name: 'Master')
 
 Project.create(title: 'my first project', difficulty_id: 2,
                availability: 'weekends')

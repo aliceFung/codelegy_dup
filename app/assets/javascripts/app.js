@@ -30,7 +30,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
 
         'navbar': {
                 templateUrl: 'templates/header-1.html',
-                controller: 'sessionController'
+                controller: 'sessionCtrl'
             }
 
         }
@@ -40,31 +40,34 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
       .state('home.login', {
             url: 'login',
             templateUrl: 'templates/login.html',
-            controller: 'sessionController'
+            controller: 'sessionCtrl'
       })
         // route to show our basic form (/form)
         .state('home.form', {
             url: '/form',
             templateUrl: 'templates/registration/form.html',
-            controller: 'formController'
+            controller: 'signUpCtrl'
         })
 
         // nested states  for our form
         .state('home.form.profile', {
             url: '/profile',
-            templateUrl: 'templates/registration/form-profile.html'
+            templateUrl: 'templates/registration/form-profile.html',
+            controller: 'profileRegistrationCtrl'
         })
 
         // url will be /form/interests
         .state('home.form.languages', {
             url: '/languages',
-            templateUrl: 'templates/registration/form-lang.html'
+            templateUrl: 'templates/registration/form-lang.html',
+            controller: 'profileRegistrationCtrl'
         })
 
         // url will be /form/payment
         .state('home.form.availability', {
             url: '/availability',
-            templateUrl: 'templates/registration/form-availability.html'
+            templateUrl: 'templates/registration/form-availability.html',
+            controller: 'signUpCtrl'
         });
 
 
@@ -89,7 +92,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
 
         'navbar': {
             templateUrl: 'templates/header-1.html',
-            controller: 'sessionController'
+            controller: 'sessionCtrl'
         }
 
         }
