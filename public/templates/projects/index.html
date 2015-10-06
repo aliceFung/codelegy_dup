@@ -6,9 +6,11 @@
 
   </div>
   <div class="col-sm-1" ng-repeat="language in languages">
-      <p>{{language}}</p>
+      <button class="btn btn-default btn-block" ng-click='addLang(language)'
+              ng-class='{"active": langFilter[language]}'>{{language}}</button>
   </div>
 </div>
+<br>
 <!-- End Languages -->
 <main>
 <br>

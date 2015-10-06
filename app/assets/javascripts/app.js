@@ -109,7 +109,6 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
         views: {
         '': {
               templateUrl: 'templates/projects/new.html',
-              controller: 'projectsCtrl',
             },
 
         'navbar': {

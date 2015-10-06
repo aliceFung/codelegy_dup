@@ -5,7 +5,20 @@
     <input  type="text" ng-model="newProject.title" placeholder="title">
     <input type="text" ng-model="newProject.availability"  placeholder="availability">
     <input type="text" ng-model="newProject.description" placeholder="description">
-    <input type="text" ng-model="newProject.language" disabled>
+    <br>
+    {{langFilter}}
+    <div ng-repeat="language in languages" >
+      <input type="checkbox" ng-model="langFilter[language]"
+        ng-checked="langFilter[language]"> {{language}} <br>
+    </div>
+    {{langFilter}}
+    <select ng-model="newProject.difficulty_id">
+    </div>
+      <option value="1" id="">Beginner</option>
+      <option value="2" id="">Intermediate</option>
+      <option value="3" id="">Expert</option>
+      <option value="4" id="">Master</option>
+    </select>
     <br>
     <button class="btn btn-primary" ng-click="submit(newProject)">
       Submit
