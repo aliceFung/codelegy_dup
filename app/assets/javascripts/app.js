@@ -94,7 +94,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
       //request form to join project
       .state('projects.join', {
         url: '/:id/join',
-        controller: 'membershipController',
+        controller: 'membershipCtrl',
         templatesUrl: 'templates/projects/participation-request.html'
       })
 

@@ -5,6 +5,7 @@ class MembershipsController < ApplicationController
 
   def create
     @membership = Membership.new(params_list)
+    @membership.user_id = current_user.id
     respond_to do |format|
       if @membership.save
         format.json {render json: @membership}
@@ -46,8 +47,7 @@ class MembershipsController < ApplicationController
   private
 
   def params_list
-    params.require(:membership).permit( :project_id, :user_id,
-                                        :id, :type)
+    params.require(:membership).permit( :project_id, :id, :type)
   end
 
   # only allows project owner to modify memberships
