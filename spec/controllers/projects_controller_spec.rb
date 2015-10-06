@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe ProjectsController, type: :controller do
+  let(:user) { create :user }
   before do
+    sign_in(user)
     create :membership
   end
 
