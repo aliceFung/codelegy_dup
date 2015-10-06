@@ -15,7 +15,7 @@ class Project < ActiveRecord::Base
   end
 
   def difficulty_name
-    difficulty.name
+    difficulty ? difficulty.name : "None"
   end
 
 end
