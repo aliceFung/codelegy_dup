@@ -1,22 +1,21 @@
 <form>
 
-<div ng-repeat="language in languages" class="row">
+<div ng-repeat="(languageId, language) in languages" class="row">
   <div class='col-sm-3'>
   <h4>{{language}}</h4>
   </div>
-
   <div class="dropdown col-sm-6">
     <button class="btn btn-default dropdown-toggle"
             type="button" id="dropdownMenu1"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="true">
-      {{ profileInput[language] || 'Experience Level' }}
+      {{  expLevel[profileInput.profile_languages[languageId]] || 'Experience Level' }}
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <li ng-click="setExpLevel(language, 'None')">None</li>
-      <li ng-repeat="level in expLevel" ng-click="setExpLevel(language, level)">
+      <li ng-click="setExpLevel(languageId, 'None')">None</li>
+      <li ng-repeat="(levelId, level) in expLevel" ng-click="setExpLevel(languageId, levelId)">
         <span>{{level}}</span>
       </li>
     </ul>

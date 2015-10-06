@@ -23,8 +23,8 @@ Language.create(name: 'PHP')
 
 Difficulty.create(name: 'Beginnger')
 Difficulty.create(name: 'Intermediate')
+Difficulty.create(name: 'Advanced')
 Difficulty.create(name: 'Expert')
-Difficulty.create(name: 'Master')
 
 Project.create(title: "my first project", difficulty_id: 2,
               availibility: "weekends")
