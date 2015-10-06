@@ -1,5 +1,5 @@
-app.controller('membershipCtrl', ['$scope', '$stateParams', 'inbox', 'Restangular',
-  function($scope, $stateParams, inbox, Restangular) {
+app.controller('membershipCtrl', ['$scope', '$stateParams', 'emailService', 'Restangular',
+  function($scope, $stateParams, emailService, Restangular) {
 
   // get updated project information, need owner info from API included or get it from the main page
   // $scope.project= Restangular.one('projects', $stateParams.id).get();

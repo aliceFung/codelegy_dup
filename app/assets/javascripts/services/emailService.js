@@ -1,10 +1,10 @@
-app.factory('inbox', ['Restangular', function(Restangular){
+app.factory('emailService', ['Restangular', function(Restangular){
 
-  var inbox = {};
+  var inbox = [];
   //get emails for inbox
   Restangular.all('emails').getList().then(
     function(result){
-      inbox.history = result;
+      inbox.push.apply(inbox, result);
     }
   );
 
