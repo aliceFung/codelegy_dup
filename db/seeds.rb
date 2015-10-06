@@ -18,7 +18,7 @@ Difficulty.create(name: 'Expert')
 Difficulty.create(name: 'Master')
 
 Project.create(title: 'my first project', difficulty_id: 2,
-               availability: 'weekends')
+               availibility: 'weekends')
 
 4.times do |i|
   user = User.create(email: "foo#{i}@bar.com", password: '12345678')
