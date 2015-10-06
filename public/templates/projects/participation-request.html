@@ -1,1 +1,11 @@
-participation-request.html
+<div class="col-md-10 col-md-offset-1">
+
+  <h3>Code with {{project.owner}}</h3>
+  <h4>{{project.title}}</h4>
+
+  <textarea placeholder="Why do you want to work on this project?"
+  ng-model="content">
+  </textarea>
+
+  <button type="button" ng-click="sendRequest()">Send</button>
+</div>
