@@ -30,4 +30,46 @@ describe('Controller: membershipCtrl', function(){
       expect(scope.inbox.length).toEqual(1);
     })
   })
+
+  var mockApi;
+  describe('$scope.sendRequest() success', function(){
+    beforeEach(inject(function($controller, $httpBackend){
+      mockApi = $httpBackend;
+      mockApi.expectPOST('/api/v1/memberships.json').respond(200,[
+        {
+          "user_id": 1,
+          "project_id": 1,
+          "text": "I want to join this awesome project.",
+          "to_everyone": false
+        }
+        ])
+    }))
+
+    it('should add the resulting membership to the inbox upon success', function(){
+      scope.project = { id : 1 };
+      scope.board = { id : 1 };
+      scope.content = "I want to join this awesome project.";
+      scope.sendRequest()
+
+      mockApi.flush()
+      expect(scope.inbox.length).toEqual(2)
+    })
+  })
+
+  describe('$scope.sendRequest() failure', function(){
+    beforeEach(inject(function($controller, $httpBackend){
+      mockApi = $httpBackend;
+      mockApi.expectPOST('/api/v1/memberships.json').respond(422)
+    }))
+
+    it('should not add the resulting membership to the inbox upon failure', function(){
+      scope.project = { id : 1 };
+      scope.board = { id : 1 };
+      scope.content = "I want to join this awesome project.";
+      scope.sendRequest()
+
+      mockApi.flush()
+      expect(scope.inbox.length).toEqual(1)
+    })
+  })
 })
