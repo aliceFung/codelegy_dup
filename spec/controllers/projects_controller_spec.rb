@@ -4,7 +4,7 @@ RSpec.describe ProjectsController, type: :controller do
   let(:user) { create :user }
   before do
     sign_in(user)
-    create :membership
+    create(:membership, participant_type: 'owner')
   end
 
   context 'index' do
@@ -22,6 +22,7 @@ RSpec.describe ProjectsController, type: :controller do
     end
 
     it 'should have a project_owner' do
+      p JSON.parse(response.body)
       expect(JSON.parse(response.body).first['owner']['email']).to include('myemail@user', '.com')
     end
   end
