@@ -1,29 +1,42 @@
-<div class="form-group">
+<form class="form-group" name="signupForm" ng-submit="processForm(signupForm.$valid)">
+valid form: {{signupForm.$valid}}
     <label for="name">Name</label>
-    <input type="text" class="form-control" name="name" ng-model="credentials.username">
-</div>
+    <input type="text" 
+           class="form-control" 
+           name="name" 
+           ng-model="credentials.username" 
+           required ng-minlength="2" ng-maxlength="100">
 
-<div class="form-group">
     <label for="email">Email</label>
-    <input type="text" class="form-control" name="email" ng-model="credentials.email">
-</div>
+    <input type="text" 
+           class="form-control" 
+           name="email" 
+           ng-model="credentials.email" 
+           required ng-pattern="emailRegex">
 
-<div class="form-group">
     <label for="password">Password</label>
-    <input type="password" class="form-control" name="password" ng-model="credentials.password">
-</div>
+    <input type="password" 
+           class="form-control" 
+           name="password" 
+           ng-model="credentials.password" 
+           required ng-minlength="8" ng-maxlength="25">
 
-<div class="form-group">
     <label for="password_confirmation">Password Confirmation</label>
-    <input  type="password" class="form-control"
-            name="email" ng-model="credentials.password_confirmation">
-</div>
+    <input  type="password" 
+            class="form-control"
+            name="email" 
+            ng-model="credentials.password_confirmation"
+            required compare-to="credentials.password">
 
-<div class="form-group row">
-<div class="col-xs-6 col-xs-offset-3">
-    <br>
-    <a ui-sref="home.form.languages" class="btn btn-block btn-primary">
-      Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
-    </a>
-</div>
-</div>
+    <div class="col-xs-6 col-xs-offset-3">
+        <br>
+      <!--   <a ui-sref="home.form.languages" >
+          Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+        </a>  -->
+        <button type="submit" class="btn btn-block btn-primary">
+            Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+        </button>
+    </div>
+</form>
+
+
