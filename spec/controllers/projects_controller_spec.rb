@@ -31,7 +31,7 @@ RSpec.describe ProjectsController, type: :controller do
 
   context 'show' do
     before do
-      m = (create :membership)
+      m = (create :membership, participant_type: 'owner')
       get :show, {id: m.project.id}
     end
 
