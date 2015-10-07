@@ -75,54 +75,42 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
       .state('projects', {
         url: '/projects',
         resolve: {
-            projects: [ 'Restangular', function(Restangular){
-                        return Restangular.all('projects').getList()
-                        .then(function(response){
-                            return response
-                        }, function(error){
-                            return error
-                        })
-                      }],
-            languages: [ 'Restangular', function(Restangular){
-                        return Restangular.all('languages').getList()
-                        .then(function(response){
-                            return response
-                        }, function(error){
-                            return error
-                        })
-                      }],
+          projects: [ 'Restangular', function(Restangular){
+                      return Restangular.all('projects').getList()
+                      .then(function(response){
+                          return response
+                      }, function(error){
+                          return error
+                      })
+                    }],
+          languages: [ 'Restangular', function(Restangular){
+                      return Restangular.all('languages').getList()
+                      .then(function(response){
+                          return response
+                      }, function(error){
+                          return error
+                      })
+                    }],
 
          },
         views: {
-        '': {
-              templateUrl: 'templates/projects/index.html',
-              controller: 'projectsCtrl',
-            },
+          '': {
+                templateUrl: 'templates/projects/index.html',
+                controller: 'projectsCtrl',
+              },
 
-        'navbar': {
-            templateUrl: 'templates/header-1.html',
-            controller: 'sessionCtrl'
-        }
-
+          'navbar': {
+              templateUrl: 'templates/header-1.html',
+              controller: 'sessionCtrl'
+          }
         }
       })
       .state('projects.new', {
         url: '/new',
-        // resolve: {
-        //     projects: [ 'Restangular', function(Restangular){
-        //                 return Restangular.all('projects').getList()
-        //                 .then(function(response){
-        //                     return response
-        //                 }, function(error){
-        //                     return error
-        //                 })
-        //               }]
-        //  },
         views: {
         '': {
               templateUrl: 'templates/projects/new.html',
             },
-
         'navbar': {
             templateUrl: 'templates/header-1.html',
             controller: 'sessionController'
