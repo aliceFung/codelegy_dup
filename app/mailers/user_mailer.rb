@@ -7,4 +7,9 @@ class UserMailer < ApplicationMailer
     mail(to: @project.owner.email, subject: "#{@user.email} wants to join #{@project.title}")
   end
 
+  # Simple way to test production mailing. Remove once in production.
+  def test_production_mail(target)
+    mail(to: target, subject: "Hi.")
+  end
+
 end

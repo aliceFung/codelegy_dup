@@ -1,0 +1,20 @@
+<main>
+  <div class="row">
+
+    <div class="col-md-12">
+
+        <h2>Inbox</h2>
+        <hr>
+        <div ng-repeat="email in inbox">
+
+          <div ui-sref = "email({'id': $index})">
+            <h5>From: {{email.sender_username}} at {{email.date | date}}</h5>
+            <h4>{{email.subject}}</h4>
+          </div>
+          <hr>
+        </div>
+
+    </div>
+
+  </div>
+</main>

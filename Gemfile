@@ -7,6 +7,8 @@ source "https://rails-assets.org" do
   gem "rails-assets-angular-devise"
 end
 
+gem 'mailboxer'
+
 # omniauth
 gem 'omniauth'
 gem 'omniauth-github'

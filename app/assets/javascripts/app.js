@@ -1,10 +1,5 @@
 var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angularMoment', 'Devise'])
 
-// .config(["RestangularProvider", function(RestangularProvider){
-//   RestangularProvider.setBaseUrl("/api/v1")
-//   RestangularProvider.setRequestSuffix(".json")
-
-// }])
 
 .config(["AuthProvider", function(AuthProvider) {
   AuthProvider.loginPath('/users/sign_in.json');
@@ -70,7 +65,6 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
             controller: 'signUpCtrl'
         });
 
-
     $stateProvider
       .state('projects', {
         url: '/projects',
@@ -135,4 +129,49 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
         }
       })
 
+      //request form to join project
+      .state('projects.join', {
+        url: '/:id/join',
+        controller: 'membershipCtrl',
+        templateUrl: 'templates/projects/participation-request.html'
+        // views: {
+        //   "": {
+        //     controller: 'membershipCtrl',
+        //     templateUrl: 'templates/projects/participation-request.html'
+        //   }}
+      })
+
+      //inbox
+      .state('inbox', {
+        url: '/inbox',
+        views: {
+          '': {
+                templateUrl: 'templates/mailbox/inbox.html',
+                controller: 'emailCtrl',
+              },
+
+          'navbar': {
+              templateUrl: 'templates/header-1.html',
+              controller: 'sessionCtrl'
+          }
+        }
+      })
+
+      //email show state
+      .state('email', {
+        url: '/inbox/:id',
+        views: {
+          '': {
+                controller: 'emailShowCtrl',
+                templateUrl: 'templates/mailbox/email_details.html'
+              },
+
+          'navbar': {
+              templateUrl: 'templates/header-1.html',
+              controller: 'sessionCtrl'
+          }
+        }
+      })
+
   }]);
+
