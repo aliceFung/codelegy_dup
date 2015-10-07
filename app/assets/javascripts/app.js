@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise'])
+var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angularMoment', 'Devise'])
 
 
 .config(["AuthProvider", function(AuthProvider) {
@@ -88,6 +88,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
 
          },
         views: {
+
           '': {
                 templateUrl: 'templates/projects/index.html',
                 controller: 'projectsCtrl',
@@ -107,7 +108,22 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
             },
         'navbar': {
             templateUrl: 'templates/header-1.html',
-            controller: 'sessionController'
+            controller: 'sessionCtrl'
+        }
+
+        }
+      })
+      .state('projects.list', {
+        url: '/list',
+        views: {
+        '': {
+              templateUrl: 'templates/projects/index-list.html',
+              controller: 'projectsCtrl',
+            },
+
+        'navbar': {
+            templateUrl: 'templates/header-1.html',
+            controller: 'sessionCtrl'
         }
 
         }
@@ -125,11 +141,36 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
         //   }}
       })
 
-      //inbox (ck where profile is nested under, should be same level)
+      //inbox
       .state('inbox', {
         url: '/inbox',
-        controller: 'emailCtrl',
-        templateUrl: 'templates/inbox.html'
+        views: {
+          '': {
+                templateUrl: 'templates/mailbox/inbox.html',
+                controller: 'emailCtrl',
+              },
+
+          'navbar': {
+              templateUrl: 'templates/header-1.html',
+              controller: 'sessionCtrl'
+          }
+        }
+      })
+
+      //email show state
+      .state('email', {
+        url: '/inbox/:id',
+        views: {
+          '': {
+                controller: 'emailShowCtrl',
+                templateUrl: 'templates/mailbox/email_details.html'
+              },
+
+          'navbar': {
+              templateUrl: 'templates/header-1.html',
+              controller: 'sessionCtrl'
+          }
+        }
       })
 
   }]);

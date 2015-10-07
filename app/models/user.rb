@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   acts_as_messageable
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -10,9 +11,11 @@ class User < ActiveRecord::Base
   has_one :profile, dependent: :destroy
   has_many :memberships
   has_many :projects, through: :memberships
-  has_many :project_emails, through: :projects, source: :emails
 
+  has_many :project_emails, through: :projects, source: :emails
   has_many :sent_emails, class_name: "Email"
+
+
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -23,14 +26,14 @@ class User < ActiveRecord::Base
     end
   end
 
-  # returns a collection of projects current_user is the owner of
+  # returns a collection of projects user is the owner of
   def projects_owned
-    current_user.memberships.where('participant_type = ?', 'owner')
+    self.memberships.where('participant_type = ?', 'owner')
   end
 
-  # returns a collection of projects current_user is a member of
+  # returns a collection of projects user is a member of
   def project_member_in
-    current_user.memberships.where('participant_type = ?', 'member')
+    self.memberships.where('participant_type = ?', 'member')
   end
 
   # returns a collection of group emails from participating projects
@@ -41,7 +44,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  # returns a collection of emails to project owner (current_user)
+  # returns a collection of emails to project owner
   def project_owner_emails
     emails=[]
     projects_owned.each do |project|
@@ -49,11 +52,28 @@ class User < ActiveRecord::Base
     end
   end
 
-  #gathers all current_user emails
-  def user_emails
-    # sent = current_user.sent_emails
+  #gathers all self emails
+  def all_user_emails
+    # sent = self.sent_emails
     received = project_owner_emails + group_emails
+    # binding.pry
   end
+
+  #get user email message details from Mailboxer Conversation obj
+  def get_emails(box_type)
+    #query for message
+    Mailboxer::Notification.where('id IN (?)',
+      #create array of Conversations objs
+      self.mailbox.send(box_type).inject([]){|acc, el| acc.push(el)})
+        .map do |c|
+            { date: c.created_at,
+              subject: c.subject,
+              sender_username: c.sender.username,
+              body: c.body}
+        end
+  end
+  # conversation_id: c.conversation_id #Mailboxer::Conversation.find(3)
+  # message_id: c.id # Mailboxer::Message.find(3)
 
   def mailboxer_email
     self.email
@@ -62,5 +82,7 @@ class User < ActiveRecord::Base
   def mailboxer_username
     self.username
   end
+
+
 
 end

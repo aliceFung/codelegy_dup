@@ -1,11 +1,20 @@
 class EmailsController < ApplicationController
 
+  before_action :get_mailbox
+
   def index
-  #temp generalization, fine tune with proj owner & grp emails later
-    @emails = Email.all_user_emails
+    @inbox = @mailbox.inbox
+    @sentbox = @mailbox.sentbox
+    @trash = @mailbox.trash
     respond_to do |format|
-      format.json {render json: @emails}
+      format.json {render json: @inbox, methods: [:email_details]}
     end
   end
 
+
+  private
+
+  def get_mailbox
+    @mailbox ||= current_user.mailbox
+  end
 end

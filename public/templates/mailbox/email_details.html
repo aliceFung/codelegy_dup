@@ -1,0 +1,22 @@
+<main>
+  <div class="row">
+
+    <div class="col-md-10">
+      <br>
+      <h4><a ui-sref = "inbox">Back to inbox</a></h4>
+      <hr>
+      <div>
+        <p>{{message.date | date}}</p>
+        <h4>{{message.subject}}</h4>
+        <p><strong>{{message.sender_username}}</strong> wrote: </p>
+
+        <p>{{message.body}}</p>
+
+        <hr>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
