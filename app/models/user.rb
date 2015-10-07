@@ -8,8 +8,10 @@ class User < ActiveRecord::Base
 
   has_one :profile, dependent: :destroy
   has_many :memberships
-  has_many :projets, through: :memberships
+  has_many :projects, through: :memberships
   has_many :sent_emails, class_name: "Email"
+
+  after_create :create_profile
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

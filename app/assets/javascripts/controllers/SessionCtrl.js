@@ -23,12 +23,12 @@ app.controller('sessionCtrl',
 
   $scope.signOut = Session.signOut;
 
-  $scope.signInWithGithub = Session.signInWithGithub;
+  // $scope.signInWithGithub = Session.signInWithGithub;
 
   $scope.$on('devise:login', function(event, currentUser) {
     $scope.currentUser.user = currentUser;
     $scope.authenticated.status = true;
-    $state.go('home');
+    // $state.go('home');
   });
 
   $scope.$on('devise:logout', function(event, oldCurrentUser) {
@@ -38,6 +38,6 @@ app.controller('sessionCtrl',
   });
 
   $scope.$on('devise:unauthorized', function() {
-    $state.go('home.login');
+    $state.go('home.signin');
   });
 }]);

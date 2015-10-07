@@ -9,6 +9,7 @@
         <img src="../assets/img/brand.png" alt="brand">
       </a>
 
+      <!-- Email -->
       <div class="form-group" ng-class="{ 'has-error' : signinForm.email.$invalid && !signinForm.email.$pristine }">
         <input  class="form-control"
                 name="email"
@@ -22,13 +23,25 @@
           Please enter a valid email
       </p>
 
-      </div>
+      </div> <!-- Email End -->
+      
 
-      <div class="form-group m-b-md">
+      <!-- Password -->
+      <div class="form-group m-b-md" ng-class="{ 'has-error' : signinForm.password.$invalid
+                                          && !signinForm.password.$pristine }">
         <input type="password"
+                name="password"
                 class="form-control"
                 placeholder="Password"
-                ng-model="credentials.password">
+                ng-model="credentials.password"
+                required ng-minlength="8" ng-maxlength="25">
+        <p  ng-show=" signinForm.password.$error.minlength"
+            class="help-block">
+          Please enter a password more than 8 characters in length
+        </p>
+        <p ng-show="signinForm.password.$error.maxlength" class="help-block">
+          Please enter a password less than 25 characters in length
+        </p>
       </div>
 
       <div class="m-b-lg">
