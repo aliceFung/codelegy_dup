@@ -73,7 +73,6 @@ class User < ActiveRecord::Base
               date: c.created_at }
         end
   end
-Mailboxer::Notification.where('id IN (?)', c).map{|c| {body: c.body, subject: c.subject, username: c.sender.username, date: c.created_at }}
 
   def mailboxer_email
     self.email
