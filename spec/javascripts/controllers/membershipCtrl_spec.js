@@ -72,7 +72,7 @@ describe('Controller: membershipCtrl', function(){
   })
 
   describe('$scope.sendRequest() failure', function(){
-        var mockApi;
+    var mockApi;
     beforeEach(inject(function($controller, $httpBackend){
       mockApi = $httpBackend;
       mockApi.expectGET('/api/v1/projects.json').respond(200, {title: "abc123", owner: {username: "dabes"}});
