@@ -2,13 +2,14 @@ app.controller('profileRegistrationCtrl',
   ['$scope',
    'ProfileRegistration',
    '$state',
-    function($scope, ProfileRegistration, $state){
+   'EmailRegEx',
+    function($scope, ProfileRegistration, $state, EmailRegEx){
       $scope.profileInput = ProfileRegistration.profileInput;
       $scope.languages = ProfileRegistration.languages;
       $scope.expLevel = ProfileRegistration.expLevel;
       $scope.signupForm = {};
 
-      $scope.emailRegex = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+      $scope.emailRegex = EmailRegEx.check;
 
       $scope.setExpLevel = function(languageId, levelId) {
         console.log(languageId, levelId);

@@ -1,10 +1,21 @@
-app.controller('sessionCtrl', ['$scope', 'Session', '$state', function($scope, Session, $state){
+app.controller('sessionCtrl',
+  ['$scope', 'Session', '$state', 'EmailRegEx',
+  function($scope, Session, $state, EmailRegEx){
 
   $scope.authenticated = Session.authenticated;
   $scope.currentUser = Session.currentUser;
   $scope.email = '';
   $scope.password = '';
   $scope.credentials = {};
+  $scope.emailRegex = EmailRegEx.check;
+
+  $scope.processForm = function(validInput){
+    if(validInput){
+      $scope.signIn();
+    } else {
+      alert("Please enter valid information!");
+    }
+  };
 
   $scope.signIn = function(){
     Session.signIn($scope.credentials);

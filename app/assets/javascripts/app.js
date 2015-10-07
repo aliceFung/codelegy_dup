@@ -37,9 +37,9 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
       })
       // nested routes for our home page
 
-      .state('home.login', {
-            url: 'login',
-            templateUrl: 'templates/login.html',
+      .state('home.signin', {
+            url: '/signin',
+            templateUrl: 'templates/sign-in.html',
             controller: 'sessionCtrl'
       })
         // route to show our basic form (/form)

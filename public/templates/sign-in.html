@@ -1,0 +1,55 @@
+
+<div class="container-fluid container-fill-height">
+  <div class="container-content-middle">
+    <form role="form" name="signinForm"
+          ng-submit="processForm(signinForm.$valid)"
+          class="m-x-auto text-center app-login-form">
+
+      <a href="../index.html" class="app-brand m-b-lg">
+        <img src="../assets/img/brand.png" alt="brand">
+      </a>
+
+      <div class="form-group" ng-class="{ 'has-error' : signinForm.email.$invalid && !signinForm.email.$pristine }">
+        <input  class="form-control"
+                name="email"
+                placeholder="Email"
+                ng-model="credentials.email"
+                required ng-pattern="emailRegex">
+
+      <p  ng-show="signinForm.email.$invalid &&
+          !signinForm.email.$pristine"
+          class="help-block">
+          Please enter a valid email
+      </p>
+
+      </div>
+
+      <div class="form-group m-b-md">
+        <input type="password"
+                class="form-control"
+                placeholder="Password"
+                ng-model="credentials.password">
+      </div>
+
+      <div class="m-b-lg">
+        <button type="submit "class="btn btn-primary">
+          Sign In
+        </button>
+
+        <button class="btn btn-default"
+                ui-sref="home.form.signup">Sign up</button>
+
+        <br>
+
+        <a class="btn btn-default" href="/users/auth/github" id='github-button-sign-in'>Sign in with <b>Github</b>
+        </a>
+
+      </div>
+
+      <footer class="screen-login">
+        <a href="#" class="text-muted">Forgot password</a>
+      </footer>
+    </form>
+  </div>
+</div>
+
