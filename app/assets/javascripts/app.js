@@ -50,9 +50,9 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
         })
 
         // nested states  for our form
-        .state('home.form.profile', {
-            url: '/profile',
-            templateUrl: 'templates/registration/form-profile.html',
+        .state('home.form.signup', {
+            url: '/signup',
+            templateUrl: 'templates/registration/form-sign-up.html',
             controller: 'profileRegistrationCtrl'
         })
 

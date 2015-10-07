@@ -1,4 +1,4 @@
-app.factory('signUpService', ['Auth', '$state', 'Restangular', function(Auth, $state, Restangular){
+app.factory('SignUp', ['Auth', '$state', 'Restangular', function(Auth, $state, Restangular){
 
   var credentials = {};
 
