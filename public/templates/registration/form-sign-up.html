@@ -1,0 +1,93 @@
+<form class="form-group" name="signupForm" ng-submit="processForm(signupForm.$valid)">
+
+    <!-- Username -->
+    <div class="form-group" ng-class="{ 'has-error' : signupForm.username.$invalid
+                                          && !signupForm.username.$pristine }">
+
+      <label for="username">Name</label>
+      <input type="text"
+             class="form-control"
+             name="username"
+             ng-model="credentials.username"
+             required ng-minlength="2" ng-maxlength="100">
+
+      <p  ng-show="signupForm.username.$error.minlength ||
+                    signupForm.username.$invalid &&
+                    !signupForm.username.$pristine"
+          class="help-block">
+        Please enter a name more than 1 character in length
+      </p>
+      <p ng-show="signupForm.username.$error.maxlength" class="help-block">
+        Please enter a name less than 100 characters
+      </p>
+
+    </div>
+
+    <!-- Email -->
+    <div class="form-group" ng-class="{ 'has-error' : signupForm.email.$invalid
+                                          && !signupForm.email.$pristine }">
+
+      <label for="email">Email</label>
+      <input type="text"
+             class="form-control"
+             name="email"
+             ng-model="credentials.email"
+             required ng-pattern="emailRegex">
+
+      <p  ng-show="signupForm.email.$invalid && !signupForm.email.$pristine"
+          class="help-block">
+          Please enter a valid email
+      </p>
+
+    </div>
+
+    <!-- Password -->
+    <div class="form-group" ng-class="{ 'has-error' : signupForm.password.$invalid
+                                          && !signupForm.password.$pristine }">
+
+      <label for="password">Password</label>
+      <input type="password"
+             class="form-control"
+             name="password"
+             ng-model="credentials.password"
+             required ng-minlength="8" ng-maxlength="25">
+
+      <p  ng-show=" signupForm.password.$error.minlength"
+          class="help-block">
+        Please enter a password more than 8 characters in length
+      </p>
+      <p ng-show="signupForm.password.$error.maxlength" class="help-block">
+        Please enter a password less than 25 characters in length
+      </p>
+
+    </div>
+
+    <!-- Password Confirmation -->
+    <div class="form-group" ng-class="{ 'has-error' : signupForm.password_confirmation.$invalid
+                                          && !signupForm.password_confirmation.$pristine }">
+
+    <label for="password_confirmation">Password Confirmation</label>
+
+      <input  type="password"
+              class="form-control"
+              name="password_confirmation"
+              ng-model="credentials.password_confirmation"
+              required compare-to="credentials.password">
+
+      <p  ng-show="signupForm.password_confirmation.$invalid &&
+                    !signupForm.password_confirmation.$pristine"
+          class="help-block">
+        Password confirmation must match password
+      </p>
+
+    </div>
+
+    <div class="col-xs-6 col-xs-offset-3">
+        <br>
+        <button type="submit" class="btn btn-block btn-primary">
+            Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+        </button>
+    </div>
+</form>
+
+

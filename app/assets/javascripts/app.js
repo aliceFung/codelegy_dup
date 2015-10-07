@@ -6,17 +6,17 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
 
 // }])
 
-.config(function(AuthProvider) {
-    AuthProvider.loginPath('/users/sign_in.json');
-    AuthProvider.loginMethod('POST');
-    AuthProvider.logoutPath('/users/sign_out.json');
-    AuthProvider.logoutMethod('DELETE');
-})
+.config(["AuthProvider", function(AuthProvider) {
+  AuthProvider.loginPath('/users/sign_in.json');
+  AuthProvider.loginMethod('POST');
+  AuthProvider.logoutPath('/users/sign_out.json');
+  AuthProvider.logoutMethod('DELETE');
+}])
 
-.config(function(RestangularProvider) {
+.config(["RestangularProvider", function(RestangularProvider) {
   RestangularProvider.setBaseUrl('/api/v1');
   RestangularProvider.setRequestSuffix('.json');
-})
+}])
 
 .config(['$stateProvider', '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider){
@@ -30,7 +30,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
 
         'navbar': {
                 templateUrl: 'templates/header-1.html',
-                controller: 'sessionController'
+                controller: 'sessionCtrl'
             }
 
         }
@@ -40,31 +40,34 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
       .state('home.login', {
             url: 'login',
             templateUrl: 'templates/login.html',
-            controller: 'sessionController'
+            controller: 'sessionCtrl'
       })
         // route to show our basic form (/form)
         .state('home.form', {
             url: '/form',
             templateUrl: 'templates/registration/form.html',
-            controller: 'formController'
+            controller: 'signUpCtrl'
         })
 
         // nested states  for our form
-        .state('home.form.profile', {
-            url: '/profile',
-            templateUrl: 'templates/registration/form-profile.html'
+        .state('home.form.signup', {
+            url: '/signup',
+            templateUrl: 'templates/registration/form-sign-up.html',
+            controller: 'profileRegistrationCtrl'
         })
 
         // url will be /form/interests
         .state('home.form.languages', {
             url: '/languages',
-            templateUrl: 'templates/registration/form-lang.html'
+            templateUrl: 'templates/registration/form-lang.html',
+            controller: 'profileRegistrationCtrl'
         })
 
         // url will be /form/payment
         .state('home.form.availability', {
             url: '/availability',
-            templateUrl: 'templates/registration/form-availability.html'
+            templateUrl: 'templates/registration/form-availability.html',
+            controller: 'signUpCtrl'
         });
 
 
@@ -72,48 +75,46 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
       .state('projects', {
         url: '/projects',
         resolve: {
-            projects: [ 'Restangular', function(Restangular){
-                        return Restangular.all('projects').getList()
-                        .then(function(response){
-                            return response
-                        }, function(error){
-                            return error
-                        })
-                      }]
+          projects: [ 'Restangular', function(Restangular){
+                      return Restangular.all('projects').getList()
+                      .then(function(response){
+                          return response
+                      }, function(error){
+                          return error
+                      })
+                    }],
+          languages: [ 'Restangular', function(Restangular){
+                      return Restangular.all('languages').getList()
+                      .then(function(response){
+                          return response
+                      }, function(error){
+                          return error
+                      })
+                    }],
+
          },
         views: {
-        '': {
-              templateUrl: 'templates/projects/index2.html',
-              controller: 'projectsCtrl',
-            },
 
-        'navbar': {
-            templateUrl: 'templates/header-1.html',
-            controller: 'sessionController'
-        }
+          '': {
+                templateUrl: 'templates/projects/index.html',
+                controller: 'projectsCtrl',
+              },
 
+          'navbar': {
+              templateUrl: 'templates/header-1.html',
+              controller: 'sessionCtrl'
+          }
         }
       })
-      .state('projects.', {
+      .state('projects.new', {
         url: '/new',
-        // resolve: {
-        //     projects: [ 'Restangular', function(Restangular){
-        //                 return Restangular.all('projects').getList()
-        //                 .then(function(response){
-        //                     return response
-        //                 }, function(error){
-        //                     return error
-        //                 })
-        //               }]
-        //  },
         views: {
         '': {
               templateUrl: 'templates/projects/new.html',
             },
-
         'navbar': {
             templateUrl: 'templates/header-1.html',
-            controller: 'sessionController'
+            controller: 'sessionCtrl'
         }
 
         }
@@ -122,13 +123,13 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
         url: '/grid',
         views: {
         '': {
-              templateUrl: 'templates/projects/grid.html',
+              templateUrl: 'templates/projects/index-grid.html',
               controller: 'projectsCtrl',
             },
 
         'navbar': {
             templateUrl: 'templates/header-1.html',
-            controller: 'sessionController'
+            controller: 'sessionCtrl'
         }
 
         }
