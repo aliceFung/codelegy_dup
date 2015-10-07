@@ -28,16 +28,17 @@ context 'RESTful profile actions' do
     end
 
     it 'changes profile languages' do
+      # binding.pry
       put :update,
             user_id: user.id,
             profile: attributes_for(:profile,
-              profile_languages:
-                attributes_for(:profile_languages,
-                  language_id: 1,
-                  difficulty_id: 1)
-              )
-      binding.pry
-      expect(json_response['profile_languages']).to include({language_id: 1, difficulty_id: 1})
+              profile_languages_attributes: [{
+                language_id: 1,
+                difficulty_id: 1
+              }]
+            )
+      expect(json_response['profile_languages'][0]['language_id']).to eq(1)
+      expect(json_response['profile_languages'][0]['difficulty_id']).to eq(1)
     end
 
     it 'changes photo_id' do

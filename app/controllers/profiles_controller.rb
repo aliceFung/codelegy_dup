@@ -11,8 +11,9 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:profile][:user_id])
     @profile = @user.profile
+    # binding.pry
     if current_user == @user
       if @profile.update(whitelisted_profile_params)
         render json: @profile.to_json(include: :profile_languages), status: 200

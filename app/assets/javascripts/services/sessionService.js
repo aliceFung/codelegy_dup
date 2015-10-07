@@ -47,7 +47,6 @@ app.factory('Session', ['Auth', '$state', 'Restangular', function(Auth, $state, 
     authenticated: authenticated,
     currentUser: currentUser,
     signIn: signIn,
-    signInWithGithub: signInWithGithub,
     signOut: signOut
   };
 }]);
