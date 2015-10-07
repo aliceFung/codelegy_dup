@@ -40,19 +40,19 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    Times: <input type="text" ng-model="timesFilter">
-    Difficulty: <select ng-model="difficultyFilter">
+    Times: <input type="text" ng-model="filter.availability">
+    Difficulty: <select ng-model="filter.difficulty_name">
       <option value="None">None</option>
       <option value="Beginner">Beginner</option>
       <option value="Intermediate">Intermediate</option>
       <option value="Expert">Expert</option>
       <option value="Master">Master</option>
     </select> <br>
-    {{timesFilter}}||{{difficultyFilter}}
+    {{filter.availability}}||{{filter.difficulty_name}}
   </div>
 </div>
 <br>
-<div ng-class="{row: ($index%3 == 2)}" ng-repeat="project in projects | filter: projectFilter | orderBy:'-created_at': false">
+<div ng-class="{row: ($index%3 == 2)}" ng-repeat="project in projects | filter: projectFilter | filter: filter | orderBy:'-created_at': false">
   <div ng-class="{'col-sm-4': grid, 'col-sm-12': !grid}"
    >
     <div class="panel panel-default">

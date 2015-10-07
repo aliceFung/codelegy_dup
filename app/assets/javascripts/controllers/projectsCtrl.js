@@ -31,7 +31,7 @@ app.controller("projectsCtrl", ['$scope', '$state', 'api', 'projects', 'language
   }
 
   $scope.projectFilter = function(project, idx, arr){
-    return checkLang(project) && checkTimes(project)
+    return checkLang(project)
   }
 
   var checkTimes = function(project){
