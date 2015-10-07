@@ -1,19 +1,19 @@
 app.controller('signUpCtrl',
-  ['signUpService',
-   'session',
+  ['SignUp',
+   'Session',
    '$scope',
-   'profileRegistration',
+   'ProfileRegistration',
    '$state',
-   function(signUpService, session, $scope, profileRegistration, $state){
+   function(SignUp, Session, $scope, ProfileRegistration, $state){
 
-  $scope.credentials = signUpService.credentials;
+  $scope.credentials = SignUp.credentials;
 
   // On registration, create a new session
-  $scope.authenticated = session.authenticated;
-  $scope.currentUser = session.currentUser;
+  $scope.authenticated = Session.authenticated;
+  $scope.currentUser = Session.currentUser;
 
   $scope.register = function(){
-    signUpService.register($scope.credentials, profileRegistration.profileInput);
+    SignUp.register($scope.credentials, ProfileRegistration.profileInput);
   };
 
   $scope.$on('devise:new-registration', function(event, user) {
