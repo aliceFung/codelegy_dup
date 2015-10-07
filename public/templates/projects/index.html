@@ -7,7 +7,7 @@
   </div>
   <div class="col-sm-1" ng-repeat="language in languages">
       <button class="btn btn-default btn-block" ng-click='addLang(language)'
-              ng-class='{"active": langFilter[language]}'>{{language}}</button><br>{{langFilter[language]}}
+              ng-class='{"active": langFilter[language]}'>{{language}}</button>
   </div>
 </div>
 <br>
@@ -48,7 +48,6 @@
       <option value="Expert">Expert</option>
       <option value="Master">Master</option>
     </select> <br>
-    {{filter.availability}}||{{filter.difficulty_name}}
   </div>
 </div>
 <br>
