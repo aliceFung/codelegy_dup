@@ -60,19 +60,20 @@ class User < ActiveRecord::Base
   end
 
   #get user email message details from Mailboxer Conversation obj
-  def get_emails(box)
+  def get_emails(box_type)
     #query for message
     Mailboxer::Notification.where('id IN (?)',
       #create array of Conversations objs
-      self.mailbox.inbox.inject([]){|acc, el| acc.push(el)})
-        #get only needed data from message details
+      self.mailbox.send(box_type).inject([]){|acc, el| acc.push(el)})
         .map do |c|
-            { body: c.body,
-           subject: c.subject,
-          username: c.sender.username,
-              date: c.created_at }
+            { date: c.created_at,
+              subject: c.subject,
+              sender_username: c.sender.username,
+              body: c.body}
         end
   end
+  # conversation_id: c.conversation_id #Mailboxer::Conversation.find(3)
+  # message_id: c.id # Mailboxer::Message.find(3)
 
   def mailboxer_email
     self.email

@@ -7,7 +7,6 @@ app.factory('emailService', ['Restangular', function(Restangular){
   Restangular.all('mailbox').getList().then(
     function(result){
       inbox.push.apply(inbox, result);
-      debugger;
     }
   );
 

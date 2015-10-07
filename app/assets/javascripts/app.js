@@ -125,12 +125,12 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
         //   }}
       })
 
-      //inbox (ck where profile is nested under, should be same level)
+      //inbox
       .state('inbox', {
         url: '/inbox',
         views: {
           '': {
-                templateUrl: 'templates/inbox.html',
+                templateUrl: 'templates/mailbox/inbox.html',
                 controller: 'emailCtrl',
               },
 
@@ -139,6 +139,13 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
               controller: 'sessionCtrl'
           }
         }
+      })
+
+      //email show state
+      .state('inbox.show', {
+        url: '/:id',
+        controller: 'emailCtrl',
+        templateUrl: 'templates/mailbox/email_details.html'
       })
 
   }]);

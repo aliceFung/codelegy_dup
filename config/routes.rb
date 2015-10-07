@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       resources :languages, only: [:index]
       resources :memberships, except: [:index, :new, :edit, :destroy]
       resources :profiles, only: [:create, :update]
-      resources :emails, only: [:index, :show]
+      # resources :emails, only: [:index, :show]
       resources :mailbox, only: [:index]
     end
   end
