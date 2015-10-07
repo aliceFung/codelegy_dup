@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe MembershipsController, type: :controller do
 
-  let(:owner){create(:user)}
-  let(:member){create(:user)}
-  let(:project){create(:project)}
+  let!(:owner){create(:user)}
+  let!(:member){create(:user)}
+  let!(:project){create(:project)}
   let!(:owner_membership){create(:membership, project: project,
                             user: owner, participant_type: "owner")}
 
@@ -60,6 +60,43 @@ RSpec.describe MembershipsController, type: :controller do
                         project_id:   project.id), format: :json
         end.to change(Delayed::Job, :count).by(1)
       end
+
+      describe 'messaging' do
+        it 'sends a message from the proper person to the proper target' do
+          post :create, membership: attributes_for(:membership,
+                          user_id:       member.id,
+                          project_id:   project.id), format: :json
+          expect(Mailboxer::Receipt.all[-2].receiver_id).to eq(owner.id)
+        end
+
+        it 'sends a message from the proper person to the proper target' do
+          post :create, membership: attributes_for(:membership,
+                          user_id:       member.id,
+                          project_id:   project.id), format: :json
+          expect(Mailboxer::Notification.last.sender_id).to eq(member.id)
+        end
+
+        it 'sends a message when project membership is requested' do
+          expect do
+            post :create, membership: attributes_for(:membership,
+                          user_id:       member.id,
+                          project_id:   project.id), format: :json
+          end.to change(Mailboxer::Receipt, :count).by(2)
+        end
+
+        it 'does not send a message when project membership is already requested' do
+          expect do
+            post :create, membership: attributes_for(:membership,
+                          user_id:       member.id,
+                          project_id:   project.id), format: :json
+            post :create, membership: attributes_for(:membership,
+                          user_id:       member.id,
+                          project_id:   project.id), format: :json
+          end.to change(Mailboxer::Receipt, :count).by(2)
+        end
+
+      end
+
 
     end
 
