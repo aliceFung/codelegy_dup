@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise'])
+var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angularMoment', 'Devise'])
 
 
 .config(["AuthProvider", function(AuthProvider) {
@@ -88,6 +88,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
 
          },
         views: {
+
           '': {
                 templateUrl: 'templates/projects/index.html',
                 controller: 'projectsCtrl',
@@ -107,7 +108,22 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
             },
         'navbar': {
             templateUrl: 'templates/header-1.html',
-            controller: 'sessionController'
+            controller: 'sessionCtrl'
+        }
+
+        }
+      })
+      .state('projects.list', {
+        url: '/list',
+        views: {
+        '': {
+              templateUrl: 'templates/projects/index-list.html',
+              controller: 'projectsCtrl',
+            },
+
+        'navbar': {
+            templateUrl: 'templates/header-1.html',
+            controller: 'sessionCtrl'
         }
 
         }

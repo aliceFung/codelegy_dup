@@ -1,3 +1,7 @@
 .megrim {
   font-family: megrim, fantasy;
 }
+
+.row.gridalicious {
+   margin: 0 -30px;
+ }
