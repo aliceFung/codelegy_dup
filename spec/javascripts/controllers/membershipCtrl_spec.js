@@ -29,21 +29,6 @@ describe('Controller: membershipCtrl', function(){
     ctrl = $controller('membershipCtrl', { $scope: scope, $stateParams: {}, $state: {go: function(){return} } });
   }))
 
-  var mockApi;
-  beforeEach(inject(function($controller, $httpBackend){
-    mockApi = $httpBackend;
-    mockApi.expectGET('/api/v1/projects.json').respond(200, {title: "abc123", owner: {username: "dabes"}});
-    // mockApi.expectGET('/templates/home.html').respond(200);
-    mockApi.expectPOST('/api/v1/memberships.json').respond(200,
-      {
-        "user_id": 1,
-        "project_id": 1,
-        "text": "I want to join this awesome project.",
-        "to_everyone": false
-      }
-      )
-  }))
-
   describe('$scope.inbox', function(){
     it('should properly get inbox from emailService', function(){
       expect(scope.inbox.length).toEqual(1);
@@ -51,7 +36,20 @@ describe('Controller: membershipCtrl', function(){
   })
 
   describe('$scope.sendRequest() success', function(){
-
+    var mockApi;
+    beforeEach(inject(function($controller, $httpBackend){
+      mockApi = $httpBackend;
+      mockApi.expectGET('/api/v1/projects.json').respond(200, {title: "abc123", owner: {username: "dabes"}});
+      // mockApi.expectGET('/templates/home.html').respond(200);
+      mockApi.expectPOST('/api/v1/memberships.json').respond(200,
+        {
+          "user_id": 1,
+          "project_id": 1,
+          "text": "I want to join this awesome project.",
+          "to_everyone": false
+        }
+        )
+    }))
     it('should add the resulting membership to the inbox upon success', function(){
       scope.project = { id : 1 };
       scope.board = { id : 1 };
@@ -74,13 +72,14 @@ describe('Controller: membershipCtrl', function(){
   })
 
   describe('$scope.sendRequest() failure', function(){
+        var mockApi;
     beforeEach(inject(function($controller, $httpBackend){
       mockApi = $httpBackend;
       mockApi.expectGET('/api/v1/projects.json').respond(200, {title: "abc123", owner: {username: "dabes"}});
       mockApi.expectPOST('/api/v1/memberships.json').respond(422)
     }))
 
-    xit('should not add the resulting membership to the inbox upon failure', function(){
+    it('should not add the resulting membership to the inbox upon failure', function(){
       scope.project = { id : 1 };
       scope.board = { id : 1 };
       scope.content = "I want to join this awesome project.";
