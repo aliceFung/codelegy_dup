@@ -142,11 +142,11 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
       })
 
       //email show state
-      .state('inbox.show', {
-        url: '/:id',
-        controller: 'emailCtrl',
-        templateUrl: 'templates/mailbox/email_details.html'
-      })
+      // .state('inbox.show', {
+      //   url: '/:id',
+      //   controller: 'emailShowCtrl',
+      //   templateUrl: 'templates/mailbox/email_details.html'
+      // })
 
   }]);
 
