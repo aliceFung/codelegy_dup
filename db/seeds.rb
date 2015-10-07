@@ -37,5 +37,10 @@ ProjectLanguage.create(project_id: 1, language_id: 4)
   Membership.create(project_id: 1, user_id: user.id, participant_type: 'member')
 end
 
-Membership.first.update(participant_type: 'owner')
 User.create(email: "test@bar.com", password: '12345678')
+
+User.second.send_message(User.first, "test", "testingabc1")
+User.first.send_message(User.last, '1 to 5', 'subject here')
+
+Membership.first.update(participant_type: 'owner')
+

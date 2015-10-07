@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   acts_as_messageable
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -10,9 +11,11 @@ class User < ActiveRecord::Base
   has_one :profile, dependent: :destroy
   has_many :memberships
   has_many :projects, through: :memberships
-  has_many :project_emails, through: :projects, source: :emails
 
+  has_many :project_emails, through: :projects, source: :emails
   has_many :sent_emails, class_name: "Email"
+
+
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -56,6 +59,17 @@ class User < ActiveRecord::Base
     # binding.pry
   end
 
+  #create obj with email message details user mailboxer gem methods
+  def get_emails(box)
+    self.mailbox.send(box).map do |conv|
+      # receipt = conv.receipts_for(self).first
+      { body: conv.receipts_for(self).first.message.body,
+        subject: conv.receipts_for(self).first.message.subject,
+        username: conv.receipts_for(self).first.message.sender.username,
+        date: conv.receipts_for(self).first.message.created_at}
+    end
+  end
+
   def mailboxer_email
     self.email
   end
@@ -63,5 +77,7 @@ class User < ActiveRecord::Base
   def mailboxer_username
     self.username
   end
+
+
 
 end
