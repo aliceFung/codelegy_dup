@@ -1,4 +1,4 @@
-app.factory('session', ['Auth', '$state', 'Restangular', function(Auth, $state, Restangular){
+app.factory('Session', ['Auth', '$state', 'Restangular', function(Auth, $state, Restangular){
   var authenticated = { status: Auth.isAuthenticated() };
   var currentUser = { user: Auth.currentUser() };
 

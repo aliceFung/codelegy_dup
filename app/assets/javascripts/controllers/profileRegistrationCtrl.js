@@ -1,10 +1,10 @@
 app.controller('profileRegistrationCtrl',
   ['$scope',
-   'profileRegistration',
-    function($scope, profileRegistration){
-      $scope.profileInput = profileRegistration.profileInput;
-      $scope.languages = profileRegistration.languages;
-      $scope.expLevel = profileRegistration.expLevel;
+   'ProfileRegistration',
+    function($scope, ProfileRegistration){
+      $scope.profileInput = ProfileRegistration.profileInput;
+      $scope.languages = ProfileRegistration.languages;
+      $scope.expLevel = ProfileRegistration.expLevel;
 
       $scope.setExpLevel = function(languageId, levelId) {
         console.log(languageId, levelId);
