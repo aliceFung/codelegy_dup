@@ -25,6 +25,8 @@ Difficulty.create(name: 'Expert')
 
 Project.create(title: 'my first project', difficulty_id: 2,
                availability: 'weekends')
+Project.create(title: 'another project', difficulty_id: 3,
+               availability: 'weeknights')
 
 ProjectLanguage.create(project_id: 1, language_id: 1)
 ProjectLanguage.create(project_id: 1, language_id: 2)
@@ -37,10 +39,11 @@ ProjectLanguage.create(project_id: 1, language_id: 4)
   Membership.create(project_id: 1, user_id: user.id, participant_type: 'member')
 end
 
-User.create(email: "test@bar.com", password: '12345678')
+user1 = User.create(email: "test@bar.com", password: 'password')
 
 User.second.send_message(User.first, "test", "testingabc1")
 User.first.send_message(User.last, '1 to 5', 'subject here')
 
 Membership.first.update(participant_type: 'owner')
+Membership.create(project_id: 2, user_id: user1.id, participant_type: 'member')
 

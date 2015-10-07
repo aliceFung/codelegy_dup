@@ -100,6 +100,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
           }
         }
       })
+
       .state('projects.new', {
         url: '/new',
         views: {
@@ -113,6 +114,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
 
         }
       })
+
       .state('projects.list', {
         url: '/list',
         views: {
@@ -139,6 +141,13 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
         //     controller: 'membershipCtrl',
         //     templateUrl: 'templates/projects/participation-request.html'
         //   }}
+      })
+
+      //projects dashboard
+      .state('projectsList', {
+        url: '/projectsList',
+        controller: 'userProjectsCtrl',
+        templateUrl: 'templates/projects/index-list.html',
       })
 
       //inbox
@@ -172,6 +181,13 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
           }
         }
       })
+
+      // compose new email
+      // .state('inbox.new', {
+      //   url: '/new',
+      //   controller: 'emailCtrl',
+      //   templateUrl: 'templates/mailbox/compose.html'
+      // })
 
   }]);
 

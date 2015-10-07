@@ -16,4 +16,8 @@ class Membership < ActiveRecord::Base
     project = Project.find_by_id(project_id)
     UserMailer.request_membership(user, project) if user && project
   end
+
+  # def self.membership_list(user)
+
+  # end
 end

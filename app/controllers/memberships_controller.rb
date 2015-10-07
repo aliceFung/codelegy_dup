@@ -3,6 +3,11 @@ class MembershipsController < ApplicationController
   before_action :get_project_owner
   before_action :require_project_owner, except: [:create, :show]
 
+  def index
+    # @memberships = Membership.memberships_controls(current_user)
+    @memberships = current_user.membership_lists
+  end
+
   def create
     @membership = Membership.new(params_list)
     @membership.user_id = current_user.id
@@ -18,12 +23,12 @@ class MembershipsController < ApplicationController
     end
   end
 
-  def show
-    @membership = Membership.find(params["id"])
-    respond_to do |format|
-      format.json {render json: @membership}
-    end
-  end
+  # def show
+  #   @membership = Membership.find(params["id"])
+  #   respond_to do |format|
+  #     format.json {render json: @membership}
+  #   end
+  # end
 
   def update
     @membership = Membership.find(params["id"])
@@ -35,6 +40,7 @@ class MembershipsController < ApplicationController
       end
     end
   end
+
 
   # def destroy
   #   @membership = Membership.find(params["id"])
