@@ -15,6 +15,16 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:user_id])
+    @profile = @user.profile
+    if @profile
+      render json: @profile.to_json(include: :profile_languages), status: 200
+    else
+      render nothing: true , status: 404
+    end
+  end
+
   private
 
   def whitelisted_profile_params
