@@ -6,5 +6,6 @@ app.controller('emailShowCtrl', ['$scope', 'emailService', 'Restangular', '$stat
   $scope.inbox = emailService.inbox;
 
   $scope.message = $scope.inbox[$stateParams.id];
+  console.log($scope.message);
 
 }]);

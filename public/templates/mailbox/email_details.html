@@ -1,11 +1,22 @@
-<a ui-sref = "inbox">Back to inbox</a>
-<hr>
-<div>
+<main>
+  <div class="row">
 
-  <h5>From: {{email.sender_username}} at {{email.date | date}}</h5>
-  <h4>{{email.subject}}</h4>
+    <div class="col-md-10">
+      <br>
+      <h4><a ui-sref = "inbox">Back to inbox</a></h4>
+      <hr>
+      <div>
+        <p>{{message.date | date}}</p>
+        <h4>{{message.subject}}</h4>
+        <p><strong>{{message.sender_username}}</strong> wrote: </p>
 
-  <h3>{{email.body}}</h3>
+        <p>{{message.body}}</p>
 
-  <hr>
-</div>
+        <hr>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
