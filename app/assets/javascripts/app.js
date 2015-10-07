@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise'])
+var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angularMoment', 'Devise'])
 
 // .config(["RestangularProvider", function(RestangularProvider){
 //   RestangularProvider.setBaseUrl("/api/v1")
@@ -83,7 +83,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
          },
         views: {
         '': {
-              templateUrl: 'templates/projects/index.html',
+              templateUrl: 'templates/projects/index2.html',
               controller: 'projectsCtrl',
             },
 
@@ -94,7 +94,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
 
         }
       })
-      .state('projects.new', {
+      .state('projects.', {
         url: '/new',
         // resolve: {
         //     projects: [ 'Restangular', function(Restangular){
@@ -109,6 +109,21 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
         views: {
         '': {
               templateUrl: 'templates/projects/new.html',
+            },
+
+        'navbar': {
+            templateUrl: 'templates/header-1.html',
+            controller: 'sessionController'
+        }
+
+        }
+      })
+      .state('projects.grid', {
+        url: '/grid',
+        views: {
+        '': {
+              templateUrl: 'templates/projects/grid.html',
+              controller: 'projectsCtrl',
             },
 
         'navbar': {

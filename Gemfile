@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby '2.2.1'
+
 
 # Devise
 gem 'devise'
@@ -14,6 +14,10 @@ gem 'omniauth-github'
 
 gem 'daemons'
 gem 'delayed_job_active_record'
+
+#front-end
+gem "font-awesome-rails"
+
 
 gem 'git-hooks'
 gem 'figaro'

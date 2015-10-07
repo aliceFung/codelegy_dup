@@ -1,7 +1,8 @@
 app.controller("projectsCtrl", ['$scope', '$state', 'api', 'projects',
   function($scope, $state, api, projects){
 
-
+ 
+  $scope.currentTime = new Date();
   $scope.projects = projects
   $scope.languages = ['Ruby/Rails','JavaScript','Python','C','Swift','Java','PHP']
   $scope.langFilter = {
