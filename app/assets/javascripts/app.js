@@ -119,11 +119,11 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
 
         }
       })
-      .state('projects.grid', {
-        url: '/grid',
+      .state('projects.list', {
+        url: '/list',
         views: {
         '': {
-              templateUrl: 'templates/projects/index-grid.html',
+              templateUrl: 'templates/projects/index-list.html',
               controller: 'projectsCtrl',
             },
 

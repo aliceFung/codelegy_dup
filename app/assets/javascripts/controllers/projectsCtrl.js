@@ -2,7 +2,13 @@
 app.controller("projectsCtrl", ['$scope', '$state', 'api', 'projects', 'languages',
   function($scope, $state, api, projects, languages){
 
-  $scope.currentTime = new Date();
+  $scope.moreThan24HrsAgo = function(time) {
+    // debugger
+    if ((Date.now() - new Date(time))/1000/60/60 > 24) {
+      return true
+    }
+  }
+  // $scope.currentTime = new Date();
 
   $scope.projects = projects
   $scope.langFilter = {};
@@ -12,7 +18,13 @@ app.controller("projectsCtrl", ['$scope', '$state', 'api', 'projects', 'language
     $scope.langFilter[el.name] = false;
   })
 
+  $scope.grid = true
+
   $scope.newProject = {languages: $scope.langFilter}
+
+  $scope.toggleGrid = function() {
+    $scope.grid = !$scope.grid
+  }
 
   $scope.submit = function(newProject){
     // Convert language filter to array to submit
