@@ -59,16 +59,21 @@ class User < ActiveRecord::Base
     # binding.pry
   end
 
-  #create obj with email message details user mailboxer gem methods
+  #get user email message details from Mailboxer Conversation obj
   def get_emails(box)
-    self.mailbox.send(box).map do |conv|
-      # receipt = conv.receipts_for(self).first
-      { body: conv.receipts_for(self).first.message.body,
-        subject: conv.receipts_for(self).first.message.subject,
-        username: conv.receipts_for(self).first.message.sender.username,
-        date: conv.receipts_for(self).first.message.created_at}
-    end
+    #query for message
+    Mailboxer::Notification.where('id IN (?)',
+      #create array of Conversations objs
+      self.mailbox.inbox.inject([]){|acc, el| acc.push(el)})
+        #get only needed data from message details
+        .map do |c|
+            { body: c.body,
+           subject: c.subject,
+          username: c.sender.username,
+              date: c.created_at }
+        end
   end
+Mailboxer::Notification.where('id IN (?)', c).map{|c| {body: c.body, subject: c.subject, username: c.sender.username, date: c.created_at }}
 
   def mailboxer_email
     self.email
