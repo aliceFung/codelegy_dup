@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { create(:user) }
-  let(profile) { create(:profile) }
+
+  let!(:user) { create(:user) }
 
   context 'associations' do
     it 'should respond to profile' do
@@ -22,8 +22,13 @@ RSpec.describe User, type: :model do
     end
 
     specify 'profile should be destroyed with user' do
-      
       expect{user.destroy}.to change {Profile.count}.by(-1)
     end
+
+    specify 'creating a user creates a new profile' do
+      user2 = build(:user)
+      expect{user2.save}.to change {Profile.count}.by(1)
+    end
+
   end
 end
