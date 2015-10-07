@@ -1,0 +1,19 @@
+  .media-clearfix-xs-min > [class*="media"] .media-object {
+      width: 100% !important;
+     height: auto !important;
+
+     padding: 0 !important;
+   }
+   .media-clearfix-xs > [class*="media"] .media-object {
+     width: 100% !important;
+     height: auto !important;
+
+     padding: 0 !important;
+    }
+   .media-clearfix-sm > [class*="media"] .media-object {
+      width: 100% !important;
+     height: auto !important;
+
+   background: #f4f4f4;
+ }
+

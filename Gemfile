@@ -15,6 +15,10 @@ gem 'omniauth-github'
 gem 'daemons'
 gem 'delayed_job_active_record'
 
+#front-end
+gem "font-awesome-rails"
+
+
 gem 'git-hooks'
 gem 'figaro'
 gem 'angularjs-rails'
