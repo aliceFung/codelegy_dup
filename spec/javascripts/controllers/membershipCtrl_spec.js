@@ -26,12 +26,13 @@ describe('Controller: membershipCtrl', function(){
     // By setting a scope object and passing it into $controller,
     // we can ask about the scope of the controller by asking `scope`.
     scope = {}
-    ctrl = $controller('membershipCtrl', { $scope: scope });
+    ctrl = $controller('membershipCtrl', { $scope: scope, $stateParams: {}, $state: {go: function(){return} } });
   }))
 
+  var mockApi;
   beforeEach(inject(function($controller, $httpBackend){
     mockApi = $httpBackend;
-    mockApi.expectGET('/api/v1/projects.json').respond(200, []);
+    mockApi.expectGET('/api/v1/projects.json').respond(200, {title: "abc123", owner: {username: "dabes"}});
     // mockApi.expectGET('/templates/home.html').respond(200);
     mockApi.expectPOST('/api/v1/memberships.json').respond(200,
       {
@@ -49,10 +50,9 @@ describe('Controller: membershipCtrl', function(){
     })
   })
 
-  var mockApi;
   describe('$scope.sendRequest() success', function(){
 
-    xit('should add the resulting membership to the inbox upon success', function(){
+    it('should add the resulting membership to the inbox upon success', function(){
       scope.project = { id : 1 };
       scope.board = { id : 1 };
       scope.content = "I want to join this awesome project.";
@@ -62,7 +62,7 @@ describe('Controller: membershipCtrl', function(){
       expect(scope.inbox.length).toEqual(2)
     })
 
-    xit('should have the proper object in the inbox upon success', function(){
+    it('should have the proper object in the inbox upon success', function(){
       scope.project = { id : 1 };
       scope.board = { id : 1 };
       scope.content = "I want to join this awesome project.";
@@ -76,6 +76,7 @@ describe('Controller: membershipCtrl', function(){
   describe('$scope.sendRequest() failure', function(){
     beforeEach(inject(function($controller, $httpBackend){
       mockApi = $httpBackend;
+      mockApi.expectGET('/api/v1/projects.json').respond(200, {title: "abc123", owner: {username: "dabes"}});
       mockApi.expectPOST('/api/v1/memberships.json').respond(422)
     }))
 

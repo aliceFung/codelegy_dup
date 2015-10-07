@@ -21,7 +21,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
       .state('home', {
         url: '/',
         views: {
-        '': {templateUrl: 'templates/homeisThisIt.html'},
+        '': {templateUrl: 'templates/home.html'},
 
         'navbar': {
                 templateUrl: 'templates/header-1.html',
