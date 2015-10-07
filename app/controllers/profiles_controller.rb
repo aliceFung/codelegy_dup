@@ -1,15 +1,5 @@
 class ProfilesController < ApplicationController
 
-  def create
-    @profile = Profile.new(whitelisted_profile_params)
-    # binding.pry
-    if @profile.save
-      render json: @profile, status: 200
-    else
-      render nothing: true , status: 404
-    end
-  end
-
   def update
     @user = User.find(params[:profile][:user_id])
     @profile = @user.profile
