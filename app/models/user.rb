@@ -23,14 +23,14 @@ class User < ActiveRecord::Base
     end
   end
 
-  # returns a collection of projects current_user is the owner of
+  # returns a collection of projects user is the owner of
   def projects_owned
-    current_user.memberships.where('participant_type = ?', 'owner')
+    self.memberships.where('participant_type = ?', 'owner')
   end
 
-  # returns a collection of projects current_user is a member of
+  # returns a collection of projects user is a member of
   def project_member_in
-    current_user.memberships.where('participant_type = ?', 'member')
+    self.memberships.where('participant_type = ?', 'member')
   end
 
   # returns a collection of group emails from participating projects
@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  # returns a collection of emails to project owner (current_user)
+  # returns a collection of emails to project owner
   def project_owner_emails
     emails=[]
     projects_owned.each do |project|
@@ -49,10 +49,11 @@ class User < ActiveRecord::Base
     end
   end
 
-  #gathers all current_user emails
-  def user_emails
-    # sent = current_user.sent_emails
+  #gathers all self emails
+  def all_user_emails
+    # sent = self.sent_emails
     received = project_owner_emails + group_emails
+    # binding.pry
   end
 
   def mailboxer_email

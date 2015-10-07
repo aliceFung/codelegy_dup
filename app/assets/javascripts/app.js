@@ -21,7 +21,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
       .state('home', {
         url: '/',
         views: {
-        '': {templateUrl: 'templates/homeisThisIt.html'},
+        '': {templateUrl: 'templates/home.html'},
 
         'navbar': {
                 templateUrl: 'templates/header-1.html',
@@ -128,8 +128,17 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
       //inbox (ck where profile is nested under, should be same level)
       .state('inbox', {
         url: '/inbox',
-        controller: 'emailCtrl',
-        templateUrl: 'templates/inbox.html'
+        views: {
+          '': {
+                templateUrl: 'templates/inbox.html',
+                controller: 'emailCtrl',
+              },
+
+          'navbar': {
+              templateUrl: 'templates/header-1.html',
+              controller: 'sessionCtrl'
+          }
+        }
       })
 
   }]);
