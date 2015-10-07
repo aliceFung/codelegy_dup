@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 
+  acts_as_messageable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -52,6 +53,14 @@ class User < ActiveRecord::Base
   def user_emails
     # sent = current_user.sent_emails
     received = project_owner_emails + group_emails
+  end
+
+  def mailboxer_email
+    self.email
+  end
+
+  def mailboxer_username
+    self.username
   end
 
 end

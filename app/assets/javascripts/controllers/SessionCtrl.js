@@ -1,18 +1,18 @@
-app.controller('sessionCtrl', ['$scope', 'session', '$state', function($scope, session, $state){
+app.controller('sessionCtrl', ['$scope', 'Session', '$state', function($scope, Session, $state){
 
-  $scope.authenticated = session.authenticated;
-  $scope.currentUser = session.currentUser;
+  $scope.authenticated = Session.authenticated;
+  $scope.currentUser = Session.currentUser;
   $scope.email = '';
   $scope.password = '';
   $scope.credentials = {};
 
   $scope.signIn = function(){
-    session.signIn($scope.credentials);
+    Session.signIn($scope.credentials);
   };
 
-  $scope.signOut = session.signOut;
+  $scope.signOut = Session.signOut;
 
-  $scope.signInWithGithub = session.signInWithGithub;
+  $scope.signInWithGithub = Session.signInWithGithub;
 
   $scope.$on('devise:login', function(event, currentUser) {
     $scope.currentUser.user = currentUser;
