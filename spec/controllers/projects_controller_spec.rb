@@ -4,7 +4,7 @@ RSpec.describe ProjectsController, type: :controller do
   let(:user) { create :user }
   before do
     sign_in(user)
-    create :membership
+    create(:membership, participant_type: 'owner')
   end
 
   context 'index' do
@@ -31,7 +31,7 @@ RSpec.describe ProjectsController, type: :controller do
 
   context 'show' do
     before do
-      m = (create :membership)
+      m = (create :membership, participant_type: 'owner')
       get :show, {id: m.project.id}
     end
 
