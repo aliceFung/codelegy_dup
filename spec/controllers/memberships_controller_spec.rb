@@ -118,6 +118,60 @@ RSpec.describe MembershipsController, type: :controller do
           expect(existing_membership.participant_type).to eq('member')
         end
 
+        describe 'notifications' do
+
+          before :each do
+            allow(controller).to receive(:current_user) { owner }
+            allow(controller).to receive(:authenticate_user!) { owner }
+          end
+
+          let!(:second_member) { create(:user) }
+          let!(:other_user) { create(:user) }
+          let!(:new_membership) {create(:membership, project: project, user: second_member, participant_type: 'member')}
+
+          it 'should send a message to team members upon notification' do
+
+            expect{
+              post :update, id: existing_membership.id, format: :json,
+                    membership: attributes_for(:membership,
+                                              id: existing_membership.id,
+                                              participant_type: 'member')
+            }.to change{second_member.mailbox.inbox.length}.by(1)
+          end
+
+          it 'should not send a message to team members if not new member' do
+
+
+            existing_membership.update(participant_type: 'member')
+            existing_membership.reload
+
+            expect{
+              post :update, id: existing_membership.id, format: :json,
+                    membership: attributes_for(:membership,
+                                              id: existing_membership.id,
+                                              participant_type: 'member')
+            }.to change{second_member.mailbox.inbox.length}.by(0)
+          end
+
+          it 'should send a rejection message to rejected member' do
+            expect{
+              post :update, id: existing_membership.id, format: :json,
+                    membership: attributes_for(:membership,
+                                              id: existing_membership.id,
+                                              participant_type: 'rejected')
+            }.to change{member.mailbox.inbox.length}.by(1)
+          end
+
+          it 'should not send a message to non-team members upon notification' do
+            expect{
+              post :update, id: existing_membership.id, format: :json,
+                    membership: attributes_for(:membership,
+                                              id: existing_membership.id,
+                                              participant_type: 'member')
+            }.to change{other_user.mailbox.inbox.length}.by(0)
+          end
+        end
+
         it 'should not allow owner to change user_id' do
           allow(controller).to receive(:current_user) { owner }
           allow(controller).to receive(:authenticate_user!) { owner }
