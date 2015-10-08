@@ -10,7 +10,7 @@ app.factory('ProfileRegistration',
 
   var profileInput = { profile_languages: {} }; //{ languages: { name: '', expLevel: '' } };
 
-  function update(user_id, profile){
+  function update(user_id, profile, information){
     var profileInfo = {};
     // Send information to backend to update user profile
     profileInfo.user_id = user_id;
@@ -21,6 +21,9 @@ app.factory('ProfileRegistration',
 
     Restangular.all('profiles').customPUT({profile: profileInfo}).then(function(profile){
       console.log('updated profile: ', profile);
+      information.about = profile.about;
+      information.availability = profile.availability;
+      information.profile_languages_attributes = profile.profile_languages_attributes;
     }, function(error) {
       console.log('cannot update profile');
     });

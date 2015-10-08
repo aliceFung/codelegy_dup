@@ -19,9 +19,8 @@ app.controller('dashboardProfileCtrl',
       $scope.update = function(){
         console.log('dashboardProfileCtrl running');
         Auth.currentUser().then(function(user){
-          ProfileRegistration.update(user.id, $scope.profileUpdates);
+          ProfileRegistration.update(user.id, $scope.profileUpdates, $scope.information);
         });
-
       };
 
 }]);

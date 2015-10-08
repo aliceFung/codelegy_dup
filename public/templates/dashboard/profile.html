@@ -12,22 +12,49 @@
     </a>
 
     <h5 class="panel-title">
-      <a class="text-inherit" href="profile/index.html">{{information.user.username}}
+      <a class="text-inherit" href="">{{information.user.username}}
       </a>
     </h5>
 
     <div class="m-b-md">
-      <p class='text-right'><small>About · <a href="#">Edit</a></small></p>
-      <div class="form-control"
-        ng-show="!showEditAbout"
-        ng-click="showEditAbout = !showEditAbout"
-        style="border-style: none !important">
-        {{information.about}}
+
+      <div class="panel-title text-center"
+          ng-hide='updateFieldForAbout'
+          ng-click='updateFieldForAbout = !updateFieldForAbout'>
+          {{information.about || "Add a note"}}
       </div>
-      <input class="form-control"
-              type="text"
-              ng-show="showEditAbout"
-              ng-model="profileUpdates.about">
+
+      <div class="panel-title text-center"
+            ng-show='updateFieldForAbout'>
+        <div class='row'>
+
+          <div class='col-sm-8'>
+            <input  type='text'
+                    id='updatedAbout'
+                    ng-model='profileUpdates.about'
+                    ng-value='information.about'
+                    placeholder="information.about">
+          </div>
+
+          <div class='col-sm-2'>
+            <span class="glyphicon glyphicon-remove"
+                  aria-hidden="true"
+                  ng-click='updateFieldForAbout = false'>
+            </span>
+          </div>
+
+          <div class='col-sm-2'>
+            <span class="glyphicon glyphicon-ok"
+                  aria-hidden="true"
+                  ng-click='update(); updateFieldForAbout = false'>
+            </span>
+          </div>
+
+        </div>
+      </div>
+
+
+
     </div>
 
     <ul class="panel-menu">
@@ -50,21 +77,50 @@
 
 <!-- Availability -->
 <div class="panel panel-default visible-md-block visible-lg-block">
-  <div class="panel-body">
 
-    <h5 class="m-t-0">Availability <small>· <a href="#">Edit</a></small></h5>
-    <div class="form-control"
-          ng-show="!showEditAvailability"
-          ng-click="showEditAvailability = !showEditAvailability"
-          style="border-style: none !important">
-      {{information.availability}}
-    </div>
+<div class="panel-body">
 
-    <input type="text"
-            class="form-control"
-            ng-show="showEditAvailability"
-            ng-model="profileUpdates.availability">
-  </div>
+    <h5 class="m-t-0">
+      Availability
+    </h5>
+
+  <div class="panel-title text-center"
+          ng-hide='updateFieldForAvailability'
+          ng-click='updateFieldForAvailability = !updateFieldForAvailability'>
+          {{information.availability || "Add a note"}}
+      </div>
+
+      <div class="panel-title text-center"
+            ng-show='updateFieldForAvailability'>
+        <div class='row'>
+
+          <div class='col-sm-8'>
+            <input  type='text'
+                    id='updatedAvailability'
+                    ng-model='profileUpdates.availability'
+                    ng-value='information.availability'
+                    placeholder="information.availability">
+          </div>
+
+          <div class='col-sm-2'>
+            <span class="glyphicon glyphicon-remove"
+                  aria-hidden="true"
+                  ng-click='updateFieldForAvailability = false'>
+            </span>
+          </div>
+
+          <div class='col-sm-2'>
+            <span class="glyphicon glyphicon-ok"
+                  aria-hidden="true"
+                  ng-click='update(); updateFieldForAvailability = false'>
+            </span>
+          </div>
+
+        </div>
+      </div>
+</div>
+
+
 </div>
 
 <!-- Programming languages -->
@@ -83,20 +139,11 @@
           style="border-style: none !important">
           <img src="{{languages[pl.language_id-1].url}}"
               style="width:20px;margin:5px">
-      {{languages[pl.language_id-1].name}}: {{expLevel[pl.difficulty_id]}}
+          {{expLevel[pl.difficulty_id]}}
     </div>
     <input  type="text"
             class="form-control"
             ng-show="showEditPL[pl.language_id]">
   </div>
-  </div>
-</div>
-
-<div class="panel">
-  <div class="panel-body">
-    <button class="btn btn-danger">
-      Cancel
-    </button>
-    <button class="btn btn-info" ng-click='update()'>Save</button>
   </div>
 </div>
