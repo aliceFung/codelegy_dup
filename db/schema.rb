@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(version: 20151008153840) do
     t.integer  "language_id",   null: false
     t.integer  "difficulty_id"
     t.text     "description"
+    t.string   "url"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
