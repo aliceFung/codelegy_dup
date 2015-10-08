@@ -45,10 +45,12 @@ app.controller("projectsCtrl", ['$scope', '$state', 'api', 'projects', 'language
 
   $scope.projects = projects
   $scope.langFilter = {};
+  $scope. langSuggestions = {};
   $scope.languages = [];
   languages.forEach(function(el){
     $scope.languages.push(el.name);
     $scope.langFilter[el.name] = false;
+    $scope.langSuggestions[el.name] = el.suggestions;
   })
 
   $scope.grid = true
@@ -86,7 +88,6 @@ app.controller("projectsCtrl", ['$scope', '$state', 'api', 'projects', 'language
   }
 
     $scope.updateLangFilter = function(language){
-    debugger
     $(event.target).toggleClass('active')
     var idx = $scope.langFilter.indexOf(language)
     if ( idx === -1){
