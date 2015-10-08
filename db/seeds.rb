@@ -4,7 +4,7 @@ Difficulty.destroy_all
 Project.destroy_all
 Membership.destroy_all
 ProfileLanguage.destroy_all
-Email.destroy_all
+# Email.destroy_all
 
 
 Language.create(name: 'HTML', url: '/logos/html.png')
@@ -44,6 +44,6 @@ user1 = User.create(email: "test@bar.com", password: 'password')
 User.second.send_message(User.first, "test", "testingabc1")
 User.first.send_message(User.last, '1 to 5', 'subject here')
 
-Membership.first.update(participant_type: 'owner')
+# Membership.first.update(participant_type: 'owner')
 Membership.create(project_id: 2, user_id: user1.id, participant_type: 'member')
 

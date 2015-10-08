@@ -26,20 +26,44 @@ class User < ActiveRecord::Base
     end
   end
 
+
+
   # returns a collection of projects user is the owner of
   def projects_owned
-    self.memberships.where('participant_type = ?', 'owner')
+    self.memberships.includes(:project =>
+                              [:languages, :memberships => :user])
+                    .where('participant_type = ?', 'owner')
   end
 
   # returns a collection of projects user is a member of
-  def project_member_in
-    self.memberships.where('participant_type = ?', 'member')
+  def project_member_of
+    self.memberships.includes(:project => :languages).where('participant_type = ?', 'member')
   end
+  # self.memberships.includes(:project).where("participant_type = 'owner'")
 
   # returns all participating projects and their memberships
   def project_dashboard_membership
-    project_member_in # only show proj details and owner
-    projects_owned  #also show all memberships and action items
+    # only show proj details and owner
+    project_membership = project_member_of.map do |mem|
+      { details: mem.project,
+        languages: mem.project.languages,
+        owner_username: mem.proj.owner.username }
+    end
+
+    #also show all memberships and action items
+    project_ownership = projects_owned.map do |mem|
+      { details: mem.project,
+        languages: mem.project.languages,
+        memberships: mem.project.memberships.map{ |membership|
+          { details: membership,
+            username: membership.user.username }
+        }
+      }
+    end
+
+    thing = { project_membership: project_membership,
+              project_ownership: project_ownership}
+    # binding.pry
   end
 
   #get user email message details from Mailboxer Conversation obj
@@ -67,5 +91,5 @@ class User < ActiveRecord::Base
   end
 
 
-
+# Mailboxer::Notification.where('id IN (?)', myUser.mailbox.inbox.inject([]){|acc, el| acc.push(el)}).map{|c| {body: c.body, subject: c.subject, username: c.sender.username, date: c.created_at }}
 end

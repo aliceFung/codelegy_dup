@@ -146,8 +146,17 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
       //projects dashboard
       .state('projectsList', {
         url: '/projectsList',
-        controller: 'userProjectsCtrl',
-        templateUrl: 'templates/projects/index-list.html',
+        views: {
+          '': {
+                controller: 'userProjectsCtrl',
+                templateUrl: 'templates/projects/index-list.html',
+              },
+
+          'navbar': {
+              templateUrl: 'templates/header-1.html',
+              controller: 'sessionCtrl'
+          }
+        }
       })
 
       //inbox

@@ -1,11 +1,15 @@
 class MembershipsController < ApplicationController
 
-  before_action :get_project_owner
-  before_action :require_project_owner, except: [:create, :show]
+  before_action :get_project_owner, only: [:update]
+  before_action :require_project_owner, only: [:update]
 
   def index
-    # @memberships = Membership.memberships_controls(current_user)
-    @memberships = current_user.membership_lists
+    # @memberships = Membership.all
+    @memberships = current_user.project_dashboard_membership
+    # binding.pry
+    respond_to do |format|
+      format.json {render json: @memberships}
+    end
   end
 
   def create
