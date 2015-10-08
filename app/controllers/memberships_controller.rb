@@ -107,7 +107,7 @@ class MembershipsController < ApplicationController
     if after == 'member'
       current_user.send_message(@membership.project.group_members, "#{@membership.user.username} has been added to #{@membership.project.title}!", "#{@membership.project.title} has a new member!")
     elsif after == 'rejected'
-      current_user.send_message(@membership.user, "Unfortunately, you were rejected to work on project #{@membership.project.title}", "Sorry!")
+      current_user.send_message(@membership.user, "Unfortunately, you were rejected to work on project #{@membership.project.title}. Sign in to codelegy find another project to join.", "Sorry!")
     end
   end
 

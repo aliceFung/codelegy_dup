@@ -11,13 +11,13 @@
 
       <div class="clearfix"></div>
     </div>
-    <div ng-class="{row: ($index%3 == 2)}" ng-repeat="project in list.projectList.projects | orderBy:'-created_at': false">
+    <div class="row" ng-repeat="project in list.projectList.projects | orderBy:'-created_at': false">
       <div class='col-sm-12'>
         <div class="panel panel-default">
           <div class="panel-body">
             <h4>{{project.title}}</h4>
             <hr>
-            <h5>{{project['owner?'] ? "Project Owner" : "Project Member"}} </h5>
+            <h5>{{project['owner?'] ? "Project Owner" : project.member_status }} </h5>
             <p class="small text-muted">
               <div ng-hide="moreThan24HrsAgo(project.created_at)">
                 <i class="fa fa-clock-o fa-fw"></i>
@@ -35,7 +35,7 @@
             style="width:20px;margin:5px"> <br>
 
             <button ng-show='project["owner?"]' data-toggle="modal" data-target="#myModal{{project.id}}">
-              {{project.pending_member_count ? (project.pending_member_count + 'Pending ') : 'Manage '}}
+              {{project.pending_member_count ? (project.pending_member_count + ' Pending ') : 'Manage '}}
               Membership
             </button>
 
@@ -70,21 +70,23 @@
                   <div class="panel-body">
                     <ul>
                       <li>Owner</li>
-                      <li ng-repeat="membership in project.memberships">
+                      <li ng-repeat="membership in project.memberships" ng-hide="membership.participant_type=='owner'">
                         {{membership.user}}
                         <button class="btn btn-success btn-xs"
                         ng-show="membership.participant_type=='pending'"
-                        ng-click="changeMembership(membership, true)"
+                        ng-click="changeMembership(membership, project, true)"
                         >
                           Accept
                         </button>
                         <button class="btn btn-danger btn-xs"
                         ng-show="membership.participant_type=='pending'"
-                        ng-click="changeMembership(membership, false)"
+                        ng-click="changeMembership(membership, project, false)"
                         >
                           Reject
                         </button>
-
+                        <span ng-show="membership.participant_type == 'rejected'">
+                          (Rejected)
+                        </span>
                       </li>
                     </ul>
                   </div>

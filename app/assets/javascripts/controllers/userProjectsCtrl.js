@@ -16,15 +16,16 @@ app.controller("userProjectsCtrl", ['$scope', '$state', 'UserProjectService', 'R
     return Restangular.one('memberships', membership_id);
   };
 
-  $scope.changeMembership = function(membership, accept){
+  $scope.changeMembership = function(membership, project, accept){
     var membershipObj = getRectangularObj(membership.id);
-    membershipObj.participation_type = accept ? acc;
+    membershipObj.participant_type = accept ? 'member' : 'rejected';
     membershipObj.put().then( function(result){
       console.log(result);
-      if (membership.participation_type == 'pending'){
-        membership.pending_member_count--;
+        debugger;
+      if (membership.participant_type == 'pending'){
+        project.pending_member_count--;
       };
-      membership.participation_type = result.participation_type;
+      membership.participant_type = result.participant_type;
     } );
   };
 
