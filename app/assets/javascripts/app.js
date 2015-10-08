@@ -38,7 +38,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
       // nested routes for our home page
       .state('home.signin', {
             url: 'signin',
-            templateUrl: 'templates/sign-in.html',
+            templateUrl: 'templates/registration/sign-in.html',
             controller: 'sessionCtrl'
       })
         // route to show our basic form (/form)
@@ -93,45 +93,45 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
         templateUrl: 'templates/profiles/settings.html'
       });
 
+
     $stateProvider
       .state('dashboard', {
           url: '/dashboard',
-          // templateUrl: 'templates/profiles/dashboard.html',
-          // controller: 'dashboardCtrl',
-          resolve: {
-            profileInfo: [ 'Restangular', 'Auth', function(Restangular, Auth){
-              return Auth.currentUser().then(function(user){
-                return Restangular.all('profiles').customGET(null, {user_id: user.id})
-                .then(function(response){
-                  return response;
-                }, function(error){
-                  return error;
-                });
-              });
-            }]
-          },
           views: {
             'navbar': {
               templateUrl: 'templates/header-1.html',
               controller: 'sessionCtrl'
             },
-            'profile': {
-              templateUrl: 'templates/dashboard/profile.html'
+            'profile@dashboard': {
+              templateUrl: 'templates/dashboard/profile.html',
+              controller: 'dashboardProfileCtrl',
+              resolve: {
+                profileInfo: [ 'Restangular', 'Auth', function(Restangular, Auth){
+                  return Auth.currentUser().then(function(user){
+                    return Restangular.all('profiles').customGET(null, {user_id: user.id})
+                    .then(function(response){
+                      return response;
+                    }, function(error){
+                      return error;
+                    });
+                  });
+                }],
+              }
             },
-            'projects': {
+            'projects@dashboard': {
               templateUrl: 'templates/dashboard/projects.html'
             },
-            'advert': {
+            'sales@dashboard': {
               templateUrl: 'templates/dashboard/sales.html'
             },
-            'suggestions': {
+            'suggestions@dashboard': {
               templateUrl: 'templates/dashboard/suggestions.html'
             },
             '': {
               templateUrl: 'templates/dashboard/layout.html'
-            },
+            }
           }
-      })
+      });
 
     $stateProvider
       .state('projects', {
