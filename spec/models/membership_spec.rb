@@ -33,10 +33,11 @@ RSpec.describe Membership, type: :model do
     expect { create(:membership) }.to change(Delayed::Job, :count).by(1)
   end
 
-  it "creates valid parameters for the delayed job after creation" do
-    create(:membership)
-    expect{
-      Delayed::Worker.new.work_off
-    }.to change(Delayed::Job, :count).by(-1)
+  it "sends an email after creation" do
+    expect(UserMailer).to receive(:request_membership)
+    project = create(:project)
+    new_member = create(:user)
+    create(:membership, user: new_member, project: project, participant_type: 'pending')
+    Delayed::Worker.new.work_off
   end
 end
