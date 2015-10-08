@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 20151008153840) do
   end
 
   create_table "suggestions", force: :cascade do |t|
+    t.string   "title"
     t.integer  "language_id",   null: false
     t.integer  "difficulty_id"
     t.text     "description"
