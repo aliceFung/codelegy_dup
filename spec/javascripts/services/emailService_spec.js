@@ -4,7 +4,7 @@ describe("emailService", function(){
 
   beforeEach(inject(function($controller, $httpBackend){
     mockApi = $httpBackend;
-    mockApi.expectGET('/api/v1/emails.json').respond(200,[
+    mockApi.expectGET('/api/v1/mailbox.json').respond(200,[
       {
         "user_id": 1,
         "project_id": 1,

@@ -13,8 +13,13 @@ app.factory('SignUp', ['Auth', '$state', 'Restangular', function(Auth, $state, R
       var profileInfo = {};
       // Send information to backend to create user profile
       profileInfo.user_id = registeredUser.id;
+      profileInfo.availability = profile.availability;
       profileInfo.profile_languages_attributes = processProfileInput(profile.profile_languages);
-      Restangular.all('profiles').customPOST({profile: profileInfo});
+      Restangular.all('profiles').customPUT({profile: profileInfo}).then(function(profile){
+        console.log('updated profile: ', profile);
+      }, function(error) {
+        console.log('cannot update profile');
+      });
 
     }, function(error) {
       alert('Registration failed');

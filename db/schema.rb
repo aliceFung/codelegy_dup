@@ -121,11 +121,11 @@ ActiveRecord::Schema.define(version: 20151008153840) do
 
   create_table "profiles", force: :cascade do |t|
     t.string   "about"
-    t.integer  "user_id",         null: false
-    t.integer  "availibility_id"
+    t.integer  "user_id",      null: false
+    t.string   "availability"
     t.integer  "photo_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "project_languages", force: :cascade do |t|

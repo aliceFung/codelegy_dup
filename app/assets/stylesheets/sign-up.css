@@ -11,7 +11,7 @@ header {
     )
 }
 .title {
-   
+
   position: absolute;
   top: 25%;
   left: 25%;
@@ -38,3 +38,6 @@ main {
   margin: 20px auto;
 }
 
+#github-button-sign-in {
+  margin-top: 20px;
+}
