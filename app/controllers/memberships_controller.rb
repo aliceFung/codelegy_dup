@@ -64,7 +64,7 @@ class MembershipsController < ApplicationController
 
   #does not allow user_id to prevent malicious membership generation
   def params_list
-    params.require(:membership).permit( :project_id, :id, :type, :participant_type)
+    params.require(:membership).permit( :project_id, :id, :participant_type)
   end
 
   def get_project_owner
