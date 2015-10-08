@@ -7,4 +7,8 @@ app.controller('emailShowCtrl', ['$scope', 'emailService', 'Restangular', '$stat
 
   $scope.message = $scope.inbox[$stateParams.id];
 
+  $scope.deleteMessage = function(){
+
+  };
+
 }]);

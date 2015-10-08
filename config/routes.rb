@@ -18,8 +18,6 @@ Rails.application.routes.draw do
       resources :memberships, except: [:new, :edit, :destroy]
       resources :mailbox, only: [:index]
 
-      # resources :emails, only: [:index, :show]
-
     end
   end
 
