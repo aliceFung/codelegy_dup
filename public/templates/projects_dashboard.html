@@ -39,12 +39,7 @@
               <h1 class="h3 pull-left margin-none">Projects</h1>
                <p>hello</p>
                <p>{{projects}}</p>
-              <div class="pull-right">
-                <div class="btn-group">
-                  <a class="btn bg-gray-dark" ui-sref="projects"><i class="fa fa-list"></i></a>
-                  <a class="btn btn-default" ui-sref="projects.grid"><i class="fa fa-th"></i></a>
-                </div>
-              </div>
+
               <div class="clearfix"></div>
             </div>
           <div  ng-repeat="project in projects">
@@ -57,10 +52,10 @@
 
                   <div class="media-body">
                     <h3 class="media-heading h4">{{project.title}}</h3>
-
+                    <h4>{{project.owner? ? "Project Owner" : "Project Member"}} </h4>
                     <p class="small text-muted">
                       <i class="fa fa-clock-o fa-fw"></i> <time am-time-ago="project.created_at"></time>
-                      <i class="fa fa-user fa-fw"></i> {{project.owner.username}}
+                      <i class="fa fa-user fa-fw"></i> user here?
                       <i class="fa fa-calendar fa-fw"></i> <time title="{{ project.created_at | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{ project.created_at | amCalendar }}</time>
                     </p>
 
@@ -68,6 +63,10 @@
                     <!-- <span class="label bg-gray-dark">New</span> -->
                     <span class="label label-primary">WordPress</span>
                     <span class="label label-warning">{{project.difficulty_name}}</span>
+                    <button ng-if="project.owner?" ng-click="manageMembers($index)">
+                      {{project.pending_member_count ? (project.pending_member_count + 'Pending ') : 'Manage '}}
+                      Membership
+                    </button>
                   </div>
                 </div>
               </div>

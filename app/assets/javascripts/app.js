@@ -149,7 +149,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
         views: {
           '': {
                 controller: 'userProjectsCtrl',
-                templateUrl: 'templates/projects/index-list.html',
+                templateUrl: 'templates/projects_dashboard.html',
               },
 
           'navbar': {
