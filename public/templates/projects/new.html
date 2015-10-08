@@ -6,13 +6,12 @@
     <input type="text" ng-model="newProject.availability"  placeholder="availability">
     <input type="text" ng-model="newProject.description" placeholder="description">
     <br>
-    {{langFilter}}
+    <br>
     <div ng-repeat="language in languages" >
       <input type="checkbox" ng-model="langFilter[language]"
         ng-checked="langFilter[language]"> {{language}} <br>
-    </div>
-    {{langFilter}}
-    <select ng-model="newProject.difficulty_id">
+    </div><br>
+    Difficulty: <select ng-model="newProject.difficulty_id">
     </div>
       <option value="1" id="">Beginner</option>
       <option value="2" id="">Intermediate</option>
@@ -23,7 +22,6 @@
     <button class="btn btn-primary" ng-click="submit(newProject)">
       Submit
     </button>
-    {{newProject}}
   </div>
 </div>
 </ui-view>

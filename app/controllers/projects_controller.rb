@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :difficulty_id, :availability)
+    params.require(:project).permit(:title, :difficulty_id, :availability, :description)
   end
 
   def add_project_languages(languages, project)
