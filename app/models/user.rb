@@ -44,26 +44,26 @@ class User < ActiveRecord::Base
   # returns all participating projects and their memberships
   def project_dashboard_membership
     # only show proj details and owner
-    project_membership = project_member_of.map do |mem|
-      { details: mem.project,
-        languages: mem.project.languages,
-        owner_username: mem.proj.owner.username }
-    end
+    # project_membership = project_member_of.map do |mem|
+    #   { details: mem.project,
+    #     languages: mem.project.languages,
+    #     owner_username: mem.proj.owner.username }
+    # end
 
-    #also show all memberships and action items
-    project_ownership = projects_owned.map do |mem|
-      { details: mem.project,
-        languages: mem.project.languages,
-        memberships: mem.project.memberships.map{ |membership|
-          { details: membership,
-            username: membership.user.username }
-        }
-      }
-    end
+    # #also show all memberships and action items
+    # project_ownership = projects_owned.map do |mem|
+    #   { details: mem.project,
+    #     languages: mem.project.languages,
+    #     memberships: mem.project.memberships.map{ |membership|
+    #       { details: membership,
+    #         username: membership.user.username }
+    #     }
+    #   }
+    # end
 
-    thing = { project_membership: project_membership,
-              project_ownership: project_ownership}
-    # binding.pry
+    # thing = { project_membership: project_membership,
+    #           project_ownership: project_ownership}
+    self.projects
   end
 
   #get user email message details from Mailboxer Conversation obj

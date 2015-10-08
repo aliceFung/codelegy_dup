@@ -4,11 +4,10 @@ class MembershipsController < ApplicationController
   before_action :require_project_owner, only: [:update]
 
   def index
-    # @memberships = Membership.all
-    @memberships = current_user.project_dashboard_membership
-    # binding.pry
+    @membership_projects = current_user.project_dashboard_membership
     respond_to do |format|
-      format.json {render json: @memberships}
+      format.json {render json: @membership_projects,
+              methods: [:difficulty_name, :owner, :languages, :memberships, :members]}
     end
   end
 
