@@ -3,19 +3,18 @@ app.factory('UserProjectService', ['Restangular',
 
   console.log('UserProjectService initiated');
 
-  var projects = {};
+  var projectList = {};
 
   Restangular.one('memberships').get().then(
     function(result){
       // debugger;
       console.log('results', result);
-      projects.project_membership = result.project_membership,
-      projects.project_ownership = result.project_ownership;
+      projectList.projects = result; //array of projects
     }
   );
 
   return {
-    projects: projects
+    projectList: projectList
   };
 
 }]);

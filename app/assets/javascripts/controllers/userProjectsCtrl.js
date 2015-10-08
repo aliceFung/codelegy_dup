@@ -1,8 +1,10 @@
 app.controller("userProjectsCtrl", ['$scope', '$state', 'UserProjectService', 'ModalService',
   function($scope, $state, UserProjectService){
 
-
-  $scope.projects = UserProjectService.projects;
+  console.log('userProjectsCtrl');
+  $scope.list = {};
+  $scope.list.projectList = UserProjectService.projectList;
+  // $scope.projects = $scope.list.projectList.projects;
 
   //to access membership type of a project (ex: first one in list):
   //$scope.projects[0].owner? // boolean

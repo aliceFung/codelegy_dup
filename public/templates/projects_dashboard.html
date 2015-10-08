@@ -1,77 +1,45 @@
 <ui-view>
 <hr><hr>
-<!-- Languages -->
-<div class="row">
-  <div class="col-sm-1 col-sm-offset-2">
 
-  </div>
-  <div class="col-sm-1" ng-repeat="language in languages">
-      <button class="btn btn-default btn-block" ng-click='addLang(language)'
-              ng-class='{"active": langFilter[language]}'>{{language}}</button>
-  </div>
-</div>
-<br>
+<main>
+  <br>
 
+  <div class="container-fluid">
 
-<!-- End Languages -->
-<!-- <main>
-<br>
+    <div class="page-header">
+      <h1 class="h3 pull-left margin-none">Projects</h1>
 
+      <div class="clearfix"></div>
+    </div>
+    <div  ng-repeat="project in list.projectList.projects">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="media media-clearfix-xs-min">
 
-<div class="row">
-  <div class="col-md-10">
-    <h2>Projects</h2>
-    <hr>
-    <div class="col-md-6" ng-repeat="project in projects">
-      <h4>{{project.title}}</h4>
-      Project Owner: <h5>{{project.owner.email}}</h5>
-      Est. Difficulty:<h5>{{project.difficulty_name}}</h5>
+            <div class="media-body">
+              <h3 class="media-heading h4">{{project.title}}</h3>
+              <h4>{{project['owner?'] ? "Project Owner" : "Project Member"}} </h4>
+              <!-- ? "Project Owner" : "Project Member" -->
+              <p class="small text-muted">
+                <i class="fa fa-clock-o fa-fw"></i> <time am-time-ago="project.created_at"></time>
+                <i class="fa fa-user fa-fw"></i> user here?
+                <i class="fa fa-calendar fa-fw"></i> <time title="{{ project.created_at | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{ project.created_at | amCalendar }}</time>
+              </p>
+
+              <p>{{project.description}}{{project}}</p>
+              <!-- <span class="label bg-gray-dark">New</span> -->
+              <span class="label label-primary">WordPress</span>
+              <span class="label label-warning">{{project.difficulty_name}}</span>
+              <button ng-show='project["owner?"]' ng-click="manageMembers($index)">
+                {{project.pending_member_count ? (project.pending_member_count + 'Pending ') : 'Manage '}}
+                Membership
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
-  <div class="col-md-1 col-md-offset-1">
-    <button ui-sref="projects.new" class="btn btn-primary pull-right">New Project</button>
-  </div>
-</main> -->
-</div>
-         <div class="container-fluid">
-
-            <div class="page-header">
-              <h1 class="h3 pull-left margin-none">Projects</h1>
-               <p>hello</p>
-               <p>{{projects}}</p>
-
-              <div class="clearfix"></div>
-            </div>
-          <div  ng-repeat="project in projects">
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <div class="media media-clearfix-xs-min">
-                  <div class="media-left">
-                    <img src="https://s3.amazonaws.com/openshift-hub/production/quickstarts/76/rails.png?1425245483" alt="">
-                  </div>
-
-                  <div class="media-body">
-                    <h3 class="media-heading h4">{{project.title}}</h3>
-                    <h4>{{project.owner? ? "Project Owner" : "Project Member"}} </h4>
-                    <p class="small text-muted">
-                      <i class="fa fa-clock-o fa-fw"></i> <time am-time-ago="project.created_at"></time>
-                      <i class="fa fa-user fa-fw"></i> user here?
-                      <i class="fa fa-calendar fa-fw"></i> <time title="{{ project.created_at | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{ project.created_at | amCalendar }}</time>
-                    </p>
-
-                    <p>{{project.description}}{{project}}</p>
-                    <!-- <span class="label bg-gray-dark">New</span> -->
-                    <span class="label label-primary">WordPress</span>
-                    <span class="label label-warning">{{project.difficulty_name}}</span>
-                    <button ng-if="project.owner?" ng-click="manageMembers($index)">
-                      {{project.pending_member_count ? (project.pending_member_count + 'Pending ') : 'Manage '}}
-                      Membership
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-          </div>
+</main>
 </ui-view>
