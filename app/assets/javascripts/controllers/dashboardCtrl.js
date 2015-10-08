@@ -1,8 +1,11 @@
 app.controller('dashboardCtrl',
   [ '$scope',
-    'profileInfo',
-    function($scope, profileInfo){
+    'profileInfo', 
+    'ProfileRegistration', 
+    function($scope, profileInfo, ProfileRegistration){
 
       $scope.information = profileInfo;
-
+      $scope.languages = ProfileRegistration.languages;
+      $scope.expLevel = ProfileRegistration.expLevel;
+      
 }]);

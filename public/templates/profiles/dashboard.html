@@ -1,7 +1,65 @@
-<br>
-<br>
-<h1>dashboard.html</h1>
-<h1>dashboard.html</h1>
-<h1>dashboard.html</h1>
-<h1>dashboard.html</h1>
+<div class="panel">
+  <div class="panel-heading">
+    <h1>dashboard</h1>
+    <img src="{{information.photo_id}}">
+  </div>
+  <div class="panel-body row">
+    <div class="col-md-6">
+      <div >
+        <h3>About Me:</h3>
+        <div class="form-control" 
+              ng-show="!showEditAbout" 
+              ng-click="showEditAbout = !showEditAbout" 
+              style="border-style: none !important">
+          {{information.about}}
+        </div>
+        <input class="form-control" 
+                type="text" 
+                ng-show="showEditAbout" 
+                ng-model="information.about">
+      </div>
+
+      <div >
+        <h3>Availability: </h3>
+        <div class="form-control" 
+              ng-show="!showEditAvailability" 
+              ng-click="showEditAvailability = !showEditAvailability" 
+              style="border-style: none !important">
+          {{information.availability}}
+        </div>
+
+        <input type="text" 
+                class="form-control" 
+                ng-show="showEditAvailability" 
+                ng-model="information.availability">
+
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div>
+        <h3>Programming Languages: </h3>
+        <div ng-repeat="pl in information.profile_languages" >
+          <div class="form-control" 
+                ng-click="showEditPL[pl.language_id] = !showEditPL[pl.language_id]"
+                ng-show="!showEditPL[pl.language_id]"
+                style="border-style: none !important">
+            {{languages[pl.language_id]}}: {{expLevel[pl.difficulty_id]}}
+          </div>
+          <input type="text" 
+                class="form-control" 
+                ng-show="showEditPL[pl.language_id]">
+        </div>
+      </div>
+
+    </div>
+    <button class="btn btn-danger">
+      Cancel
+    </button>
+    <button class="btn btn-info">Save</button>
+  </div>
+</div>
+
+
+
 {{information}}

@@ -1,1 +1,32 @@
-show.html
+<div class="panel">
+  <div class="panel-heading">
+    <h1>Profile</h1>
+    <img src="{{information.photo_id}}">
+  </div>
+  <div class="panel-body row">
+    <div class="col-md-6">
+      <div >
+        <h3>About Me:</h3>
+        <div>
+          {{information.about}}
+        </div>
+      </div>
+
+      <div >
+        <h3>Availability: </h3>
+        <div>
+          {{information.availability}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div>
+        <h3>Programming Languages: </h3>
+        <div ng-repeat="pl in information.profile_languages" >
+          {{languages[pl.language_id]}}: {{expLevel[pl.difficulty_id]}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
