@@ -2,8 +2,8 @@ app.controller('profileRegistrationCtrl',
   ['$scope',
    'ProfileRegistration',
    '$state',
-   'EmailRegEx', 
-   'languageList', 
+   'EmailRegEx',
+   'languageList',
     function($scope, ProfileRegistration, $state, EmailRegEx, languageList){
       $scope.profileInput = ProfileRegistration.profileInput;
       $scope.languages = {};
@@ -14,7 +14,7 @@ app.controller('profileRegistrationCtrl',
 
       languageList.forEach(function(ele){
         $scope.languages[ele.id] = ele.name;
-      })
+      });
 
       $scope.setExpLevel = function(languageId, levelId) {
         console.log(languageId, levelId);

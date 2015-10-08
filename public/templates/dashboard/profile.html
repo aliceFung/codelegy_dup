@@ -1,7 +1,9 @@
 <h1>profile</h1>
 
+<!-- Profile info -->
 <div class="panel panel-default panel-profile m-b-md">
-  <div class="panel-heading" style="background-image: url(assets/iceland.jpg);"></div>
+  <div class="panel-heading" style="background-image: url(assets/iceland.jpg);">
+  </div>
   <div class="panel-body text-center">
     <a href="profile/index.html">
       <img
@@ -10,10 +12,23 @@
     </a>
 
     <h5 class="panel-title">
-      <a class="text-inherit" href="profile/index.html">Dave Gamache</a>
+      <a class="text-inherit" href="profile/index.html">{{information.user.username}}
+      </a>
     </h5>
 
-    <p class="m-b-md">I wish i was a little bit taller, wish i was a baller, wish i had a girl… also.</p>
+    <div class="m-b-md">
+      <p class='text-right'><small>About · <a href="#">Edit</a></small></p>
+      <div class="form-control"
+        ng-show="!showEditAbout"
+        ng-click="showEditAbout = !showEditAbout"
+        style="border-style: none !important">
+        {{information.about}}
+      </div>
+      <input class="form-control"
+              type="text"
+              ng-show="showEditAbout"
+              ng-model="profileUpdates.about">
+    </div>
 
     <ul class="panel-menu">
       <li class="panel-menu-item">
@@ -33,87 +48,55 @@
   </div>
 </div>
 
+<!-- Availability -->
 <div class="panel panel-default visible-md-block visible-lg-block">
   <div class="panel-body">
-    <h5 class="m-t-0">About <small>· <a href="#">Edit</a></small></h5>
-    <div class="form-control" 
-      ng-show="!showEditAbout" 
-      ng-click="showEditAbout = !showEditAbout" 
-      style="border-style: none !important">
-      {{information.about}}
-    </div>
-    <input class="form-control" 
-            type="text" 
-            ng-show="showEditAbout" 
-            ng-model="information.about">
 
     <h5 class="m-t-0">Availability <small>· <a href="#">Edit</a></small></h5>
-    <div class="form-control" 
-          ng-show="!showEditAvailability" 
-          ng-click="showEditAvailability = !showEditAvailability" 
+    <div class="form-control"
+          ng-show="!showEditAvailability"
+          ng-click="showEditAvailability = !showEditAvailability"
           style="border-style: none !important">
       {{information.availability}}
     </div>
 
-    <input type="text" 
-            class="form-control" 
-            ng-show="showEditAvailability" 
-            ng-model="information.availability">
+    <input type="text"
+            class="form-control"
+            ng-show="showEditAvailability"
+            ng-model="profileUpdates.availability">
   </div>
 </div>
 
+<!-- Programming languages -->
  <div class="panel panel-default visible-md-block visible-lg-block">
   <div class="panel-body">
-    <h5 class="m-t-0">Programming Languages <small>· <a href="#">Edit</a></small></h5>
+    <h5 class="m-t-0">
+      Programming Languages
+      <small>·
+        <a href="#">Edit</a>
+      </small>
+    </h5>
     <div ng-repeat="pl in information.profile_languages" >
-    <div class="form-control" 
+    <div class="form-control"
           ng-click="showEditPL[pl.language_id] = !showEditPL[pl.language_id]"
           ng-show="!showEditPL[pl.language_id]"
           style="border-style: none !important">
-      {{languages[pl.language_id]}}: {{expLevel[pl.difficulty_id]}}
+          <img src="{{languages[pl.language_id-1].url}}"
+              style="width:20px;margin:5px">
+      {{languages[pl.language_id-1].name}}: {{expLevel[pl.difficulty_id]}}
     </div>
-    <input type="text" 
-          class="form-control" 
-          ng-show="showEditPL[pl.language_id]">
+    <input  type="text"
+            class="form-control"
+            ng-show="showEditPL[pl.language_id]">
   </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <div class="panel">
   <div class="panel-body">
-    <img src="{{information.photo_id}}">
-  </div>
-  <div class="panel-body">
-    <div class="col-md-6">
-
-
-    </div>
-
-    <div class="col-md-6">
-
-
-    </div>
     <button class="btn btn-danger">
       Cancel
     </button>
-    <button class="btn btn-info">Save</button>
+    <button class="btn btn-info" ng-click='update()'>Save</button>
   </div>
 </div>
-
-
-
-{{information}}
