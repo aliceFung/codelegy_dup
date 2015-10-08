@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
 
 
   # returns a collection of projects user is the owner of
+  # eager loading to prevent n+1 queries
   def projects_owned
     self.memberships.includes(:project =>
                               [:languages, :memberships => :user])
@@ -36,52 +37,37 @@ class User < ActiveRecord::Base
   end
 
   # returns a collection of projects user is a member of
+  # eager loading to prevent n+1 queries
   def project_member_of
     self.memberships.includes(:project => :languages).where('participant_type = ?', 'member')
   end
-  # self.memberships.includes(:project).where("participant_type = 'owner'")
 
-  # returns all participating projects and their memberships
+  # returns all participating projects with limited associated info
   def project_dashboard_membership
-    # only show proj details and owner
-    # project_membership = project_member_of.map do |mem|
-    #   { details: mem.project,
-    #     languages: mem.project.languages,
-    #     owner_username: mem.proj.owner.username }
-    # end
-
-    # #also show all memberships and action items
-    # project_ownership = projects_owned.map do |mem|
-    #   { details: mem.project,
-    #     languages: mem.project.languages,
-    #     memberships: mem.project.memberships.map{ |membership|
-    #       { details: membership,
-    #         username: membership.user.username }
-    #     }
-    #   }
-    # end
-
-    # thing = { project_membership: project_membership,
-    #           project_ownership: project_ownership}
     list = self.projects.includes(:difficulty, :languages, :memberships => :user)
 
     list.map do |proj|
-      obj = { id: proj.id,
-        title: proj.title,
-        availability: proj.availability,
-        difficulty:   proj.difficulty,
-        owner?: proj.owner == self,
-        languages: proj.languages,
-      }
+
+      obj = { id:           proj.id,
+              title:        proj.title,
+              availability: proj.availability,
+              difficulty:   proj.difficulty,
+              owner?:       proj.owner == self,
+              languages:    proj.languages,
+            }
+
       if obj[:owner?]
         obj[:memberships] = proj.memberships.map do |m|
-          {id: m.id, participant_type: m.participant_type, user: m.user.username}
+          { id: m.id,
+            user: m.user.username,
+            participant_type: m.participant_type }
         end
       end
+
       obj
     end
-
   end
+
 
   #get user email message details from Mailboxer Conversation obj
   def get_emails(box_type)
@@ -96,8 +82,6 @@ class User < ActiveRecord::Base
               body: c.body}
         end
   end
-  # conversation_id: c.conversation_id #Mailboxer::Conversation.find(3)
-  # message_id: c.id # Mailboxer::Message.find(3)
 
   def mailboxer_email
     self.email
@@ -107,6 +91,4 @@ class User < ActiveRecord::Base
     self.username
   end
 
-
-# Mailboxer::Notification.where('id IN (?)', myUser.mailbox.inbox.inject([]){|acc, el| acc.push(el)}).map{|c| {body: c.body, subject: c.subject, username: c.sender.username, date: c.created_at }}
 end
