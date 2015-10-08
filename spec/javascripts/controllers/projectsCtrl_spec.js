@@ -91,7 +91,7 @@ describe('Controller: membershipCtrl', function(){
                     "languages": []}]
   console.log(languages, projects);
 
-  beforeEach(module('app'));
+  # beforeEach(module('app'));
 
 
 })
