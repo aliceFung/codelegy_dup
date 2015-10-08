@@ -1,6 +1,6 @@
-<p>Dear <%= @user %>, </p>
+<p>Dear <%= @user.email %>, </p>
 
-<p>You have a new member request for <%= @project %>! </p>
+<p>You have a new member request for <%= @project.title %>! </p>
 <p>
 <%= link_to "Go to your codelegy dashboard", domain_url %> to see the details.
 </p>
