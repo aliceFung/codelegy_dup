@@ -28,13 +28,13 @@
                 <time title="{{ project.created_at | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{ project.created_at | amCalendar }}</time>
               </div>
             </p>
-            <strong>Est. Difficulty:</strong>{{project.difficulty_name}} <br>
+            <strong>Est. Difficulty: </strong>{{project.difficulty_name}} <br>
             <strong>Times:</strong> {{project.availability}} <br>
             <strong>Languages:</strong>
             <img ng-repeat="lang in project.languages" src="{{lang.url}}" alt="{{lang.name}}"
             style="width:20px;margin:5px"> <br>
 
-            <button ng-show='project["owner?"]' ng-click="manageMembers(project)">
+            <button ng-show='project["owner?"]' data-toggle="modal" data-target="#myModal{{project.id}}">
               {{project.pending_member_count ? (project.pending_member_count + 'Pending ') : 'Manage '}}
               Membership
             </button>
@@ -43,9 +43,70 @@
         </div>
       </div>
 
+      <div class="modal fade" id="myModal{{project.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">{{project.title}}</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class= "col-md-7">
+                <div class="panel panel-default">
+                  <div class = 'panel-heading'>
+                    <h4 class ='panel-title'>Project Description</h4>
+                  </div>
+                  <div class="panel-body">
+                    {{project.description}}
+                  </div>
+                </div>
+              </div>
+                <div class="col-md-5">
+                <div class=" panel panel-default">
+                  <div class = 'panel-heading'>
+                    <h4 class ='panel-title'>Project Members</h4>
+                  </div>
+                  <div class="panel-body">
+                    <ul>
+                      <li>Owner</li>
+                      <li ng-repeat="membership in project.memberships">
+                        {{membership.user}}
+                        <button class="btn btn-success btn-xs"
+                        ng-show="membership.participant_type=='pending'"
+                        ng-click="acceptMembership(membership.id)"
+                        >
+                          Accept
+                        </button>
+                        <button class="btn btn-danger btn-xs"
+                        ng-show="membership.participant_type=='pending'"
+                        ng-click="rejectMembership(membership.id)"
+                        >
+                          Reject
+                        </button>
+
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                </div>
+              </div>
+
+
+            </div>
+<!--             <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div> -->
+          </div>
+        </div>
+      </div>
 
     </div>
+
   </div>
+
+
 </main>
 
 

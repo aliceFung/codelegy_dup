@@ -1,6 +1,6 @@
 app.controller('projectModalCtrl', [
-  '$scope', '$element', 'Restangular', 'project', 'projectList', 'idxInList', 'close',
-  function($scope, $element, Restangular, project, projectList, idxInList, close) {
+  '$scope', '$element', 'Restangular', 'project', 'projectList', 'close',
+  function($scope, $element, Restangular, project, projectList, close) {
 
 
   $scope.project = project;

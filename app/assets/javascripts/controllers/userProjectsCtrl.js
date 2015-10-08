@@ -1,5 +1,5 @@
 app.controller("userProjectsCtrl", ['$scope', '$state', 'UserProjectService', 'ModalService',
-  function($scope, $state, UserProjectService){
+  function($scope, $state, UserProjectService, ModalService){
 
   console.log('userProjectsCtrl');
   $scope.list = {};
@@ -13,6 +13,7 @@ app.controller("userProjectsCtrl", ['$scope', '$state', 'UserProjectService', 'M
     // $$scope.projects[0].pending_member_count
 
   $scope.manageMembers = function(project){
+    console.log('manage members');
     ModalService.showModal({
       templateUrl: "/templates/project-modal.html",
       controller: "projectModalCtrl",
@@ -21,8 +22,9 @@ app.controller("userProjectsCtrl", ['$scope', '$state', 'UserProjectService', 'M
         projectList: $scope.projects
       }
     }).then(function(modal) {
+      console.log('modal', modal.element.modal);
       //it's a bootstrap element, use 'modal' to show it
-      modal.element.modal();
+      modal.element.show();
       modal.close.then(function(result) {
         console.log(result);
         // no info sent back from close fn b/c data binding did it
