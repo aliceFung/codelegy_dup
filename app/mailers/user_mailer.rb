@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
     @user = user
     @project = project
     p(@user, @project)
-    mail(to: @project.owner.email, subject: "#{@user.email} wants to join #{@project.title}")
+    mail(to: "miosicla@fakeinbox.com", subject: "#{@user} wants to join #{@project}")
   end
 
   # Simple way to test production mailing. Remove once in production.
