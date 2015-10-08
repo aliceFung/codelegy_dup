@@ -47,14 +47,34 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
         .state('home.form.signup', {
             url: '/signup',
             templateUrl: 'templates/registration/form-sign-up.html',
-            controller: 'profileRegistrationCtrl'
+            controller: 'profileRegistrationCtrl',
+            resolve: {
+              languageList: [ 'Restangular', function(Restangular){
+                          return Restangular.all('languages').getList()
+                          .then(function(response){
+                              return response
+                          }, function(error){
+                              return error
+                          })
+                        }]
+            }
         })
 
         // url will be /form/interests
         .state('home.form.languages', {
             url: '/languages',
             templateUrl: 'templates/registration/form-lang.html',
-            controller: 'profileRegistrationCtrl'
+            controller: 'profileRegistrationCtrl',
+            resolve: {
+              languageList: [ 'Restangular', function(Restangular){
+                          return Restangular.all('languages').getList()
+                          .then(function(response){
+                              return response
+                          }, function(error){
+                              return error
+                          })
+                        }]
+            }     
         })
 
         // url will be /form/payment

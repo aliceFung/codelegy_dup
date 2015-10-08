@@ -1,12 +1,13 @@
 app.factory('ProfileRegistration', function(){
 
-  var languages = {1: 'Ruby/Rails',
-                   2: 'JavaScript',
-                   3: 'Python',
-                   4: 'C',
-                   5: 'Swift',
-                   6: 'Java',
-                   7: 'PHP' };
+  // var languages = {1: 'Ruby/Rails',
+  //                  2: 'JavaScript',
+  //                  3: 'Python',
+  //                  4: 'C',
+  //                  5: 'Swift',
+  //                  6: 'Java',
+  //                  7: 'PHP' };
+
   var expLevel = {
     1: 'Beginner',
     2: 'Intermediate',
@@ -17,7 +18,6 @@ app.factory('ProfileRegistration', function(){
   var profileInput = { profile_languages: {} }; //{ languages: { name: '', expLevel: '' } };
 
   return {
-    languages: languages,
     expLevel: expLevel,
     profileInput: profileInput
   };
