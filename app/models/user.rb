@@ -25,38 +25,52 @@ class User < ActiveRecord::Base
     end
   end
 
+
+
   # returns a collection of projects user is the owner of
+  # eager loading to prevent n+1 queries
   def projects_owned
-    self.memberships.where('participant_type = ?', 'owner')
+    self.memberships.includes(:project =>
+                              [:languages, :memberships => :user])
+                    .where('participant_type = ?', 'owner')
   end
 
   # returns a collection of projects user is a member of
-  def project_member_in
-    self.memberships.where('participant_type = ?', 'member')
+  # eager loading to prevent n+1 queries
+  def project_member_of
+    self.memberships.includes(:project => :languages).where('participant_type = ?', 'member')
   end
 
-  # returns a collection of group emails from participating projects
-  def group_emails
-    emails=[]
-    project_member_in.each do |project|
-      emails.push(project.group_emails)
+  # returns all participating projects with limited associated info
+  def project_dashboard_membership
+    list = self.projects.includes(:difficulty, :languages, :memberships => :user)
+
+    list.map do |proj|
+
+      obj = { id:           proj.id,
+              title:        proj.title,
+              availability: proj.availability,
+              difficulty_name:   proj.difficulty_name,
+              owner?:       proj.owner == self,
+              languages:    proj.languages,
+              created_at:   proj.created_at
+            }
+
+      if obj[:owner?]
+        obj[:memberships] = proj.memberships.map do |m|
+          { id: m.id,
+            user: m.user.username,
+            participant_type: m.participant_type }
+        end
+        obj[:pending_member_count] = proj.memberships.where("participant_type = ?", 'pending').length
+      else
+        obj[:member_status] = proj.memberships.where('user_id = ?', self.id).first.participant_type
+      end
+
+      obj
     end
   end
 
-  # returns a collection of emails to project owner
-  def project_owner_emails
-    emails=[]
-    projects_owned.each do |project|
-      emails.push(project.group_emails)
-    end
-  end
-
-  #gathers all self emails
-  def all_user_emails
-    # sent = self.sent_emails
-    received = project_owner_emails + group_emails
-    # binding.pry
-  end
 
   #get user email message details from Mailboxer Conversation obj
   def get_emails(box_type)
@@ -71,8 +85,6 @@ class User < ActiveRecord::Base
               body: c.body}
         end
   end
-  # conversation_id: c.conversation_id #Mailboxer::Conversation.find(3)
-  # message_id: c.id # Mailboxer::Message.find(3)
 
   def mailboxer_email
     self.email
@@ -81,7 +93,5 @@ class User < ActiveRecord::Base
   def mailboxer_username
     self.username
   end
-
-
 
 end

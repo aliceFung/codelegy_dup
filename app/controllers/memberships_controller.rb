@@ -1,12 +1,20 @@
 class MembershipsController < ApplicationController
 
-  before_action :get_project_owner
-  before_action :require_project_owner, except: [:create, :show]
+  before_action :get_project_owner, only: [:create, :update]
+  before_action :require_project_owner, only: [:update]
+
+  def index
+    @membership_projects = current_user.project_dashboard_membership
+    respond_to do |format|
+      format.json {render json: @membership_projects #,
+              # methods: [:difficulty_name, :owner, :languages, :memberships, :members]
+            }
+    end
+  end
 
   def create
     @membership = Membership.new(params_list)
     @membership.user_id = current_user.id
-    # binding.pry
     respond_to do |format|
       if @membership.save
         Email.membership_history(params["content"], @membership)
@@ -28,7 +36,6 @@ class MembershipsController < ApplicationController
   def update
     @membership = Membership.find(params["id"])
     membership_status = @membership.participant_type
-    # binding.pry
     respond_to do |format|
       if @membership.update(params_list)
         send_notification(membership_status, params_list["participant_type"])
@@ -38,6 +45,7 @@ class MembershipsController < ApplicationController
       end
     end
   end
+
 
   # def destroy
   #   @membership = Membership.find(params["id"])
@@ -54,7 +62,7 @@ class MembershipsController < ApplicationController
 
   #does not allow user_id to prevent malicious membership generation
   def params_list
-    params.require(:membership).permit( :project_id, :id, :type, :participant_type)
+    params.require(:membership).permit( :project_id, :id, :participant_type)
   end
 
   def get_project_owner
@@ -72,7 +80,6 @@ class MembershipsController < ApplicationController
         format.json {render json: {errors: ["Project Not Found."]}, status: 404}
       end
     end
-
   end
 
   # only allows project owner to modify memberships
@@ -97,7 +104,7 @@ class MembershipsController < ApplicationController
     if after == 'member'
       current_user.send_message(@membership.project.group_members, "#{@membership.user.username} has been added to #{@membership.project.title}!", "#{@membership.project.title} has a new member!")
     elsif after == 'rejected'
-      current_user.send_message(@membership.user, "Unfortunately, you were rejected to work on project #{@membership.project.title}", "Sorry!")
+      current_user.send_message(@membership.user, "Unfortunately, you were rejected to work on project #{@membership.project.title}. Sign in to codelegy find another project to join.", "Sorry!")
     end
   end
 
