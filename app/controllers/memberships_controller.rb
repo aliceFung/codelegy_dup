@@ -18,7 +18,7 @@ class MembershipsController < ApplicationController
     # binding.pry
     respond_to do |format|
       if @membership.save
-        # Email.membership_history(params["content"], @membership)
+        Email.membership_history(params["content"], @membership)
         current_user.send_message(@project_owner, "User #{current_user.username} would like to join your project!", "User #{current_user.username} would like to join your project!")
         format.json {render json: @membership}
       else
@@ -36,8 +36,11 @@ class MembershipsController < ApplicationController
 
   def update
     @membership = Membership.find(params["id"])
+    membership_status = @membership.participant_type
+    # binding.pry
     respond_to do |format|
       if @membership.update(params_list)
+        send_notification(membership_status, params_list["participant_type"])
         format.json {render json: @membership}
       else
         format.json {render json: {errors: ["There was an error with your request. Please try again."]}, status: 522}
@@ -90,5 +93,23 @@ class MembershipsController < ApplicationController
       end
     end
   end
+
+
+  # User is accepted
+    # Everyone in the project gets a message
+  # User is rejected
+    # Rejected user gets a message.
+  def send_notification(before, after)
+    send_membership_status_update(after) if before == 'pending'
+  end
+
+  def send_membership_status_update(after)
+    if after == 'member'
+      current_user.send_message(@membership.project.group_members, "#{@membership.user.username} has been added to #{@membership.project.title}!", "#{@membership.project.title} has a new member!")
+    elsif after == 'rejected'
+      current_user.send_message(@membership.user, "Unfortunately, you were rejected to work on project #{@membership.project.title}", "Sorry!")
+    end
+  end
+
 
 end

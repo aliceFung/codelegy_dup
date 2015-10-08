@@ -23,8 +23,9 @@ class Project < ActiveRecord::Base
     self.emails.where('to_everyone = ?', true)
   end
 
-  def mem
 
+  def group_members
+    User.joins(:memberships).joins(:projects).where("(memberships.participant_type = 'owner' OR memberships.participant_type = 'member') AND memberships.project_id = ?", self.id)
   end
 
 end
