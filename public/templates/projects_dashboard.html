@@ -74,13 +74,13 @@
                         {{membership.user}}
                         <button class="btn btn-success btn-xs"
                         ng-show="membership.participant_type=='pending'"
-                        ng-click="changeMembership(membership.id, true)"
+                        ng-click="changeMembership(membership, true)"
                         >
                           Accept
                         </button>
                         <button class="btn btn-danger btn-xs"
                         ng-show="membership.participant_type=='pending'"
-                        ng-click="changeMembership(membership.id, false)"
+                        ng-click="changeMembership(membership, false)"
                         >
                           Reject
                         </button>

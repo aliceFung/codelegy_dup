@@ -27,12 +27,12 @@ class MembershipsController < ApplicationController
     end
   end
 
-  # def show
-  #   @membership = Membership.find(params["id"])
-  #   respond_to do |format|
-  #     format.json {render json: @membership}
-  #   end
-  # end
+  def show
+    @membership = Membership.find(params["id"])
+    respond_to do |format|
+      format.json {render json: @membership}
+    end
+  end
 
   def update
     @membership = Membership.find(params["id"])
