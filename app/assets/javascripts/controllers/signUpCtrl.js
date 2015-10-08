@@ -7,6 +7,7 @@ app.controller('signUpCtrl',
    function(SignUp, Session, $scope, ProfileRegistration, $state){
 
   $scope.credentials = SignUp.credentials;
+  $scope.profileInput = ProfileRegistration.profileInput;
 
   // On registration, create a new session
   $scope.authenticated = Session.authenticated;

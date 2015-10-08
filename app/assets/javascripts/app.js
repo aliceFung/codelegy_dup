@@ -31,15 +31,14 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
         }
       })
       // nested routes for our home page
-
-      .state('home.login', {
-            url: 'login',
-            templateUrl: 'templates/login.html',
+      .state('home.signin', {
+            url: 'signin',
+            templateUrl: 'templates/registration/sign-in.html',
             controller: 'sessionCtrl'
       })
         // route to show our basic form (/form)
         .state('home.form', {
-            url: '/form',
+            url: 'form',
             templateUrl: 'templates/registration/form.html',
             controller: 'signUpCtrl'
         })
@@ -64,6 +63,69 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
             templateUrl: 'templates/registration/form-availability.html',
             controller: 'signUpCtrl'
         });
+
+    $stateProvider
+      .state('profiles', {
+          url: '/profiles',
+          views: {
+            '': {templateUrl: 'templates/profiles/layout.html'},
+
+            'navbar': {
+                    templateUrl: 'templates/header-1.html',
+                    controller: 'sessionCtrl'
+            }
+          }
+      })
+
+      .state('profiles.show', {
+        url: '/:userid',
+        templateUrl: 'templates/profiles/show.html'
+      })
+
+      .state('profiles.settings', {
+        url: '/settings',
+        templateUrl: 'templates/profiles/settings.html'
+      });
+
+
+    $stateProvider
+      .state('dashboard', {
+          url: '/dashboard',
+          views: {
+            'navbar': {
+              templateUrl: 'templates/header-1.html',
+              controller: 'sessionCtrl'
+            },
+            'profile@dashboard': {
+              templateUrl: 'templates/dashboard/profile.html',
+              controller: 'dashboardProfileCtrl',
+              resolve: {
+                profileInfo: [ 'Restangular', 'Auth', function(Restangular, Auth){
+                  return Auth.currentUser().then(function(user){
+                    return Restangular.all('profiles').customGET(null, {user_id: user.id})
+                    .then(function(response){
+                      return response;
+                    }, function(error){
+                      return error;
+                    });
+                  });
+                }],
+              }
+            },
+            'projects@dashboard': {
+              templateUrl: 'templates/dashboard/projects.html'
+            },
+            'sales@dashboard': {
+              templateUrl: 'templates/dashboard/sales.html'
+            },
+            'suggestions@dashboard': {
+              templateUrl: 'templates/dashboard/suggestions.html'
+            },
+            '': {
+              templateUrl: 'templates/dashboard/layout.html'
+            }
+          }
+      });
 
     $stateProvider
       .state('projects', {
