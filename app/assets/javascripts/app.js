@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angularMoment', 'Devise', 'angularModalService'])
+var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angularMoment', 'Devise'])
 
 
 .config(["AuthProvider", function(AuthProvider) {
