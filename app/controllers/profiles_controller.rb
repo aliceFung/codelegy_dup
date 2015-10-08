@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
     # binding.pry
     if current_user == @user
       if @profile.update(whitelisted_profile_params)
-        render json: @profile.to_json(include: :profile_languages), status: 200
+        render json: @profile.to_json(include: [:profile_languages, :user]), status: 200
       else
         render nothing: true , status: 404
       end
@@ -19,7 +19,7 @@ class ProfilesController < ApplicationController
     @user = User.find(params[:user_id])
     @profile = @user.profile
     if @profile
-      render json: @profile.to_json(include: :profile_languages), status: 200
+      render json: @profile.to_json(include: [:profile_languages, :user]), status: 200
     else
       render nothing: true , status: 404
     end
