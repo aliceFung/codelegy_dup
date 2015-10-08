@@ -83,10 +83,21 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
           }
       })
 
-      .state('profiles.dashboard', {
+      .state('profiles.show', {
+        url: '/:userid',
+        templateUrl: 'templates/profiles/show.html'
+      })
+
+      .state('profiles.settings', {
+        url: '/settings',
+        templateUrl: 'templates/profiles/settings.html'
+      });
+
+    $stateProvider
+      .state('dashboard', {
           url: '/dashboard',
-          templateUrl: 'templates/profiles/dashboard.html',
-          controller: 'dashboardCtrl',
+          // templateUrl: 'templates/profiles/dashboard.html',
+          // controller: 'dashboardCtrl',
           resolve: {
             profileInfo: [ 'Restangular', 'Auth', function(Restangular, Auth){
               return Auth.currentUser().then(function(user){
@@ -98,19 +109,29 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular', 'Devise
                 });
               });
             }]
+          },
+          views: {
+            'navbar': {
+              templateUrl: 'templates/header-1.html',
+              controller: 'sessionCtrl'
+            },
+            'profile': {
+              templateUrl: 'templates/dashboard/profile.html'
+            },
+            'projects': {
+              templateUrl: 'templates/dashboard/projects.html'
+            },
+            'advert': {
+              templateUrl: 'templates/dashboard/sales.html'
+            },
+            'suggestions': {
+              templateUrl: 'templates/dashboard/suggestions.html'
+            },
+            '': {
+              templateUrl: 'templates/dashboard/layout.html'
+            },
           }
       })
-
-      .state('profiles.show', {
-        url: '/:id',
-        templateUrl: 'templates/profiles/show.html'
-      })
-
-      .state('profiles.settings', {
-        url: '/settings',
-        templateUrl: 'templates/profiles/settings.html'
-      });
-
 
     $stateProvider
       .state('projects', {
