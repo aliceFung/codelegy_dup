@@ -35,29 +35,6 @@ class User < ActiveRecord::Base
     self.memberships.where('participant_type = ?', 'member')
   end
 
-  # returns a collection of group emails from participating projects
-  def group_emails
-    emails=[]
-    project_member_in.each do |project|
-      emails.push(project.group_emails)
-    end
-  end
-
-  # returns a collection of emails to project owner
-  def project_owner_emails
-    emails=[]
-    projects_owned.each do |project|
-      emails.push(project.group_emails)
-    end
-  end
-
-  #gathers all self emails
-  def all_user_emails
-    # sent = self.sent_emails
-    received = project_owner_emails + group_emails
-    # binding.pry
-  end
-
   #get user email message details from Mailboxer Conversation obj
   def get_emails(box_type)
     #query for message
@@ -71,8 +48,6 @@ class User < ActiveRecord::Base
               body: c.body}
         end
   end
-  # conversation_id: c.conversation_id #Mailboxer::Conversation.find(3)
-  # message_id: c.id # Mailboxer::Message.find(3)
 
   def mailboxer_email
     self.email
