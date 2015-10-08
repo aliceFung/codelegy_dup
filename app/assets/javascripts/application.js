@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require moment
 //= require angular
 //= require angular-devise
+//= require angular-moment
 //= require ui-router
 //= require angular-animate
 //= require lodash
