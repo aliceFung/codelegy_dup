@@ -63,7 +63,24 @@ class User < ActiveRecord::Base
 
     # thing = { project_membership: project_membership,
     #           project_ownership: project_ownership}
-    self.projects
+    list = self.projects.includes(:difficulty, :languages, :memberships => :user)
+
+    list.map do |proj|
+      obj = { id: proj.id,
+        title: proj.title,
+        availability: proj.availability,
+        difficulty:   proj.difficulty,
+        owner?: proj.owner == self,
+        languages: proj.languages,
+      }
+      if obj[:owner?]
+        obj[:memberships] = proj.memberships.map do |m|
+          {id: m.id, participant_type: m.participant_type, user: m.user.username}
+        end
+      end
+      obj
+    end
+
   end
 
   #get user email message details from Mailboxer Conversation obj

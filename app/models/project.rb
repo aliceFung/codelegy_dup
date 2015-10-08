@@ -23,4 +23,8 @@ class Project < ActiveRecord::Base
     self.emails.where('to_everyone = ?', true)
   end
 
+  def mem
+
+  end
+
 end

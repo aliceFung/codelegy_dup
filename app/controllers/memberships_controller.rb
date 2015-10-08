@@ -6,8 +6,9 @@ class MembershipsController < ApplicationController
   def index
     @membership_projects = current_user.project_dashboard_membership
     respond_to do |format|
-      format.json {render json: @membership_projects,
-              methods: [:difficulty_name, :owner, :languages, :memberships, :members]}
+      format.json {render json: @membership_projects #,
+              # methods: [:difficulty_name, :owner, :languages, :memberships, :members]
+            }
     end
   end
 
