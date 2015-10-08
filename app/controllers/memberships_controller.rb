@@ -1,6 +1,6 @@
 class MembershipsController < ApplicationController
 
-  before_action :get_project_owner, only: [:update]
+  before_action :get_project_owner, only: [:create, :update]
   before_action :require_project_owner, only: [:update]
 
   def index
@@ -15,7 +15,6 @@ class MembershipsController < ApplicationController
   def create
     @membership = Membership.new(params_list)
     @membership.user_id = current_user.id
-    # binding.pry
     respond_to do |format|
       if @membership.save
         Email.membership_history(params["content"], @membership)
@@ -37,7 +36,6 @@ class MembershipsController < ApplicationController
   def update
     @membership = Membership.find(params["id"])
     membership_status = @membership.participant_type
-    # binding.pry
     respond_to do |format|
       if @membership.update(params_list)
         send_notification(membership_status, params_list["participant_type"])
@@ -82,7 +80,6 @@ class MembershipsController < ApplicationController
         format.json {render json: {errors: ["Project Not Found."]}, status: 404}
       end
     end
-
   end
 
   # only allows project owner to modify memberships
