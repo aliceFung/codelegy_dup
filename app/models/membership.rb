@@ -8,7 +8,7 @@ class Membership < ActiveRecord::Base
   validates :project, presence: true
 
   def send_delayed_request_email
-    Membership.delay.send_request_email(self.user_id, self.project_id)
+    Membership.send_request_email(self.user_id, self.project_id)
   end
 
   def self.send_request_email(user_id, project_id)
