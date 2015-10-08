@@ -1,4 +1,4 @@
-<ui-view>
+
 <hr><hr>
 
 <main>
@@ -11,35 +11,41 @@
 
       <div class="clearfix"></div>
     </div>
-    <div  ng-repeat="project in list.projectList.projects">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="media media-clearfix-xs-min">
+    <div ng-class="{row: ($index%3 == 2)}" ng-repeat="project in list.projectList.projects | orderBy:'-created_at': false">
+      <div class='col-sm-12'>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h4>{{project.title}}</h4>
+            <hr>
+            <h5>{{project['owner?'] ? "Project Owner" : "Project Member"}} </h5>
+            <p class="small text-muted">
+              <div ng-hide="moreThan24HrsAgo(project.created_at)">
+                <i class="fa fa-clock-o fa-fw"></i>
+                <time am-time-ago="project.created_at"></time>
+              </div>
+              <div ng-show="moreThan24HrsAgo(project.created_at)">
+                <i class="fa fa-calendar fa-fw"></i>
+                <time title="{{ project.created_at | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{ project.created_at | amCalendar }}</time>
+              </div>
+            </p>
+            <strong>Est. Difficulty:</strong>{{project.difficulty_name}} <br>
+            <strong>Times:</strong> {{project.availability}} <br>
+            <strong>Languages:</strong>
+            <img ng-repeat="lang in project.languages" src="{{lang.url}}" alt="{{lang.name}}"
+            style="width:20px;margin:5px"> <br>
 
-            <div class="media-body">
-              <h3 class="media-heading h4">{{project.title}}</h3>
-              <h4>{{project['owner?'] ? "Project Owner" : "Project Member"}} </h4>
-              <!-- ? "Project Owner" : "Project Member" -->
-              <p class="small text-muted">
-                <i class="fa fa-clock-o fa-fw"></i> <time am-time-ago="project.created_at"></time>
-                <i class="fa fa-user fa-fw"></i> user here?
-                <i class="fa fa-calendar fa-fw"></i> <time title="{{ project.created_at | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{ project.created_at | amCalendar }}</time>
-              </p>
+            <button ng-show='project["owner?"]' ng-click="manageMembers(project)">
+              {{project.pending_member_count ? (project.pending_member_count + 'Pending ') : 'Manage '}}
+              Membership
+            </button>
 
-              <p>{{project.description}}{{project}}</p>
-              <!-- <span class="label bg-gray-dark">New</span> -->
-              <span class="label label-primary">WordPress</span>
-              <span class="label label-warning">{{project.difficulty_name}}</span>
-              <button ng-show='project["owner?"]' ng-click="manageMembers($index)">
-                {{project.pending_member_count ? (project.pending_member_count + 'Pending ') : 'Manage '}}
-                Membership
-              </button>
-            </div>
           </div>
         </div>
-
       </div>
+
+
     </div>
   </div>
 </main>
-</ui-view>
+
+

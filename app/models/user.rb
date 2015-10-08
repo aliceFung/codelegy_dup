@@ -51,9 +51,10 @@ class User < ActiveRecord::Base
       obj = { id:           proj.id,
               title:        proj.title,
               availability: proj.availability,
-              difficulty:   proj.difficulty,
+              difficulty_name:   proj.difficulty_name,
               owner?:       proj.owner == self,
               languages:    proj.languages,
+              created_at:   proj.created_at
             }
 
       if obj[:owner?]
