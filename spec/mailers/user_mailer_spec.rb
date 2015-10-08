@@ -30,7 +30,7 @@ RSpec.describe UserMailer, type: :mailer do
       end
 
       it 'should send the email with the proper subject' do
-        expect(mail.subject).to eq("#{requester.email} wants to join #{@project.title}")
+        expect(mail.subject).to eq("#{requester.username} wants to join #{@project.title}!")
       end
     end
   end
