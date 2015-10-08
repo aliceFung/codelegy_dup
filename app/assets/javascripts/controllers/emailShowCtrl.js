@@ -8,7 +8,12 @@ app.controller('emailShowCtrl', ['$scope', 'emailService', 'Restangular', '$stat
   $scope.message = $scope.inbox[$stateParams.id];
 
   $scope.deleteMessage = function(){
-
+    Restangular.one('mailbox', $scope.message.id).remove().then(
+      function(){
+        console.log('delete msg success');
+        $scope.inbox.splice($stateParams.id, 1);
+      }, function(error){ console.log(error); }
+    );
   };
 
 }]);

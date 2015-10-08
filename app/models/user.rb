@@ -82,8 +82,10 @@ class User < ActiveRecord::Base
             { date: c.created_at,
               subject: c.subject,
               sender_username: c.sender.username,
-              body: c.body}
-        end
+              body: c.body,
+              id: c.id
+            }
+        end # array of messages
   end
 
   def mailboxer_email

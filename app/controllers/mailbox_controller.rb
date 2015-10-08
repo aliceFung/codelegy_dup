@@ -11,6 +11,11 @@ class MailboxController < ApplicationController
     end
   end
 
+  def destroy
+    @conversation = @mailbox.conversations.find(params[:id])
+    @conversation.move_to_trash(current_user)
+  end
+
   private
 
   def get_mailbox
