@@ -31,7 +31,7 @@
             <strong>Est. Difficulty: </strong>{{project.difficulty_name}} <br>
             <strong>Times:</strong> {{project.availability}} <br>
             <strong>Languages:</strong>
-            <img ng-repeat="lang in project.languages" src="{{lang.url}}" alt="{{lang.name}}"
+            <img ng-repeat="lang in project.languages" ng-src="{{lang.url}}" alt="{{lang.name}}"
             style="width:20px;margin:5px"> <br>
 
             <button ng-show='project["owner?"]' data-toggle="modal" data-target="#myModal{{project.id}}">
