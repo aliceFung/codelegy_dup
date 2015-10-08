@@ -18,6 +18,6 @@
 //= require angular-animate
 //= require lodash
 //= require restangular
-
+//= require angular-modal-service
 
 //= require_tree .

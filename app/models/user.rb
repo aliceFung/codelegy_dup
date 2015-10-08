@@ -62,6 +62,7 @@ class User < ActiveRecord::Base
             user: m.user.username,
             participant_type: m.participant_type }
         end
+        obj[:pending_member_count] = proj.memberships.where("participant_type = ?", 'pending').length
       end
 
       obj
