@@ -4,18 +4,8 @@ class UserMailer < ApplicationMailer
   def request_membership(user, project)
     @user = user
     @project = project
-    p("========================================================+++++==========")
-    p("========================================================+++++==========")
-    p("========================================================+++++==========")
-
-    p(@user)
-    p(@project)
-
-    p("========================================================+++++==========")
-    p("========================================================+++++==========")
-    p("========================================================+++++==========")
-
-    mail(to: @project.owner.email, subject: "#{@user.email} wants to join #{@project.title}")
+    p(@user, @project)
+    mail(to: "miosicla@fakeinbox.com", subject: "#{@user} wants to join #{@project}")
   end
 
   # Simple way to test production mailing. Remove once in production.
