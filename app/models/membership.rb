@@ -17,4 +17,8 @@ class Membership < ActiveRecord::Base
     p(user, project)
     UserMailer.request_membership(user, project).deliver_now! if user && project
   end
+
+  # def self.membership_list(user)
+
+  # end
 end
