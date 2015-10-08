@@ -21,10 +21,10 @@ app.factory('Session', ['Auth', '$state', 'Restangular', function(Auth, $state, 
 
   }
 
-  function signInWithGithub() {
-    console.log('sign in with github');
-    Restangular.all('users').customGET('auth/github', {}, { 'Access-Control-Allow-Origin': 'http://localhost:3000' });
-  }
+  // function signInWithGithub() {
+  //   console.log('sign in with github');
+  //   Restangular.all('users').customGET('auth/github', {}, { 'Access-Control-Allow-Origin': 'http://localhost:3000' });
+  // }
 
   function signOut () {
     var config = {
@@ -47,7 +47,6 @@ app.factory('Session', ['Auth', '$state', 'Restangular', function(Auth, $state, 
     authenticated: authenticated,
     currentUser: currentUser,
     signIn: signIn,
-    signInWithGithub: signInWithGithub,
     signOut: signOut
   };
 }]);
