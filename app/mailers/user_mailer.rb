@@ -4,8 +4,6 @@ class UserMailer < ApplicationMailer
   def request_membership(user, project)
     @user = user
     @project = project
-    p(@project.memberships)
-    p @project.owner
     mail(to: @project.owner.email, subject: "#{@user.username} wants to join #{@project.title}!")
   end
 
