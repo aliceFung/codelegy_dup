@@ -30,6 +30,7 @@ RSpec.describe ProjectsController, type: :controller do
 
     it 'should work even if the user is not signed in' do
       sign_out(user)
+      get :index
       expect(JSON.parse(response.body).first['title']).to eql('myProject')
     end
   end
