@@ -41,6 +41,11 @@ class User < ActiveRecord::Base
     self.memberships.includes(:project => :languages).where('participant_type = ?', 'member')
   end
 
+  # returns an array, not an Active Record Object, of projects user is active in (owner or member)
+  def participating_projects
+    projects_owned + project_member_of
+  end
+
   # returns all participating projects with limited associated info
   def project_dashboard_membership
     list = self.projects.includes(:difficulty, :languages, :memberships => :user)
