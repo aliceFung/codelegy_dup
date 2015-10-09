@@ -16,7 +16,7 @@ html = Language.find_or_create_by(name: 'HTML', url: '/logos/html.png')
   html.suggestions.create(title: "Learn to Code HTML & CSS", difficulty_id: beginner.id, url: 'http://learn.shayhowe.com/html-css/' )
   html.suggestions.create(title: "Learn to Code Advanced HTML & CSS", difficulty_id: advanced.id, url: 'http://learn.shayhowe.com/advanced-html-css/' )
 
-ruby =Language.find_or_create_by(name: 'Ruby', url: '/logos/ruby.jpg')
+ruby = Language.find_or_create_by(name: 'Ruby', url: '/logos/ruby.jpg')
   ruby.suggestions.create(title: "Ruby Primer", difficulty_id: beginner.id, url: 'https://rubymonk.com/learning/books/1-ruby-primer')
   ruby.suggestions.create(title: "Ruby Primer Ascent", difficulty_id: intermediate.id, url: 'https://rubymonk.com/learning/books/4-ruby-primer')
   ruby.suggestions.create(title: "Learn Ruby The Hard Way", difficulty_id: beginner.id, url: 'http://learnrubythehardway.org/')
@@ -44,38 +44,37 @@ Language.find_or_create_by(name: 'C', url: '/logos/c.png')
 
 Language.find_or_create_by(name: 'PHP', url: '/logos/php.png')
 
+# 250.times do |i|
+#   user = User.create(email: "foo#{i}@bar.com", password: '12345678')
 
-250.times do |i|
-  user = User.create(email: "foo#{i}@bar.com", password: '12345678')
+#   p "created #{i+1} users" if i % 20 == 0
+# end
 
-  p "created #{i+1} users" if i % 20 == 1
-end
+# p "Created Users"
 
-p "Created Users"
+# 1000.times do |i|
+#   p = Project.create(title: "my #{i}th project", difficulty_id: rand(4)+1,
+#                  availability: 'weekends')
 
-1000.times do |i|
-  p = Project.create(title: "my #{i}th project", difficulty_id: rand(4)+1,
-                 availability: 'weekends')
+#   owner_id = rand(250)+1
 
-  owner_id = rand(250)+1
+#   member_id = 0
 
-  member_id = 0
+#   loop do
+#     member_id = rand(250)+1
+#     break if member_id != owner_id
+#   end
 
-  loop do
-    member_id = rand(250)+1
-    break if member_id != owner_id
-  end
+#   p.memberships.create(user_id: owner_id, participant_type: "owner")
+#   p.memberships.create(user_id: member_id, participant_type: "member")
 
-  p.memberships.create(user_id: owner_id, participant_type: "owner")
-  p.memberships.create(user_id: member_id, participant_type: "member")
+#   ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
+#   ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
+#   ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
+#   ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
 
-  ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
-  ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
-  ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
-  ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
-
-  p "created #{i+1} projects" if i % 50 == 1
-end
+#   p "created #{i+1} projects" if i % 50 == 0
+# end
 
 p "Done"
 # Membership.first.update(participant_type: 'owner')
