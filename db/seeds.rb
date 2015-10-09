@@ -1,15 +1,15 @@
 User.destroy_all
 Language.destroy_all
-Difficulty.destroy_all
+# Difficulty.destroy_all
 Project.destroy_all
 Membership.destroy_all
 ProfileLanguage.destroy_all
 # Email.destroy_all
 
-beginner = Difficulty.create(name: 'Beginnger')
-intermediate = Difficulty.create(name: 'Intermediate')
-advanced = Difficulty.create(name: 'Advanced')
-expert = Difficulty.create(name: 'Expert')
+beginner = Difficulty.find_or_create_by(name: 'Beginner')
+intermediate = Difficulty.find_or_create_by(name: 'Intermediate')
+advanced = Difficulty.find_or_create_by(name: 'Advanced')
+expert = Difficulty.find_or_create_by(name: 'Expert')
 
 html = Language.create(name: 'HTML', url: '/logos/html.png')
   html.suggestions.create(title: "Learn to Code HTML & CSS", difficulty_id: beginner.id, url: 'http://learn.shayhowe.com/html-css/' )
