@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   has_one :profile, dependent: :destroy
   has_many :memberships
   has_many :projects, through: :memberships
-  has_many :project_emails, through: :projects, source: :emails
-  has_many :sent_emails, class_name: "Email"
+  # has_many :project_emails, through: :projects, source: :emails
+  # has_many :sent_emails, class_name: "Email"
 
   after_create :create_profile
 
@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
 
       obj = { id:           proj.id,
               title:        proj.title,
+              description:  proj.description,
               availability: proj.availability,
               difficulty_name:   proj.difficulty_name,
               owner?:       proj.owner == self,

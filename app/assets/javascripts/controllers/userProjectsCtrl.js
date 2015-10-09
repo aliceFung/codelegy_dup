@@ -21,12 +21,25 @@ app.controller("userProjectsCtrl", ['$scope', '$state', 'UserProjectService', 'R
     membershipObj.participant_type = accept ? 'member' : 'rejected';
     membershipObj.put().then( function(result){
       console.log(result);
-        debugger;
+        // debugger;
       if (membership.participant_type == 'pending'){
         project.pending_member_count--;
-      };
+      }
       membership.participant_type = result.participant_type;
     } );
+  };
+
+  //can move method to emailService
+  $scope.sendMessage = function(project_id){
+    var msg = { subject: $scope.msgSubject,
+                body: $scope.msgBody,
+                project_id: project_id};
+    debugger;
+    Restangular.all('mailbox').post(msg).then(function(result){
+      console.log('success', result);
+    }, function(error){
+      console.log('error', error);
+    });
   };
 
 

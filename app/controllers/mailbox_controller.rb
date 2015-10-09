@@ -14,25 +14,22 @@ class MailboxController < ApplicationController
   def create
     recipients =
       if params[:project_id]
-        current_user.projects.group_members
+        project = current_user.projects.find(params[:project_id])
+        project.group_members
       elsif params[:user_id]
         User.find(params[:user_id])
-      else
-        []
       end
 
-    receipt = current_user.send_message(recipients, params[:body], params[:subject])
-
-    @message = {  date: receipt.message.created_at,
-                  subject: receipt.message.subject,
-                  sender_username: receipt.message.sender.username,
-                  body: receipt.message.body,
-                  id: receipt.message.id }
-
+        binding.pry
     respond_to do |format|
-      format.json {head :ok}
+      if recipients && recipients.any?
+        current_user.send_message(recipients, params[:body], params[:subject])
+        format.json {head :ok}
+      else
+        format.json {render json: {errors:
+                        ["Recipient(s) Not Found."]}, status: 404}
+      end
     end
-
   end
 
   def destroy
@@ -42,9 +39,9 @@ class MailboxController < ApplicationController
 
   private
 
-  def receipt_for_sent_message
-
-  end
+  # def message_contents
+  #   params.require(:message).permit(:body, :subject, :to)
+  # end
 
   def get_mailbox
     @mailbox ||= current_user.mailbox
