@@ -90,12 +90,12 @@ set :delayed_job_workers, 1
 # String to be prefixed to worker process names
 # This feature allows a prefix name to be placed in front of the process.
 # For example:  reports/delayed_job.0  instead of just delayed_job.0
-set :delayed_job_prefix, :reports
+# set :delayed_job_prefix, :reports
 
 # Delayed_job queue or queues
 # Set the --queue or --queues option to work from a particular queue.
 # default value: nil
-set :delayed_job_queues, ['mailer']
+# set :delayed_job_queues, ['mailer']
 
 # Specify different pools
 # You can use this option multiple times to start different numbers of workers for different queues.

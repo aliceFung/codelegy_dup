@@ -30,7 +30,7 @@
 <div class="row">
   <div class="col-sm-3"><h2>Projects</h2></div>
   <div class="col-sm-4 col-sm-offset-3">
-    <button ui-sref="projects.new"
+    <button ng-show="signedIn" ui-sref="projects.new"
     class="btn btn-primary pull-right">New Project</button>
 
   </div>
@@ -75,7 +75,7 @@
         <strong>Languages:</strong>
         <img ng-repeat="lang in project.languages" ng-src="{{lang.url}}" alt="{{lang.name}}"
         style="width:20px;margin:5px"> <br>
-        <a ui-sref="projects.join({id: project.id})">Code Together</a>
+        <a ng-show="signedIn" ui-sref="projects.join({id: project.id})">Code Together</a>
       </div>
     </div>
   </div>
