@@ -13,7 +13,7 @@ app.factory('Session', ['Auth', '$state', 'Restangular', function(Auth, $state, 
       console.log('Signed In');
       currentUser.user = user;
       authenticated.status = true;
-      $state.go('home');
+      $state.go('dashboard');
     }, function(error){
       console.log('Sign In Failed:', error);
       authenticated.status = false;
