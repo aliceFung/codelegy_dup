@@ -12,17 +12,14 @@
 
       <div class="col-md-12">
 
-        <div class="row" ng-if="!inbox.length">
-          <div class="col-sm-12">
+          <div ng-if="!inbox.length">
             <p>Looks like you don't have any messages yet!</p>
             <p>Join a
               <a ui-sref="projects">Project</a>
               to start messaging
               <a ui-sref="projectsList">your group members</a>.</p>
-            </div>
           </div>
 
-          <hr>
           <div ng-repeat="email in inbox">
 
             <div ui-sref = "email({'id': email.id})">
