@@ -75,7 +75,7 @@
         <strong>Languages:</strong>
         <img ng-repeat="lang in project.languages" ng-src="{{lang.url}}" alt="{{lang.name}}"
         style="width:20px;margin:5px"> <br>
-        <a ui-sref="projects.join({id: project.id})">Code Together</a>
+        <a ng-show="signedIn" ui-sref="projects.join({id: project.id})">Code Together</a>
       </div>
     </div>
   </div>
