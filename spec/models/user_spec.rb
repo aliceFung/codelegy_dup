@@ -19,8 +19,8 @@ RSpec.describe User, type: :model do
       expect(user).to respond_to(:projects)
     end
 
-    it 'should respond to sent_emails' do
-      expect(user).to respond_to(:sent_emails)
+    it 'should respond to mailbox' do
+      expect(user).to respond_to(:mailbox)
     end
 
     specify 'profile should be destroyed with user' do

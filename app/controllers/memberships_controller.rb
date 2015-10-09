@@ -15,7 +15,7 @@ class MembershipsController < ApplicationController
     @membership.user_id = current_user.id
     respond_to do |format|
       if @membership.save
-        Email.membership_history(params["content"], @membership)
+        # Email.membership_history(params["content"], @membership)
         current_user.send_message(@project_owner, "User #{current_user.username} would like to join your project!", "User #{current_user.username} would like to join your project!")
         format.json {render json: @membership}
       else
