@@ -1,9 +1,8 @@
-app.controller("userProjectsCtrl", ['$scope', '$state', 'UserProjectService', 'Restangular',
-  function($scope, $state, UserProjectService, Restangular){
+app.controller("userProjectsCtrl", ['$scope', '$state', 'userProjectService', 'Restangular',
+  function($scope, $state, userProjectService, Restangular){
 
-  console.log('userProjectsCtrl');
   $scope.list = {};
-  $scope.list.projectList = UserProjectService.projectList;
+  $scope.list.projectList = userProjectService.projectList;
 
   var getRectangularObj = function(membership_id){
     return Restangular.one('memberships', membership_id);
@@ -13,7 +12,7 @@ app.controller("userProjectsCtrl", ['$scope', '$state', 'UserProjectService', 'R
     var membershipObj = getRectangularObj(membership.id);
     membershipObj.participant_type = accept ? 'member' : 'rejected';
     membershipObj.put().then( function(result){
-      console.log(result);
+      // console.log(result);
       if (membership.participant_type == 'pending'){
         project.pending_member_count--;
       }
@@ -27,12 +26,10 @@ app.controller("userProjectsCtrl", ['$scope', '$state', 'UserProjectService', 'R
                 body: msgBody,
                 project_id: project_id};
     Restangular.all('mailbox').post(msg).then(function(result){
-      console.log('success', result);
+      // console.log('success', result);
     }, function(error){
-      console.log('error', error);
+      // console.log('error', error);
     });
   };
-
-
 
 }]);

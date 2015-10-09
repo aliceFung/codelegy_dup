@@ -228,11 +228,6 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
         url: '/:id/join',
         controller: 'membershipCtrl',
         templateUrl: 'templates/projects/participation-request.html'
-        // views: {
-        //   "": {
-        //     controller: 'membershipCtrl',
-        //     templateUrl: 'templates/projects/participation-request.html'
-        //   }}
       })
 
       //projects dashboard
@@ -282,13 +277,6 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
           }
         }
       })
-
-      // compose new email
-      // .state('inbox.new', {
-      //   url: '/new',
-      //   controller: 'emailCtrl',
-      //   templateUrl: 'templates/mailbox/compose.html'
-      // })
 
   }]);
 
