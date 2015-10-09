@@ -1,23 +1,39 @@
 <main>
-  <div class="row">
+  <br>
 
-    <div class="col-md-12">
+  <div class="container-fluid">
 
-        <h2>Inbox
-          <!-- <button class='btn btn-info pull-right'>Compose</button> -->
-        </h2>
+    <div class="page-header">
+      <h1 class="h3 pull-left margin-none">Inbox</h1>
+      <!-- <button class='btn btn-info pull-right'>Compose</button> -->
+      <div class="clearfix"></div>
+    </div>
+    <div class="row">
 
-        <hr>
-        <div ng-repeat="email in inbox">
+      <div class="col-md-12">
 
-          <div ui-sref = "email({'id': email.id})">
-            <h5>From: {{email.sender_username}} at {{email.date | date}}</h5>
-            <h4>{{email.subject}}</h4>
+        <div class="row" ng-if="!inbox.length">
+          <div class="col-sm-12">
+            <p>Looks like you don't have any messages yet!</p>
+            <p>Join a
+              <a ui-sref="projects">Project</a>
+              to start messaging
+              <a ui-sref="projectsList">your group members</a>.</p>
+            </div>
           </div>
+
           <hr>
+          <div ng-repeat="email in inbox">
+
+            <div ui-sref = "email({'id': email.id})">
+              <h5>From: {{email.sender_username}} at {{email.date | date}}</h5>
+              <h4>{{email.subject}}</h4>
+            </div>
+            <hr>
+          </div>
+
         </div>
+      </div>
 
     </div>
-
-  </div>
-</main>
+  </main>

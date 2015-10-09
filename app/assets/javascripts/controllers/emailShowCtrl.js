@@ -1,7 +1,7 @@
 app.controller('emailShowCtrl', ['$scope', 'emailService', 'Restangular', '$stateParams',
   function($scope, emailService, Restangular, $stateParams) {
 
-  console.log('emailShowCtrl initiated');
+  // console.log('emailShowCtrl initiated');
 
   $scope.inbox = emailService.inbox;
 
@@ -19,9 +19,11 @@ app.controller('emailShowCtrl', ['$scope', 'emailService', 'Restangular', '$stat
   $scope.deleteMessage = function(){
     Restangular.one('mailbox', $scope.message.id).remove().then(
       function(){
-        console.log('delete msg success');
+        // console.log('delete msg success');
         $scope.inbox.splice(emailIndex, 1);
-      }, function(error){ console.log(error); }
+      }, function(error){
+        // console.log(error);
+      }
     );
   };
 
