@@ -8,6 +8,11 @@ app.controller("userProjectsCtrl", ['$scope', '$state', 'userProjectService', 'R
     return Restangular.one('memberships', membership_id);
   };
 
+  // $scope.resetFields = function(msgSubj, msgBody){
+  //   msgSubj = "";
+  //   msgBody = "";
+  // };
+
   $scope.changeMembership = function(membership, project, accept){
     var membershipObj = getRectangularObj(membership.id);
     membershipObj.participant_type = accept ? 'member' : 'rejected';
