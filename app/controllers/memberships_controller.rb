@@ -13,9 +13,10 @@ class MembershipsController < ApplicationController
   def create
     @membership = Membership.new(params_list)
     @membership.user_id = current_user.id
+    @message = params["content"] || params[:content] || "User #{current_user.username} would like to join your project!"
     respond_to do |format|
       if @membership.save
-        current_user.send_message(@project_owner, "User #{current_user.username} would like to join your project!", "User #{current_user.username} would like to join your project: #{@membership.project.title}!")
+        current_user.send_message(@project_owner, @message, "User #{current_user.username} would like to join your project: '#{@membership.project.title}!'")
         format.json {render json: @membership}
       else
         format.json {render json: {errors: ["There was an error with your request. Please try again."]}, status: 522}

@@ -36,6 +36,12 @@ RSpec.describe Membership, type: :model do
     }.to change(Delayed::Job, :count).by(1)
   end
 
+  it 'should not create delayed job email if owner membership generated' do
+    expect{
+      create(:membership, project: project, participant_type: 'owner')
+    }.to change(Delayed::Job, :count).by(0)
+  end
+
   it "sends creates a delayed job email after creation" do
     expect { create(:membership, project: project) }.to change(Delayed::Job, :count).by(1)
   end
