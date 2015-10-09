@@ -7,7 +7,9 @@ app.controller('emailShowCtrl', ['$scope', 'emailService', 'Restangular', '$stat
 
   var findEmailIndex = function(){
     for(var i=0; i < $scope.inbox.length; i++){
-      return i if $scope.inbox[i].id == $stateParams.id;
+      if ($scope.inbox[i].id == $stateParams.id){
+        return i;
+      };
     }
   };
 
