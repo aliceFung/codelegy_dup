@@ -62,7 +62,7 @@ app.factory('SignUp',
       }
     }, function(error){
       console.log(error)
-      alert("fail to update")
+      alert('Update failed: ' + '\n' + printErrors(error.data.errors));
     });
   }
 
