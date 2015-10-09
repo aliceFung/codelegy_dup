@@ -49,6 +49,9 @@ a = Project.create(title: 'my first project', difficulty_id: 2,
                availability: 'weekends')
 b = Project.create(title: 'another project', difficulty_id: 3,
                availability: 'weeknights')
+c = Project.create(title: 'something', difficulty_id: 4,
+                              availability: 'mon-fri')
+
 
 ProjectLanguage.create(project_id: a.id, language_id: 1)
 ProjectLanguage.create(project_id: a.id, language_id: 2)
@@ -57,6 +60,9 @@ ProjectLanguage.create(project_id: a.id, language_id: 4)
 
 ProjectLanguage.create(project_id: b.id, language_id: 4)
 ProjectLanguage.create(project_id: b.id, language_id: 5)
+
+ProjectLanguage.create(project_id: c.id, language_id: 6)
+ProjectLanguage.create(project_id: c.id, language_id: 10)
 
 
 
