@@ -2,12 +2,15 @@
 
 <!-- Profile info -->
 <div class="panel panel-default panel-profile m-b-md">
-  <div class="panel-heading" style="background-image: url(assets/iceland.jpg);">
+
+  <div  class="panel-heading"
+        style="background-image: url(assets/iceland.jpg);">
   </div>
+
   <div class="panel-body text-center">
+
     <a href="profile/index.html">
-      <img
-        class="panel-profile-img"
+      <img class="panel-profile-img"
         src="assets/avatar-dhg.png">
     </a>
 
@@ -50,12 +53,9 @@
             </span>
           </div>
 
-        </div>
-      </div>
-
-
-
-    </div>
+        </div> <!-- end of row -->
+      </div> <!-- end of panel-title -->
+    </div> <!-- end of div m-b-md -->
 
     <ul class="panel-menu">
       <li class="panel-menu-item">
@@ -72,59 +72,63 @@
         </a>
       </li>
     </ul>
-  </div>
-</div>
+
+  </div> <!-- End of Panel body -->
+</div> <!-- End of Profile info -->
 
 <!-- Availability -->
 <div class="panel panel-default visible-md-block visible-lg-block">
 
-<div class="panel-body">
+  <div class="panel-body">
 
     <h5 class="m-t-0">
       Availability
     </h5>
 
-  <div class="panel-title text-center"
+    <div  class="panel-title text-center"
           ng-hide='updateFieldForAvailability'
           ng-click='updateFieldForAvailability = !updateFieldForAvailability'>
           {{information.availability || "Add a note"}}
-      </div>
+    </div>
 
-      <div class="panel-title text-center"
-            ng-show='updateFieldForAvailability'>
-        <div class='row'>
+    <div class="panel-title text-center"
+          ng-show='updateFieldForAvailability'>
+      <div class='row'>
 
-          <div class='col-sm-8'>
-            <input  type='text'
-                    id='updatedAvailability'
-                    ng-model='profileUpdates.availability'
-                    ng-value='information.availability'
-                    placeholder="{{information.availability}}">
-          </div>
-
-          <div class='col-sm-2'>
-            <span class="glyphicon glyphicon-remove"
-                  aria-hidden="true"
-                  ng-click='updateFieldForAvailability = false'>
-            </span>
-          </div>
-
-          <div class='col-sm-2'>
-            <span class="glyphicon glyphicon-ok"
-                  aria-hidden="true"
-                  ng-click='update(); updateFieldForAvailability = false'>
-            </span>
-          </div>
-
+        <div class='col-sm-8'>
+          <input  type='text'
+                  id='updatedAvailability'
+                  ng-model='profileUpdates.availability'
+                  ng-value='information.availability'
+                  placeholder="{{information.availability}}">
         </div>
-      </div>
-</div>
+
+        <div class='col-sm-2'>
+          <span class="glyphicon glyphicon-remove"
+                aria-hidden="true"
+                ng-click='updateFieldForAvailability = false'>
+          </span>
+        </div>
+
+        <div class='col-sm-2'>
+          <span class="glyphicon glyphicon-ok"
+                aria-hidden="true"
+                ng-click='update(); updateFieldForAvailability = false'>
+          </span>
+        </div>
+
+      </div> <!-- End of row -->
+    </div> <!-- End of panel-title -->
+  </div> <!-- End of panel body -->
+</div> <!-- End of Availability  -->
 
 
-</div>
+
+<!-- For each language create a directive and seperate update function as a result -->
+<!-- Then have a div below that allows additions -->
 
 <!-- Programming languages -->
- <div class="panel panel-default visible-md-block visible-lg-block">
+<div class="panel panel-default visible-md-block visible-lg-block">
   <div class="panel-body">
     <h5 class="m-t-0">
       Programming Languages
@@ -132,18 +136,9 @@
         <a href="#">Edit</a>
       </small>
     </h5>
-    <div ng-repeat="pl in information.profile_languages" >
-    <div class="form-control"
-          ng-click="showEditPL[pl.language_id] = !showEditPL[pl.language_id]"
-          ng-show="!showEditPL[pl.language_id]"
-          style="border-style: none !important">
-          <img src="{{languages[pl.language_id-1].url}}"
-              style="width:20px;margin:5px">
-          {{expLevel[pl.difficulty_id]}}
+    <div dashboard-programming-language
+          ng-repeat="pl in information.profile_languages"
+          ng-model="profileUpdates.languages">
     </div>
-    <input  type="text"
-            class="form-control"
-            ng-show="showEditPL[pl.language_id]">
-  </div>
   </div>
 </div>

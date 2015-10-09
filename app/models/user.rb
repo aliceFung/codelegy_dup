@@ -21,11 +21,11 @@ class User < ActiveRecord::Base
       user.provider = auth.provider
       user.uid = auth.uid
       user.email = auth.info.email
+      user.username = auth.info.name
       user.password = Devise.friendly_token[0,20]
+      # profile.photo_url = auth.extra.raw_info.avatar_url
     end
   end
-
-
 
   # returns a collection of projects user is the owner of
   # eager loading to prevent n+1 queries
