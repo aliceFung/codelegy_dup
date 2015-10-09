@@ -61,12 +61,12 @@
             <div class="modal-body">
               <div class="row">
                 <div class="col-md-12">
-                  <input type="text" class="form-control" placeholder="subject" ng-model="msgSubject">
+                  <input type="text" class="form-control" placeholder="subject" ng-model="msgSubj">
                   <br>
                   <textarea class="form-control" placeholder="Write your message here" ng-model="msgBody"></textarea>
                   <br>
                   <button class="btn btn-success pull-right btn-sm"
-                  ng-click="sendMessage(project.id)"
+                  ng-click="sendMessage(project.id, msgSubj, msgBody)"
                   data-dismiss="modal" aria-label="Close"
                   >
                     Send

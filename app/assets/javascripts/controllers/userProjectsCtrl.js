@@ -30,11 +30,10 @@ app.controller("userProjectsCtrl", ['$scope', '$state', 'UserProjectService', 'R
   };
 
   //can move method to emailService
-  $scope.sendMessage = function(project_id){
-    var msg = { subject: $scope.msgSubject,
-                body: $scope.msgBody,
+  $scope.sendMessage = function(project_id, msgSubject, msgBody){
+    var msg = { subject: msgSubject,
+                body: msgBody,
                 project_id: project_id};
-    debugger;
     Restangular.all('mailbox').post(msg).then(function(result){
       console.log('success', result);
     }, function(error){
