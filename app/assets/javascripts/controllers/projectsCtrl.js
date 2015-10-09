@@ -1,4 +1,4 @@
-app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'api', 'Session', 'projects', 'languages',function($scope, $state, $filter, api, Session, projects, languages){
+app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'api', 'Session', 'projects', 'languages', function($scope, $state, $filter, api, Session, projects, languages){
 
     $scope.projects = projects
     $scope.langFilter = {};
@@ -135,7 +135,5 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'api', 'Session',
         $scope.langFilter.splice(idx, 1)
       }
     }
-
-   console.log(Date.now() - t_start)
 
 }])
