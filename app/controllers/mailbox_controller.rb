@@ -1,6 +1,6 @@
 class MailboxController < ApplicationController
 
-  before_action :get_mailbox
+  # before_action :get_mailbox
 
   def index
     @inbox_msgs = current_user.get_emails(:inbox)
@@ -42,7 +42,7 @@ class MailboxController < ApplicationController
   #   params.require(:message).permit(:body, :subject, :to)
   # end
 
-  def get_mailbox
-    @mailbox ||= current_user.mailbox
-  end
+  # def get_mailbox
+  #   @mailbox ||= current_user.mailbox
+  # end
 end

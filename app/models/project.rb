@@ -25,7 +25,9 @@ class Project < ActiveRecord::Base
 
 
   def group_members
-    User.joins(:memberships).joins(:projects).where("(memberships.participant_type = 'owner' OR memberships.participant_type = 'member') AND memberships.project_id = ?", self.id)
+    # User.joins(:memberships).joins(:projects).where("(memberships.participant_type = 'owner' OR memberships.participant_type = 'member') AND memberships.project_id = ?", self.id)
+    self.members.where('participant_type = ? OR participant_type = ?', 'owner', 'member')
   end
+
 
 end
