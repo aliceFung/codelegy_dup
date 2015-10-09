@@ -28,10 +28,7 @@ RSpec.describe ProjectsController, type: :controller do
       expect(JSON.parse(response.body).first['owner']['email']).to include('myemail@user', '.com')
     end
 
-    it 'should have language urls' do
-      binding.pry
-      expect(JSON.parse(response.body).first['owner']['email']).to include('myemail@user', '.com')
-    end
+    it 'should have language urls'
 
     it 'should work even if the user is not signed in' do
       sign_out(user)
