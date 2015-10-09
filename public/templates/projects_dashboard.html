@@ -11,6 +11,7 @@
 
       <div class="clearfix"></div>
     </div>
+
     <div class="row" ng-repeat="project in list.projectList.projects | orderBy:'-created_at': false">
       <div class='col-sm-12'>
         <div class="panel panel-default">
@@ -99,18 +100,20 @@
               </div>
 
 
-            </div>
-<!--             <div class="modal-footer">
+            </div> <!-- end modal body-->
+
+<!--        <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary">Save changes</button>
             </div> -->
+
           </div>
         </div>
-      </div>
+      </div><!-- end modal -->
 
-    </div>
+    </div><!-- end ng-repeat projects -->
 
-  </div>
+  </div><!-- end container -->
 
 
 </main>

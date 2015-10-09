@@ -5,4 +5,8 @@ app.controller('emailCtrl', ['$scope', 'emailService',
 
   $scope.inbox = emailService.inbox;
 
+  $scope.sendMessage = function(){
+
+  }
+
 }]);

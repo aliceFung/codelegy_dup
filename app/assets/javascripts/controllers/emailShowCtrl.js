@@ -5,13 +5,20 @@ app.controller('emailShowCtrl', ['$scope', 'emailService', 'Restangular', '$stat
 
   $scope.inbox = emailService.inbox;
 
-  $scope.message = $scope.inbox[$stateParams.id];
+  var findEmailIndex = function(){
+    for(var i=0; i < $scope.inbox.length; i++){
+      return i if $scope.inbox[i].id == $stateParams.id;
+    }
+  };
+
+  var emailIndex = findEmailIndex();
+  $scope.message = $scope.inbox[emailIndex];
 
   $scope.deleteMessage = function(){
     Restangular.one('mailbox', $scope.message.id).remove().then(
       function(){
         console.log('delete msg success');
-        $scope.inbox.splice($stateParams.id, 1);
+        $scope.inbox.splice(emailIndex, 1);
       }, function(error){ console.log(error); }
     );
   };

@@ -7,7 +7,7 @@
         <hr>
         <div ng-repeat="email in inbox">
 
-          <div ui-sref = "email({'id': $index})">
+          <div ui-sref = "email({'id': email.id})">
             <h5>From: {{email.sender_username}} at {{email.date | date}}</h5>
             <h4>{{email.subject}}</h4>
           </div>
