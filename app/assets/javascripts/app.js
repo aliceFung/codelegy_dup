@@ -99,13 +99,14 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
       })
 
       .state('profiles.show', {
-        url: '/:userid',
+        url: '/show/:userid',
         templateUrl: 'templates/profiles/show.html'
       })
 
       .state('profiles.settings', {
         url: '/settings',
-        templateUrl: 'templates/profiles/settings.html'
+        templateUrl: 'templates/profiles/settings.html', 
+        controller: 'accountSettingCtrl'
       });
 
 

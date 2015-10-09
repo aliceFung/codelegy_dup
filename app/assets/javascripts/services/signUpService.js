@@ -1,4 +1,9 @@
-app.factory('SignUp', ['Auth', '$state', 'Restangular', function(Auth, $state, Restangular){
+app.factory('SignUp', 
+  ['Auth', 
+   '$state', 
+   'Restangular', 
+   'Session', 
+   function(Auth, $state, Restangular, Session){
 
   var credentials = {};
 
@@ -36,9 +41,35 @@ app.factory('SignUp', ['Auth', '$state', 'Restangular', function(Auth, $state, R
     return result;
   }
 
+  function update(userInfo) {
+    Restangular.oneUrl('users', 'http://localhost:3000/users.json').customPUT({user: userInfo}).then(function(user){
+      if (userInfo.username) {
+        Session.currentUser.user.username = userInfo.username;
+      }
+      if (userInfo.email) {
+        Session.currentUser.user.email = userInfo.email;
+      }
+    }, function(error){
+      console.log(error)
+      alert("fail to update")
+    });
+  }
+
+  function cancelAccount() {
+    Restangular.oneUrl('users', 'http://localhost:3000/users.json').remove().then(function(){
+      Session.currentUser.user = null;
+      Session.authenticated.status = false;
+      $state.go('home');
+    }, function(error){
+      alert('Sorry, failed to delete your account, please try again later.')
+    })
+  }
+
   return {
     register: register,
-    credentials: credentials
+    credentials: credentials,
+    update: update,
+    cancelAccount: cancelAccount
   };
 
 }]);
