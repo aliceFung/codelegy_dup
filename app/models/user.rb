@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
   #get user email message details from Mailboxer Conversation obj
   def get_emails(box_type)
     #query for message
-    Mailboxer::Notification.where('id IN (?)',
+    Mailboxer::Notification.includes(:sender).where('id IN (?)',
       #create array of Conversations objs
       self.mailbox.send(box_type).inject([]){|acc, el| acc.push(el)})
         .map do |c|
@@ -97,10 +97,12 @@ class User < ActiveRecord::Base
         end # array of messages
   end
 
+  # mailboxer config
   def mailboxer_email
     self.email
   end
 
+  # mailboxer config
   def mailboxer_username
     self.username
   end

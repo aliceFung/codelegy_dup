@@ -56,13 +56,10 @@ RSpec.describe User, type: :model do
       mock_message = {date: Mailboxer::Message.last.created_at,
                       body: Mailboxer::Message.last.body,
                       subject: Mailboxer::Message.last.subject,
-                      sender_username: Mailboxer::Message.last.sender.username}
+                      sender_username: Mailboxer::Message.last.sender.username,
+                      id: Mailboxer::Message.last.id}
       msg = other_user.get_emails('inbox')[0]
-      # expect(other_user.get_emails('inbox')).to eq([mock_message])
-      expect(msg[:date]).to eq(mock_message[:date])
-      expect(msg[:body]).to eq(mock_message[:body])
-      expect(msg[:subject]).to eq(mock_message[:subject])
-      expect(msg[:sender_username]).to eq(mock_message[:sender_username])
+      expect(other_user.get_emails('inbox')).to eq([mock_message])
     end
   end
 
