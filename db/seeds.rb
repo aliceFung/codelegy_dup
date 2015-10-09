@@ -45,38 +45,37 @@ Language.find_or_create_by(name: 'C', url: '/logos/c.png')
 Language.find_or_create_by(name: 'PHP', url: '/logos/php.png')
 
 
-a = Project.create(title: 'my first project', difficulty_id: 2,
-               availability: 'weekends')
-b = Project.create(title: 'another project', difficulty_id: 3,
-               availability: 'weeknights')
-c = Project.create(title: 'something', difficulty_id: 4,
-                              availability: 'mon-fri')
-
-
-ProjectLanguage.create(project_id: a.id, language_id: 1)
-ProjectLanguage.create(project_id: a.id, language_id: 2)
-ProjectLanguage.create(project_id: a.id, language_id: 3)
-ProjectLanguage.create(project_id: a.id, language_id: 4)
-
-ProjectLanguage.create(project_id: b.id, language_id: 4)
-ProjectLanguage.create(project_id: b.id, language_id: 5)
-
-ProjectLanguage.create(project_id: c.id, language_id: 6)
-ProjectLanguage.create(project_id: c.id, language_id: 10)
-
-
-
-4.times do |i|
+250.times do |i|
   user = User.create(email: "foo#{i}@bar.com", password: '12345678')
-  Membership.create(project_id: a.id, user_id: user.id, participant_type: 'member')
+
+  p "created #{i+1} users" if i % 20 == 1
 end
 
-user1 = User.create(email: "test@bar.com", password: '12345678')
-Membership.create(project_id: Project.first.id, user_id: user1.id, participant_type: 'owner')
-Membership.create(project_id: Project.second.id, user_id: user1.id, participant_type: 'member')
-Membership.create(project_id: Project.last.id, user_id: user1.id)
+p "Created Users"
 
-User.second.send_message(User.first, "test", "testingabc1")
-User.first.send_message(User.last, '1 to 5', 'subject here')
+1000.times do |i|
+  p = Project.create(title: "my #{i}th project", difficulty_id: rand(4)+1,
+                 availability: 'weekends')
 
+  owner_id = rand(250)+1
+
+  member_id = 0
+
+  loop do
+    member_id = rand(250)+1
+    break if member_id != owner_id
+  end
+
+  p.memberships.create(user_id: owner_id, participant_type: "owner")
+  p.memberships.create(user_id: member_id, participant_type: "member")
+
+  ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
+  ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
+  ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
+  ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
+
+  p "created #{i+1} projects" if i % 50 == 1
+end
+
+p "Done"
 # Membership.first.update(participant_type: 'owner')

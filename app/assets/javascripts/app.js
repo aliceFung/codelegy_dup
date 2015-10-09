@@ -163,16 +163,22 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
         url: '/projects',
         resolve: {
           projects: [ 'Restangular', function(Restangular){
-                      return Restangular.all('projects').getList()
+                      var t_start = Date.now()
+                      return Restangular.all('projects').getList({page: 1})
                       .then(function(response){
+
+                          console.log("Projects", (Date.now() - t_start)/1000)
+
                           return response
                       }, function(error){
                           return error
                       })
                     }],
           languages: [ 'Restangular', function(Restangular){
+                      var t_start = Date.now()
                       return Restangular.all('languages').getList()
                       .then(function(response){
+                          console.log("Languages", (Date.now() - t_start)/1000)
                           return response
                       }, function(error){
                           return error
@@ -291,4 +297,3 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
       // })
 
   }]);
-

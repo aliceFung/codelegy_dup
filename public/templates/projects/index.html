@@ -45,41 +45,49 @@
     <option value="Intermediate">Intermediate</option>
     <option value="Expert">Expert</option>
     <option value="Master">Master</option>
-  </select> <br>
+  </select>
+  {{filtered.length}} Matching Projects <hr>
 </div>
 </div>
+  <nav>
+    <a ng-click="prevPage()" aria-label="Previous">
+      <span aria-hidden="true">&laquo;</span>Previous Page
+    </a>
+    <a  class="pull-right" ng-click="nextPage()" aria-label="Next">
+      Next Page<span aria-hidden="true">&raquo;</span>
+    </a>
+  </nav>
 <br>
 <div class="row">
   <div class="col-sm-9">
-   <div ng-class="{row: ($index%3 == 2)}" ng-repeat="project in projects | filter: projectFilter | filter: filter | orderBy:'-created_at': false">
-    <div ng-class="{'col-sm-4': grid, 'col-sm-`1': !grid}"
-    >
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <h4>{{project.title}}</h4>
-        <hr>
-        <p class="small text-muted">
-          <div ng-hide="moreThan24HrsAgo(project.created_at)">
-            <i class="fa fa-clock-o fa-fw"></i>
-            <time am-time-ago="project.created_at"></time>
-          </div>
-          <div ng-show="moreThan24HrsAgo(project.created_at)">
-            <i class="fa fa-calendar fa-fw"></i>
-            <time title="{{ project.created_at | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{ project.created_at | amCalendar }}</time>
-          </div>
-        </p>
-        <strong>Project Owner:</strong>
-        <a ui-sref="profiles.show({id: project.owner.id})">{{project.owner.username}}</a><br>
-        <strong>Est. Difficulty:</strong>{{project.difficulty_name}} <br>
-        <strong>Times:</strong> {{project.availability}} <br>
-        <strong>Languages:</strong>
-        <img ng-repeat="lang in project.languages" ng-src="{{lang.url}}" alt="{{lang.name}}"
-        style="width:20px;margin:5px"> <br>
-        <a ui-sref="projects.join({id: project.id})">Code Together</a>
+   <div ng-class="{row: ($index%3 == 2)}" ng-repeat="project in filtered | orderBy:'-created_at': false | limitTo : 24 : displayPage">
+    <div ng-class="{'col-sm-4': grid, 'col-sm-`1': !grid}">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4>{{project.title}}</h4>
+          <hr>
+          <p class="small text-muted">
+            <div ng-hide="moreThan24HrsAgo(project.created_at)">
+              <i class="fa fa-clock-o fa-fw"></i>
+              <time am-time-ago="project.created_at"></time>
+            </div>
+            <div ng-show="moreThan24HrsAgo(project.created_at)">
+              <i class="fa fa-calendar fa-fw"></i>
+              <time title="{{ project.created_at | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{ project.created_at | amCalendar }}</time>
+            </div>
+          </p>
+          <strong>Project Owner:</strong>
+          <a ui-sref="profiles.show({id: project.owner.id})">{{project.owner.username}}</a><br>
+          <strong>Est. Difficulty:</strong>{{project.difficulty_name}} <br>
+          <strong>Times:</strong> {{project.availability}} <br>
+          <strong>Languages:</strong>
+          <img ng-repeat="lang in project.language_urls" ng-src="{{lang.url}}" alt="{{lang.name}}"
+          style="width:20px;margin:5px"> <br>
+          <a ui-sref="projects.join({id: project.id})">Code Together</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 <div class="col-sm-3">
   <div class="panel panel-default">
@@ -122,6 +130,14 @@
   </div>
 </div>
 </div>
+  <nav>
+    <a ng-click="prevPage()" aria-label="Previous">
+      <span aria-hidden="true">&laquo;</span>Previous Page
+    </a>
+    <a  class="pull-right" ng-click="nextPage()" aria-label="Next">
+      Next Page<span aria-hidden="true">&raquo;</span>
+    </a>
+  </nav>
 </div>
 
 
