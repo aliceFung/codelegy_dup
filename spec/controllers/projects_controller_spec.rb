@@ -27,6 +27,11 @@ RSpec.describe ProjectsController, type: :controller do
     it 'should have a project_owner' do
       expect(JSON.parse(response.body).first['owner']['email']).to include('myemail@user', '.com')
     end
+
+    it 'should work even if the user is not signed in' do
+      sign_out(user)
+      expect(JSON.parse(response.body).first['title']).to eql('myProject')
+    end
   end
 
   context 'show' do
