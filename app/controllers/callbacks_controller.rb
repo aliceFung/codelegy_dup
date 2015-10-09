@@ -8,7 +8,6 @@ class CallbacksController < Devise::OmniauthCallbacksController
       format.html { redirect_to root_path }
       format.json { render json: @user }
     end
-
   end
 
 end

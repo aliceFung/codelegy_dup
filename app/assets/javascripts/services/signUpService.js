@@ -27,8 +27,19 @@ app.factory('SignUp',
       });
 
     }, function(error) {
-      alert('Registration failed');
+      console.log(error.data.errors);
+      alert('Registration failed: ' + '\n' + printErrors(error.data.errors));
     });
+  }
+
+  function printErrors(errors){
+    var result = '';
+    for(var field in errors) {
+      errors[field].forEach(function(error){
+        result += (field.toUpperCase() + ': ' + error + '\n');
+      });
+    }
+    return result;
   }
 
   function processProfileInput(profileInput) {
