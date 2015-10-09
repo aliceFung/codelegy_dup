@@ -1,6 +1,5 @@
-
-app.controller("projectsCtrl", ['$scope', '$state', 'api', 'projects', 'languages',
-  function($scope, $state, api, projects, languages){
+app.controller("projectsCtrl", ['$scope', '$state', 'api', 'Auth', 'projects', 'languages',
+  function($scope, $state, api, Auth, projects, languages){
 
   $scope.moreThan24HrsAgo = function(time) {
     // debugger
@@ -9,6 +8,13 @@ app.controller("projectsCtrl", ['$scope', '$state', 'api', 'projects', 'language
     }
   }
 
+  $scope.signedIn = false
+
+  var checkSignIn = (function(){
+    Auth.currentUser().then(function(user){
+      $scope.signedIn = true
+    })
+  })()
 
   // $scope.timesFilter = "";
   $scope.difficultyFilter;
