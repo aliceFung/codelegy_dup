@@ -30,14 +30,14 @@
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="true">
-            {{ updatedDifficulty[pl.language_id] || expLevel[pl.difficulty_id] }}
+            {{ expLevel[updatedDifficulty[pl.language_id]] || expLevel[pl.difficulty_id] }}
             <span class="caret"></span>
           </button>
 
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-model='updatedDifficulty[pl.language_id]'>
-            <li ng-click="updatedDifficulty='None'">None</li>
+            <li ng-click="changeDifficulty(pl.language_id, 'None')">None</li>
             <li ng-repeat="(levelId, level) in expLevel"
-                ng-click="changeDifficulty(pl.language_id, level, levelId)">
+                ng-click="changeDifficulty(pl.language_id, level, levelId, pl.id)">
               <span>{{level}}</span>
             </li>
           </ul>
@@ -57,7 +57,7 @@
             <small>
               <span class="glyphicon glyphicon-ok"
                   aria-hidden="true"
-                  ng-click='updateLanguage(); updateFieldForLanguage = false'>
+                  ng-click='update(); updateFieldForLanguage = false'>
               </span>
             </small>
           </div>
@@ -67,5 +67,4 @@
 
 <!-- {{pl.language_id}}
 {{updatedDifficulty}} -->
-<!-- {{pl}} -->
 <!-- {{information.profile_languages}} -->
