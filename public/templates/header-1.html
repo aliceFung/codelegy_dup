@@ -28,6 +28,12 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
+      
+        <li >
+          <a class="app-notifications" ui-sref="profiles.settings" ng-if='authenticated.status'>
+            <span class="icon icon-user"></span>
+          </a>
+        </li>
         <li >
           <a class="app-notifications" ui-sref="inbox">
             <span class="icon icon-bell"></span>
