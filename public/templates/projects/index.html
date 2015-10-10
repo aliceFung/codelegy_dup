@@ -60,7 +60,7 @@
 <br>
 <div class="row">
   <div class="col-sm-9">
-   <div ng-class="{row: ($index%3 == 2)}" ng-repeat="project in filtered | orderBy:'-created_at': false | limitTo : 24 : displayPage">
+   <div ng-class="{row: ($index%3 == 2)}" ng-repeat="project in filtered | filter: filter |orderBy:'-created_at': false | limitTo : 24 : displayPage">
     <div ng-class="{'col-sm-4': grid, 'col-sm-`1': !grid}">
       <div class="panel panel-default">
         <div class="panel-body">
