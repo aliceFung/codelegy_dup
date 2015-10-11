@@ -40,16 +40,16 @@
           </div>
 
           <div class='col-sm-2'>
-            <span class="glyphicon glyphicon-remove"
+            <span class="glyphicon glyphicon-ok"
                   aria-hidden="true"
-                  ng-click='updateFieldForAbout = false'>
+                  ng-click='update(); updateFieldForAbout = false'>
             </span>
           </div>
 
           <div class='col-sm-2'>
-            <span class="glyphicon glyphicon-ok"
+            <span class="glyphicon glyphicon-remove"
                   aria-hidden="true"
-                  ng-click='update(); updateFieldForAbout = false'>
+                  ng-click='updateFieldForAbout = false'>
             </span>
           </div>
 
@@ -104,16 +104,16 @@
         </div>
 
         <div class='col-sm-2'>
-          <span class="glyphicon glyphicon-remove"
+          <span class="glyphicon glyphicon-ok"
                 aria-hidden="true"
-                ng-click='updateFieldForAvailability = false'>
+                ng-click='update(); updateFieldForAvailability = false'>
           </span>
         </div>
 
         <div class='col-sm-2'>
-          <span class="glyphicon glyphicon-ok"
+          <span class="glyphicon glyphicon-remove"
                 aria-hidden="true"
-                ng-click='update(); updateFieldForAvailability = false'>
+                ng-click='updateFieldForAvailability = false'>
           </span>
         </div>
 
@@ -122,25 +122,29 @@
   </div> <!-- End of panel body -->
 </div> <!-- End of Availability  -->
 
-
-
 <!-- For each language create a directive and seperate update function as a result -->
 <!-- Then have a div below that allows additions -->
 
 <!-- Programming languages -->
 <div class="panel panel-default visible-md-block visible-lg-block">
   <div class="panel-body">
-    <h5 class="m-t-0">
-      Programming Languages
-      <small>·
-        <a href="#">Add</a>
-      </small>
-    </h5>
-    <div dashboard-programming-language
+
+    <div>
+      <h5 class="m-t-0">
+        Languages
+        <small>·
+        <a ng-click="addLanguage={'userInput':true}">Add</a>
+        </small>
+      </h5>
+    </div>
+
+    <div add-dashboard-programming-language ng-if='addLanguage.userInput'>
+    </div>
+
+    <div edit-dashboard-programming-language
           ng-repeat="pl in information.profile_languages"
           ng-model="profileUpdates.languages">
     </div>
+
   </div>
 </div>
-
-{{information.profile_languages_attributes}}
