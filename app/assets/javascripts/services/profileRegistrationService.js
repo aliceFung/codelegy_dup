@@ -29,11 +29,13 @@ app.factory('ProfileRegistration',
       updateProfileLanguagesDisplayed(information.profile_languages, profile_returned.profile_languages);
       // clear display of language selected to be added
       clearLanguageSelected(languageSelected);
-    }, function(error) {
+      // clear profile_languages object that is used to update records
+      clearObjectValues(profile.profile_languages);
 
+    }, function(error) {
       alert('cannot update profile', error.data.error);
       clearLanguageSelected(languageSelected);
-
+      clearObjectValues(profile.profile_languages);
     });
   }
 
