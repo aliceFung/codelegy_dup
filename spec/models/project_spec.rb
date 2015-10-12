@@ -50,4 +50,13 @@ RSpec.describe Project, type: :model do
       expect(myProject.languages.count).to eql(1)
     end
   end
+
+  context 'group_members' do
+    let(:myProject){ create :project }
+
+    it 'should return active memberships (owner and members)'
+    it 'should not return rejected memberships'
+    it 'should not return pending memberships'
+
+  end
 end

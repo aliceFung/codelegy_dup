@@ -1,8 +1,9 @@
 class ProjectsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @projects = Project.all
-    render json: @projects, methods: [:difficulty_name, :owner, :languages]
+    @projects = Project.paginate(page: params[:page], per_page: 24).order(created_at: 'DESC')
+    render json: @projects, methods: [:difficulty_name, :owner, :language_urls]
   end
 
   def show

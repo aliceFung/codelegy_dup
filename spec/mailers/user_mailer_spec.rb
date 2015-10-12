@@ -6,8 +6,8 @@ RSpec.describe UserMailer, type: :mailer do
   before :each do
     @project = create(:project)
     @owner = create(:user)
-    @project.members.push(@owner)
-    @project.memberships[0].update(participant_type: 'owner')
+    @project.memberships.create(user: @owner, participant_type: 'owner')
+    @project.reload
   end
 
   describe 'send_request_email' do
@@ -21,7 +21,7 @@ RSpec.describe UserMailer, type: :mailer do
       let(:requester) { build(:user) }
       let(:mail) { UserMailer.request_membership(requester, @project) }
 
-      xit 'should send the email to the project owner' do
+      it 'should send the email to the project owner' do
         expect(mail.to).to eq([@owner.email])
       end
 
@@ -29,8 +29,8 @@ RSpec.describe UserMailer, type: :mailer do
         expect(mail.from).to eq([sender_email])
       end
 
-      xit 'should send the email with the proper subject' do
-        expect(mail.subject).to eq("#{requester.email} wants to join #{@project.title}")
+      it 'should send the email with the proper subject' do
+        expect(mail.subject).to eq("#{requester.username} wants to join #{@project.title}!")
       end
     end
   end

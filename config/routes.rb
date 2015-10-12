@@ -16,9 +16,7 @@ Rails.application.routes.draw do
       get 'profiles' => 'profiles#show'
 
       resources :memberships, except: [:new, :edit, :destroy]
-      resources :mailbox, only: [:index]
-
-      # resources :emails, only: [:index, :show]
+      resources :mailbox, only: [:index, :create, :destroy]
 
     end
   end

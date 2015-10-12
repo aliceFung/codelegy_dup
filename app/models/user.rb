@@ -11,8 +11,6 @@ class User < ActiveRecord::Base
   has_one :profile, dependent: :destroy
   has_many :memberships
   has_many :projects, through: :memberships
-  has_many :project_emails, through: :projects, source: :emails
-  has_many :sent_emails, class_name: "Email"
 
   after_create :create_profile
 
@@ -50,6 +48,14 @@ class User < ActiveRecord::Base
     self.memberships.includes(:project => :languages).where('participant_type = ?', 'member')
   end
 
+  # returns an array, not an Active Record Object, of projects user is active in (owner or member)
+  def participating_projects
+    # projects_owned + project_member_of
+    self.memberships.includes(:project =>
+                              [:languages, :memberships => :user])
+                    .where('participant_type = ? OR participant_type = ?', 'owner', 'member')
+  end
+
   # returns all participating projects with limited associated info
   def project_dashboard_membership
     list = self.projects.includes(:difficulty, :languages, :memberships => :user)
@@ -58,6 +64,7 @@ class User < ActiveRecord::Base
 
       obj = { id:           proj.id,
               title:        proj.title,
+              description:  proj.description,
               availability: proj.availability,
               difficulty_name:   proj.difficulty_name,
               owner?:       proj.owner == self,
@@ -81,25 +88,36 @@ class User < ActiveRecord::Base
   end
 
 
-  #get user email message details from Mailboxer Conversation obj
+  #returns an array of user messages with limited details
   def get_emails(box_type)
     #query for message
-    Mailboxer::Notification.where('id IN (?)',
+    Mailboxer::Notification.includes(:sender).where('id IN (?)',
       #create array of Conversations objs
       self.mailbox.send(box_type).inject([]){|acc, el| acc.push(el)})
         .map do |c|
             { date: c.created_at,
               subject: c.subject,
               sender_username: c.sender.username,
-              body: c.body}
-        end
+              body: c.body,
+              id: c.id
+            }
+        end # array of messages
   end
 
-  def mailboxer_email
-    self.email
+  # mailboxer config, triggers for email notification
+  def user_notification_email(msg)
+    User.delay.send_notification_email(self.id)
+    return nil #to prevent default email sending
   end
 
-  def mailboxer_username
+  # uses our own mailing method
+  def self.send_notification_email(user_id)
+    user = User.find(user_id)
+    UserMailer.mailboxer_msg(user).deliver_now!
+  end
+
+  # mailboxer config
+  def mailboxer_name
     self.username
   end
 

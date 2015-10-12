@@ -1,7 +1,7 @@
 app.controller('membershipCtrl', ['$scope', '$stateParams', 'emailService', 'Restangular', '$state',
   function($scope, $stateParams, emailService, Restangular, $state) {
 
-  console.log('membershipCtrl initiated');
+  // console.log('membershipCtrl initiated');
 
   $scope.project = {};
 
@@ -15,7 +15,7 @@ app.controller('membershipCtrl', ['$scope', '$stateParams', 'emailService', 'Res
   $scope.inbox = emailService.inbox;
 
   $scope.sendRequest = function(){
-    console.log('send request');
+    // console.log('send request');
     // create pending membership, and send content
     Restangular.all('memberships').post(
           { membership: { project_id: $stateParams.id},
@@ -27,7 +27,7 @@ app.controller('membershipCtrl', ['$scope', '$stateParams', 'emailService', 'Res
                 $state.go('projects');
               },
               function(error){
-                    console.log(error);
+                    // console.log(error);
                     $state.go('projects');
               });
   };

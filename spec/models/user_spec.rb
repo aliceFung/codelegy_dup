@@ -19,8 +19,8 @@ RSpec.describe User, type: :model do
       expect(user).to respond_to(:projects)
     end
 
-    it 'should respond to sent_emails' do
-      expect(user).to respond_to(:sent_emails)
+    it 'should respond to mailbox' do
+      expect(user).to respond_to(:mailbox)
     end
 
     specify 'profile should be destroyed with user' do
@@ -56,9 +56,26 @@ RSpec.describe User, type: :model do
       mock_message = {date: Mailboxer::Message.last.created_at,
                       body: Mailboxer::Message.last.body,
                       subject: Mailboxer::Message.last.subject,
-                      sender_username: Mailboxer::Message.last.sender.username}
+                      sender_username: Mailboxer::Message.last.sender.username,
+                      id: Mailboxer::Message.last.id}
+      msg = other_user.get_emails('inbox')[0]
       expect(other_user.get_emails('inbox')).to eq([mock_message])
     end
+  end
+
+  context 'project' do
+
+    let!(:project){create :project}
+    let!(:membership){create :membership, user_id: user.id, project_id: project.id}
+
+    xit 'should return projects user has active membership in' do
+      # expect(user.)
+    end
+    it 'should not return projects user has inactive membership (pending, rejected) in'
+    it 'should return projects without membership information to non-owner'
+
+    it 'should return projects with limited member detail information to owner'
+
   end
 
 end

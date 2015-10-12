@@ -6,19 +6,17 @@ class MembershipsController < ApplicationController
   def index
     @membership_projects = current_user.project_dashboard_membership
     respond_to do |format|
-      format.json {render json: @membership_projects #,
-              # methods: [:difficulty_name, :owner, :languages, :memberships, :members]
-            }
+      format.json {render json: @membership_projects }
     end
   end
 
   def create
     @membership = Membership.new(params_list)
     @membership.user_id = current_user.id
+    @message = params["content"] || params[:content] || "User #{current_user.username} would like to join your project!"
     respond_to do |format|
       if @membership.save
-        Email.membership_history(params["content"], @membership)
-        current_user.send_message(@project_owner, "User #{current_user.username} would like to join your project!", "User #{current_user.username} would like to join your project!")
+        current_user.send_message(@project_owner, @message, "User #{current_user.username} would like to join your project: '#{@membership.project.title}!'")
         format.json {render json: @membership}
       else
         format.json {render json: {errors: ["There was an error with your request. Please try again."]}, status: 522}
@@ -46,17 +44,6 @@ class MembershipsController < ApplicationController
     end
   end
 
-
-  # def destroy
-  #   @membership = Membership.find(params["id"])
-  #   respond_to do |format|
-  #     if @membership.destroy
-  #       format.json {head :ok}
-  #     else
-  #       format.json {render status: :unprocessable_entity}
-  #     end
-  #   end
-  # end
 
   private
 

@@ -4,5 +4,10 @@ app.factory('api', ['Restangular', function(Restangular){
     return Restangular.all('projects').post(data)
   }
 
-  return {post: post}
+  var getPage = function(page){
+    return Restangular.all('projects').getList({page: page})
+  }
+
+  return {post: post,
+          getPage: getPage}
 }])

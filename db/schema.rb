@@ -38,13 +38,6 @@ ActiveRecord::Schema.define(version: 20151009203255) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "emails", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "project_id"
-    t.text    "content"
-    t.boolean "to_everyone", default: false
-  end
-
   create_table "languages", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
