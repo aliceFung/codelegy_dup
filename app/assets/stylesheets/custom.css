@@ -2,7 +2,9 @@
 .sign-in-box{
   margin-top: 10%;
 }
-
+::-webkit-scrollbar { 
+    display: none; 
+}
 .megrim {
   font-family: megrim, fantasy;
 }
@@ -10,11 +12,16 @@
 .bangers{
   font-family: 'Bangers', cursive;
 }
-
+.p-text{
+  color: #34495e
+}
 .row.gridalicious {
    margin: 0 -30px;
  }
-
+.wide-container{
+  margin-left: 2%;
+  margin-right: 2%;
+}
 
 .frontpage-logo{
   -webkit-box-sizing: content-box;

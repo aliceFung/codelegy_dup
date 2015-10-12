@@ -1,7 +1,5 @@
-app.controller('sessionCtrl',
-
-  ['$scope', 'Session', '$state', 'EmailRegEx', 'Restangular', 
-  function($scope, Session, $state, EmailRegEx, Restangular){
+app.controller('sessionCtrl', ['$scope', 'Session', '$state', 'EmailRegEx', 'emailService',
+  function($scope, Session, $state, EmailRegEx, emailService){
 
   $scope.authenticated = Session.authenticated;
   $scope.currentUser = Session.currentUser;
