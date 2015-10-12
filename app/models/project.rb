@@ -23,5 +23,4 @@ class Project < ActiveRecord::Base
                         participant_type = ?', 'owner', 'member')
   end
 
-
 end
