@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151009162302) do
+ActiveRecord::Schema.define(version: 20151012164230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "day_timeslots", force: :cascade do |t|
+    t.integer  "day_id",      null: false
+    t.integer  "timeslot_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "day_timeslots", ["day_id", "timeslot_id"], name: "index_day_timeslots_on_day_id_and_timeslot_id", unique: true, using: :btree
+
+  create_table "days", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -147,6 +162,13 @@ ActiveRecord::Schema.define(version: 20151009162302) do
     t.string   "url"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "timeslots", force: :cascade do |t|
+    t.time     "start_time", null: false
+    t.time     "end_time",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
