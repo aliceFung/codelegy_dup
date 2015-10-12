@@ -1,12 +1,12 @@
 <ui-view>
-<hr><hr>
+<br><br>
 <!-- Languages -->
 <div class="row">
   <div class="col-sm-1">
 
   </div>
-  <div class="col-sm-1" ng-repeat="language in languages">
-      <button class="btn btn-default btn-block" ng-click='addLang(language)'
+  <div class="col-sm-1 btn-group" ng-repeat="language in languages">
+      <button class="btn btn-primary btn-embossed btn-block" ng-click='addLang(language)'
               ng-class='{"active": langFilter[language]}'>{{language}}</button>
   </div>
 </div>
@@ -28,16 +28,13 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-3"><h2>Projects</h2></div>
+  <div class="col-sm-3"><h2 class="page-header">Projects</h2></div>
   <div class="col-sm-4 col-sm-offset-3">
-  <button ui-sref="projects.new"
-  class="btn btn-primary pull-right">New Project</button>
-
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-7 col-md-offset-3">
     Times: <input type="text" ng-model="filter.availability">
     Difficulty: <select ng-model="filter.difficulty_name">
       <option value="">No Filter</option>
@@ -45,13 +42,17 @@
       <option value="Intermediate">Intermediate</option>
       <option value="Expert">Expert</option>
       <option value="Master">Master</option>
-    </select> <br>
-  </div>
+    </select>
+  
+     <button ui-sref="projects.new"
+  class="btn btn-sm btn-info pull-right">New Project</button>
+  </div> <br>
 </div>
 <br>
-<div ng-class="{row: ($index%3 == 2)}" ng-repeat="project in projects | filter: projectFilter | filter: filter | orderBy:'-created_at': false">
+<div ng-class="{row: ($index%3 == 2)}" ng-repeat="project in projects | filter: projectFilter | filter: filter | orderBy:'-created_at': false" >
   <div ng-class="{'col-sm-4': grid, 'col-sm-12': !grid}"
    >
+   <div class="project-panel">
     <div class="panel panel-default">
       <div class="panel-body">
         <h4>{{project.title}}</h4>
@@ -75,6 +76,7 @@
          style="width:20px;margin:5px"> <br>
          <a ui-sref="project.join({id: project.id})">Code Together</a>
       </div>
+    </div>
     </div>
   </div>
 

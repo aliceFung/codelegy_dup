@@ -24,14 +24,14 @@
         <li>
           <a ui-sref="projects">Projects</a>
         </li>
-        <li><a data-toggle="modal" href="#msgModal">Messages</a></li>
+        <!-- <li><a data-toggle="modal" href="#msgModal">Messages</a></li> -->
 
       </ul>
 
       <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
         <li >
-          <a class="app-notifications" ui-sref="inbox">
-            <span class="icon icon-bell"></span>
+          <a ng-if='authenticated.status'class="app-notifications" ui-sref="inbox">
+            <span class="icon icon-mail"></span>
           </a>
         </li>
 
