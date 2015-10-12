@@ -95,12 +95,10 @@ class User < ActiveRecord::Base
         end # array of messages
   end
 
-  # mailboxer config
+  # mailboxer config, triggers for email notification
   def user_notification_email(obj)
-    # self.email #uses devise emailing method
-    binding.pry
     User.delay.send_notification_email(self.id)
-    # UserMailer.mailboxer_msg(self).deliver_now!
+    return nil #to prevent default email sending
   end
 
   # uses our own mailing method
