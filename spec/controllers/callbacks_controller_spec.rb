@@ -8,7 +8,7 @@ describe Users::CallbacksController do
     request.env["omniauth.auth"] = OmniAuth::AuthHash.new( 
       provider: user.provider,
       uid: user.uid,
-      email: user.email
+      info: {email: user.email}
     )
     request.env["devise.mapping"] = Devise.mappings[:user]
   end
