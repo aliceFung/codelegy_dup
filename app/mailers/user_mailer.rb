@@ -2,8 +2,8 @@ class UserMailer < ApplicationMailer
   default :from => "no-reply@codelegy.xyz"
 
   def request_membership(user, project)
-    @user = user
     @project = project
+    @user = user # not really needed if details in site msgs
     mail(to: @project.owner.email, subject: "#{@user.username} wants to join #{@project.title}!")
   end
 

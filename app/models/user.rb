@@ -96,7 +96,7 @@ class User < ActiveRecord::Base
   end
 
   # mailboxer config
-  def mailboxer_email
+  def mailboxer_email(obj)
     self.email
   end
 

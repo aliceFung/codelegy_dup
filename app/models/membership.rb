@@ -8,6 +8,7 @@ class Membership < ActiveRecord::Base
   validates :project, presence: true
 
   def send_delayed_request_email
+    # current_user.send_message(Project.find(self.project_id).owner, @message, "User #{current_user.username} would like to join your project: '#{@membership.project.title}!'")
     Membership.delay.send_request_email(self.user_id, self.project_id)
   end
 
