@@ -1,0 +1,71 @@
+<div  class="panel-title text-center"
+      ng-hide='updateFieldForLanguage'
+      ng-click='updateFieldForLanguage = !updateFieldForLanguage'>
+
+  <div class='row'>
+    <div class='col-sm-3 col-sm-offset-1'>
+      <img  src="{{languages[pl.language_id-1].url}}"
+            style="width:20px;margin:5px">
+    </div>
+
+    <div class='col-sm-6 text-left'>
+      {{expLevel[pl.difficulty_id]}}
+    </div>
+
+  </div> <!-- end of row -->
+</div> <!-- end of panel-title -->
+
+<div class="panel-title text-center"
+      ng-show='updateFieldForLanguage'>
+  <div class='row'>
+
+        <div class='col-sm-3 col-sm-offset-1'>
+          <img  src="{{languages[pl.language_id-1].url}}"
+                style="width:20px;margin:5px">
+        </div>
+
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle col-sm-5"
+                  type="button" id="dropdownMenu1"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="true">
+            <span><small>{{ expLevel[updatedDifficulty[pl.language_id]] || updatedDifficulty[pl.language_id] || expLevel[pl.difficulty_id] }}</small></span>
+            <span class="caret"></span>
+          </button>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-model='updatedDifficulty[pl.language_id]'>
+            <li ng-click="changeDifficulty(pl.language_id, 'Remove', 'Remove', pl.id)">Remove</li>
+            <li ng-repeat="(levelId, level) in expLevel"
+                ng-click="changeDifficulty(pl.language_id, level, levelId, pl.id)">
+              <span>{{level}}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class='col-sm-2'>
+          <div class='row'>
+            <div class='col-sm-8'>
+              <small>
+                <span class="glyphicon glyphicon-ok"
+                    aria-hidden="true"
+                    ng-click='update(); updateFieldForLanguage = false'>
+                </span>
+              </small>
+            </div>
+          </div>
+
+          <div class='row'>
+            <div class='col-sm-10 col-sm-offset-6'>
+              <small><small>
+                <span class="glyphicon glyphicon-remove"
+                    aria-hidden="true"
+                    ng-click='updateFieldForLanguage = false'>
+                </span>
+              </small></small>
+            </div>
+          </div>
+        </div>
+
+  </div> <!-- End of row -->
+</div> <!-- End of panel-title -->

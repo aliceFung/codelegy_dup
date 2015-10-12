@@ -1,1 +1,131 @@
-settings.html
+<div class="panel">
+  <div class="panel-heading">
+    <h1>Account Setting</h1>  
+  </div>
+  <div class="panel-body row">
+
+  <div class="col-sm-5 col-sm-offset-1">
+
+    <h3>Username: {{currentUser.user.username}}</h3> 
+    <h3>Email: {{currentUser.user.email}}</h3>
+    <a href="" ng-click="showEditForm=!showEditForm">Edit</a> <br>
+    <a href="" ng-click="cancelAccount()">Delete Account</a>
+  </div>
+
+  <div class="col-sm-5">  
+    <form name="userForm" ng-show="showEditForm" ng-submit="processForm(userForm.$valid)">
+
+      <!-- Username -->
+      <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid
+                                          && !userForm.username.$pristine }">
+        <label>Username
+          <input type="text" name="username" class="form-control" 
+                  ng-value="currentUser.user.username" 
+                  ng-model="userInfo.username" 
+                  ng-minlength="2" ng-maxlength="100">
+        </label>
+
+        <p  ng-show="userForm.username.$error.minlength"
+            class="help-block">
+          Please enter a name more than 1 character in length
+        </p>
+        <p ng-show="userForm.username.$error.maxlength" class="help-block">
+          Please enter a name less than 100 characters
+        </p>
+
+      </div>
+
+      <!-- Email -->
+      <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid
+                                          && !userForm.email.$pristine }">
+
+        <label>Email
+          <input type="text" name="email" class="form-control" 
+                  ng-value="currentUser.user.email" 
+                  ng-model="userInfo.email" 
+                  ng-pattern="emailRegex">
+        </label>
+
+        <p  ng-show="userForm.email.$invalid && !userForm.email.$pristine"
+            class="help-block">
+            Please enter a valid email
+        </p>
+
+      </div>
+
+      <!-- New Password -->
+      <div class="form-group" 
+            ng-if="!currentUser.user.provider"
+            ng-class="{ 'has-error' : userForm.password.$invalid &&
+                                      !userForm.password.$pristine }">
+
+
+        <label>New Password (leave it blank if you don't want to change)
+          <input type="password" name="password" class="form-control" 
+                  ng-model="userInfo.password"
+                  ng-minlength="8" ng-maxlength="25">
+        </label>
+        <p  ng-show=" userForm.password.$error.minlength"
+            class="help-block">
+          Please enter a password more than 8 characters in length
+        </p>
+        <p ng-show="userForm.password.$error.maxlength" class="help-block">
+          Please enter a password less than 25 characters in length
+        </p>
+
+      </div>
+
+      <!-- Password Confirmation -->
+      <div class="form-group" 
+            ng-if="!currentUser.user.provider"
+            ng-class="{ 'has-error' : userForm.password_confirmation.$invalid &&
+                                      !userForm.password_confirmation.$pristine }">
+
+        <label>Password Confirmation
+          <input type="password" name="password_confirmation" class="form-control" 
+                  ng-model="userInfo.password_confirmation"
+                  compare-to="userInfo.password">
+        </label>
+
+        <p  ng-show="userForm.password_confirmation.$invalid &&
+                      !userForm.password_confirmation.$pristine"
+            class="help-block">
+          Password confirmation must match password
+        </p>
+
+      </div>
+
+      <!-- Current Password -->
+      <div class="form-group" 
+            ng-if="!currentUser.user.provider"
+            ng-class="{ 'has-error' : userForm.current_password.$invalid
+                                            && !userForm.$pristine }">
+
+        <label>Current Password
+          <input type="password" name="current_password" class="form-control" 
+                  ng-model="userInfo.current_password" 
+                  required ng-minlength="8" ng-maxlength="25">
+        </label>
+{{currentUser.user.provider}}
+        <p  class="help-block"
+            ng-show="!userForm.$pristine        &&
+                    userForm.current_password.$invalid         &&
+                    !userForm.current_password.$error.minlength &&
+                    !userForm.current_password.$error.maxlength">
+          Must input your current password
+        </p>
+
+        <p  ng-show=" userForm.current_password.$error.minlength"
+            class="help-block">
+          Your password contains at least 8 characters
+        </p>
+        <p ng-show="userForm.current_password.$error.maxlength" class="help-block">
+          Your password contains at most 25 characters
+        </p>
+
+      </div>
+
+      <button type="submit" class="btn btn-info">Update</button>
+    </form>
+  </div>
+</div>

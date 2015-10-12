@@ -10,12 +10,11 @@ app.factory('Session', ['Auth', '$state', 'Restangular', function(Auth, $state, 
     };
 
     Auth.login(credentials, config).then(function(user){
-      console.log('Signed In');
       currentUser.user = user;
       authenticated.status = true;
       $state.go('dashboard');
     }, function(error){
-      console.log('Sign In Failed:', error);
+      alert('Sign in failed: ' + error.data.error);
       authenticated.status = false;
     });
 
@@ -34,12 +33,11 @@ app.factory('Session', ['Auth', '$state', 'Restangular', function(Auth, $state, 
     };
 
     Auth.logout(config).then(function(oldUser){
-      console.log('Signed Out' + oldUser);
       currentUser.user = null;
       authenticated.status = false;
       $state.go('home');
     }, function(error){
-      console.log('Sign Out Failed:', error);
+      alert('Sign out failed: ' + error.data.error);
     });
   }
 

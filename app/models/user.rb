@@ -15,15 +15,24 @@ class User < ActiveRecord::Base
   after_create :create_profile
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    user = where(email: auth.info.email)[0]
+    if user
       user.provider = auth.provider
       user.uid = auth.uid
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+      user.username = auth.info.name
+      user.save
+    else
+      user = where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.email = auth.info.email
+        user.username = auth.info.name
+        user.password = Devise.friendly_token[0,20]
+        # profile.photo_url = auth.extra.raw_info.avatar_url
+      end
     end
+    user
   end
-
-
 
   # returns a collection of projects user is the owner of
   # eager loading to prevent n+1 queries
@@ -95,13 +104,20 @@ class User < ActiveRecord::Base
         end # array of messages
   end
 
-  # mailboxer config
-  def mailboxer_email
-    self.email
+  # mailboxer config, triggers for email notification
+  def user_notification_email(msg)
+    User.delay.send_notification_email(self.id)
+    return nil #to prevent default email sending
+  end
+
+  # uses our own mailing method
+  def self.send_notification_email(user_id)
+    user = User.find(user_id)
+    UserMailer.mailboxer_msg(user).deliver_now!
   end
 
   # mailboxer config
-  def mailboxer_username
+  def mailboxer_name
     self.username
   end
 
