@@ -14,6 +14,7 @@ app.controller('signUpCtrl',
   $scope.currentUser = Session.currentUser;
 
   $scope.register = function(){
+    console.log(ProfileRegistration.profileInput);
     SignUp.register($scope.credentials, ProfileRegistration.profileInput);
   };
 

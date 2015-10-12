@@ -34,7 +34,7 @@ class ProfilesController < ApplicationController
                                     :photo_id,
                                     {profile_languages_attributes:[
                                       :language_id,
-                                      :difficulty_id]
+                                      :difficulty_id, :id, :_destroy]
                                     })
   end
 

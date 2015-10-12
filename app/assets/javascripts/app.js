@@ -99,13 +99,14 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
       })
 
       .state('profiles.show', {
-        url: '/:userid',
+        url: '/show/:userid',
         templateUrl: 'templates/profiles/show.html'
       })
 
       .state('profiles.settings', {
         url: '/settings',
-        templateUrl: 'templates/profiles/settings.html'
+        templateUrl: 'templates/profiles/settings.html', 
+        controller: 'accountSettingCtrl'
       });
 
 
@@ -113,6 +114,9 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
       .state('dashboard', {
           url: '/dashboard',
           views: {
+            '': {
+              templateUrl: 'templates/dashboard/layout.html'
+            },
             'navbar': {
               templateUrl: 'templates/header-1.html',
               controller: 'sessionCtrl'
@@ -151,9 +155,6 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
             },
             'suggestions@dashboard': {
               templateUrl: 'templates/dashboard/suggestions.html'
-            },
-            '': {
-              templateUrl: 'templates/dashboard/layout.html'
             }
           }
       });

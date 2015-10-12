@@ -15,15 +15,24 @@ class User < ActiveRecord::Base
   after_create :create_profile
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    user = where(email: auth.info.email)[0]
+    if user
       user.provider = auth.provider
       user.uid = auth.uid
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+      user.username = auth.info.name
+      user.save
+    else
+      user = where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.email = auth.info.email
+        user.username = auth.info.name
+        user.password = Devise.friendly_token[0,20]
+        # profile.photo_url = auth.extra.raw_info.avatar_url
+      end
     end
+    user
   end
-
-
 
   # returns a collection of projects user is the owner of
   # eager loading to prevent n+1 queries
