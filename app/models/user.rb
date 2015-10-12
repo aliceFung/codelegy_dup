@@ -17,8 +17,8 @@ class User < ActiveRecord::Base
   after_create :create_profile
 
   def self.from_omniauth(auth)
-    user = where(email: auth.info.email)
-    if user.any?
+    user = where(email: auth.info.email)[0]
+    if user
       user.provider = auth.provider
       user.uid = auth.uid
       user.username = auth.info.name
