@@ -70,10 +70,10 @@ $scope.availabilityDays = { Monday: false,
 
     $scope.filtered = $filter('filter')($scope.projects, $scope.projectFilter)
 
-    $scope.signedIn = false
+
 
     var checkSignIn = (function(){
-      Session.signedIn;
+      $scope.signedIn = Session.authenticated;
     })()
 
     // $scope.timesFilter = "";
@@ -97,12 +97,15 @@ $scope.availabilityDays = { Monday: false,
     $scope.addTimeslot = function(){
       var min = $scope.start.minute * 60000
       var hour = ($scope.start.hour * 3600000) + (12*3600000 * $scope.start.am)
-      var start = new Date(min + hour + (new Date).getTimezoneOffset() * 60000)
+      var start = (min + hour + (new Date).getTimezoneOffset() * 60000)
       min = $scope.end.minute * 60000
       hour = ($scope.end.hour * 3600000) + (12*3600000 * $scope.end.am)
-      var end = new Date (min + hour + (new Date).getTimezoneOffset() * 60000)
+      var end = (min + hour + (new Date).getTimezoneOffset() * 60000)
       for (day in $scope.availabilityDays){
         if ($scope.availabilityDays[day]){
+          start /= 1000;
+          end /= 1000;
+          debugger;
           $scope.timeslots.push({day: day, start: start, end: end})
         }
       }
