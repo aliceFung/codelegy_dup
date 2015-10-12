@@ -10,20 +10,20 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'api', 'Session',
       $scope.langSuggestions[el.name] = el.suggestions;
     })
 
-$scope.availabilityDays = { monday: false,
-                            tuesday: false,
-                            wednesday: false,
-                            thursday: false,
-                            friday: false,
-                            saturday: false,
-                            sunday: false,
+$scope.availabilityDays = { Monday: false,
+                            Tuesday: false,
+                            Wednesday: false,
+                            Thursday: false,
+                            Friday: false,
+                            Saturday: false,
+                            Sunday: false,
                           }
       $scope.start = {};
       $scope.end = {};
       $scope.timeslots = [];
 
-    $scope.days = ["monday", "tuesday", "wednesday", "thursday",
-                   "friday", "saturday", "sunday"]
+    $scope.days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
+                   "Friday", "Saturday"]
 
     $scope.displayPage = 0;
 
@@ -97,10 +97,10 @@ $scope.availabilityDays = { monday: false,
     $scope.addTimeslot = function(){
       var min = $scope.start.minute * 60000
       var hour = ($scope.start.hour * 3600000) + (12*3600000 * $scope.start.am)
-      var start = new Date(min + hour)
+      var start = new Date(min + hour + (new Date).getTimezoneOffset() * 60000)
       min = $scope.end.minute * 60000
       hour = ($scope.end.hour * 3600000) + (12*3600000 * $scope.end.am)
-      var end = new Date (min + hour)
+      var end = new Date (min + hour + (new Date).getTimezoneOffset() * 60000)
       for (day in $scope.availabilityDays){
         if ($scope.availabilityDays[day]){
           $scope.timeslots.push({day: day, start: start, end: end})
