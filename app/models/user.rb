@@ -96,7 +96,7 @@ class User < ActiveRecord::Base
   end
 
   # mailboxer config, triggers for email notification
-  def user_notification_email(obj)
+  def user_notification_email(msg)
     User.delay.send_notification_email(self.id)
     return nil #to prevent default email sending
   end
@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
   end
 
   # mailboxer config
-  def mailboxer_username
+  def mailboxer_name
     self.username
   end
 
