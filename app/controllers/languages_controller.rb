@@ -3,7 +3,7 @@ class LanguagesController < ApplicationController
 
   def index
     @languages = Language.all
-    render json: @languages, methods: [:suggestions]
+    render json: @languages, include: [:suggestions]
   end
 
 

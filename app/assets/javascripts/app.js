@@ -163,9 +163,9 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
         url: '/projects',
         resolve: {
           projects: [ 'Restangular', function(Restangular){
-                      return Restangular.all('projects').getList()
+                      return Restangular.all('projects').getList({page: 1})
                       .then(function(response){
-                          return response
+                       return response
                       }, function(error){
                           return error
                       })
@@ -279,4 +279,3 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
       })
 
   }]);
-

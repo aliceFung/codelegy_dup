@@ -18,6 +18,14 @@ class Project < ActiveRecord::Base
     difficulty ? difficulty.name : "None"
   end
 
+  def group_emails
+    self.emails.where('to_everyone = ?', true)
+  end
+
+  def language_urls
+    self.languages.select(:name, :url)
+  end
+
   def group_members
     self.members.where('participant_type = ? OR
                         participant_type = ?', 'owner', 'member')
