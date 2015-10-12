@@ -6,10 +6,13 @@ app.controller('dashboardProfileCtrl',
     'Session',
     'Auth',
     function($scope, profileInfo, ProfileRegistration, Language, Session, Auth){
-
       $scope.information = profileInfo;
       $scope.languages = Language.languages;
       $scope.expLevel = ProfileRegistration.expLevel;
+
+      // update currentUser info from the resolved profileInfo
+      $scope.currentUser = Session.currentUser;
+      $scope.currentUser.user = profileInfo.user;
 
       $scope.profileUpdates = {};
       $scope.profileUpdates.profile_languages = {};

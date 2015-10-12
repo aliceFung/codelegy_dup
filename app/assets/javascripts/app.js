@@ -114,6 +114,9 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
       .state('dashboard', {
           url: '/dashboard',
           views: {
+            '': {
+              templateUrl: 'templates/dashboard/layout.html'
+            },
             'navbar': {
               templateUrl: 'templates/header-1.html',
               controller: 'sessionCtrl'
@@ -152,9 +155,6 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
             },
             'suggestions@dashboard': {
               templateUrl: 'templates/dashboard/suggestions.html'
-            },
-            '': {
-              templateUrl: 'templates/dashboard/layout.html'
             }
           }
       });
