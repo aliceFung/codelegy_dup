@@ -63,4 +63,19 @@ RSpec.describe User, type: :model do
     end
   end
 
+  context 'project' do
+
+    let!(:project){create :project}
+    let!(:membership){create :membership, user_id: user.id, project_id: project.id}
+
+    xit 'should return projects user has active membership in' do
+      # expect(user.)
+    end
+    it 'should not return projects user has inactive membership (pending, rejected) in'
+    it 'should return projects without membership information to non-owner'
+
+    it 'should return projects with limited member detail information to owner'
+
+  end
+
 end

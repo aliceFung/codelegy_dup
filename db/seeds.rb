@@ -78,3 +78,24 @@ Language.find_or_create_by(name: 'PHP', url: '/logos/php.png')
 
 p "Done"
 # Membership.first.update(participant_type: 'owner')
+
+#----------------------------
+
+#create users
+7.times do |i|
+  User.create(email: "foo#{i}@bar.com", password: 'password', password_confirmation: 'password', username: "foo#{i}")
+end
+
+users = User.all
+# #create projects and owners
+3.times do |i|
+  p = Project.create(title: "my #{i}th project", difficulty_id: rand(4)+1, availability: 'weekends')
+  Membership.create(user_id: users[i].id, project_id: p.id, participant_type: 'owner')
+end
+
+#create more memberships
+Membership.create(user_id: User.second.id, project_id: Project.first.id, participant_type: 'member');
+
+3.times do |i|
+  Membership.create(user_id: users[i+2], project_id: Project.first.id)
+end

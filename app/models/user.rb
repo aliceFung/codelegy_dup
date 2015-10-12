@@ -95,13 +95,20 @@ class User < ActiveRecord::Base
         end # array of messages
   end
 
-  # mailboxer config
-  def mailboxer_email
-    self.email
+  # mailboxer config, triggers for email notification
+  def user_notification_email(msg)
+    User.delay.send_notification_email(self.id)
+    return nil #to prevent default email sending
+  end
+
+  # uses our own mailing method
+  def self.send_notification_email(user_id)
+    user = User.find(user_id)
+    UserMailer.mailboxer_msg(user).deliver_now!
   end
 
   # mailboxer config
-  def mailboxer_username
+  def mailboxer_name
     self.username
   end
 

@@ -12,17 +12,11 @@ class MailboxController < ApplicationController
   end
 
   def create
-    recipients =
-      if params[:project_id]
-        project = current_user.projects.find(params[:project_id])
-        project.group_members - [current_user]
-      elsif params[:user_id]
-        User.find(params[:user_id])
-      end
-
+    recipients, subject = build_email_msg
+    # binding.pry
     respond_to do |format|
       if recipients && recipients.any?
-        current_user.send_message(recipients, params[:body], params[:subject])
+        current_user.send_message(recipients, params[:body], subject)
         format.json {head :ok}
       else
         format.json {render json: {errors:
@@ -37,6 +31,21 @@ class MailboxController < ApplicationController
   end
 
   private
+
+  def build_email_msg
+    subject = ""
+    recipients =
+      if params[:project_id]
+        project = current_user.projects.find(params[:project_id])
+        subject = "[#{project.title}]: "
+        project.group_members - [current_user]
+      elsif params[:user_id]
+        User.find(params[:user_id])
+      end
+    subject+= params[:subject]
+
+    return recipients, subject
+  end
 
   # def message_contents
   #   params.require(:message).permit(:body, :subject, :to)
