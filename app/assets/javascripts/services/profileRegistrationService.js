@@ -21,6 +21,7 @@ app.factory('ProfileRegistration',
     profileInfo.profile_languages_attributes = processProfileInput(profile.profile_languages);  // need to clear profile
 
     Restangular.all('profiles').customPUT({profile: profileInfo}).then(function(profile_returned){
+
       // set returned about me and availability
       information.about = profile_returned.about;
       information.availability = profile_returned.availability;
@@ -40,10 +41,9 @@ app.factory('ProfileRegistration',
   }
 
   function updateProfileLanguagesDisplayed(front_end_information, returned_profile_attr){
-    clearObjectValues(front_end_information.profile_languages);
-
-    for(var newkey in returned_profile_attr){
-      front_end_information[newkey] = returned_profile_attr[newkey];
+    front_end_information.splice(0, front_end_information.length);
+    for(var i = 0; i < returned_profile_attr.length; i++){
+      front_end_information.push(returned_profile_attr[i]);
     }
   }
 

@@ -1,8 +1,8 @@
-app.factory('SignUp', 
-  ['Auth', 
-   '$state', 
-   'Restangular', 
-   'Session', 
+app.factory('SignUp',
+  ['Auth',
+   '$state',
+   'Restangular',
+   'Session',
    function(Auth, $state, Restangular, Session){
 
   var credentials = {};
@@ -27,7 +27,6 @@ app.factory('SignUp',
       });
 
     }, function(error) {
-      console.log(error.data.errors);
       alert('Registration failed: ' + '\n' + printErrors(error.data.errors));
     });
   }
@@ -37,7 +36,7 @@ app.factory('SignUp',
     for(var field in errors) {
       errors[field].forEach(function(error){
         result += (field.toUpperCase() + ': ' + error + '\n');
-      });
+      })
     }
     return result;
   }
@@ -46,7 +45,7 @@ app.factory('SignUp',
     var count = 1;
     var result = {};
     for(var key in profileInput) {
-      result[count] = {language_id: key, difficulty_id: profileInput[key]};
+      result[count] = {language_id: key, difficulty_id: profileInput[key][0]};
       count++;
     }
     return result;
@@ -61,7 +60,6 @@ app.factory('SignUp',
         Session.currentUser.user.email = userInfo.email;
       }
     }, function(error){
-      console.log(error)
       alert('Update failed: ' + '\n' + printErrors(error.data.errors));
     });
   }
@@ -72,8 +70,8 @@ app.factory('SignUp',
       Session.authenticated.status = false;
       $state.go('home');
     }, function(error){
-      alert('Sorry, failed to delete your account, please try again later.')
-    })
+      alert('Sorry, failed to delete your account, please try again later.');
+    });
   }
 
   return {
