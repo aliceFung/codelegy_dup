@@ -7,6 +7,8 @@ source "https://rails-assets.org" do
   gem "rails-assets-angular-devise"
 end
 
+gem 'will_paginate'
+
 gem 'mailboxer'
 
 # omniauth
@@ -90,4 +92,3 @@ group :development do
   gem 'capistrano3-delayed-job', require: false
   gem 'capistrano3-puma',   require: false
 end
-

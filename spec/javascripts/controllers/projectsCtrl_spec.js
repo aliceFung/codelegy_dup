@@ -10,88 +10,88 @@ describe('Controller: membershipCtrl', function(){
                    {"id":9,"name":"C","created_at":"2015-10-07T20:45:00.153Z","updated_at":"2015-10-07T20:45:00.153Z","url":"/logos/c.png","route":"languages","reqParams":null,"restangularized":true,"fromServer":true,"parentResource":null,"restangularCollection":false},
                    {"id":10,"name":"PHP","created_at":"2015-10-07T20:45:00.156Z","updated_at":"2015-10-07T20:45:00.156Z","url":"/logos/php.png","route":"languages","reqParams":null,"restangularized":true,"fromServer":true,"parentResource":null,"restangularCollection":false}];
 
-  var projects = [{"id":118,
-                   "title":"myProject",
-                   "availability":"weeknights",
-                   "description":"really awesome!",
-                   "difficulty_id":132,
-                   "created_at":"2015-10-07T23:36:47.641Z",
-                   "updated_at":"2015-10-07T23:36:47.641Z",
-                   "difficulty_name":"Beginner",
-                   "owner":{
-                      "id":178,
-                      "username":"foo32",
-                      "email":"myemail@user32.com",
-                      "created_at":"2015-10-07T23:36:47.636Z",
-                      "updated_at":"2015-10-07T23:36:47.636Z",
-                      "provider":"Github",
-                      "uid":"1234"
-                    },
-                    "languages":[{
-                              "id" => 1,
-                            "name" => "HTML",
-                      "created_at" => "Wed, 07 Oct 2015 22:47:07 UTC +00:00",
-                      "updated_at" => "Wed, 07 Oct 2015 22:47:07 UTC +00:00",
-                             "url" => "/logos/html.png"
-                    }, {
-                              "id" => 2,
-                            "name" => "Ruby",
-                      "created_at" => "Wed, 07 Oct 2015 22:47:07 UTC +00:00",
-                      "updated_at" => "Wed, 07 Oct 2015 22:47:07 UTC +00:00",
-                             "url" => "/logos/ruby.png"
-                    }]},
-                  {"id":119,
-                   "title":"myProject2",
-                   "availability":"tomorrow",
-                   "description":"really awesome!",
-                   "difficulty_id":132,
-                   "created_at":"2015-10-07T23:36:47.641Z",
-                   "updated_at":"2015-10-07T23:36:47.641Z",
-                   "difficulty_name":"Beginner",
-                   "owner":{
-                      "id":178,
-                      "username":"foo32",
-                      "email":"myemail@user32.com",
-                      "created_at":"2015-10-07T23:36:47.636Z",
-                      "updated_at":"2015-10-07T23:36:47.636Z",
-                      "provider":"Github",
-                      "uid":"1234"
-                    },
-                    "languages":[{
-                              "id" => 1,
-                            "name" => "HTML",
-                      "created_at" => "Wed, 07 Oct 2015 22:47:07 UTC +00:00",
-                      "updated_at" => "Wed, 07 Oct 2015 22:47:07 UTC +00:00",
-                             "url" => "/logos/html.png"
-                    }, {
-                              "id" => 3,
-                            "name" => "Rails",
-                      "created_at" => "Wed, 07 Oct 2015 22:47:07 UTC +00:00",
-                      "updated_at" => "Wed, 07 Oct 2015 22:47:07 UTC +00:00",
-                             "url" => "/logos/rails.png"
-                    }]
-                  },
-                  {"id":120,
-                   "title":"myProject3",
-                   "availability":"weeknights",
-                   "description":"really awesome!",
-                   "difficulty_id":132,
-                   "created_at":"2015-10-07T23:36:47.641Z",
-                   "updated_at":"2015-10-07T23:36:47.641Z",
-                   "difficulty_name":"Beginner",
-                   "owner":{
-                      "id":178,
-                      "username":"foo32",
-                      "email":"myemail@user32.com",
-                      "created_at":"2015-10-07T23:36:47.636Z",
-                      "updated_at":"2015-10-07T23:36:47.636Z",
-                      "provider":"Github",
-                      "uid":"1234"
-                    },
-                    "languages": []}]
-  console.log(languages, projects);
+  // var projects = [{"id":118,
+  //                  "title":"myProject",
+  //                  "availability":"weeknights",
+  //                  "description":"really awesome!",
+  //                  "difficulty_id":132,
+  //                  "created_at":"2015-10-07T23:36:47.641Z",
+  //                  "updated_at":"2015-10-07T23:36:47.641Z",
+  //                  "difficulty_name":"Beginner",
+  //                  "owner":{
+  //                     "id":178,
+  //                     "username":"foo32",
+  //                     "email":"myemail@user32.com",
+  //                     "created_at":"2015-10-07T23:36:47.636Z",
+  //                     "updated_at":"2015-10-07T23:36:47.636Z",
+  //                     "provider":"Github",
+  //                     "uid":"1234"
+  //                   },
+  //                   "languages":[{
+  //                             "id" => 1,
+  //                           "name" => "HTML",
+  //                     "created_at" => "Wed, 07 Oct 2015 22:47:07 UTC +00:00",
+  //                     "updated_at" => "Wed, 07 Oct 2015 22:47:07 UTC +00:00",
+  //                            "url" => "/logos/html.png"
+  //                   }, {
+  //                             "id" => 2,
+  //                           "name" => "Ruby",
+  //                     "created_at" => "Wed, 07 Oct 2015 22:47:07 UTC +00:00",
+  //                     "updated_at" => "Wed, 07 Oct 2015 22:47:07 UTC +00:00",
+  //                            "url" => "/logos/ruby.png"
+  //                   }]},
+  //                 {"id":119,
+  //                  "title":"myProject2",
+  //                  "availability":"tomorrow",
+  //                  "description":"really awesome!",
+  //                  "difficulty_id":132,
+  //                  "created_at":"2015-10-07T23:36:47.641Z",
+  //                  "updated_at":"2015-10-07T23:36:47.641Z",
+  //                  "difficulty_name":"Beginner",
+  //                  "owner":{
+  //                     "id":178,
+  //                     "username":"foo32",
+  //                     "email":"myemail@user32.com",
+  //                     "created_at":"2015-10-07T23:36:47.636Z",
+  //                     "updated_at":"2015-10-07T23:36:47.636Z",
+  //                     "provider":"Github",
+  //                     "uid":"1234"
+  //                   },
+  //                   "languages":[{
+  //                             "id" => 1,
+  //                           "name" => "HTML",
+  //                     "created_at" => "Wed, 07 Oct 2015 22:47:07 UTC +00:00",
+  //                     "updated_at" => "Wed, 07 Oct 2015 22:47:07 UTC +00:00",
+  //                            "url" => "/logos/html.png"
+  //                   }, {
+  //                             "id" => 3,
+  //                           "name" => "Rails",
+  //                     "created_at" => "Wed, 07 Oct 2015 22:47:07 UTC +00:00",
+  //                     "updated_at" => "Wed, 07 Oct 2015 22:47:07 UTC +00:00",
+  //                            "url" => "/logos/rails.png"
+  //                   }]
+  //                 },
+  //                 {"id":120,
+  //                  "title":"myProject3",
+  //                  "availability":"weeknights",
+  //                  "description":"really awesome!",
+  //                  "difficulty_id":132,
+  //                  "created_at":"2015-10-07T23:36:47.641Z",
+  //                  "updated_at":"2015-10-07T23:36:47.641Z",
+  //                  "difficulty_name":"Beginner",
+  //                  "owner":{
+  //                     "id":178,
+  //                     "username":"foo32",
+  //                     "email":"myemail@user32.com",
+  //                     "created_at":"2015-10-07T23:36:47.636Z",
+  //                     "updated_at":"2015-10-07T23:36:47.636Z",
+  //                     "provider":"Github",
+  //                     "uid":"1234"
+  //                   },
+  //                   "languages": []}]
+  // console.log(languages, projects);
 
-  # beforeEach(module('app'));
+  // beforeEach(module('app'));
 
 
 })

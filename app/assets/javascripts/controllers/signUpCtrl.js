@@ -14,13 +14,14 @@ app.controller('signUpCtrl',
   $scope.currentUser = Session.currentUser;
 
   $scope.register = function(){
+    console.log(ProfileRegistration.profileInput);
     SignUp.register($scope.credentials, ProfileRegistration.profileInput);
   };
 
   $scope.$on('devise:new-registration', function(event, user) {
     $scope.currentUser.user = user;
     $scope.authenticated.status = true;
-    $state.go('projects');
+    $state.go('dashboard');
   });
 
 }]);

@@ -45,7 +45,7 @@ context 'RESTful profile actions' do
       expect(json_response['photo_id']).to eq(20)
     end
 
-    xit 'does not change user_id' do
+    it 'does not change user_id' do
       put :update,
         profile: attributes_for(:profile, user_id: user.id)
       expect(user.profile.id).not_to eq(-25)

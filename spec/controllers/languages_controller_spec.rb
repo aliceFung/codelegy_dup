@@ -22,4 +22,12 @@ RSpec.describe LanguagesController, type: :controller do
     get :index
     expect(JSON.parse(response.body).first['name']).to eql('MyString')
   end
+
+  it 'serves language suggestions' do
+    create :suggestion
+    sign_in(user)
+    get :index
+    expect(JSON.parse(response.body).first['suggestions'].first['title'])
+      .to eql('Codelegy Programming Tutorial')
+  end
 end

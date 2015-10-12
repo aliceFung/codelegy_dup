@@ -1,7 +1,7 @@
-Dear <%= @user.email %>
+Dear <%= @project.owner.username %>,
 
-You have a new member request for <%= @project.title %>!
+You have a message regarding <%= @project.title %>!
 
 <%= link_to "Go to your codelegy dashboard", domain_url %>
 
-To unsubscribe to email notifications, login to your codelegy account to change settings.
+To modify to email notifications frequency, login to your codelegy account to change settings.

@@ -19,7 +19,7 @@
           <a ui-sref="home">home</a>
         </li>
         <li>
-          <a href="#">Showcase</a>
+          <a ui-sref='dashboard'>Dashboard</a>
         </li>
         <li>
           <a ui-sref="projects">Projects</a>
@@ -29,6 +29,12 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
+      
+        <li >
+          <a class="app-notifications" ui-sref="profiles.settings" ng-if='authenticated.status'>
+            <span class="icon icon-user"></span>
+          </a>
+        </li>
         <li >
           <a ng-if='authenticated.status'class="app-notifications" ui-sref="inbox">
             <span class="icon icon-mail"></span>
@@ -39,7 +45,7 @@
         <li><a ui-sref="home.form.signup" ng-if='!authenticated.status'>Sign Up</a></li>
 
         <li ng-if='authenticated.status'>
-          <a ui-sref='dashboard'>
+          <a>
             Welcome {{currentUser.user.username}}
           </a>
         </li>

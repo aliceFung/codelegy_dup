@@ -47,14 +47,35 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
         .state('home.form.signup', {
             url: '/signup',
             templateUrl: 'templates/registration/form-sign-up.html',
-            controller: 'profileRegistrationCtrl'
+            controller: 'profileRegistrationCtrl',
+            resolve: {
+              languageList: [ 'Language', function(Language){
+                          return Language.get()
+                          .then(function(response){
+                              Language.languages = response;
+                              return response;
+                          }, function(error){
+                              return error;
+                          });
+                        }]
+            }
         })
 
         // url will be /form/interests
         .state('home.form.languages', {
             url: '/languages',
             templateUrl: 'templates/registration/form-lang.html',
-            controller: 'profileRegistrationCtrl'
+            controller: 'profileRegistrationCtrl',
+            resolve: {
+              languageList: [ 'Language', function(Language){
+                          return Language.get()
+                          .then(function(response){
+                              return response;
+                          }, function(error){
+                              return error;
+                          });
+                        }]
+            }
         })
 
         // url will be /form/payment
@@ -78,13 +99,14 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
       })
 
       .state('profiles.show', {
-        url: '/:userid',
+        url: '/show/:userid',
         templateUrl: 'templates/profiles/show.html'
       })
 
       .state('profiles.settings', {
         url: '/settings',
-        templateUrl: 'templates/profiles/settings.html'
+        templateUrl: 'templates/profiles/settings.html', 
+        controller: 'accountSettingCtrl'
       });
 
 
@@ -92,6 +114,9 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
       .state('dashboard', {
           url: '/dashboard',
           views: {
+            '': {
+              templateUrl: 'templates/dashboard/layout.html'
+            },
             'navbar': {
               templateUrl: 'templates/header-1.html',
               controller: 'sessionCtrl'
@@ -110,6 +135,16 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
                     });
                   });
                 }],
+
+                languageList: [ 'Language', function(Language){
+                  return Language.get()
+                  .then(function(response){
+                      Language.languages = response;
+                      return response;
+                  }, function(error){
+                      return error;
+                  });
+                }]
               }
             },
             'projects@dashboard': {
@@ -120,9 +155,6 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
             },
             'suggestions@dashboard': {
               templateUrl: 'templates/dashboard/suggestions.html'
-            },
-            '': {
-              templateUrl: 'templates/dashboard/layout.html'
             }
           }
       });
@@ -132,9 +164,9 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
         url: '/projects',
         resolve: {
           projects: [ 'Restangular', function(Restangular){
-                      return Restangular.all('projects').getList()
+                      return Restangular.all('projects').getList({page: 1})
                       .then(function(response){
-                          return response
+                       return response
                       }, function(error){
                           return error
                       })
@@ -147,7 +179,6 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
                           return error
                       })
                     }],
-
          },
         views: {
 
@@ -162,6 +193,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
           }
         }
       })
+
       .state('projects.new', {
         url: '/new',
         views: {
@@ -175,6 +207,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
 
         }
       })
+
       .state('projects.list', {
         url: '/list',
         views: {
@@ -196,11 +229,22 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
         url: '/:id/join',
         controller: 'membershipCtrl',
         templateUrl: 'templates/projects/participation-request.html'
-        // views: {
-        //   "": {
-        //     controller: 'membershipCtrl',
-        //     templateUrl: 'templates/projects/participation-request.html'
-        //   }}
+      })
+
+      //projects dashboard
+      .state('projectsList', {
+        url: '/projectsList',
+        views: {
+          '': {
+                controller: 'userProjectsCtrl',
+                templateUrl: 'templates/projects_dashboard.html',
+              },
+
+          'navbar': {
+              templateUrl: 'templates/header-1.html',
+              controller: 'sessionCtrl'
+          }
+        }
       })
 
       //inbox
@@ -236,4 +280,3 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
       })
 
   }]);
-

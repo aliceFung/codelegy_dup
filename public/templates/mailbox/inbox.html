@@ -6,15 +6,30 @@
         <h2 class="page-header">Inbox</h2>
         <div ng-repeat="email in inbox">
 
-          <div ui-sref = "email({'id': $index})">
-            <h5>From: {{email.sender_username}} at {{email.date | date}}</h5>
-            <h4>{{email.subject}}</h4>
+
+          <div ng-if="!inbox.length">
+            <p>Looks like you don't have any messages yet!</p>
+            <p>Join a
+              <a ui-sref="projects">Project</a>
+              to start messaging
+              <a ui-sref="projectsList">your group members</a>.</p>
           </div>
-          <hr>
+
+          <div ng-repeat="email in inbox">
+
+            <div ui-sref = "email({'id': email.id})">
+              <h5>From: {{email.sender_username}}  at {{email.date | date}}</h5>
+              <h4>{{email.subject | limitCharDisplayFilter}}</h4>
+            </div>
+            <hr>
+          </div>
+
         </div>
+
   
     </div>
     <table class="table table-striped table-borderd">
   
     </table>
   </div>
+

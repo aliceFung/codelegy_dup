@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007180854) do
+ActiveRecord::Schema.define(version: 20151009203255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,13 +36,6 @@ ActiveRecord::Schema.define(version: 20151007180854) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "emails", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "project_id"
-    t.text    "content"
-    t.boolean "to_everyone", default: false
   end
 
   create_table "languages", force: :cascade do |t|
@@ -119,6 +112,8 @@ ActiveRecord::Schema.define(version: 20151007180854) do
     t.datetime "updated_at",    null: false
   end
 
+  add_index "profile_languages", ["profile_id", "language_id"], name: "index_profile_languages_on_profile_id_and_language_id", using: :btree
+
   create_table "profiles", force: :cascade do |t|
     t.string   "about"
     t.integer  "user_id",      null: false
@@ -142,6 +137,16 @@ ActiveRecord::Schema.define(version: 20151007180854) do
     t.string   "availability"
     t.string   "description"
     t.integer  "difficulty_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "suggestions", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "language_id",   null: false
+    t.integer  "difficulty_id"
+    t.text     "description"
+    t.string   "url"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
