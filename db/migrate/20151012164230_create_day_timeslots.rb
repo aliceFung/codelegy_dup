@@ -3,6 +3,8 @@ class CreateDayTimeslots < ActiveRecord::Migration
     create_table :day_timeslots do |t|
       t.integer :day_id, null: false
       t.integer :timeslot_id, null: false
+      t.integer :owner_id, null: false
+      t.string :owner_type, null: false
 
       t.timestamps null: false
     end

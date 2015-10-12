@@ -1,4 +1,5 @@
-app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'api', 'Session', 'projects', 'languages', function($scope, $state, $filter, api, Session, projects, languages){
+app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Session', 'Timeslot', 'projects', 'languages',
+  function($scope, $state, $filter, Project, Session, Timeslot, projects, languages){
 
     $scope.projects = projects
     $scope.langFilter = {};
@@ -9,21 +10,16 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'api', 'Session',
       $scope.langFilter[el.name] = false;
       $scope.langSuggestions[el.name] = el.suggestions;
     })
+    $scope.newProject = {languages: $scope.langFilter, day_timeslots_attributes: {}}
 
-$scope.availabilityDays = { Monday: false,
-                            Tuesday: false,
-                            Wednesday: false,
-                            Thursday: false,
-                            Friday: false,
-                            Saturday: false,
-                            Sunday: false,
-                          }
-      $scope.start = {};
-      $scope.end = {};
-      $scope.timeslots = [];
+    $scope.days = Timeslot.days;
 
-    $scope.days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
-                   "Friday", "Saturday"]
+    $scope.start = {};
+    $scope.end = {};
+    $scope.timeslots = [];
+
+    // $scope.days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
+                   // "Friday", "Saturday"]
 
     $scope.displayPage = 0;
 
@@ -38,7 +34,6 @@ $scope.availabilityDays = { Monday: false,
     }
 
 
-    // debugger
     var truthCount = function(){
       var count = 0;
       for (key in $scope.langFilter){
@@ -81,7 +76,7 @@ $scope.availabilityDays = { Monday: false,
 
 
     $scope.addDay = function(day){
-      $scope.availabilityDays[day] = !$scope.availabilityDays[day]
+      $scope.days[day] = !$scope.days[day]
     }
 
 
@@ -101,11 +96,10 @@ $scope.availabilityDays = { Monday: false,
       min = $scope.end.minute * 60000
       hour = ($scope.end.hour * 3600000) + (12*3600000 * $scope.end.am)
       var end = (min + hour + (new Date).getTimezoneOffset() * 60000)
-      for (day in $scope.availabilityDays){
-        if ($scope.availabilityDays[day]){
-          start /= 1000;
-          end /= 1000;
-          debugger;
+      for (day in $scope.days){
+        if ($scope.days[day]){
+
+          // $scope.newProject.day_timeslots_attributes.start/1000, end/1000, $scope.days.indexOf(day);
           $scope.timeslots.push({day: day, start: start, end: end})
         }
       }
@@ -115,22 +109,20 @@ $scope.availabilityDays = { Monday: false,
 
     $scope.grid = true
 
-    $scope.newProject = {languages: $scope.langFilter}
-
     $scope.toggleGrid = function() {
       $scope.grid = !$scope.grid
     }
 
     $scope.submit = function(newProject){
-      // Convert language filter to array to submit
+      // Convert language filter to array for submisssion
       $scope.newProject.languages = [];
-      for (lang in $scope.langFilter){
+      for (var lang in $scope.langFilter){
         if ($scope.langFilter[lang]) {
           $scope.newProject.languages.push(lang)
         }
       }
-      // post the new project object to controller using api service
-      api.post(newProject).then(function(response){
+      // post the new project object to controller using Project service
+      Project.post(newProject).then(function(response){
         $scope.projects.push(response)
         $state.go('projects')
       }, function(error){
@@ -143,7 +135,7 @@ $scope.availabilityDays = { Monday: false,
 
     var nextPage = 2
     var getMoreProjects = function(){
-      api.getPage(nextPage++).then(function(response){
+      Project.getPage(nextPage++).then(function(response){
         $scope.projects = $scope.projects.concat(response)
         $scope.filtered = $filter('filter')($scope.projects, $scope.projectFilter)
       })

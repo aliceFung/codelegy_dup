@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20151012164230) do
   create_table "day_timeslots", force: :cascade do |t|
     t.integer  "day_id",      null: false
     t.integer  "timeslot_id", null: false
+    t.integer  "owner_id",    null: false
+    t.string   "owner_type",  null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

@@ -44,58 +44,36 @@ Language.find_or_create_by(name: 'C', url: '/logos/c.png')
 
 Language.find_or_create_by(name: 'PHP', url: '/logos/php.png')
 
-# 250.times do |i|
-#   user = User.create(email: "foo#{i}@bar.com", password: '12345678')
+250.times do |i|
+  user = User.create(email: "foo#{i}@bar.com", password: '12345678')
 
-#   p "created #{i+1} users" if i % 20 == 0
-# end
+  p "created #{i+1} users" if i % 20 == 0
+end
 
-# p "Created Users"
+p "Created Users"
 
-# 1000.times do |i|
-#   p = Project.create(title: "my #{i}th project", difficulty_id: rand(4)+1,
-#                  availability: 'weekends')
+1000.times do |i|
+  p = Project.create(title: "my #{i}th project", difficulty_id: rand(4)+1,
+                 availability: 'weekends')
 
-#   owner_id = rand(250)+1
+  owner_id = rand(250)+1
 
-#   member_id = 0
+  member_id = 0
 
-#   loop do
-#     member_id = rand(250)+1
-#     break if member_id != owner_id
-#   end
+  loop do
+    member_id = rand(250)+1
+    break if member_id != owner_id
+  end
 
-#   p.memberships.create(user_id: owner_id, participant_type: "owner")
-#   p.memberships.create(user_id: member_id, participant_type: "member")
+  p.memberships.create(user_id: owner_id, participant_type: "owner")
+  p.memberships.create(user_id: member_id, participant_type: "member")
 
-#   ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
-#   ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
-#   ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
-#   ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
+  ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
+  ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
+  ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
+  ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
 
-#   p "created #{i+1} projects" if i % 50 == 0
-# end
+  p "created #{i+1} projects" if i % 50 == 0
+end
 
 p "Done"
-# Membership.first.update(participant_type: 'owner')
-
-#----------------------------
-
-#create users
-7.times do |i|
-  User.create(email: "foo#{i}@bar.com", password: 'password', password_confirmation: 'password', username: "foo#{i}")
-end
-
-users = User.all
-# #create projects and owners
-3.times do |i|
-  p = Project.create(title: "my #{i}th project", difficulty_id: rand(4)+1, availability: 'weekends')
-  Membership.create(user_id: users[i].id, project_id: p.id, participant_type: 'owner')
-end
-
-#create more memberships
-Membership.create(user_id: User.second.id, project_id: Project.first.id, participant_type: 'member');
-
-3.times do |i|
-  Membership.create(user_id: users[i+2], project_id: Project.first.id)
-end

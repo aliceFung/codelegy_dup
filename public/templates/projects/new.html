@@ -20,11 +20,11 @@
     <br>
     <br>
     <div class="row">
-      <div class="col-sm-2" ng-repeat="day in days">
+      <!-- {{days}} -->
+      <div class="col-sm-2" ng-repeat="(day,value) in days">
         <button class="btn btn-default btn-block" ng-click='addDay(day)'
-        ng-class='{"active": availabilityDays[day]}'>{{day}}</button>
+        ng-class='{"active": days[day]}'>{{day}}</button>
       </div>
-      <!-- {{availabilityDays}} -->
     </div>
     <br>Start Time:
     <select ng-model="start.hour" id="">
@@ -90,6 +90,7 @@
     <button class="btn btn-primary" ng-click="submit(newProject)">
       Submit
     </button>
+    {{newProject}}
   </div>
 </div>
 </ui-view>

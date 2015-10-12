@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       put 'profiles' => 'profiles#update'
       get 'profiles' => 'profiles#show'
 
+      resources :timeslots, only: [:create]
+
       resources :memberships, except: [:new, :edit, :destroy]
       resources :mailbox, only: [:index, :create, :destroy]
 

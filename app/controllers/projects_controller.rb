@@ -28,8 +28,19 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :difficulty_id, :availability, :description)
+    params.require(:project).permit(:title, :difficulty_id, :availability,
+     :description, day_timeslots_attributes: [:day_id, :timeslot_id])
   end
+
+  # def create_timeslot
+  #   start_time = Time.at(params[:start]).utc
+  #   end_time = Time.at(params[:end]).utc
+  #   timeslot = Timeslot.find_or_create_by(start_time: start_time, end_time: end_time)
+
+  #   DayTimeslot.find_or_create_by(day_id: params[:day], timeslot_id: timeslot.id,
+  #                                 owner_id: )
+  #   binding.pry
+  # end
 
   def add_project_languages(languages, project)
     languages.each do |lang|

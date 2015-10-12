@@ -1,4 +1,4 @@
-app.factory('api', ['Restangular', function(Restangular){
+app.factory('Project', ['Restangular', function(Restangular){
 
   var post = function(data){
     return Restangular.all('projects').post(data)
