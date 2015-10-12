@@ -96,8 +96,17 @@ class User < ActiveRecord::Base
   end
 
   # mailboxer config
-  def mailboxer_email(obj)
-    self.email
+  def user_notification_email(obj)
+    # self.email #uses devise emailing method
+    binding.pry
+    User.delay.send_notification_email(self.id)
+    # UserMailer.mailboxer_msg(self).deliver_now!
+  end
+
+  # uses our own mailing method
+  def self.send_notification_email(user_id)
+    user = User.find(user_id)
+    UserMailer.mailboxer_msg(user).deliver_now!
   end
 
   # mailboxer config

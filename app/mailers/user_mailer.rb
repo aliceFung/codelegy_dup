@@ -12,4 +12,10 @@ class UserMailer < ApplicationMailer
     mail(to: target, subject: "Hi.")
   end
 
+  def mailboxer_msg(recipient)
+    @recipient = recipient
+    # @project = project
+    mail(to: @recipient.email, subject: "You have a new message at Codelegy")
+  end
+
 end
