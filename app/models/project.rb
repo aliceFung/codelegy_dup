@@ -5,7 +5,8 @@ class Project < ActiveRecord::Base
 
   belongs_to :difficulty
 
-  has_many :day_timeslots
+  has_many :day_timeslots, as: :owner
+  has_many :timeslots, through: :day_timeslots
 
   validates :title, presence: true
 
