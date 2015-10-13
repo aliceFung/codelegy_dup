@@ -39,8 +39,6 @@ app.controller('dashboardProfileCtrl',
 
       $scope.update = function(){
         Auth.currentUser().then(function(user){
-          debugger;
-          // if $scope.prof
           ProfileRegistration.update(user.id, $scope.profileUpdates, $scope.information, $scope.languageSelected);
         });
       };

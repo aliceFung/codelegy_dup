@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013163254) do
+ActiveRecord::Schema.define(version: 20151013223827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,11 +40,12 @@ ActiveRecord::Schema.define(version: 20151013163254) do
 
   create_table "email_digests", force: :cascade do |t|
     t.integer  "user_id",      null: false
-    t.integer  "days_delayed"
+    t.integer  "days_delayed", null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
+  add_index "email_digests", ["days_delayed"], name: "index_email_digests_on_days_delayed", using: :btree
   add_index "email_digests", ["user_id"], name: "index_email_digests_on_user_id", unique: true, using: :btree
 
   create_table "languages", force: :cascade do |t|

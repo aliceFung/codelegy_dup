@@ -2,14 +2,12 @@ class EmailDigest < ActiveRecord::Base
 
   after_create :check_job_exists
 
-  #currently not enforced in db model yet.
+  validates :user_id, :presence => true,
+                      :uniqueness => true
   validates :days_delayed, :presence => true
 
   belongs_to :user
   delegate :profile, to: :user
-
-  # belongs_to :profile
-  # delegate  :user, to: :profile
 
   def check_job_exists
     # binding.pry
@@ -26,11 +24,9 @@ class EmailDigest < ActiveRecord::Base
       t = Time.now
       run_time =
         if type == :weekly
-          t.end_of_hour #testing
-          # t.end_of_week
+          t.end_of_week
         else
-          t + 5.minutes #testing
-          # t.end_of_day
+          t.end_of_day
         end
 
       EmailDigest.delay(queue: type, run_at: run_time).send_emails(type)
@@ -42,7 +38,7 @@ class EmailDigest < ActiveRecord::Base
     digests = EmailDigest.digests_to_send(queue)
     digests.each do |digest|
       user = User.find(digest.user_id)
-      UserMailer.mailboxer_msg(user).deliver_now! if user
+      UserMailer.mailboxer_msg(user).deliver if user
     end
     digests.destroy_all
   end

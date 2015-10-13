@@ -1,6 +1,6 @@
 app.factory('emailService', ['Restangular', function(Restangular){
 
-  console.log('emailService started');
+  // console.log('emailService started');
 
   var inbox = [];
   //get emails for inbox

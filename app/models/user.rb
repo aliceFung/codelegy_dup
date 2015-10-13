@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable, 
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:github]
 
@@ -60,6 +60,7 @@ class User < ActiveRecord::Base
   end
 
   # returns all participating projects with limited associated info
+  # only project owner has membership details
   def project_dashboard_membership
     list = self.projects.includes(:difficulty, :languages, :memberships => :user)
 
@@ -108,8 +109,9 @@ class User < ActiveRecord::Base
   end
 
   # mailboxer config, triggers for email notification
+  # if user has a email_frequency preference,
+  # creates a EmailDigest, doesn't send email
   def user_notification_email(msg)
-    # binding.pry
     if self.profile.email_frequency
       if EmailDigest.where('user_id = ?', self.id).empty?
         EmailDigest.create( user_id: self.id,

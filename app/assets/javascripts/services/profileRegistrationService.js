@@ -23,7 +23,7 @@ app.factory('ProfileRegistration',
     // debugger;
     Restangular.all('profiles').customPUT({profile: profileInfo}).then(function(profile_returned){
 
-      // set returned about me and availability
+      // set returned about me, availability, and email_frequency
       information.about = profile_returned.about;
       information.availability = profile_returned.availability;
       information.email_frequency = profile_returned.email_frequency;
