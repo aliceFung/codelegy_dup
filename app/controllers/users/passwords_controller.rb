@@ -1,5 +1,5 @@
 class Users::PasswordsController < Devise::PasswordsController
-
+  respond_to :html
   # GET /resource/password/new
   # def new
   #   super

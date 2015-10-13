@@ -74,11 +74,22 @@ app.factory('SignUp',
     });
   }
 
+  function resetPassword(email) {
+    Restangular.oneUrl('users', 'http://localhost:3000/users/password.json')
+           .customPOST({user: { email: email }})
+           .then(function(data){
+      alert('Reset Password Email has been sent, please check you mailbox!')
+    }, function(error){
+      alert('Error: \n' + printErrors(error.data.errors))
+    })
+  }
+
   return {
     register: register,
     credentials: credentials,
     update: update,
-    cancelAccount: cancelAccount
+    cancelAccount: cancelAccount, 
+    resetPassword: resetPassword
   };
 
 }]);

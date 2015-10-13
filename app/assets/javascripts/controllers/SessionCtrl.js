@@ -1,5 +1,6 @@
-app.controller('sessionCtrl', ['$scope', 'Session', '$state', 'EmailRegEx',
-  function($scope, Session, $state, EmailRegEx){
+app.controller('sessionCtrl',
+  ['$scope', 'Session', '$state', 'EmailRegEx', 'SignUp', 
+  function($scope, Session, $state, EmailRegEx, SignUp){
 
   $scope.authenticated = Session.authenticated;
   $scope.currentUser = Session.currentUser;
@@ -22,14 +23,9 @@ app.controller('sessionCtrl', ['$scope', 'Session', '$state', 'EmailRegEx',
 
   $scope.signOut = Session.signOut;
 
-  // $scope.signInWithGithub = Session.signInWithGithub;
-
   $scope.resetPassword = function(){
-    Restangular.oneUrl('users', 'http://localhost:3000/users/password.json').customPOST().then(function(data){
-      console.log('reset password: ', data)
-    }, function(error){
-      console.log('reset password error: ', error)
-    });
+    SignUp.resetPassword($scope.resetPasswordForm.email);
+    $scope.showResetPasswordForm = false;
   }
 
   $scope.$on('devise:login', function(event, currentUser) {
