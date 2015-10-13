@@ -18,7 +18,6 @@ app.factory('Timeslot', ['Restangular', function(Restangular){
                             Sunday: false,
                           };
 
-
   function addDay(day){
     availabilityDays[day] = !availabilityDays[day];
   }
@@ -26,10 +25,22 @@ app.factory('Timeslot', ['Restangular', function(Restangular){
   function addTimeslot(){
     var start = _createTime(startTime);
     var end = _createTime(endTime);
-    for (var day in availabilityDays){
-      if (availabilityDays[day]){
-        timeslots.push({day: day, start_time: start/1000, end_time: end/1000});
+
+    if (start < end){
+      for (var day in availabilityDays){
+        if (availabilityDays[day]){
+          timeslots.push({day: day, start_time: start/1000, end_time: end/1000});
+        }
       }
+      _resetAvailabilityDays();
+    } else {
+      alert("Start time must precede end time");
+    }
+  }
+
+  function _resetAvailabilityDays(){
+    for(var key in availabilityDays){
+      availabilityDays[key] = false;
     }
   }
 
@@ -37,6 +48,11 @@ app.factory('Timeslot', ['Restangular', function(Restangular){
     var min = timeEntered.minute * 60000;
     var hour = (timeEntered.hour * 3600000) + (12*3600000 * timeEntered.am);
     return (min + hour + (new Date(0)).getTimezoneOffset() * 60000);
+  }
+
+  function clear(slotToRemove){
+    var index = timeslots.indexOf(slotToRemove);
+    timeslots.splice(index, 1);
   }
 
   return {add: addTimeslot,
@@ -47,5 +63,6 @@ app.factory('Timeslot', ['Restangular', function(Restangular){
           all: timeslots,
           addDay: addDay,
           startTime: startTime,
-          endTime: endTime};
+          endTime: endTime,
+          clear: clear};
 }]);
