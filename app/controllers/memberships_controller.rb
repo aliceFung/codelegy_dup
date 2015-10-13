@@ -16,7 +16,7 @@ class MembershipsController < ApplicationController
     @message = params["content"] || params[:content] || "User #{current_user.username} would like to join your project!"
     respond_to do |format|
       if @membership.save
-        current_user.send_message(@project_owner, @message, "User #{current_user.username} would like to join your project: '#{@membership.project.title}!'")
+        new_membership_request
         format.json {render json: @membership}
       else
         format.json {render json: {errors: ["There was an error with your request. Please try again."]}, status: 522}
@@ -78,6 +78,12 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def new_membership_request
+    if current_user != @project_owner
+      current_user.send_message(@project_owner, @message, "User #{current_user.username} would like to join your project: '#{@membership.project.title}!'")
+    end
+  end
+
 
   # User is accepted
     # Everyone in the project gets a message
@@ -89,7 +95,8 @@ class MembershipsController < ApplicationController
 
   def send_membership_status_update(after)
     if after == 'member'
-      current_user.send_message(@membership.project.group_members, "#{@membership.user.username} has been added to #{@membership.project.title}!", "#{@membership.project.title} has a new member!")
+      grp_members = @membership.project.group_members - [current_user]
+      current_user.send_message(grp_members, "#{@membership.user.username} has been added to #{@membership.project.title}!", "#{@membership.project.title} has a new member!")
     elsif after == 'rejected'
       current_user.send_message(@membership.user, "Unfortunately, you were rejected to work on project #{@membership.project.title}. Sign in to codelegy find another project to join.", "Sorry!")
     end

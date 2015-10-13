@@ -1,15 +1,13 @@
-app.controller('sessionCtrl', ['$scope', 'Session', '$state', 'EmailRegEx', 'emailService',
-  function($scope, Session, $state, EmailRegEx, emailService){
+app.controller('sessionCtrl', ['$scope', 'Session', '$state', 'EmailRegEx',
+  function($scope, Session, $state, EmailRegEx){
 
   $scope.authenticated = Session.authenticated;
   $scope.currentUser = Session.currentUser;
-  $scope.email = '';
+  $scope.email = "";
   $scope.password = '';
   $scope.credentials = {};
   $scope.emailRegex = EmailRegEx.check;
-  $scope.authenticated = Session.authenticated;
-  $scope.inbox = emailService.inbox;       
-  console.log($scope.inbox);
+  // $scope.authenticated = Session.authenticated; // duplicate
   $scope.processForm = function(validInput){
     if(validInput){
       $scope.signIn();
