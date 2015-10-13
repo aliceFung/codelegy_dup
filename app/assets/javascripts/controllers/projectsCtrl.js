@@ -15,7 +15,8 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Sessi
     $scope.newProject = {};
     $scope.newProjectLanguagesSelected = [];
 
-    // Time slots widget variables and methods
+    // Time slots widget variables and methods ---
+
     $scope.days = Timeslot.days;
     $scope.hours = Timeslot.hours;
     $scope.minutes = Timeslot.minutes;
@@ -28,6 +29,12 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Sessi
     $scope.addDay = function(day){
       Timeslot.addDay(day);
     };
+
+    $scope.clearTimeslot = function(timeslot){
+      Timeslot.clear(timeslot);
+    };
+
+    // End of Time slots widget -----------------
 
     $scope.displayPage = 0;
 

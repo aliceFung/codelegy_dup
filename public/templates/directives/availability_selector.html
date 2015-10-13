@@ -103,6 +103,7 @@
   </div> <!-- end of row with start and end time -->
 
   <br><br>
+
   <div class='row'>
     <div class='col-sm-6 col-sm-offset-3'>
       <button ng-click="addTimeslot()" class="btn btn-default btn-block">
@@ -111,10 +112,29 @@
     </div>
   </div>
 
-<!--   <div class='row' ng-repeat='timeslot in timeslots'>
-    <div class='col-sm-4' style='padding:2px'>{{timeslot.day}}</div>
-    <div class='col-sm-4' style='padding:2px'>{{timeslot.start_time}}</div>
-    <div class='col-sm-4' style='padding:2px'>{{timeslot.end_time}}</div>
-  </div> -->
+  <br><br>
+
+  <div class='row' id='times-selected-table'>
+    <table class='table table-striped'>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat='timeslot in timeslots'>
+          <td>{{ timeslot.day }}</td>
+          <td>{{ (1000*timeslot.start_time) | date: 'shortTime' }}</td>
+          <td>{{ (1000*timeslot.end_time)   | date: 'shortTime'  }}</td>
+          <td ng-click=clearTimeslot(timeslot)>
+              <span class="glyphicon glyphicon-remove text-center" aria-hidden="true"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 </div>
