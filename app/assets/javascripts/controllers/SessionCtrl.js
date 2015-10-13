@@ -1,15 +1,14 @@
-app.controller('sessionCtrl', ['$scope', 'Session', '$state', 'EmailRegEx', 'emailService',
-  function($scope, Session, $state, EmailRegEx, emailService){
+app.controller('sessionCtrl',
+  ['$scope', 'Session', '$state', 'EmailRegEx', 'SignUp', 
+  function($scope, Session, $state, EmailRegEx, SignUp){
 
   $scope.authenticated = Session.authenticated;
   $scope.currentUser = Session.currentUser;
-  $scope.email = '';
+  $scope.email = "";
   $scope.password = '';
   $scope.credentials = {};
   $scope.emailRegex = EmailRegEx.check;
-  $scope.authenticated = Session.authenticated;
-  $scope.inbox = emailService.inbox;       
-  console.log($scope.inbox);
+  // $scope.authenticated = Session.authenticated; // duplicate
   $scope.processForm = function(validInput){
     if(validInput){
       $scope.signIn();
@@ -24,14 +23,9 @@ app.controller('sessionCtrl', ['$scope', 'Session', '$state', 'EmailRegEx', 'ema
 
   $scope.signOut = Session.signOut;
 
-  // $scope.signInWithGithub = Session.signInWithGithub;
-
   $scope.resetPassword = function(){
-    Restangular.oneUrl('users', 'http://localhost:3000/users/password.json').customPOST().then(function(data){
-      console.log('reset password: ', data)
-    }, function(error){
-      console.log('reset password error: ', error)
-    });
+    SignUp.resetPassword($scope.resetPasswordForm.email);
+    $scope.showResetPasswordForm = false;
   }
 
   $scope.$on('devise:login', function(event, currentUser) {
