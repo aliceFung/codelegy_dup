@@ -79,40 +79,11 @@
       Availability
     </h5>
 
-    <div  class="panel-title text-center"
-          ng-hide='updateFieldForAvailability'
-          ng-click='updateFieldForAvailability = !updateFieldForAvailability'>
-          {{information.availability || "Add a note"}}
+    <div ng-repeat="time in information.times">
+      <p>&emsp;{{time[0]}} {{time[1] | date : 'shortTime'}} - {{time[2] | date : 'shortTime'}}</p>
     </div>
 
-    <div class="panel-title text-center"
-          ng-show='updateFieldForAvailability'>
-      <div class='row'>
 
-        <div class='col-sm-8'>
-          <input  type='text'
-                  id='updatedAvailability'
-                  ng-model='profileUpdates.availability'
-                  ng-value='information.availability'
-                  placeholder="{{information.availability}}">
-        </div>
-
-        <div class='col-sm-2'>
-          <span class="glyphicon glyphicon-ok"
-                aria-hidden="true"
-                ng-click='update(); updateFieldForAvailability = false'>
-          </span>
-        </div>
-
-        <div class='col-sm-2'>
-          <span class="glyphicon glyphicon-remove"
-                aria-hidden="true"
-                ng-click='updateFieldForAvailability = false'>
-          </span>
-        </div>
-
-      </div> <!-- End of row -->
-    </div> <!-- End of panel-title -->
   </div> <!-- End of panel body -->
 </div> <!-- End of Availability  -->
 

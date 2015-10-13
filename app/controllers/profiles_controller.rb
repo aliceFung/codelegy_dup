@@ -1,7 +1,6 @@
 class ProfilesController < ApplicationController
 
   def update
-    binding.pry
     @user = User.find(params[:profile][:user_id])
     @profile = @user.profile
 
@@ -13,7 +12,6 @@ class ProfilesController < ApplicationController
         render nothing: true , status: 404
       end
     else
-    # binding.pry
       render nothing: true , status: 401
     end
   end
@@ -44,7 +42,6 @@ class ProfilesController < ApplicationController
 
   def create_timeslots(timeslots, profile)
     timeslots.each do |timeslot|
-    binding.pry
       start_time = Time.at(timeslot[:start_time]).utc
       end_time = Time.at(timeslot[:end_time]).utc
       new_timeslot = Timeslot.find_or_create_by(start_time: start_time, end_time: end_time)
