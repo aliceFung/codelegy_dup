@@ -12,6 +12,7 @@ class EmailDigest < ActiveRecord::Base
   # delegate  :user, to: :profile
 
   def check_job_exists
+    # binding.pry
     if self.days_delayed == 7
       add_to_DJ_queue(:weekly)
     else
@@ -23,14 +24,14 @@ class EmailDigest < ActiveRecord::Base
   def add_to_DJ_queue(type)
     if Delayed::Job.find_by_queue(type).nil?
       t = Time.now
-      run_time, start_time = ""
-      if type == :weekly
-        run_time = t.end_of_week
-        # start_time = t.beginning_of_week
-      else
-        run_time = t.end_of_day
-        # start_time = t.beginning_of_day
-      end
+      run_time =
+        if type == :weekly
+          t.end_of_hour #testing
+          # t.end_of_week
+        else
+          t + 5.minutes #testing
+          # t.end_of_day
+        end
 
       EmailDigest.delay(queue: type, run_at: run_time).send_emails(type)
     end
@@ -38,7 +39,7 @@ class EmailDigest < ActiveRecord::Base
 
   #sends email then destroys emailDigest instances
   def self.send_emails(queue)
-    digests = digests_to_send(queue)
+    digests = EmailDigest.digests_to_send(queue)
     digests.each do |digest|
       user = User.find(digest.user_id)
       UserMailer.mailboxer_msg(user).deliver_now! if user
@@ -46,7 +47,7 @@ class EmailDigest < ActiveRecord::Base
     digests.destroy_all
   end
 
-  def digests_to_send(queue)
+  def self.digests_to_send(queue)
     days = queue == :weekly ? 7 : 1
     EmailDigest.includes(:user).where('days_delayed = ?', days)
   end
