@@ -26,11 +26,14 @@ app.controller('sessionCtrl',
   // $scope.signInWithGithub = Session.signInWithGithub;
 
   $scope.resetPassword = function(){
-    Restangular.oneUrl('users', 'http://localhost:3000/users/password.json').customPOST().then(function(data){
+    Restangular.oneUrl('users', 'http://localhost:3000/users/password.json')
+               .customPOST({user: { email: $scope.resetPasswordForm.email}})
+               .then(function(data){
       console.log('reset password: ', data)
     }, function(error){
       console.log('reset password error: ', error)
     });
+    $scope.showResetPasswordForm = false;
   }
 
   $scope.$on('devise:login', function(event, currentUser) {

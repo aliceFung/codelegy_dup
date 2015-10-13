@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # clear_respond_to
-  respond_to :json
+  respond_to :json, :html
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
 
