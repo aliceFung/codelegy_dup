@@ -7,8 +7,8 @@
   </div>
 
   <div class="col-sm-1 btn-group" ng-repeat="language in languages">
-      <button class="btn btn-primary btn-embossed btn-block" ng-click='addLang(language)'
-              ng-class='{"active": langFilter[language]}'>{{language}}</button>
+    <button class="btn btn-primary btn-embossed btn-block" ng-click='addLang(language)'
+    ng-class='{"active": langFilter[language]}'>{{language}}</button>
   </div>
 </div>
 <br>
@@ -39,27 +39,27 @@
     Times: <input type="text" ng-model="filter.availability">
     Difficulty: <select ng-model="filter.difficulty_name">
 
-      <option value="">No Filter</option>
-      <option value="Beginner">Beginner</option>
-      <option value="Intermediate">Intermediate</option>
-      <option value="Expert">Expert</option>
-      <option value="Master">Master</option>
-    </select>
-  
-     <button ui-sref="projects.new"
+    <option value="">No Filter</option>
+    <option value="Beginner">Beginner</option>
+    <option value="Intermediate">Intermediate</option>
+    <option value="Expert">Expert</option>
+    <option value="Master">Master</option>
+  </select>
+
+  <button ui-sref="projects.new"
   class="btn btn-sm btn-info pull-right">New Project</button>
-  </div> <br>
+</div> <br>
 
 </div>
 
-  <nav>
-    <a ng-click="prevPage()" aria-label="Previous">
-      <span aria-hidden="true">&laquo;</span>Previous Page
-    </a>
-    <a  class="pull-right" ng-click="nextPage()" aria-label="Next">
-      Next Page<span aria-hidden="true">&raquo;</span>
-    </a>
-  </nav>
+<nav>
+  <a ng-click="prevPage()" aria-label="Previous">
+    <span aria-hidden="true">&laquo;</span>Previous Page
+  </a>
+  <a  class="pull-right" ng-click="nextPage()" aria-label="Next">
+    Next Page<span aria-hidden="true">&raquo;</span>
+  </a>
+</nav>
 <br>
 
 <div class="row">
@@ -83,7 +83,10 @@
           <strong>Project Owner:</strong>
           <a ui-sref="profiles.show({id: project.owner.id})">{{project.owner.username}}</a><br>
           <strong>Est. Difficulty:</strong>{{project.difficulty_name}} <br>
-          <strong>Times:</strong> {{project.availability}} <br>
+          <strong>Times:</strong>
+          <span ng-repeat="time in project.times">
+            <br>{{time[0]}} {{time[1] | date : 'shortTime'}} - {{time[2] | date : 'shortTime'}}
+          </span><br>
           <strong>Languages:</strong>
           <img ng-repeat="lang in project.language_urls" ng-src="{{lang.url}}" alt="{{lang.name}}"
           style="width:20px;margin:5px"> <br>
@@ -91,7 +94,6 @@
         </div>
 
       </div>
-    </div>
     </div>
   </div>
 </div>
