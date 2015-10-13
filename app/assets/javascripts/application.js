@@ -20,6 +20,6 @@
 //= require angular-animate
 //= require lodash
 //= require restangular
-
+//= require flat-ui-pro
 
 //= require_tree .

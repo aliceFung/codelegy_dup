@@ -16,7 +16,7 @@ class MembershipsController < ApplicationController
     @message = params["content"] || params[:content] || "User #{current_user.username} would like to join your project!"
     respond_to do |format|
       if @membership.save
-        current_user.send_message(@project_owner, @message, "User #{current_user.username} would like to join your project: '#{@membership.project.title}!'")
+        new_membership_request
         format.json {render json: @membership}
       else
         format.json {render json: {errors: ["There was an error with your request. Please try again."]}, status: 522}
@@ -75,6 +75,12 @@ class MembershipsController < ApplicationController
       respond_to do |format|
         format.json {render json: {errors: ["You must be the owner of this content!"]}, status: 403}
       end
+    end
+  end
+
+  def new_membership_request
+    if current_user != @project_owner
+      current_user.send_message(@project_owner, @message, "User #{current_user.username} would like to join your project: '#{@membership.project.title}!'")
     end
   end
 

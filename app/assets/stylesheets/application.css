@@ -13,5 +13,6 @@
  *= require_tree .
  *= require_self
  *= require entypo-fonts
-*= require font-awesome
+ *= require font-awesome
+ *= require custom
  */

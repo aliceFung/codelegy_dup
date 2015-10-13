@@ -18,11 +18,11 @@ app.controller('profileRegistrationCtrl',
 
       $scope.setExpLevel = function(languageId, levelId) {
         console.log(languageId, levelId);
-
+        $scope.profileInput.profile_languages[languageId] = [];
         if (levelId == 'None') {
           delete $scope.profileInput.profile_languages[languageId];
         } else {
-          $scope.profileInput.profile_languages[languageId] = levelId;
+          $scope.profileInput.profile_languages[languageId][0] = levelId;
         }
       };
 

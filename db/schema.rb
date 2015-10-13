@@ -121,6 +121,8 @@ ActiveRecord::Schema.define(version: 20151012225542) do
     t.datetime "updated_at",    null: false
   end
 
+  add_index "profile_languages", ["profile_id", "language_id"], name: "index_profile_languages_on_profile_id_and_language_id", using: :btree
+
   create_table "profiles", force: :cascade do |t|
     t.string   "about"
     t.integer  "user_id",      null: false
