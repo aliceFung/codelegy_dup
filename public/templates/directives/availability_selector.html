@@ -1,66 +1,59 @@
+<!-- Days -->
+<div class="row text-center">
+  <b>Select days</b>
+</div><br>
+
 <div class="row">
-  <!-- {{days}} -->
-  <div class="col-sm-2" ng-repeat="(day,value) in days">
-    <button class="btn btn-default btn-block" ng-click='addDay(day)'
-    ng-class='{"active": days[day]}'>{{day}}</button>
+  <div class="col-sm-3" ng-repeat="(day,value) in days">
+    <button class="btn btn-default btn-block"
+            style="margin:10px"
+            ng-click='addDay(day)'
+            ng-class='{"active": days[day]}'>
+            <small>{{day}}</small>
+    </button>
   </div>
 </div>
-<br>Start Time: {{start.hour}}:{{start.minute}}
-<select ng-model="start.hour" id="">
-  <option value="" disabled selected>Hour</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
-  <option value="6">6</option>
-  <option value="7">7</option>
-  <option value="8">8</option>
-  <option value="9">9</option>
-  <option value="10">10</option>
-  <option value="11">11</option>
-  <option value="12">12</option>
-</select>
-<select ng-model="start.minute" id="">
-  <option value="" disabled selected>Minute</option>
-  <option value="00">00</option>
-  <option value="15">15</option>
-  <option value="30">30</option>
-  <option value="45">45</option>
-</select>
-<select ng-model="start.am" id="">
-  <option value="" disabled selected>AM/PM</option>
-  <option value="0">AM</option>
-  <option value="1">PM</option>
-</select>
 
-<br>End Time :{{end.hour}}:{{end.minute}}
+<!-- Start time -->
+<div class='row'>
+  <div class='col-sm-2'>
+    <br>Start Time: {{start.hour}}:{{start.minute}}
+  </div>
+  <div class='col-sm-2'>
+    <select ng-model="start.hour" id="">
+      <option value="" disabled selected>Hour</option>
+      <option ng-repeat="hour in hours" value="{{hour}}">{{hour}}</option>
+    </select>
+  </div>
+  <div class='col-sm-2'>
+    <select ng-model="start.minute" id="">
+      <option value="" disabled selected>Minute</option>
+      <option ng-repeat="minute in minutes" value="{{minute}}">{{minute}}</option>
+    </select>
+  </div>
+  <div class='col-sm-2'>
+    <select ng-model="start.am" id="">
+      <option value="" disabled selected>AM/PM</option>
+      <option ng-repeat="(key, value) in amPm" value="{{key}}">{{value}}</option>
+    </select>
+  </div>
+</div>
+
+
+<!-- End time -->
+<br>
+End Time: <span ng-if='end'>{{end.hour}}:{{end.minute}} </span>
 <select ng-model="end.hour" id="">
   <option value="" disabled selected>Hour</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
-  <option value="6">6</option>
-  <option value="7">7</option>
-  <option value="8">8</option>
-  <option value="9">9</option>
-  <option value="10">10</option>
-  <option value="11">11</option>
-  <option value="12">12</option>
+  <option ng-repeat="hour in hours" value="{{hour}}">{{hour}}</option>
 </select>
 <select ng-model="end.minute" id="">
   <option value="" disabled selected>Minute</option>
-  <option value="00">00</option>
-  <option value="15">15</option>
-  <option value="30">30</option>
-  <option value="45">45</option>
+  <option ng-repeat="minute in minutes" value="{{minute}}">{{minute}}</option>
 </select>
 <select ng-model="end.am" id="">
   <option value="" disabled selected>AM/PM</option>
-  <option value="0">AM</option>
-  <option value="1">PM</option>
+  <option ng-repeat="(key, value) in amPm" value="{{key}}">{{value}}</option>
 </select>
 <br><br>
 <button ng-click="addTimeslot()" class="btn btn-default">Add Timeslot</button>

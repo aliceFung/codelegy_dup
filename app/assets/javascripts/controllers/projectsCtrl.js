@@ -15,11 +15,15 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Sessi
     $scope.newProject = {};
     $scope.newProjectLanguagesSelected = [];
 
+    // Time slots widget variables and methods
     $scope.days = Timeslot.days;
-
-    $scope.start = {};
-    $scope.end = {};
-    $scope.timeslots = [];
+    $scope.hours = Timeslot.hours;
+    $scope.minutes = Timeslot.minutes;
+    $scope.amPm = Timeslot.amPm;
+    $scope.start = Timeslot.startTime;
+    $scope.end = Timeslot.endTime;
+    $scope.timeslots = Timeslot.all;
+    $scope.addTimeslot = Timeslot.add;
 
     $scope.displayPage = 0;
 
@@ -42,7 +46,6 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Sessi
       }
       return count;
     };
-
 
     $scope.moreThan24HrsAgo = function(time) {
       if ((Date.now() - new Date(time))/1000/60/60 > 24) {
@@ -67,11 +70,8 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Sessi
       $scope.signedIn = Session.authenticated;
     })();
 
-    // $scope.timesFilter = "";
-    // $scope.difficultyFilter;
-
     $scope.addDay = function(day){
-      $scope.days[day] = !$scope.days[day];
+      Timeslot.addDay(day);
     };
 
     var checkTimes = function(project){
@@ -81,22 +81,6 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Sessi
         console.log((project.availability).indexOf($scope.timesFilter) > -1);
       }
       return true;
-    };
-
-    $scope.addTimeslot = function(){
-      var min = $scope.start.minute * 60000;
-      var hour = ($scope.start.hour * 3600000) + (12*3600000 * $scope.start.am);
-      var start = (min + hour + (new Date).getTimezoneOffset() * 60000);
-      min = $scope.end.minute * 60000;
-      hour = ($scope.end.hour * 3600000) + (12*3600000 * $scope.end.am);
-      var end = (min + hour + (new Date).getTimezoneOffset() * 60000);
-      for (var day in $scope.days){
-        if ($scope.days[day]){
-
-          // $scope.newProject.day_timeslots_attributes.start/1000, end/1000, $scope.days.indexOf(day);
-          $scope.timeslots.push({day: day, start_time: start/1000, end_time: end/1000});
-        }
-      }
     };
 
     $scope.grid = true;
@@ -150,7 +134,6 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Sessi
       if ( idx === -1){
         $scope.langFilter.push(language);
       } else {
-        // debugger
         $scope.langFilter.splice(idx, 1);
       }
     };

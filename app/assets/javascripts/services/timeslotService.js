@@ -1,9 +1,13 @@
 app.factory('Timeslot', ['Restangular', function(Restangular){
 
 
-  var addTimeslot = function(start_time, end_time, day){
-    Restangular.all('timeslots').post({start: start_time, end: end_time, day: day})
-  }
+  var hours = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+  var minutes = ['00', '15', '30', '45'];
+  var amPm = {'0':'AM', '1':'PM'};
+
+  var timeslots = [];
+  var startTime = {};
+  var endTime = {};
 
   var availabilityDays =  { Monday: false,
                             Tuesday: false,
@@ -12,18 +16,36 @@ app.factory('Timeslot', ['Restangular', function(Restangular){
                             Friday: false,
                             Saturday: false,
                             Sunday: false,
-                          }
+                          };
 
 
-  function processTimeslotInput(profileInput) {
-    var count = 1;
-    var result = {};
-    for(var key in TimeslotInput) {
-      result[count] = {};
-      count++;
-    }
-    return result;
+  function addDay(day){
+    availabilityDays[day] = !availabilityDays[day];
   }
+
+  function addTimeslot(){
+    var start = _createTime(startTime);
+    var end = _createTime(endTime);
+    for (var day in availabilityDays){
+      if (availabilityDays[day]){
+        timeslots.push({day: day, startTime: start/1000, endTime: end/1000});
+      }
+    }
+  }
+
+  function _createTime(timeEntered){
+    var min = timeEntered.minute * 60000;
+    var hour = (timeEntered.hour * 3600000) + (12*3600000 * timeEntered.am);
+    return (min + hour + (new Date(0)).getTimezoneOffset() * 60000);
+  }
+
   return {add: addTimeslot,
-          days: availabilityDays}
+          days: availabilityDays,
+          hours: hours,
+          minutes: minutes,
+          amPm: amPm,
+          all: timeslots,
+          addDay: addDay,
+          startTime: startTime,
+          endTime: endTime};
 }]);
