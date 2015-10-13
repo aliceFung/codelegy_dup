@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
 
       create_project_languages(params['languages'], @project) if params['languages']
       create_memberships(@project)
-      binding.pry
+      # binding.pry
       render json: @project, methods: [:difficulty_name, :owner, :languages]
     else
       render json: { errors: @project.errors.full_messages }
@@ -35,8 +35,8 @@ class ProjectsController < ApplicationController
 
   def create_timeslots(timeslots, project)
     timeslots.each do |timeslot|
-      start_time = Time.at(timeslot[:start_time])
-      end_time = Time.at(timeslot[:end_time])
+      start_time = Time.at(timeslot[:start_time]).utc
+      end_time = Time.at(timeslot[:end_time]).utc
       new_timeslot = Timeslot.find_or_create_by(start_time: start_time, end_time: end_time)
       new_day = Day.find_by_name(timeslot[:day])
       DayTimeslot.create(day_id: new_day.id, timeslot_id: new_timeslot.id,
