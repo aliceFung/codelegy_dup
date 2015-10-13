@@ -108,8 +108,8 @@ class User < ActiveRecord::Base
 
   # mailboxer config, triggers for email notification
   def user_notification_email(msg)
-    if self.email_frequency
-      EmailDigest.create(user_id: self.id)
+    if self.profile.email_frequency
+      # EmailDigest.create(user_id: self.id)
     else
       User.delay.send_notification_email(self.id)
     end
