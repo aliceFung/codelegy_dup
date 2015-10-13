@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :projects, through: :memberships
 
   has_one :email_digest, dependent: :destroy
+  # has_one :email_digest, through: :profile, dependent: :destroy
 
   after_create :create_profile
 
@@ -109,7 +110,8 @@ class User < ActiveRecord::Base
   # mailboxer config, triggers for email notification
   def user_notification_email(msg)
     if self.profile.email_frequency
-      # EmailDigest.create(user_id: self.id)
+      EmailDigest.create( user_id: self.id,
+                          days_delayed: self.profile.email_frequency)
     else
       User.delay.send_notification_email(self.id)
     end

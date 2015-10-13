@@ -7,14 +7,14 @@ class Membership < ActiveRecord::Base
   validates :user, uniqueness: { scope: :project }, presence: true
   validates :project, presence: true
 
+  def is_project_owner
+    self.participant_type == 'owner'
+  end
+
   def send_delayed_request_email
     # binding.pry
     # self.user.send_message(self.project.owner, @message, "User #{self.user.username} would like to join your project: '#{self.project.title}!'")
     # Membership.delay.send_request_email(self.user_id, self.project_id)
-  end
-
-  def is_project_owner
-    self.participant_type == 'owner'
   end
 
   def self.send_request_email(user_id, project_id)
