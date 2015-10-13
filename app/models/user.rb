@@ -12,15 +12,11 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :projects, through: :memberships
 
-  has_many :day_timeslots, as: :owner
 
   has_one :email_digest, dependent: :destroy
 
   after_create :create_profile
 
-  def times
-    self.day_timeslots.includes(:day, :timeslot).pluck(:"days.name", :"timeslots.start_time", :"timeslots.end_time")
-  end
 
   def self.from_omniauth(auth)
     user = where(email: auth.info.email)[0]

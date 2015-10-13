@@ -3,12 +3,10 @@
     <div class="col-xs-6 col-xs-offset-3">
         <label for="availability">Availability</label>
         <br>
-        <input type="text"
-                class="form-control"
-                name="availability" 
-                placeholder="Mon-Sun, 8-10am"
-                ng-model="profileInput.availability">
+
+        <div availability-selector></div>
         <br>
+
         <a type="submit" class="btn btn-block btn-success" ng-click='register()'>
         Submit  <span class="glyphicon glyphicon-circle-arrow-right"></span>
         </a>

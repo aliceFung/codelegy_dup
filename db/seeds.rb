@@ -51,24 +51,36 @@ end
 
 p "Created Days"
 
-250.times do |i|
+2.times do |i|
   user = User.create(email: "foo#{i}@bar.com", password: '12345678')
+  user.confirm
 
+  ProfileLanguage.find_or_create_by(profile_id: user.profile.id, language_id: rand(10)+1, difficulty_id: rand(4)+1)
+  ProfileLanguage.find_or_create_by(profile_id: user.profile.id, language_id: rand(10)+1, difficulty_id: rand(4)+1)
+  ProfileLanguage.find_or_create_by(profile_id: user.profile.id, language_id: rand(10)+1, difficulty_id: rand(4)+1)
+  ProfileLanguage.find_or_create_by(profile_id: user.profile.id, language_id: rand(10)+1, difficulty_id: rand(4)+1)
+  
+  start_time = Time.at(50400).utc
+  end_time = Time.at(51300).utc
+  new_timeslot = Timeslot.find_or_create_by(start_time: start_time, end_time: end_time)
+  new_day = Day.find(rand(7)+1)
+  DayTimeslot.find_or_create_by(day_id: new_day.id, timeslot_id: new_timeslot.id,
+    owner_id: user.profile.id, owner_type: user.profile.class)
   p "created #{i} users" if i % 20 == 0
 end
 
 p "Created Users"
 
-1000.times do |i|
+2.times do |i|
   p = Project.create(title: "my #{i}th project", difficulty_id: rand(4)+1,
                  availability: 'weekends')
 
-  owner_id = rand(250)+1
+  owner_id = rand(User.count)+1
 
   member_id = 0
 
   loop do
-    member_id = rand(250)+1
+    member_id = rand(User.count)+1
     break if member_id != owner_id
   end
 
