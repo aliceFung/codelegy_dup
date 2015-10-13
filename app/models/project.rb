@@ -6,7 +6,6 @@ class Project < ActiveRecord::Base
   belongs_to :difficulty
 
   has_many :day_timeslots
-  accepts_nested_attributes_for :day_timeslots
 
   validates :title, presence: true
 

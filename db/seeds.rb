@@ -76,4 +76,13 @@ p "Created Users"
   p "created #{i+1} projects" if i % 50 == 0
 end
 
+days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+days.each do |day|
+  Day.find_or_create_by(name: day)
+end
+
+p "Created Days"
+
 p "Done"
+
+

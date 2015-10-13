@@ -12,13 +12,14 @@ class ProjectsController < ApplicationController
   end
 
   def create
+
     @project = Project.new(project_params)
-
     if @project.save && current_user
+      create_timeslots(params['timeslots'], @project) if params['timeslots']
 
-      add_project_languages(params['languages'], @project) if params['languages']
+      create_project_languages(params['languages'], @project) if params['languages']
       create_memberships(@project)
-
+      binding.pry
       render json: @project, methods: [:difficulty_name, :owner, :languages]
     else
       render json: { errors: @project.errors.full_messages }
@@ -29,20 +30,21 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:title, :difficulty_id, :availability,
-     :description, day_timeslots_attributes: [:day_id, :timeslot_id])
+     :description)
   end
 
-  # def create_timeslot
-  #   start_time = Time.at(params[:start]).utc
-  #   end_time = Time.at(params[:end]).utc
-  #   timeslot = Timeslot.find_or_create_by(start_time: start_time, end_time: end_time)
+  def create_timeslots(timeslots, project)
+    timeslots.each do |timeslot|
+      start_time = Time.at(timeslot[:start_time])
+      end_time = Time.at(timeslot[:end_time])
+      new_timeslot = Timeslot.find_or_create_by(start_time: start_time, end_time: end_time)
+      new_day = Day.find_by_name(timeslot[:day])
+      DayTimeslot.create(day_id: new_day.id, timeslot_id: new_timeslot.id,
+                          owner_id: project.id, owner_type: project.class)
+    end
+  end
 
-  #   DayTimeslot.find_or_create_by(day_id: params[:day], timeslot_id: timeslot.id,
-  #                                 owner_id: )
-  #   binding.pry
-  # end
-
-  def add_project_languages(languages, project)
+  def create_project_languages(languages, project)
     languages.each do |lang|
       lang_id = Language.find_by_name(lang).id
       if lang_id
@@ -57,4 +59,18 @@ class ProjectsController < ApplicationController
       user_id: current_user.id,
       participant_type: "owner")
   end
+
 end
+
+
+
+
+  # def create_timeslot
+  #   start_time = Time.at(params[:start]).utc
+  #   end_time = Time.at(params[:end]).utc
+  #   timeslot = Timeslot.find_or_create_by(start_time: start_time, end_time: end_time)
+
+  #   DayTimeslot.find_or_create_by(day_id: params[:day], timeslot_id: timeslot.id,
+  #                                 owner_id: )
+  #   binding.pry
+  # end
