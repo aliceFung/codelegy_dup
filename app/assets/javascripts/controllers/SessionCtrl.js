@@ -1,6 +1,5 @@
-app.controller('sessionCtrl',
-  ['$scope', 'Session', '$state', 'EmailRegEx', 'Restangular', 
-  function($scope, Session, $state, EmailRegEx, Restangular){
+app.controller('sessionCtrl', ['$scope', 'Session', '$state', 'EmailRegEx', 'emailService',
+  function($scope, Session, $state, EmailRegEx, emailService){
 
   $scope.authenticated = Session.authenticated;
   $scope.currentUser = Session.currentUser;
@@ -8,7 +7,9 @@ app.controller('sessionCtrl',
   $scope.password = '';
   $scope.credentials = {};
   $scope.emailRegex = EmailRegEx.check;
-
+  $scope.authenticated = Session.authenticated;
+  $scope.inbox = emailService.inbox;       
+  console.log($scope.inbox);
   $scope.processForm = function(validInput){
     if(validInput){
       $scope.signIn();

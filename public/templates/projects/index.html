@@ -1,19 +1,20 @@
 <ui-view>
-<hr><hr>
+<br><br>
 <!-- Languages -->
 <div class="row">
   <div class="col-sm-1">
 
   </div>
-  <div class="col-sm-1" ng-repeat="language in languages">
-    <button class="btn btn-default btn-block" ng-click='addLang(language)'
-    ng-class='{"active": langFilter[language]}'>{{language}}</button>
+
+  <div class="col-sm-1 btn-group" ng-repeat="language in languages">
+      <button class="btn btn-primary btn-embossed btn-block" ng-click='addLang(language)'
+              ng-class='{"active": langFilter[language]}'>{{language}}</button>
   </div>
 </div>
 <br>
 <!-- End Languages -->
 
-<div class="container">
+<div class="wide-container">
   <br>
   <div class="pull-right">
     <div class="btn-group">
@@ -28,27 +29,29 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-3"><h2>Projects</h2></div>
+  <div><h2 class="page-header p-text bangers">Projects</h2></div>
   <div class="col-sm-4 col-sm-offset-3">
-    <button ng-show="signedIn" ui-sref="projects.new"
-    class="btn btn-primary pull-right">New Project</button>
-
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-7 col-md-offset-3">
     Times: <input type="text" ng-model="filter.availability">
     Difficulty: <select ng-model="filter.difficulty_name">
-    <option value="">No Filter</option>
-    <option value="Beginner">Beginner</option>
-    <option value="Intermediate">Intermediate</option>
-    <option value="Expert">Expert</option>
-    <option value="Master">Master</option>
-  </select>
-  {{filtered.length}} Matching Projects <hr>
+
+      <option value="">No Filter</option>
+      <option value="Beginner">Beginner</option>
+      <option value="Intermediate">Intermediate</option>
+      <option value="Expert">Expert</option>
+      <option value="Master">Master</option>
+    </select>
+  
+     <button ui-sref="projects.new"
+  class="btn btn-sm btn-info pull-right">New Project</button>
+  </div> <br>
+
 </div>
-</div>
+
   <nav>
     <a ng-click="prevPage()" aria-label="Previous">
       <span aria-hidden="true">&laquo;</span>Previous Page
@@ -58,6 +61,7 @@
     </a>
   </nav>
 <br>
+
 <div class="row">
   <div class="col-sm-9">
    <div ng-class="{row: ($index%3 == 2)}" ng-repeat="project in filtered | filter: filter |orderBy:'-created_at': false | limitTo : 24 : displayPage">
@@ -85,7 +89,9 @@
           style="width:20px;margin:5px"> <br>
           <a ui-sref="projects.join({id: project.id})">Code Together</a>
         </div>
+
       </div>
+    </div>
     </div>
   </div>
 </div>
@@ -130,14 +136,14 @@
   </div>
 </div>
 </div>
-  <nav>
+<!--   <nav>
     <a ng-click="prevPage()" aria-label="Previous">
       <span aria-hidden="true">&laquo;</span>Previous Page
     </a>
     <a  class="pull-right" ng-click="nextPage()" aria-label="Next">
       Next Page<span aria-hidden="true">&raquo;</span>
     </a>
-  </nav>
+  </nav> -->
 </div>
 
 
