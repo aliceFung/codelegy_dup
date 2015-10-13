@@ -44,10 +44,17 @@ Language.find_or_create_by(name: 'C', url: '/logos/c.png')
 
 Language.find_or_create_by(name: 'PHP', url: '/logos/php.png')
 
+days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+days.each do |day|
+  Day.find_or_create_by(name: day)
+end
+
+p "Created Days"
+
 250.times do |i|
   user = User.create(email: "foo#{i}@bar.com", password: '12345678')
 
-  p "created #{i+1} users" if i % 20 == 0
+  p "created #{i} users" if i % 20 == 0
 end
 
 p "Created Users"
@@ -73,15 +80,17 @@ p "Created Users"
   ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
   ProjectLanguage.find_or_create_by(project_id: p.id, language_id: rand(10)+1)
 
-  p "created #{i+1} projects" if i % 50 == 0
+  start_time = Time.at(50400).utc
+  end_time = Time.at(51300).utc
+  new_timeslot = Timeslot.find_or_create_by(start_time: start_time, end_time: end_time)
+  new_day = Day.find(rand(7)+1)
+  DayTimeslot.find_or_create_by(day_id: new_day.id, timeslot_id: new_timeslot.id,
+    owner_id: p.id, owner_type: p.class)
+
+
+  p "created #{i} projects" if i % 50 == 0
 end
 
-days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-days.each do |day|
-  Day.find_or_create_by(name: day)
-end
-
-p "Created Days"
 
 p "Done"
 

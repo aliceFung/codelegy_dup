@@ -3,12 +3,12 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.paginate(page: params[:page], per_page: 24).order(created_at: 'DESC')
-    render json: @projects, methods: [:difficulty_name, :owner, :language_urls]
+    render json: @projects, methods: [:difficulty_name, :owner, :language_urls, :times]
   end
 
   def show
     @project = Project.find(params[:id])
-    render json: @project, methods: [:difficulty_name, :owner]
+    render json: @project, methods: [:difficulty_name, :owner, :language_urls, :times]
   end
 
   def create
@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
       create_project_languages(params['languages'], @project) if params['languages']
       create_memberships(@project)
       # binding.pry
-      render json: @project, methods: [:difficulty_name, :owner, :language_urls]
+      render json: @project, methods: [:difficulty_name, :owner, :language_urls, :times]
     else
       render json: { errors: @project.errors.full_messages }
     end
@@ -39,7 +39,7 @@ class ProjectsController < ApplicationController
       end_time = Time.at(timeslot[:end_time]).utc
       new_timeslot = Timeslot.find_or_create_by(start_time: start_time, end_time: end_time)
       new_day = Day.find_by_name(timeslot[:day])
-      DayTimeslot.create(day_id: new_day.id, timeslot_id: new_timeslot.id,
+      DayTimeslot.find_or_create_by(day_id: new_day.id, timeslot_id: new_timeslot.id,
                           owner_id: project.id, owner_type: project.class)
     end
   end

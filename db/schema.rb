@@ -53,6 +53,15 @@ ActiveRecord::Schema.define(version: 20151013154418) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "email_digests", force: :cascade do |t|
+    t.integer  "user_id",      null: false
+    t.integer  "days_delayed"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "email_digests", ["user_id"], name: "index_email_digests_on_user_id", unique: true, using: :btree
+
   create_table "languages", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -189,9 +198,16 @@ ActiveRecord::Schema.define(version: 20151013154418) do
     t.datetime "updated_at",                                  null: false
     t.string   "provider"
     t.string   "uid"
+    t.integer  "email_frequency"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["email_frequency"], name: "index_users_on_email_frequency", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"

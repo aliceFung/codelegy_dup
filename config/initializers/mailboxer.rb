@@ -6,6 +6,8 @@ Mailboxer.setup do |config|
   #Configures the default from for emails sent for Messages and Notifications
   config.default_from = "no-reply@codelegy.xyz"
 
+  # config.notification_mailer = CustomNotificationMailer
+
   #Configures the methods needed by mailboxer
   config.email_method = :user_notification_email
   config.name_method = :mailboxer_name
