@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :day_timeslot do
-    day_id 1
-    timeslot_id 1
+    day
+    timeslot
 
     factory :profile_timeslot do
       after(:build) do |day_timeslot|

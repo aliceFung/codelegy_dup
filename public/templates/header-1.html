@@ -8,18 +8,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" ui-sref="home">
          <p class="bangers">Codelegy</p>
       </a>
     </div>
     <div class="navbar-collapse collapse" id="navbar-collapse-main">
 
       <ul class="nav navbar-nav hidden-xs">
-        <li class="active">
-          <a ui-sref="home">home</a>
-        </li>
         <li>
-          <a ui-sref='dashboard'>Dashboard</a>
+          <a ui-sref='dashboard' ng-show="authenticated.status">Dashboard</a>
         </li>
         <li>
           <a ui-sref="projects">Projects</a>

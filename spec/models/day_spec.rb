@@ -1,5 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Day, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let!(:day) { create(:day) }
+
+  context 'Accociation' do
+    it 'should respond to day_timeslots method' do
+      expect(day).to respond_to(:day_timeslots)
+    end
+
+    it 'should respond to timeslots method' do
+      expect(day).to respond_to(:timeslots)
+    end
+
+  end
 end
