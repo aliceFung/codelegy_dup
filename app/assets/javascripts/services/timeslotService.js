@@ -42,6 +42,12 @@ app.factory('Timeslot', ['Restangular', function(Restangular){
     for(var key in availabilityDays){
       availabilityDays[key] = false;
     }
+    startTime.hour = undefined;
+    startTime.minute = undefined;
+    startTime.am = undefined;
+    endTime.hour = undefined;
+    endTime.minute = undefined;
+    endTime.am = undefined;
   }
 
   function _createTime(timeEntered){
