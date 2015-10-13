@@ -1,0 +1,66 @@
+<div class="row">
+  <!-- {{days}} -->
+  <div class="col-sm-2" ng-repeat="(day,value) in days">
+    <button class="btn btn-default btn-block" ng-click='addDay(day)'
+    ng-class='{"active": days[day]}'>{{day}}</button>
+  </div>
+</div>
+<br>Start Time: {{start.hour}}:{{start.minute}}
+<select ng-model="start.hour" id="">
+  <option value="" disabled selected>Hour</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+</select>
+<select ng-model="start.minute" id="">
+  <option value="" disabled selected>Minute</option>
+  <option value="00">00</option>
+  <option value="15">15</option>
+  <option value="30">30</option>
+  <option value="45">45</option>
+</select>
+<select ng-model="start.am" id="">
+  <option value="" disabled selected>AM/PM</option>
+  <option value="0">AM</option>
+  <option value="1">PM</option>
+</select>
+
+<br>End Time :{{end.hour}}:{{end.minute}}
+<select ng-model="end.hour" id="">
+  <option value="" disabled selected>Hour</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+</select>
+<select ng-model="end.minute" id="">
+  <option value="" disabled selected>Minute</option>
+  <option value="00">00</option>
+  <option value="15">15</option>
+  <option value="30">30</option>
+  <option value="45">45</option>
+</select>
+<select ng-model="end.am" id="">
+  <option value="" disabled selected>AM/PM</option>
+  <option value="0">AM</option>
+  <option value="1">PM</option>
+</select>
+<br><br>
+<button ng-click="addTimeslot()" class="btn btn-default">Add Timeslot</button>
