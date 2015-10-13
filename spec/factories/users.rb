@@ -9,6 +9,7 @@ FactoryGirl.define do
     provider 'Github'
     uid '1234'
 
+    after(:build) { |user| user.confirm }
   end
 
 end
