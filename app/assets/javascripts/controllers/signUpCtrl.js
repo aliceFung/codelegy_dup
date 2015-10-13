@@ -28,6 +28,10 @@ app.controller('signUpCtrl',
     Timeslot.addDay(day);
   };
 
+  $scope.clearTimeslot = function(timeslot){
+    Timeslot.clear(timeslot);
+  };
+
   $scope.register = function(){
     console.log(ProfileRegistration.profileInput);
     SignUp.register($scope.credentials, ProfileRegistration.profileInput, $scope.timeslots);
