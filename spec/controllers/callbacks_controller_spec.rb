@@ -24,7 +24,7 @@ describe Users::CallbacksController do
         expect(json['uid']).to eq(user.uid)
       end
     end
-
+    
   end
 
 end
