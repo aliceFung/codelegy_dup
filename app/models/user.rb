@@ -4,13 +4,15 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable, 
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:github]
 
   has_one :profile, dependent: :destroy
   has_many :memberships
   has_many :projects, through: :memberships
+
+  has_one :email_digest, dependent: :destroy
 
   after_create :create_profile
 
@@ -106,7 +108,11 @@ class User < ActiveRecord::Base
 
   # mailboxer config, triggers for email notification
   def user_notification_email(msg)
-    User.delay.send_notification_email(self.id)
+    if self.email_frequency
+      EmailDigest.create(user_id: self.id)
+    else
+      User.delay.send_notification_email(self.id)
+    end
     return nil #to prevent default email sending
   end
 
