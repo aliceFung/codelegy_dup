@@ -32,6 +32,7 @@ class ProfilesController < ApplicationController
                                     :user_id,
                                     :availability,
                                     :photo_id,
+                                    :email_frequency,
                                     {profile_languages_attributes:[
                                       :language_id,
                                       :difficulty_id, :id, :_destroy]

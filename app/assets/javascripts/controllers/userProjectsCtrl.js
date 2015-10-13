@@ -25,7 +25,7 @@ app.controller("userProjectsCtrl", ['$scope', '$state', 'userProjectService', 'R
     } );
   };
 
-  //can move method to emailService
+  //can move method to emailService in future
   $scope.sendMessage = function(project_id, msgSubject, msgBody){
     var msg = { subject: msgSubject,
                 body: msgBody,
