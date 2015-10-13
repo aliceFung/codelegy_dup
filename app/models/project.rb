@@ -34,4 +34,8 @@ class Project < ActiveRecord::Base
                         participant_type = ?', 'owner', 'member')
   end
 
+  def times
+    self.day_timeslots.includes(:day, :timeslot).pluck(:"days.name", :"timeslots.start_time", :"timeslots.end_time")
+  end
+
 end
