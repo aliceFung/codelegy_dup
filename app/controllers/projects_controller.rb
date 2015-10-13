@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
       create_project_languages(params['languages'], @project) if params['languages']
       create_memberships(@project)
       # binding.pry
-      render json: @project, methods: [:difficulty_name, :owner, :languages_urls]
+      render json: @project, methods: [:difficulty_name, :owner, :language_urls]
     else
       render json: { errors: @project.errors.full_messages }
     end
