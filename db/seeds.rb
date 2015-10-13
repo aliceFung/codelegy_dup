@@ -51,7 +51,7 @@ end
 
 p "Created Days"
 
-2.times do |i|
+100.times do |i|
   user = User.create(email: "foo#{i}@bar.com", password: '12345678')
   user.confirm
 
@@ -59,7 +59,7 @@ p "Created Days"
   ProfileLanguage.find_or_create_by(profile_id: user.profile.id, language_id: rand(10)+1, difficulty_id: rand(4)+1)
   ProfileLanguage.find_or_create_by(profile_id: user.profile.id, language_id: rand(10)+1, difficulty_id: rand(4)+1)
   ProfileLanguage.find_or_create_by(profile_id: user.profile.id, language_id: rand(10)+1, difficulty_id: rand(4)+1)
-  
+
   start_time = Time.at(50400).utc
   end_time = Time.at(51300).utc
   new_timeslot = Timeslot.find_or_create_by(start_time: start_time, end_time: end_time)
@@ -71,7 +71,7 @@ end
 
 p "Created Users"
 
-2.times do |i|
+1000.times do |i|
   p = Project.create(title: "my #{i}th project", difficulty_id: rand(4)+1,
                  availability: 'weekends')
 
