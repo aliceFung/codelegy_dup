@@ -25,6 +25,10 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Sessi
     $scope.timeslots = Timeslot.all;
     $scope.addTimeslot = Timeslot.add;
 
+    $scope.addDay = function(day){
+      Timeslot.addDay(day);
+    };
+
     $scope.displayPage = 0;
 
     $scope.nextPage = function () {
@@ -69,10 +73,6 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Sessi
     var checkSignIn = (function(){
       $scope.signedIn = Session.authenticated;
     })();
-
-    $scope.addDay = function(day){
-      Timeslot.addDay(day);
-    };
 
     var checkTimes = function(project){
       if (project.availability){
