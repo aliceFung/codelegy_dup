@@ -28,8 +28,7 @@ RSpec.describe User, type: :model do
     end
 
     specify 'creating a user creates a new profile' do
-      user2 = build(:user)
-      expect{user2.save}.to change {Profile.count}.by(1)
+      expect{ user2 = create(:user) }.to change {Profile.count}.by(1)
     end
 
   end
