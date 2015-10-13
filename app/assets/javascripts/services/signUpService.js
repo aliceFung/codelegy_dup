@@ -7,7 +7,7 @@ app.factory('SignUp',
 
   var credentials = {};
 
-  function register(credentials, profile){
+  function register(credentials, profile, timeslots){
     var config = {
         headers: {
             'X-HTTP-Method-Override': 'POST'
@@ -20,7 +20,7 @@ app.factory('SignUp',
       profileInfo.user_id = registeredUser.id;
       profileInfo.availability = profile.availability;
       profileInfo.profile_languages_attributes = processProfileInput(profile.profile_languages);
-      Restangular.all('profiles').customPUT({profile: profileInfo}).then(function(profile){
+      Restangular.all('profiles').customPUT({profile: profileInfo, timeslots: timeslots}).then(function(profile){
         console.log('updated profile: ', profile);
       }, function(error) {
         console.log('cannot update profile');
