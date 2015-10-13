@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 app.controller('sessionCtrl',
   ['$scope', 'Session', '$state', 'EmailRegEx', 'SignUp', 
   function($scope, Session, $state, EmailRegEx, SignUp){
-=======
-app.controller('sessionCtrl', ['$scope', 'Session', '$state', 'EmailRegEx',
-  function($scope, Session, $state, EmailRegEx){
->>>>>>> 45902f5c902f4625cf5cbe10c6363f79cdbb544a
 
   $scope.authenticated = Session.authenticated;
   $scope.currentUser = Session.currentUser;

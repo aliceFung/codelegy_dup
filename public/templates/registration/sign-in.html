@@ -66,37 +66,35 @@
 
           </div>
 
-          <footer class="screen-login">
-            <a href="#" class="text-muted">Forgot password</a>
-          </footer>
         </form>
-      </div>
-    </form>
-    <br>
-    <footer class="screen-login m-x-auto text-center app-login-form">
-      <a href="#" class="text-muted" ng-click="showResetPasswordForm=!showResetPasswordForm">Forgot password</a>
-      <form name="resetPasswordForm"> 
-        <div class="form-group" 
-              ng-if="showResetPasswordForm" 
-              ng-class="{ 'has-error' : resetPasswordForm.resetPasswordEmail.$invalid && 
-                                        !resetPasswordForm.resetPasswordEmail.$pristine }">
-          <input  class="form-control" 
-                  name="resetPasswordEmail"
-                  placeholder="Email"
-                  ng-model="resetPasswordForm.email"
-                  required ng-pattern="emailRegex">
+        
+        <footer class="screen-login m-x-auto text-center app-login-form">
+          <a href="#" class="text-muted" ng-click="showResetPasswordForm=!showResetPasswordForm">Forgot password</a>
+          <form name="resetPasswordForm"> 
+            <div class="form-group" 
+                  ng-if="showResetPasswordForm" 
+                  ng-class="{ 'has-error' : resetPasswordForm.resetPasswordEmail.$invalid && 
+                                            !resetPasswordForm.resetPasswordEmail.$pristine }">
+              <input  class="form-control" 
+                      name="resetPasswordEmail"
+                      placeholder="Email"
+                      ng-model="resetPasswordForm.email"
+                      required ng-pattern="emailRegex">
 
-          <p ng-show="resetPasswordForm.resetPasswordEmail.$invalid &&
-              !resetPasswordForm.resetPasswordEmail.$pristine"
-              class="help-block">
-              Please enter a valid email
-          </p>
-          <br>
-          <button type="submit "class="btn btn-primary" ng-click="resetPassword()">
-            Send me reset password instructions
-          </button>
-        </div>
-      </form>
-    </footer>
+              <p ng-show="resetPasswordForm.resetPasswordEmail.$invalid &&
+                  !resetPasswordForm.resetPasswordEmail.$pristine"
+                  class="help-block">
+                  Please enter a valid email
+              </p>
+              <br>
+              <button type="submit "class="btn btn-primary" ng-click="resetPassword()">
+                Send me reset password instructions
+              </button>
+            </div>
+          </form>
+        </footer>
+      </div>
+
+
   </div>
 </div>
