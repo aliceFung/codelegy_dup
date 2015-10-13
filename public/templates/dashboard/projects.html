@@ -4,7 +4,7 @@
     <div class="wide-container">
       <div class="row">
         <h5 class="pull-right label label-important">Owner</h5>
-        <h5 class="bangers p-text">{{project.title}}</h5>
+        <h5 data-toggle="modal" data-target='#memberModal{{project.id}}' class="bangers p-text">{{project.title}}</h5>
       </div>
       <div class="row">
         <div class="col-md-5">
@@ -41,9 +41,9 @@
           </ul>
         </div>
       </div>
-
-
-
+      <div project-modal></div>
     </div>
   </li>
 </ul>
+
+
