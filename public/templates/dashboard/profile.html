@@ -142,3 +142,53 @@
 
   </div>
 </div>
+
+
+<!-- EmailFrequency -->
+<div class="panel panel-default visible-md-block visible-lg-block">
+
+  <div class="panel-body">
+
+    <h5 class="m-t-0 bangers p-text">
+      Email Notification Preference
+    </h5>
+
+    <p ng-hide='updateFieldForEmailFrequency'
+          ng-click='updateFieldForEmailFrequency = !updateFieldForEmailFrequency'>
+      <span ng-if="information.email_frequency">
+        {{information.email_frequency == 7 ? 'Weekly' : 'Daily'}}
+      </span>
+      <span ng-if="!information.email_frequency">Immediately</span>
+    </p>
+
+    <div class="form-group" ng-show='updateFieldForEmailFrequency'
+      ng-init="profileUpdates.email_frequency=information.email_frequency">
+      <div>
+        <p>
+          When do you want to us notify you about new inbox messages?
+        </p>
+
+        <input type="radio" name="immediately" value="" ng-model="profileUpdates.email_frequency">
+        <label for='daily'>Immediately!</label><br>
+
+        <input type="radio" name="daily" value="1" ng-model="profileUpdates.email_frequency">
+        <label for='daily'>Once a Day</label><br>
+
+        <input type="radio" name="weekly" value="7" ng-model="profileUpdates.email_frequency">
+        <label for='weekly'>Once a week</label>
+      </div>
+
+      <div class='pull-right'>
+        <span class="glyphicon glyphicon-ok"
+              aria-hidden="true"
+              ng-click='update(); updateFieldForEmailFrequency = false'>
+        </span>
+
+        <span class="glyphicon glyphicon-remove"
+              aria-hidden="true"
+              ng-click='updateFieldForEmailFrequency = false'>
+        </span>
+      </div>
+    </div><!-- End of form-group -->
+  </div> <!-- End of panel body -->
+</div> <!-- End of EmailFrequency  -->
