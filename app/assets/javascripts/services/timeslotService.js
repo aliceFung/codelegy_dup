@@ -28,7 +28,7 @@ app.factory('Timeslot', ['Restangular', function(Restangular){
     var end = _createTime(endTime);
     for (var day in availabilityDays){
       if (availabilityDays[day]){
-        timeslots.push({day: day, startTime: start/1000, endTime: end/1000});
+        timeslots.push({day: day, start_time: start/1000, end_time: end/1000});
       }
     }
   }
