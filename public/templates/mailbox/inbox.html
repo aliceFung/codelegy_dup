@@ -1,36 +1,26 @@
-<main>
-  <br>
+<div class="wide-container">
+<h2 class="page-header bangers p-text">Inbox</h2>
+  <div class="row">
 
-  <div class="container-fluid">
+    <div class="col-sm-5 col-sm-offset-2">
 
-    <div class="page-header">
-      <h1 class="h3 pull-left margin-none">Inbox</h1>
-      <!-- <button class='btn btn-info pull-right'>Compose</button> -->
-      <div class="clearfix"></div>
-    </div>
-    <div class="row">
-
-      <div class="col-md-12">
-
-          <div ng-if="!inbox.length">
-            <p>Looks like you don't have any messages yet!</p>
-            <p>Join a
-              <a ui-sref="projects">Project</a>
-              to start messaging
-              <a ui-sref="projectsList">your group members</a>.</p>
-          </div>
-
-          <div ng-repeat="email in inbox">
-
-            <div ui-sref = "email({'id': email.id})">
-              <h5>From: {{email.sender_username}}  at {{email.date | date}}</h5>
-              <h4>{{email.subject | limitCharDisplayFilter}}</h4>
-            </div>
-            <hr>
-          </div>
-
-        </div>
+      <div ng-if="!inbox.length">
+        <p>Looks like you don't have any messages yet!</p>
+        <p>Join a
+          <a ui-sref="projects">Project</a>
+          to start messaging
+          <a ui-sref="projectsList">your group members</a>.</p>
       </div>
 
+      <div ng-repeat="email in inbox">
+
+        <div ui-sref = "email({'id': email.id})">
+          <h5>From: {{email.sender_username}}  at {{email.date | date}}</h5>
+          <h4>{{email.subject | limitCharDisplayFilter}}</h4>
+        </div>
+        <hr>
+
+      </div>
     </div>
-  </main>
+  </div>
+</div>

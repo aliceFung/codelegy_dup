@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :projects, through: :memberships
 
+  has_one :email_digest, dependent: :destroy
+
   after_create :create_profile
 
   def self.from_omniauth(auth)
@@ -106,7 +108,11 @@ class User < ActiveRecord::Base
 
   # mailboxer config, triggers for email notification
   def user_notification_email(msg)
-    User.delay.send_notification_email(self.id)
+    if self.email_frequency
+      EmailDigest.create(user_id: self.id)
+    else
+      User.delay.send_notification_email(self.id)
+    end
     return nil #to prevent default email sending
   end
 

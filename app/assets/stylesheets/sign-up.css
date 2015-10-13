@@ -1,4 +1,4 @@
-
+/*
 header {
   background: url('/images/photodune-6745579-modern-creative-man-relaxing-on-workspace-m.jpg');
   background-size: cover;
@@ -14,7 +14,7 @@ header {
 
   position: absolute;
   top: 25%;
-  left: 25%;
+  left: 75%;
   transform: translate(-50%, -50%);
   color: white;
   text-align: center;
@@ -40,4 +40,4 @@ main {
 
 #github-button-sign-in {
   margin-top: 20px;
-}
+}*/
