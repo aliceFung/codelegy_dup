@@ -1,6 +1,6 @@
 app.controller('sessionCtrl',
-  ['$scope', 'Session', '$state', 'EmailRegEx', 'Restangular', 
-  function($scope, Session, $state, EmailRegEx, Restangular){
+  ['$scope', 'Session', '$state', 'EmailRegEx', 'SignUp', 
+  function($scope, Session, $state, EmailRegEx, SignUp){
 
   $scope.authenticated = Session.authenticated;
   $scope.currentUser = Session.currentUser;
@@ -23,16 +23,8 @@ app.controller('sessionCtrl',
 
   $scope.signOut = Session.signOut;
 
-  // $scope.signInWithGithub = Session.signInWithGithub;
-
   $scope.resetPassword = function(){
-    Restangular.oneUrl('users', 'http://localhost:3000/users/password.json')
-               .customPOST({user: { email: $scope.resetPasswordForm.email}})
-               .then(function(data){
-      console.log('reset password: ', data)
-    }, function(error){
-      console.log('reset password error: ', error)
-    });
+    SignUp.resetPassword($scope.resetPasswordForm.email);
     $scope.showResetPasswordForm = false;
   }
 

@@ -20,11 +20,6 @@ app.factory('Session', ['Auth', '$state', 'Restangular', function(Auth, $state, 
 
   }
 
-  // function signInWithGithub() {
-  //   console.log('sign in with github');
-  //   Restangular.all('users').customGET('auth/github', {}, { 'Access-Control-Allow-Origin': 'http://localhost:3000' });
-  // }
-
   function signOut () {
     var config = {
         headers: {
