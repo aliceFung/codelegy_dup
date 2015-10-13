@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151012164230) do
+ActiveRecord::Schema.define(version: 20151013154418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,6 @@ ActiveRecord::Schema.define(version: 20151012164230) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
-
-  add_index "day_timeslots", ["day_id", "timeslot_id"], name: "index_day_timeslots_on_day_id_and_timeslot_id", unique: true, using: :btree
 
   create_table "days", force: :cascade do |t|
     t.string   "name",       null: false

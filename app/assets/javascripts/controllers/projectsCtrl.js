@@ -116,6 +116,7 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Sessi
                     $scope.timeslots,
                     $scope.newProjectLanguagesSelected).then(function(response){
         $scope.projects.push(response);
+
         $state.go('projects');
       }, function(error){
         console.log(error);
@@ -134,7 +135,6 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Sessi
     };
 
     $scope.$watch('projects.length', function(newVal){
-      console.log(newVal);
         getMoreProjects();
     });
 
