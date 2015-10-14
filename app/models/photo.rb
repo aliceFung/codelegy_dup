@@ -14,4 +14,8 @@ class Photo < ActiveRecord::Base
     self.save
   end
 
+  def picture_url
+    picture.url
+  end
+
 end

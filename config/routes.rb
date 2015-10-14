@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     scope :v1 do
       devise_for :users, :controllers => {  :omniauth_callbacks => "callbacks",
                                             :sessions => 'users/sessions',
-                                            :registrations => 'users/registrations', 
-                                            :passwords => 'users/passwords', 
+                                            :registrations => 'users/registrations',
+                                            :passwords => 'users/passwords',
                                             :confirmations => 'users/confirmations' }
       resources :projects, only: [:index, :show, :create]
       resources :languages, only: [:index]
@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
       resources :memberships, except: [:new, :edit, :destroy]
       resources :mailbox, only: [:index, :create, :destroy]
+
+      resources :photos, only: [:create, :update, :destroy]
 
     end
   end

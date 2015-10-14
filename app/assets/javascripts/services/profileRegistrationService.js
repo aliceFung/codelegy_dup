@@ -20,6 +20,7 @@ app.factory('ProfileRegistration',
     profileInfo.about = profile.about;
     profileInfo.email_frequency = profile.email_frequency;
     profileInfo.profile_languages_attributes = processProfileInput(profile.profile_languages);  // need to clear profile
+    profileInfo.photos_attributes = profile.photos_attributes;
     // debugger;
     Restangular.all('profiles').customPUT({profile: profileInfo}).then(function(profile_returned){
 

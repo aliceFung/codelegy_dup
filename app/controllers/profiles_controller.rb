@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
 
     if current_user == @user
       if @profile.update(whitelisted_profile_params)
-        render json: @profile.to_json(methods: [:profile_languages, :user, :times, :photos]), status: 200
+        render json: @profile.to_json(methods: [:profile_languages, :user, :times, :photos, :photo_url]), status: 200
       else
         render nothing: true , status: 404
       end
@@ -20,7 +20,6 @@ class ProfilesController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @profile = @user.profile
-    # binding.pry
     if @profile
       render json: @profile.to_json(methods: [:profile_languages, :user, :times, :photos, :photo_url]), status: 200
     else
@@ -31,6 +30,7 @@ class ProfilesController < ApplicationController
   private
 
   def whitelisted_profile_params
+    params[:profile][:photos_attributes] = JSON.parse(params[:profile][:photos_attributes])
     params.require(:profile).permit(:about,
                                     :user_id,
                                     :availability,
@@ -39,7 +39,10 @@ class ProfilesController < ApplicationController
                                     {profile_languages_attributes:[
                                       :language_id,
                                       :difficulty_id, :id, :_destroy]
-                                    })
+                                    },
+                                    {photos_attributes:[
+                                      :picture, :id, :_destroy]})
+
   end
 
 
