@@ -29,7 +29,7 @@ RSpec.describe Profile, type: :model do
     let(:profile) {create(:profile, email_frequency: 1, user_id: user.id)}
     let(:other_user) { create(:user) }
 
-    it "should immediately send msg user's inbox" do
+    it "should immediately send msg to user's inbox" do
       other_user.send_message(user, "Hello there!", "hi.")
       expect(user.mailbox.inbox.length).to eq(1)
     end
