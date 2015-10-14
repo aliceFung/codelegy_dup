@@ -8,8 +8,13 @@ class Profile < ActiveRecord::Base
 
   validates :user_id, presence: true
 
+  validates :email_frequency, :inclusion => [1, 7],
+                              :allow_nil => true
+
+
 
   def times
     self.day_timeslots.includes(:day, :timeslot).pluck(:"days.name", :"timeslots.start_time", :"timeslots.end_time")
   end
+
 end

@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
 
   has_one :email_digest, dependent: :destroy
+  # has_one :email_digest, through: :profile, dependent: :destroy
 
   after_create :create_profile
 
@@ -38,29 +39,8 @@ class User < ActiveRecord::Base
     user
   end
 
-  # returns a collection of projects user is the owner of
-  # eager loading to prevent n+1 queries
-  def projects_owned
-    self.memberships.includes(:project =>
-                              [:languages, :memberships => :user])
-                    .where('participant_type = ?', 'owner')
-  end
-
-  # returns a collection of projects user is a member of
-  # eager loading to prevent n+1 queries
-  def project_member_of
-    self.memberships.includes(:project => :languages).where('participant_type = ?', 'member')
-  end
-
-  # returns an array, not an Active Record Object, of projects user is active in (owner or member)
-  def participating_projects
-    # projects_owned + project_member_of
-    self.memberships.includes(:project =>
-                              [:languages, :memberships => :user])
-                    .where('participant_type = ? OR participant_type = ?', 'owner', 'member')
-  end
-
   # returns all participating projects with limited associated info
+  # only project owner has membership details
   def project_dashboard_membership
     list = self.projects.includes(:difficulty, :languages, memberships: :user)
 
@@ -108,10 +88,16 @@ class User < ActiveRecord::Base
         end # array of messages
   end
 
+
   # mailboxer config, triggers for email notification
+  # if user has a email_frequency preference,
+  # creates a EmailDigest, doesn't send email
   def user_notification_email(msg)
-    if self.email_frequency
-      EmailDigest.create(user_id: self.id)
+    if self.profile.email_frequency
+      if EmailDigest.where('user_id = ?', self.id).empty?
+        EmailDigest.create( user_id: self.id,
+                          days_delayed: self.profile.email_frequency)
+      end
     else
       User.delay.send_notification_email(self.id)
     end
@@ -129,4 +115,28 @@ class User < ActiveRecord::Base
     self.username
   end
 
+
+  ## unused instance methods below
+
+  # returns a collection of projects user is the owner of
+  # eager loading to prevent n+1 queries
+  def projects_owned
+    self.memberships.includes(:project =>
+                              [:languages, :memberships => :user])
+                    .where('participant_type = ?', 'owner')
+  end
+
+  # returns a collection of projects user is a member of
+  # eager loading to prevent n+1 queries
+  def project_member_of
+    self.memberships.includes(:project => :languages).where('participant_type = ?', 'member')
+  end
+
+  # returns an array, not an Active Record Object, of projects user is active in (owner or member)
+  def participating_projects
+    # projects_owned + project_member_of
+    self.memberships.includes(:project =>
+                              [:languages, :memberships => :user])
+                    .where('participant_type = ? OR participant_type = ?', 'owner', 'member')
+  end
 end

@@ -58,7 +58,9 @@ app.factory('Timeslot', ['Restangular', function(Restangular){
 
   function clear(slotToRemove){
     var index = timeslots.indexOf(slotToRemove);
-    timeslots.splice(index, 1);
+    if (confirm('Are you sure?') === true) {
+      timeslots.splice(index, 1);
+    }
   }
 
   return {add: addTimeslot,

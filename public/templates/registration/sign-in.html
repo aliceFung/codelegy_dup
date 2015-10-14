@@ -59,7 +59,7 @@
             <br>
 
             <a class="btn btn-primary"
-                href="/users/auth/github"
+                href="/api/v1/users/auth/github"
                 id='github-button-sign-in'>
               Sign in with <b>Github</b>
             </a>
@@ -67,32 +67,47 @@
           </div>
 
         </form>
-        
-        <footer class="screen-login m-x-auto text-center app-login-form">
-          <a href="#" class="text-muted" ng-click="showResetPasswordForm=!showResetPasswordForm">Forgot password</a>
-          <form name="resetPasswordForm"> 
-            <div class="form-group" 
-                  ng-if="showResetPasswordForm" 
-                  ng-class="{ 'has-error' : resetPasswordForm.resetPasswordEmail.$invalid && 
-                                            !resetPasswordForm.resetPasswordEmail.$pristine }">
-              <input  class="form-control" 
-                      name="resetPasswordEmail"
-                      placeholder="Email"
-                      ng-model="resetPasswordForm.email"
-                      required ng-pattern="emailRegex">
 
-              <p ng-show="resetPasswordForm.resetPasswordEmail.$invalid &&
-                  !resetPasswordForm.resetPasswordEmail.$pristine"
-                  class="help-block">
-                  Please enter a valid email
-              </p>
-              <br>
-              <button type="submit "class="btn btn-primary" ng-click="resetPassword()">
-                Send me reset password instructions
-              </button>
-            </div>
-          </form>
+        <footer class="screen-login m-x-auto text-center app-login-form">
+            <a href="#" class="text-muted"
+                data-toggle="modal" data-target="#resetPasswordModal">Forgot password</a>
         </footer>
+
+        <div id="resetPasswordModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Reset Password</h4>
+              </div>
+              <div class="modal-body">
+                <form name="resetPasswordForm">
+                  <div class="form-group"
+                        ng-class="{ 'has-error' : resetPasswordForm.resetPasswordEmail.$invalid &&
+                                                  !resetPasswordForm.resetPasswordEmail.$pristine }">
+                    <input  class="form-control"
+                            name="resetPasswordEmail"
+                            placeholder="Email"
+                            ng-model="resetPasswordForm.email"
+                            required ng-pattern="emailRegex">
+
+                    <p ng-show="resetPasswordForm.resetPasswordEmail.$invalid &&
+                        !resetPasswordForm.resetPasswordEmail.$pristine"
+                        class="help-block">
+                        Please enter a valid email
+                    </p>
+
+                    <button type="submit "class="btn btn-primary" ng-click="resetPassword()" data-dismiss="modal">
+                      Send me reset password instructions
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
 
