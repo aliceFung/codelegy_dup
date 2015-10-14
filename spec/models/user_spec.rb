@@ -60,20 +60,101 @@ RSpec.describe User, type: :model do
       msg = other_user.get_emails('inbox')[0]
       expect(other_user.get_emails('inbox')).to eq([mock_message])
     end
+
   end
 
   context 'project' do
 
     let!(:project){create :project}
-    let!(:membership){create :membership, user_id: user.id, project_id: project.id}
+    let!(:owner_membership){create :membership,
+                                user_id: user.id,
+                                project_id: project.id,
+                                participant_type: 'owner'}
+    let!(:membership){create :membership,
+                                user_id: other_user.id,
+                                project_id: project.id,
+                                participant_type: 'member'}
 
-    xit 'should return projects user has active membership in' do
-      # expect(user.)
+    let!(:project_w_pending_member){create :project}
+    let!(:owner_membership2){create :membership,
+                            user_id: other_user.id,
+                            project_id: project_w_pending_member.id,
+                                participant_type: 'owner'}
+    let!(:pending_membership){create :membership,
+                            user_id: user.id,
+                            project_id: project_w_pending_member.id}
+
+    let!(:project_w_rejected_member){create :project}
+    let!(:owner_membership3){create :membership,
+                            user_id: other_user.id,
+                            project_id: project_w_rejected_member.id,
+                            participant_type: 'owner'}
+    let!(:rejected_membership){create :membership,
+                          user_id: user.id,
+                          project_id: project_w_rejected_member.id,
+                          participant_type: 'rejected'}
+
+    let!(:project_wo_member){create :project}
+
+
+    it 'should return projects user has membership in whether pending, rejected, member, or owner' do
+      expect(user.project_dashboard_membership.length).to eq(3)
     end
-    it 'should not return projects user has inactive membership (pending, rejected) in'
-    it 'should return projects without membership information to non-owner'
 
-    it 'should return projects with limited member detail information to owner'
+    it 'should return limited member detail information to owner' do
+      result = user.project_dashboard_membership
+      idx = 0
+      result.each_with_index do |proj, index|
+        return idx = index if project.id == proj['id']
+      end
+
+      exp_membership_info = [ { :id => owner_membership.id,
+                              :user => user.username,
+                  :participant_type => "owner"},
+                              {:id => membership.id,
+                            :user => other_user.username,
+                :participant_type => "member"} ]
+
+
+      expect(result[idx][:owner?]).to be_truthy
+      expect(result[idx][:memberships].length).to eq(2)
+      expect(result[idx][:memberships]).to eq(exp_membership_info)
+    end
+
+    it 'should not have membership information to rejected memberships' do
+      result = other_user.project_dashboard_membership
+      idx = 0
+      result.each_with_index do |proj, index|
+        return idx = index if project_w_rejected_member.id == proj['id']
+      end
+      expect(result[idx][:owner?]).to be_falsy
+      expect(result[idx][:memberships]).to eq(nil)
+    end
+
+    it 'should not have membership information to pending memberships' do
+      result = other_user.project_dashboard_membership
+      idx = 0
+      result.each_with_index do |proj, index|
+        return idx = index if project_w_pending_member.id == proj['id']
+      end
+      expect(result[idx][:owner?]).to be_falsy
+      expect(result[idx][:memberships]).to eq(nil)
+    end
+
+    it 'should not have membership information to members' do
+      result = other_user.project_dashboard_membership
+      idx = 0
+      result.each_with_index do |proj, index|
+        return idx = index if project.id == proj['id']
+      end
+      expect(result[idx][:owner?]).to be_falsy
+      expect(result[idx][:memberships]).to eq(nil)
+    end
+
+    ## unused instance methods
+    # it 'should return projects user has active membership in'
+    # it 'should not return projects user has inactive membership (pending, rejected) in'
+    # it 'should return projects without membership information to non-owner'
 
   end
 

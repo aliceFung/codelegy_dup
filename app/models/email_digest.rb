@@ -4,7 +4,7 @@ class EmailDigest < ActiveRecord::Base
 
   validates :user_id, :presence => true,
                       :uniqueness => true
-  validates :days_delayed, :presence => true
+  validates :days_delayed, :presence => true, :inclusion => [1, 7]
 
   belongs_to :user
   delegate :profile, to: :user
