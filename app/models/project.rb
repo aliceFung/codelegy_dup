@@ -26,7 +26,7 @@ class Project < ActiveRecord::Base
   end
 
   def language_urls
-    self.languages.select(:name, :url)
+    self.languages.select(:name, :url, :id)
   end
 
   def group_members

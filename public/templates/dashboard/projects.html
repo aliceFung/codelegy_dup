@@ -1,12 +1,26 @@
 
-<ul class="list-group media-list media-list-stream" ng-repeat="project in list.projectList.projects">
+<ul class="list-group media-list media-list-stream" ng-repeat="project in list.projectList.projects | orderBy : 'created_at' : true">
   <li class="media list-group-item p-a" >
     <div class="wide-container">
       <div class="row">
-        <h5 class="pull-right label label-important">Owner</h5>
+
+        <h5 class="pull-right label label-important" ng-if="project['owner?']">Project Owner</h5>
+        <h5 class="pull-right label label-info" ng-if="project.member_status == 'member'">Member</h5>
+        <h5 class="pull-right label label-warning" ng-if="project.member_status == 'pending'">Pending</h5>
+        <a class="label label-primary pull-right" ng-if='(project.member_status == "member") || (project["owner?"])' data-toggle="modal" data-target="#mailModal{{project.id}}" style="margin-right: 2px">
+          Send a Group Message
+        </a>
+        <br>
+        <a class="pull-right" data-toggle="modal" data-target="#memberModal{{project.id}}" ng-show="project['owner?']">Details</a>
         <h5 class="bangers p-text">{{project.title}}</h5>
       </div>
       <div class="row">
+        <div class="col-md-7">
+        <h6>Project Description:</h6>
+          <div class="media-body">
+          {{project.description}}
+          </div>
+        </div>
         <div class="col-md-5">
           <h6>Project Info:</h6>
           <div class="media-body">
@@ -32,18 +46,37 @@
             <!-- </p>   -->
           </div>
         </div>
-        <div class="col-md-5">
-        <h6>Members:</h6>
-          <ul>
-            <li ng-repeat="members in project.memberships">
-              {{members.user}}
-            </li>
-          </ul>
-        </div>
       </div>
-
-
-
+      <div ng-if ="project['owner?']" project-modal project="project"></div>
     </div>
   </li>
+
+  <div class="modal fade" id="mailModal{{project.id}}" tabindex="-1" role="dialog" aria-labelledby="mailModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="mailModalLabel">To: {{project.title}} Group</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="text" class="form-control" placeholder="subject" ng-model="msgSubj">
+                  <br>
+                  <textarea class="form-control" placeholder="Write your message here" ng-model="msgBody"></textarea>
+                  <br>
+                  <button class="btn btn-success pull-right btn-sm"
+                  ng-click="sendMessage(project.id, msgSubj, msgBody)"
+                  data-dismiss="modal" aria-label="Close"
+                  >
+                    Send
+                  </button>
+                </div>
+              </div>
+            </div> <!-- end modal body-->
+          </div>
+        </div>
+      </div><!-- end modal -->
 </ul>
+
+
