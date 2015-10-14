@@ -24,6 +24,8 @@ gem "font-awesome-rails"
 
 gem 'paperclip'
 
+gem 'httparty'
+
 gem 'git-hooks'
 gem 'figaro'
 gem 'angularjs-rails'
