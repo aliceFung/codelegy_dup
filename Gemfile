@@ -1,5 +1,4 @@
 source 'http://rubygems.org'
-ruby '2.2.1'
 
 # Devise
 gem 'devise'
