@@ -13,8 +13,21 @@ app.factory('userProjectService', ['Restangular',
     }
   );
 
+  var update = function(project){
+    params = {
+      description: project.description,
+      timeslots: project.timeslots,
+      languages: project.languages,
+      difficulty_id: project.difficulty_id
+    }
+
+    Restangular.one('projects', project.id).put(params)
+
+  }
+
   return {
-    projectList: projectList
+    projectList: projectList,
+    update: update
   };
 
 }]);

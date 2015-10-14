@@ -11,6 +11,11 @@ class ProjectsController < ApplicationController
     render json: @project, methods: [:difficulty_name, :owner, :language_urls, :times]
   end
 
+  def update
+    @project = Project.find(params[:id])
+    @project.difficulty_id = params[:difficulty_id]
+  end
+
   def create
 
     @project = Project.new(project_params)
