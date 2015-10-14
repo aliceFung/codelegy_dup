@@ -1,12 +1,21 @@
 
-<ul class="list-group media-list media-list-stream" ng-repeat="project in list.projectList.projects">
+<ul class="list-group media-list media-list-stream" ng-repeat="project in list.projectList.projects | orderBy : 'created_at' : true">
+{{project.created_at | date : 'medium'}}
   <li class="media list-group-item p-a" >
     <div class="wide-container">
       <div class="row">
-        <h5 class="pull-right label label-important">Owner</h5>
-        <h5 data-toggle="modal" data-target='#memberModal{{project.id}}' class="bangers p-text">{{project.title}}</h5>
+
+        <h5 class="pull-right label label-important" ng-show="project['owner?']">Project Owner</h5><br>
+        <a class="pull-right" data-toggle="modal" data-target="#memberModal{{project.id}}" ng-show="project['owner?']">Edit</a>
+        <h5 class="bangers p-text">{{project.title}}</h5>
       </div>
       <div class="row">
+        <div class="col-md-7">
+        <h6>Project Description:</h6>
+          <div class="media-body">
+          {{project.description}}
+          </div>
+        </div>
         <div class="col-md-5">
           <h6>Project Info:</h6>
           <div class="media-body">
@@ -32,16 +41,8 @@
             <!-- </p>   -->
           </div>
         </div>
-        <div class="col-md-5">
-        <h6>Members:</h6>
-          <ul>
-            <li ng-repeat="members in project.memberships">
-              {{members.user}}
-            </li>
-          </ul>
-        </div>
       </div>
-      <div project-modal></div>
+      <div ng-if ="project['owner?']" project-modal></div>
     </div>
   </li>
 </ul>

@@ -7,16 +7,7 @@
     </div>
     <div class="modal-body">
       <div class="row">
-        <div class= "col-md-7">
-          <div class="panel panel-default">
-            <div class = 'panel-heading'>
-              <h4 class ='panel-title'>Project Description</h4>
-            </div>
-            <div class="panel-body">
-              {{project.description}}
-            </div>
-          </div>
-        </div>
+
         <div class="col-md-5">
           <div class=" panel panel-default">
             <div class = 'panel-heading'>
@@ -24,7 +15,7 @@
             </div>
             <div class="panel-body">
               <ul>
-                <li>Owner</li>
+                <li>You</li>
                 <li ng-repeat="membership in project.memberships" ng-hide="membership.participant_type=='owner'">
                   {{membership.user}}
                   <button class="btn btn-success btn-xs"
@@ -46,6 +37,51 @@
           </ul>
         </div>
       </div>
+    </div>
+    <div class= "col-md-7">
+      <div class="panel panel-default">
+        <div class = 'panel-heading'>
+          <h4 class ='panel-title'>Project Description</h4>
+        </div>
+        <div class="panel-body">
+          {{project.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="panel panel-default">
+        <div class = 'panel-heading'>
+          <div class='h4 panel-title'>Project Info
+            <span ng-hide='availEdit' ng-click ="availEdit = true" class="pull-right btn btn-info btn-sm">Edit</span>
+            <span ng-show='availEdit' ng-click ="availEdit = false" class="pull-right btn btn-danger btn-sm">Cancel</span>
+            <span ng-show='availEdit' ng-click ="availEdit = false" class="pull-right btn btn-success btn-sm">Save</span>
+          </div>
+
+        </div>
+        <div class="panel-body">
+          <strong>Est. Difficulty: </strong><span ng-hide='availEdit'>{{project.difficulty_name}}</span>
+          <span ng-show='availEdit'>
+            <select value="{{project.difficulty_name}}">
+              <option value="1">Beginner</option>
+              <option value="2">Intermediate</option>
+              <option value="3">Advanced</option>
+              <option value="4">Expert</option>
+            </select>
+          </span> <br>
+          <strong>Times:</strong> <br>
+          <div ng-repeat="time in project.times">
+            {{time[0]}} {{time[1] | date : 'shortTime'}} - {{time[2] | date : 'shortTime'}}
+          </div>
+          <strong>Languages:</strong>
+          <span ng-hide="availEdit" ng-repeat="lang in project.language_urls"> {{lang.name}} </span>
+          <span ng-show="availEdit"><div ng-repeat="lang in languages"><input type="checkbox"> {{lang.name}}</div></span> <br>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div ng-show="availEdit" availability-selector></div>
     </div>
   </div>
 </div> <!-- end modal body-->
