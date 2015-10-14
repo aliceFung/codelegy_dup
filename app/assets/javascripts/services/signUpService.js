@@ -75,12 +75,20 @@ app.factory('SignUp',
   }
 
   function resetPassword(email) {
+    console.log()
+    Restangular.oneUrl('users', 'http://localhost:3000/api/v1/resubscribe.json')
+               .customPOST({email: email})
+               .then(function(){
+
+
     Restangular.oneUrl('users', 'http://localhost:3000/api/v1/users/password.json')
            .customPOST({user: { email: email }})
            .then(function(data){
       alert('Reset Password Email has been sent, please check you mailbox!')
     }, function(error){
       alert('Error: \n' + printErrors(error.data.errors))
+    })
+
     })
   }
 

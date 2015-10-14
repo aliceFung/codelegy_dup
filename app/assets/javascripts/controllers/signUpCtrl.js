@@ -40,7 +40,7 @@ app.controller('signUpCtrl',
   $scope.$on('devise:new-registration', function(event, user) {
     $scope.currentUser.user = user;
     $scope.authenticated.status = true;
-    $state.go('projects');
+    $state.go('home.tour');
   });
 
 }]);

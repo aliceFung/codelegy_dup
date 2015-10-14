@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  Paperclip.options[:command_path] = "/usr/local/bin/convert"
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -9,7 +9,7 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
   config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-   config.assets.precompile += %w( .svg .eot .woff .ttf)
+  config.assets.precompile += %w( .svg .eot .woff .ttf)
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
