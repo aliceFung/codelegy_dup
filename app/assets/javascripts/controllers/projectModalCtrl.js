@@ -17,8 +17,6 @@ app.controller("projectModalCtrl", ['$scope', 'userProjectService', 'Timeslot',
   $scope.end = {};
 
 
-
-
   function _createTime(timeEntered){
     var min = timeEntered.minute * 60000;
     var hour = (timeEntered.hour * 3600000) + (12*3600000 * timeEntered.am);
