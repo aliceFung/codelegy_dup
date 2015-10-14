@@ -58,59 +58,72 @@ app.controller("projectModalCtrl", ['$scope', 'userProjectService', 'Timeslot',
   };
 
   $scope.clearTimeslot = function(timeslot){
-    var index = $scope.timeslots.indexOf(slotToRemove);
+    var index = $scope.timeslots.indexOf(timeslot);
     if (confirm('Are you sure?') === true) {
       $scope.timeslots.splice(index, 1);
    }
   };
 
   // end timeslot widget
-  var difficulty_names = ['Beginner','Intermediate', 'Advanced', 'Expert']
-  $scope.project = $scope.$parent.project
+  var difficulty_names = ['Beginner','Intermediate', 'Advanced', 'Expert'];
+  $scope.project = $scope.$parent.project;
   $scope.languages = $scope.$parent.languages;
-  $scope.projectLanguages = $scope.project.language_urls.map(function(val){return val.name});
+  $scope.projectLanguages = $scope.project.language_urls.map(
+                              function(val){return val.name});
   $scope.difficulties =[{name: 'Beginner', id: 1},
                         {name: 'Intermediate', id: 2},
                         {name: 'Advanced', id: 3},
                         {name: 'Expert', id: 4}];
 
+
+  // set/reset edit fields
   var initialize = function(){
-  $scope.timeslots = [];
-  $scope.project.times.forEach(function(val){
-    $scope.timeslots.push({day: val[0], start_time: new Date(val[1]).getTime()/1000, end_time: new Date(val[2]).getTime()/1000})
-  })
-  $scope.langHash = {};
-  $scope.projectLanguages.forEach(function(val){
-    $scope.langHash[val] = true;
-  })
-  $scope.description = $scope.project.description
-  $scope.project.difficulty = {name: $scope.project.difficulty_name, id: difficulty_names.indexOf($scope.project.difficulty_name)+1};
-  _resetAvailabilityDays();
-  }
+    $scope.timeslots = [];
+    $scope.project.times.forEach(function(val){
+    $scope.timeslots.push({day: val[0],
+                      start_time: new Date(val[1]).getTime()/1000,
+                      end_time: new Date(val[2]).getTime()/1000});
+  });
+
+    $scope.langHash = {};
+    $scope.projectLanguages.forEach(function(val){
+      $scope.langHash[val] = true;
+    });
+
+    $scope.description = $scope.project.description;
+    $scope.project.difficulty = {name: $scope.project.difficulty_name, id: difficulty_names.indexOf($scope.project.difficulty_name)+1};
+
+    _resetAvailabilityDays();
+  };
 
   initialize();
 
 
-
   $scope.submit = function(){
     var langs = [];
-    for (lang in $scope.langHash){
+    for (var lang in $scope.langHash){
       if ($scope.langHash[lang]) {
-        langs.push(lang)
+        langs.push(lang);
       }
     }
-    var updatedProject = $scope.project
-    updatedProject.languages = langs
-    updatedProject.description = $scope.description
-    updatedProject.timeslots = $scope.timeslots
-    updatedProject.difficulty_id = $scope.project.difficulty.id
+    var updatedProject = $scope.project;
+    updatedProject.languages = langs;
+    updatedProject.description = $scope.description;
+    updatedProject.timeslots = $scope.timeslots;
+    updatedProject.difficulty_id = $scope.project.difficulty.id;
 
-    userProjectService.update(updatedProject);
-  }
+    userProjectService.update(updatedProject).then(function(response){
+      // $scope.$parent.project = response;
+      $scope.project.times = response.times;
+      $scope.project.language_urls = response.language_urls
+      initialize();
+      debugger;
+    });
+  };
 
   $scope.cancel = function(){
     initialize();
-  }
+  };
 
 
 

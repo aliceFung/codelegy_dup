@@ -14,15 +14,14 @@ app.factory('userProjectService', ['Restangular',
   );
 
   var update = function(project){
-    params = {
+    obj = {
       description: project.description,
-      timeslots: project.timeslots,
-      languages: project.languages,
+      timeslots: JSON.stringify(project.timeslots),
+      languages: JSON.stringify(project.languages),
       difficulty_id: project.difficulty_id
     }
-
-    Restangular.one('projects', project.id).put(params)
-
+    // debugger
+    return Restangular.one('projects', project.id).put(obj);
   }
 
   return {
