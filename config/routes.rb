@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :controllers => {  :omniauth_callbacks => "callbacks",
-                                        :sessions => 'users/sessions',
-                                        :registrations => 'users/registrations', 
-                                        :passwords => 'users/passwords', 
-                                        :confirmations => 'users/confirmations' }
 
   root to: 'main#index'
 
 
   scope :api do
     scope :v1 do
+      devise_for :users, :controllers => {  :omniauth_callbacks => "callbacks",
+                                            :sessions => 'users/sessions',
+                                            :registrations => 'users/registrations', 
+                                            :passwords => 'users/passwords', 
+                                            :confirmations => 'users/confirmations' }
       resources :projects, only: [:index, :show, :create]
       resources :languages, only: [:index]
 
