@@ -1,5 +1,6 @@
 app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Session', 'Timeslot', 'projects', 'languages',
   function($scope, $state, $filter, Project, Session, Timeslot, projects, languages){
+    $scope.authenticated = Session.authenticated;
 
     $scope.projects = projects;
     $scope.langFilter = {};
