@@ -1,0 +1,27 @@
+.panel-body {
+  position:relative; 
+}
+
+.my-switch-animation.ng-enter,
+.my-switch-animation.ng-leave {
+    -webkit-transition: 1725ms cubic-bezier(0.680, -0.550, 0.265, 1.550) all;
+    -moz-transition: 1725ms cubic-bezier(0.680, -0.550, 0.265, 1.550) all;
+    -ms-transition: 1725ms cubic-bezier(0.680, -0.550, 0.265, 1.550) all;
+    -o-transition: 1725ms cubic-bezier(0.680, -0.550, 0.265, 1.550) all;
+    transition: 1725ms cubic-bezier(0.680, -0.550, 0.265, 1.550) all;
+  position:absolute;
+}
+
+.my-switch-animation.ng-enter {
+  left:100%;
+}
+
+.my-switch-animation.ng-leave,
+.my-switch-animation.ng-enter.ng-enter-active {
+  left:0;
+}
+
+.my-switch-animation.ng-leave.ng-leave-active {
+  left:-100%;
+}
+

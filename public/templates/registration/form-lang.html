@@ -32,3 +32,13 @@
     </a>
 </div>
 </div>
+
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" dropdown-toggle type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            {{selectedItem}}
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li ng-repeat="a in subjects"><a ng-click="dropboxitemselected(a)">{{a}}</a></li>
+        </ul>
+    </div>
