@@ -11,6 +11,7 @@ class MailboxController < ApplicationController
     end
   end
 
+  # creates a new mailboxer message
   def create
     recipients, subject = build_email_msg
     # binding.pry
@@ -23,6 +24,12 @@ class MailboxController < ApplicationController
                         ["Recipient(s) Not Found."]}, status: 404}
       end
     end
+  end
+
+  # updates user settings for email frequency
+  # 0 == immediate, 1 == daily digest, 7 == weekly digest
+  def update
+    params[:email_frequency]
   end
 
   def destroy

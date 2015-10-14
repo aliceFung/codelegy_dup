@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013154418) do
+ActiveRecord::Schema.define(version: 20151013223827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,11 +55,12 @@ ActiveRecord::Schema.define(version: 20151013154418) do
 
   create_table "email_digests", force: :cascade do |t|
     t.integer  "user_id",      null: false
-    t.integer  "days_delayed"
+    t.integer  "days_delayed", null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
+  add_index "email_digests", ["days_delayed"], name: "index_email_digests_on_days_delayed", using: :btree
   add_index "email_digests", ["user_id"], name: "index_email_digests_on_user_id", unique: true, using: :btree
 
   create_table "languages", force: :cascade do |t|
@@ -140,12 +141,15 @@ ActiveRecord::Schema.define(version: 20151013154418) do
 
   create_table "profiles", force: :cascade do |t|
     t.string   "about"
-    t.integer  "user_id",      null: false
+    t.integer  "user_id",         null: false
     t.string   "availability"
     t.integer  "photo_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "email_frequency"
   end
+
+  add_index "profiles", ["email_frequency"], name: "index_profiles_on_email_frequency", using: :btree
 
   create_table "project_languages", force: :cascade do |t|
     t.integer  "language_id", null: false
@@ -198,7 +202,6 @@ ActiveRecord::Schema.define(version: 20151013154418) do
     t.datetime "updated_at",                                  null: false
     t.string   "provider"
     t.string   "uid"
-    t.integer  "email_frequency"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -207,7 +210,6 @@ ActiveRecord::Schema.define(version: 20151013154418) do
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["email_frequency"], name: "index_users_on_email_frequency", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"

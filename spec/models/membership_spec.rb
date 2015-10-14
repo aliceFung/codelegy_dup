@@ -29,6 +29,7 @@ RSpec.describe Membership, type: :model do
     membership1 = build(:membership, user: nil)
     expect(membership1).to_not be_valid
   end
+
 ##### send_message in controller
   xit 'should create delayed job email if membership requested' do
     expect{
@@ -36,7 +37,7 @@ RSpec.describe Membership, type: :model do
     }.to change(Delayed::Job, :count).by(1)
   end
 
-  it 'should not create delayed job email if owner membership generated' do
+  xit 'should not create delayed job email if owner membership generated' do
     expect{
       create(:membership, project: project, participant_type: 'owner')
     }.to change(Delayed::Job, :count).by(0)

@@ -5,7 +5,6 @@ Project.destroy_all
 Membership.destroy_all
 ProfileLanguage.destroy_all
 ProjectLanguage.destroy_all
-# Email.destroy_all
 
 beginner = Difficulty.find_or_create_by(name: 'Beginner')
 intermediate = Difficulty.find_or_create_by(name: 'Intermediate')
