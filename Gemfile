@@ -26,6 +26,8 @@ gem 'paperclip'
 
 gem 'httparty'
 
+gem 'simple_form'
+
 gem 'git-hooks'
 gem 'figaro'
 gem 'angularjs-rails'
