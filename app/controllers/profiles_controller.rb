@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
     @profile = @user.profile
 
     create_timeslots(params['timeslots'], @profile) if params['timeslots']
+
     if current_user == @user
       if @profile.update(whitelisted_profile_params)
         render json: @profile.to_json(methods: [:profile_languages, :user, :times]), status: 200
@@ -33,6 +34,7 @@ class ProfilesController < ApplicationController
                                     :user_id,
                                     :availability,
                                     :photo_id,
+                                    :email_frequency,
                                     {profile_languages_attributes:[
                                       :language_id,
                                       :difficulty_id, :id, :_destroy]
