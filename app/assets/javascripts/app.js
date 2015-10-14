@@ -112,8 +112,20 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
 
       .state('profiles.settings', {
         url: '/settings',
-        templateUrl: 'templates/profiles/settings.html', 
-        controller: 'accountSettingCtrl'
+        templateUrl: 'templates/profiles/settings.html',
+        controller: 'accountSettingCtrl',
+        resolve: {
+          profileInfo: [ 'Restangular', 'Auth', function(Restangular, Auth){
+            return Auth.currentUser().then(function(user){
+              return Restangular.all('profiles').customGET(null, {user_id: user.id})
+              .then(function(response){
+                return response;
+              }, function(error){
+                return error;
+              });
+            });
+          }],
+        }
       });
 
 

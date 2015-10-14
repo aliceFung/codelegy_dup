@@ -19,4 +19,8 @@ class Profile < ActiveRecord::Base
     self.day_timeslots.includes(:day, :timeslot).pluck(:"days.name", :"timeslots.start_time", :"timeslots.end_time")
   end
 
+  def photo_url
+    photos.first.picture.url
+  end
+
 end
