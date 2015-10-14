@@ -129,7 +129,7 @@
           <td>{{ timeslot.day }}</td>
           <td>{{ (1000*timeslot.start_time) | date: 'shortTime' }}</td>
           <td>{{ (1000*timeslot.end_time)   | date: 'shortTime'  }}</td>
-          <td ng-click=clearTimeslot(timeslot)>
+          <td ng-click='clearTimeslot(timeslot)'>
               <span class="glyphicon glyphicon-remove text-center" aria-hidden="true"></span>
           </td>
         </tr>

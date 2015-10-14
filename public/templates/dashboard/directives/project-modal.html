@@ -44,7 +44,8 @@
           <h4 class ='panel-title'>Project Description</h4>
         </div>
         <div class="panel-body">
-          {{project.description}}
+          <span ng-hide="availEdit">{{project.description}}</span>
+          <span ng-show="availEdit"><textarea ng-model='description'></textarea></span>
         </div>
       </div>
     </div>
@@ -54,9 +55,7 @@
       <div class="panel panel-default">
         <div class = 'panel-heading'>
           <div class='h4 panel-title'>Project Info
-            <span ng-hide='availEdit' ng-click ="availEdit = true" class="pull-right btn btn-info btn-sm">Edit</span>
-            <span ng-show='availEdit' ng-click ="availEdit = false" class="pull-right btn btn-danger btn-sm">Cancel</span>
-            <span ng-show='availEdit' ng-click ="availEdit = false" class="pull-right btn btn-success btn-sm">Save</span>
+
           </div>
 
         </div>
@@ -70,7 +69,6 @@
           <div ng-repeat="time in project.times">
             {{time[0]}} {{time[1] | date : 'shortTime'}} - {{time[2] | date : 'shortTime'}}
           </div>
-            hash: {{langHash}}
           <strong>Languages:</strong>
           <span ng-hide="availEdit" ng-repeat="lang in project.language_urls"> {{lang.name}} </span>
           <span ng-show="availEdit">
@@ -85,10 +83,12 @@
   </div>
 </div> <!-- end modal body-->
 
-<!--        <div class="modal-footer">
+       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
+        <span ng-hide='availEdit' ng-click ="availEdit = true" class="pull-right btn btn-info">Edit</span>
+        <span ng-show='availEdit' ng-click ="availEdit = false;cancel()" class="pull-right btn btn-danger">Cancel</span>
+        <span ng-show='availEdit' ng-click ="availEdit = false; submit()" class="pull-right btn btn-success">Save</span>
+      </div>
 
     </div>
   </div>
