@@ -22,6 +22,11 @@ gem 'delayed_job_active_record'
 #front-end
 gem "font-awesome-rails"
 
+gem 'paperclip'
+
+gem 'httparty'
+
+gem 'simple_form'
 
 gem 'git-hooks'
 gem 'figaro'

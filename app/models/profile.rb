@@ -3,6 +3,8 @@ class Profile < ActiveRecord::Base
 
   has_many :day_timeslots, as: :owner
 
+  has_many :photos, dependent: :destroy
+
   belongs_to :user
   accepts_nested_attributes_for :profile_languages, allow_destroy: true
 

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :memberships, except: [:new, :edit, :destroy]
       resources :mailbox, only: [:index, :create, :destroy]
 
+      post 'resubscribe', to: 'subscriptions#resubscribe'
     end
   end
 
