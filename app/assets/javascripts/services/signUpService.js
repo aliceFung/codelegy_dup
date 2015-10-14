@@ -7,7 +7,7 @@ app.factory('SignUp',
 
   var credentials = {};
 
-  function register(credentials, profile){
+  function register(credentials, profile, timeslots){
     var config = {
         headers: {
             'X-HTTP-Method-Override': 'POST'
@@ -20,7 +20,7 @@ app.factory('SignUp',
       profileInfo.user_id = registeredUser.id;
       profileInfo.availability = profile.availability;
       profileInfo.profile_languages_attributes = processProfileInput(profile.profile_languages);
-      Restangular.all('profiles').customPUT({profile: profileInfo}).then(function(profile){
+      Restangular.all('profiles').customPUT({profile: profileInfo, timeslots: timeslots}).then(function(profile){
         console.log('updated profile: ', profile);
       }, function(error) {
         console.log('cannot update profile');
@@ -52,7 +52,7 @@ app.factory('SignUp',
   }
 
   function update(userInfo) {
-    Restangular.oneUrl('users', 'http://localhost:3000/users.json').customPUT({user: userInfo}).then(function(user){
+    Restangular.all('users').customPUT({user: userInfo}).then(function(user){
       if (userInfo.username) {
         Session.currentUser.user.username = userInfo.username;
       }
@@ -65,7 +65,7 @@ app.factory('SignUp',
   }
 
   function cancelAccount() {
-    Restangular.oneUrl('users', 'http://localhost:3000/users.json').remove().then(function(){
+    Restangular.all('users').remove().then(function(){
       Session.currentUser.user = null;
       Session.authenticated.status = false;
       $state.go('home');
@@ -75,7 +75,7 @@ app.factory('SignUp',
   }
 
   function resetPassword(email) {
-    Restangular.oneUrl('users', 'http://localhost:3000/users/password.json')
+    Restangular.oneUrl('users', 'http://localhost:3000/api/v1/users/password.json')
            .customPOST({user: { email: email }})
            .then(function(data){
       alert('Reset Password Email has been sent, please check you mailbox!')

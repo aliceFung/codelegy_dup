@@ -18,13 +18,15 @@ app.factory('ProfileRegistration',
     profileInfo.user_id = user_id;
     profileInfo.availability = profile.availability;
     profileInfo.about = profile.about;
+    profileInfo.email_frequency = profile.email_frequency;
     profileInfo.profile_languages_attributes = processProfileInput(profile.profile_languages);  // need to clear profile
-
+    // debugger;
     Restangular.all('profiles').customPUT({profile: profileInfo}).then(function(profile_returned){
 
-      // set returned about me and availability
+      // set returned about me, availability, and email_frequency
       information.about = profile_returned.about;
       information.availability = profile_returned.availability;
+      information.email_frequency = profile_returned.email_frequency;
 
       // update languages displayed
       updateProfileLanguagesDisplayed(information.profile_languages, profile_returned.profile_languages);

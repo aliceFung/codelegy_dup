@@ -1,10 +1,10 @@
-app.controller('accountSettingCtrl', 
-  ['$scope', 
-   'Session', 
-   'SignUp', 
-   'EmailRegEx', 
+app.controller('accountSettingCtrl',
+  ['$scope',
+   'Session',
+   'SignUp',
+   'EmailRegEx',
    function($scope, Session, SignUp, EmailRegEx){
-  
+
   $scope.currentUser = Session.currentUser;
   $scope.emailRegex = EmailRegEx.check;
 
@@ -17,7 +17,7 @@ app.controller('accountSettingCtrl',
 
   $scope.processForm = function(isValidForm){
     if (isValidForm) {
-      update(); 
+      update();
       $scope.showEditForm = false
     } else {
       alert('Please fill required valid information!');

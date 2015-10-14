@@ -1,0 +1,140 @@
+<!-- Days -->
+
+<div class='row' id='availability-widget'>
+
+  <div class="row text-center">
+    <b>Select Days</b>
+  </div><br>
+
+  <div class="row">
+    <div class="col-sm-3" ng-repeat="(day,value) in days">
+      <button class="btn btn-default btn-block"
+              style="margin:10px"
+              ng-click='addDay(day)'
+              ng-class='{"active": days[day]}'>
+              <small>{{day}}</small>
+      </button>
+    </div>
+  </div><br>
+
+  <div class='row'>
+
+    <!-- Start time -->
+    <div class='col-sm-6' style='border:1px solid #2f4154; padding:10px; border-radius:5px'>
+
+      <div  class="row text-center"
+            ng-hide='start.hour && start.minute && start.am'>
+          <b>Select Start Time</b>
+      </div>
+
+      <div  class="row text-center"
+            ng-show='start.hour && start.minute && start.am'>
+          <b>Start at
+          <span style='color: #2f4154'>
+            {{start.hour}}:{{start.minute}} {{amPm[start.am]}}
+          </span></b>
+      </div><br>
+
+      <div class='row'>
+        <div class='col-sm-4' style='padding:10px'>
+          <select ng-model="start.hour" id="" style="width:100%">
+            <option value="" disabled selected>Hour</option>
+            <option ng-repeat="hour in hours" value="{{hour}}">{{hour}}</option>
+          </select>
+        </div>
+
+        <div class='col-sm-4' style='padding:10px'>
+          <select ng-model="start.minute" id="" style="width:100%">
+            <option value="" disabled selected>Minute</option>
+            <option ng-repeat="minute in minutes" value="{{minute}}">{{minute}}</option>
+          </select>
+        </div>
+
+        <div class='col-sm-4' style='padding:10px'>
+          <select ng-model="start.am" id="" style="width:100%">
+            <option value="" disabled selected>AM/PM</option>
+            <option ng-repeat="(key, value) in amPm" value="{{key}}">{{value}}</option>
+          </select>
+        </div>
+
+      </div>
+    </div> <!-- end of Start time / col-sm-6 -->
+
+    <!-- End time -->
+    <div class='col-sm-6' style='border:1px solid #1abc9c; padding:10px; border-radius:5px;'>
+
+      <div  class="row text-center"
+            ng-hide='end.hour && end.minute && end.am'>
+          <b>Select End Time</b>
+      </div>
+
+      <div  class="row text-center"
+            ng-show='end.hour && end.minute && end.am'>
+          <b>End at
+          <span style='color: #1abc9c'>
+            {{end.hour}}:{{end.minute}} {{amPm[end.am]}}
+          </span></b>
+      </div><br>
+
+      <div class='row'>
+        <div class='col-sm-4' style='padding:10px'>
+          <select ng-model="end.hour" id="" style="width:100%">
+            <option value="" disabled selected>Hour</option>
+            <option ng-repeat="hour in hours" value="{{hour}}">{{hour}}</option>
+          </select>
+        </div>
+
+        <div class='col-sm-4' style='padding:10px'>
+          <select ng-model="end.minute" id="" style="width:100%">
+            <option value="" disabled selected>Minute</option>
+            <option ng-repeat="minute in minutes" value="{{minute}}">{{minute}}</option>
+          </select>
+        </div>
+
+        <div class='col-sm-4' style='padding:10px'>
+          <select ng-model="end.am" id="" style="width:100%">
+            <option value="" disabled selected>AM/PM</option>
+            <option ng-repeat="(key, value) in amPm" value="{{key}}">{{value}}</option>
+          </select>
+        </div>
+
+      </div>
+    </div> <!-- end of End time / col-sm-6 -->
+  </div> <!-- end of row with start and end time -->
+
+  <br><br>
+
+  <div class='row'>
+    <div class='col-sm-6 col-sm-offset-3'>
+      <button ng-click="addTimeslot()" class="btn btn-default btn-block">
+        Add Time Slot
+      </button>
+    </div>
+  </div>
+
+  <br><br>
+
+  <div class='row' id='times-selected-table'>
+    <table class='table table-striped'>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat='timeslot in timeslots'>
+          <td>{{ timeslot.day }}</td>
+          <td>{{ (1000*timeslot.start_time) | date: 'shortTime' }}</td>
+          <td>{{ (1000*timeslot.end_time)   | date: 'shortTime'  }}</td>
+          <td ng-click=clearTimeslot(timeslot)>
+              <span class="glyphicon glyphicon-remove text-center" aria-hidden="true"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
