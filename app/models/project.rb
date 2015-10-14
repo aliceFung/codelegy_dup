@@ -5,6 +5,9 @@ class Project < ActiveRecord::Base
 
   belongs_to :difficulty
 
+  has_many :day_timeslots, as: :owner
+  has_many :timeslots, through: :day_timeslots
+
   validates :title, presence: true
 
   has_many :memberships
@@ -29,6 +32,10 @@ class Project < ActiveRecord::Base
   def group_members
     self.members.where('participant_type = ? OR
                         participant_type = ?', 'owner', 'member')
+  end
+
+  def times
+    self.day_timeslots.includes(:day, :timeslot).pluck(:"days.name", :"timeslots.start_time", :"timeslots.end_time")
   end
 
 end

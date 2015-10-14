@@ -12,10 +12,12 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :projects, through: :memberships
 
+
   has_one :email_digest, dependent: :destroy
   # has_one :email_digest, through: :profile, dependent: :destroy
 
   after_create :create_profile
+
 
   def self.from_omniauth(auth)
     user = where(email: auth.info.email)[0]
@@ -40,14 +42,14 @@ class User < ActiveRecord::Base
   # returns all participating projects with limited associated info
   # only project owner has membership details
   def project_dashboard_membership
-    list = self.projects.includes(:difficulty, :languages, :memberships => :user)
+    list = self.projects.includes(:difficulty, :languages, memberships: :user)
 
     list.map do |proj|
 
       obj = { id:           proj.id,
               title:        proj.title,
               description:  proj.description,
-              availability: proj.availability,
+              times:        proj.times,
               difficulty_name:   proj.difficulty_name,
               owner?:       proj.owner == self,
               languages:    proj.languages,
