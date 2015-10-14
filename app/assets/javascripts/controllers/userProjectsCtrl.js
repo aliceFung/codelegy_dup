@@ -1,17 +1,18 @@
-app.controller("userProjectsCtrl", ['$scope', '$state', 'userProjectService', 'Restangular',
-  function($scope, $state, userProjectService, Restangular){
+app.controller("userProjectsCtrl", ['$scope', '$state', 'userProjectService', 'Restangular', 'Language',
+  function($scope, $state, userProjectService, Restangular, Language){
 
   $scope.list = {};
+  $scope.languages = Language.languages;
+  $scope.langHash = {};
+  for(language in $scope.languages){
+    // $scope.langHash.language =
+  }
+
   $scope.list.projectList = userProjectService.projectList;
 
   var getRectangularObj = function(membership_id){
     return Restangular.one('memberships', membership_id);
   };
-
-  // $scope.resetFields = function(msgSubj, msgBody){
-  //   msgSubj = "";
-  //   msgBody = "";
-  // };
 
   $scope.changeMembership = function(membership, project, accept){
     var membershipObj = getRectangularObj(membership.id);
@@ -36,5 +37,7 @@ app.controller("userProjectsCtrl", ['$scope', '$state', 'userProjectService', 'R
       // console.log('error', error);
     });
   };
+
+
 
 }]);

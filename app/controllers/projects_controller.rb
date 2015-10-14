@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
-  def index
+  def index #eager loading testing needed later
     @projects = Project.includes(:languages, :difficulty, :timeslots).paginate(page: params[:page], per_page: 24).order(created_at: 'DESC')
     render json: @projects, methods: [:difficulty_name, :owner, :language_urls, :times]
   end

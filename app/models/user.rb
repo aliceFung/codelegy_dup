@@ -46,14 +46,14 @@ class User < ActiveRecord::Base
 
     list.map do |proj|
 
-      obj = { id:           proj.id,
-              title:        proj.title,
-              description:  proj.description,
-              times:        proj.times,
+      obj = { id:            proj.id,
+              title:         proj.title,
+              description:   proj.description,
+              times:         proj.times,
               difficulty_name:   proj.difficulty_name,
-              owner?:       proj.owner == self,
-              languages:    proj.languages,
-              created_at:   proj.created_at
+              owner?:        proj.owner == self,
+              language_urls: proj.language_urls,
+              created_at:    proj.created_at
             }
 
       if obj[:owner?]
