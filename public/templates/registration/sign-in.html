@@ -59,7 +59,7 @@
             <br>
 
             <a class="btn btn-primary"
-                href="/users/auth/github"
+                href="/api/v1/users/auth/github"
                 id='github-button-sign-in'>
               Sign in with <b>Github</b>
             </a>
@@ -67,9 +67,9 @@
           </div>
 
         </form>
-        
+
         <footer class="screen-login m-x-auto text-center app-login-form">
-            <a href="#" class="text-muted" 
+            <a href="#" class="text-muted"
                 data-toggle="modal" data-target="#resetPasswordModal">Forgot password</a>
         </footer>
 
@@ -83,11 +83,11 @@
                 <h4 class="modal-title">Reset Password</h4>
               </div>
               <div class="modal-body">
-                <form name="resetPasswordForm"> 
-                  <div class="form-group" 
-                        ng-class="{ 'has-error' : resetPasswordForm.resetPasswordEmail.$invalid && 
+                <form name="resetPasswordForm">
+                  <div class="form-group"
+                        ng-class="{ 'has-error' : resetPasswordForm.resetPasswordEmail.$invalid &&
                                                   !resetPasswordForm.resetPasswordEmail.$pristine }">
-                    <input  class="form-control" 
+                    <input  class="form-control"
                             name="resetPasswordEmail"
                             placeholder="Email"
                             ng-model="resetPasswordForm.email"
