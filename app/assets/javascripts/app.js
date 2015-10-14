@@ -42,6 +42,11 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
             templateUrl: 'templates/registration/form.html',
             controller: 'signUpCtrl'
         })
+        .state('home.tour', {
+            url: 'tour',
+            templateUrl: 'templates/registration/tour.html',
+            controller: 'signUpCtrl'
+        })
 
         // nested states  for our form
         .state('home.form.signup', {
@@ -148,7 +153,8 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
               }
             },
             'projects@dashboard': {
-              templateUrl: 'templates/dashboard/projects.html'
+              templateUrl: 'templates/dashboard/projects.html',
+              controller: 'userProjectsCtrl'
             },
             'sales@dashboard': {
               templateUrl: 'templates/dashboard/sales.html'

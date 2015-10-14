@@ -62,14 +62,14 @@ class User < ActiveRecord::Base
 
   # returns all participating projects with limited associated info
   def project_dashboard_membership
-    list = self.projects.includes(:difficulty, :languages, :memberships => :user)
+    list = self.projects.includes(:difficulty, :languages, memberships: :user)
 
     list.map do |proj|
 
       obj = { id:           proj.id,
               title:        proj.title,
               description:  proj.description,
-              availability: proj.availability,
+              times:        proj.times,
               difficulty_name:   proj.difficulty_name,
               owner?:       proj.owner == self,
               languages:    proj.languages,

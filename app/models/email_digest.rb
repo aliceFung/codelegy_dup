@@ -8,7 +8,6 @@ class EmailDigest < ActiveRecord::Base
 
   def send_daily_digest
     result = EmailDigest.where('queue = ?', 1)
-    binding.pry
   end
 
   # def send_digest()
