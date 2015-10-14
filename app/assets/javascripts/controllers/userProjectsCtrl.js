@@ -3,10 +3,6 @@ app.controller("userProjectsCtrl", ['$scope', '$state', 'userProjectService', 'R
 
   $scope.list = {};
   $scope.languages = Language.languages;
-  $scope.langHash = {};
-  for(language in $scope.languages){
-    // $scope.langHash.language =
-  }
 
   $scope.list.projectList = userProjectService.projectList;
 

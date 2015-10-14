@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   # returns all participating projects with limited associated info
   # only project owner has membership details
   def project_dashboard_membership
-    list = self.projects.includes(:difficulty, :languages, memberships: :user)
+    list = self.projects.includes(:difficulty, :languages, :project_languages, memberships: :user)
 
     list.map do |proj|
 
