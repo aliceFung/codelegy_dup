@@ -33,8 +33,11 @@ class User < ActiveRecord::Base
         user.email = auth.info.email
         user.username = auth.info.name
         user.password = Devise.friendly_token[0,20]
-        # profile.photo_url = auth.extra.raw_info.avatar_url
       end
+    end
+    if user.profile.photos.empty?
+      picture = user.profile.photos.build
+      picture.picture_from_url(auth.extra.raw_info.avatar_url) if auth.extra.raw_info.avatar_url
     end
     user
   end
