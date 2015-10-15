@@ -115,7 +115,7 @@ app.controller("projectModalCtrl", ['$scope', 'userProjectService', 'Timeslot',
       $scope.project.times = response.times;
       $scope.project.language_urls = response.language_urls
       initialize();
-      debugger;
+      // debugger;
     });
   };
 

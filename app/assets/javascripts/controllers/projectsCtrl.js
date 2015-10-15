@@ -109,7 +109,7 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Sessi
                     $scope.newProjectLanguagesSelected).then(function(response){
         $scope.projects.push(response);
         var new_project = response;
-        debugger
+        // debugger
         new_project.member_status = 'owner';
         userProjectService.projectList.projects.push(new_project);
         $state.go('projects');
