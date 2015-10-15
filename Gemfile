@@ -23,6 +23,8 @@ gem 'delayed_job_active_record'
 gem "font-awesome-rails"
 
 gem 'paperclip'
+# Using Amazon S3 to store images
+gem 'aws-sdk', '< 2.0'
 
 gem 'httparty'
 
