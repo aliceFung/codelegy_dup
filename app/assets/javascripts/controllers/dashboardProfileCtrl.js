@@ -126,13 +126,14 @@ app.controller('dashboardProfileCtrl',
     }).then(function(response){
         $scope.information.times = response
         initialize();
-        $('#availModal').hide();
+        // $('#availModal').css("display", "none");
       })
   };
 
   $scope.cancel = function(){
     initialize();
-    $('#availModal').hide();
+    // $('#availModal').css("display", "none");
+
   };
 //  End timeslot variables and methods
 

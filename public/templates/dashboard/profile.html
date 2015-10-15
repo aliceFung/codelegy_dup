@@ -7,7 +7,7 @@
 
     <a ui-sref="profiles.settings">
       <img class="panel-profile-img img-responsive"
-        src="{{information.photo_url || 'images/avatar.png'}}">
+        ng-src="{{information.photo_url || 'images/avatar.png'}}">
     </a>
 
     <h5 class="panel-title">
@@ -177,8 +177,8 @@
       </div> <!-- end modal body-->
        <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <span ng-click ="cancel()" class="pull-right btn btn-danger">Cancel</span>
-        <span ng-click ="submit()" class="pull-right btn btn-success">Save</span>
+        <span ng-click ="cancel()" data-dismiss="modal" class="pull-right btn btn-danger">Cancel</span>
+        <span ng-click ="submit()" data-dismiss="modal" class="pull-right btn btn-success">Save</span>
       </div>
     </div>
   </div>
