@@ -97,8 +97,8 @@ RSpec.describe User, type: :model do
     let!(:project_wo_member){create :project}
 
 
-    it 'should return projects user has membership in whether pending, rejected, member, or owner' do
-      expect(user.project_dashboard_membership.length).to eq(3)
+    it 'should return projects user has membership with pending, member, or owner status' do
+      expect(user.project_dashboard_membership.length).to eq(2)
     end
 
     it 'should return limited member detail information to owner' do

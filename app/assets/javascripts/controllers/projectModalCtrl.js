@@ -13,7 +13,7 @@ app.controller("projectModalCtrl", ['$scope', 'userProjectService', 'Timeslot',
   $scope.hours = Timeslot.hours;
   $scope.minutes = Timeslot.minutes;
   $scope.amPm = Timeslot.amPm;
-  $scope.start = {}
+  $scope.start = {};
   $scope.end = {};
 
 

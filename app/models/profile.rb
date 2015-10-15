@@ -1,9 +1,13 @@
 class Profile < ActiveRecord::Base
 
+  after_update :update_email_digest
+
   has_many :profile_languages, dependent: :destroy
   has_many :day_timeslots, as: :owner
+  has_many :timeslots, through: :day_timeslots
   has_many :photos, dependent: :destroy
   belongs_to :user
+  delegate :email_digest, to: :user
 
   accepts_nested_attributes_for :photos, allow_destroy: true
   accepts_nested_attributes_for :profile_languages, allow_destroy: true
@@ -21,5 +25,20 @@ class Profile < ActiveRecord::Base
   def photo_url
     photos.first.picture.url if photos.first
   end
+
+  def update_email_digest
+    if self.email_digest
+      if self.email_frequency.nil?
+        User.delay.send_notification_email(self.user.id)
+        self.email_digest.destroy
+      elsif self.email_frequency == 7
+        self.email_digest.update(days_delayed: 7)
+      else
+        self.email_digest.update(days_delayed: 1)
+      end
+    end
+  end
+
+
 
 end
