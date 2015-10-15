@@ -3,6 +3,6 @@ class ProfileLanguage < ActiveRecord::Base
   belongs_to :language
   belongs_to :difficulty
 
-  validates :language, uniqueness: true
+  validates :language, uniqueness: { scope: :profile }
 
 end
