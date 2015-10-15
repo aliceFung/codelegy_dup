@@ -41,10 +41,13 @@ app.controller('accountSettingCtrl',
   }
 
   function uploadPhoto(){
+    var createOrUpdate = $scope.photo_url ? 'PUT' : 'POST';
+    var addToURL = $scope.photo_url ? profileInfo.photos[0].id : '';
+
     Upload.upload({
-      url: '/api/v1/photos/'+ profileInfo.photos[0].id,
+      url: '/api/v1/photos/'+ addToURL,
       data: {photos: {picture: $scope.profileUpdate.photoFile}},
-      method: 'PUT',
+      method: createOrUpdate,
       contentType: 'application/json'
     }).then(function(response){
       $scope.photo_url = response.data.picture_url;
