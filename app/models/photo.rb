@@ -1,10 +1,10 @@
 class Photo < ActiveRecord::Base
   belongs_to :profile
 
-  has_attached_file :picture, 
-                    :styles => { :medium => "300x300", 
+  has_attached_file :picture,
+                    styles: { :medium => "300x300",
                                  :thumb  => "100x100" }
-  validates_attachment_content_type :picture, 
+  validates_attachment_content_type :picture,
                                     :content_type => /\Aimage\/.*\Z/
 
 
@@ -12,4 +12,9 @@ class Photo < ActiveRecord::Base
     self.picture = URI.parse(url)
     self.save
   end
+
+  def picture_url
+    picture.url
+  end
+
 end
