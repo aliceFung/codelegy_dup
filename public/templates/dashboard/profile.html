@@ -120,16 +120,16 @@
 
     <h5 class="m-t-0 bangers p-text">
       Email Notification Preference
+      <small>·
+        <a ng-click='updateFieldForEmailFrequency = !updateFieldForEmailFrequency'>Edit</a>
+      </small>
     </h5>
 
-    <p ng-hide='updateFieldForEmailFrequency'
-          ng-click='updateFieldForEmailFrequency = !updateFieldForEmailFrequency'>
+    <p ng-hide='updateFieldForEmailFrequency'>
       <span ng-if="information.email_frequency">
         {{information.email_frequency == 7 ? 'Weekly' : 'Daily'}}
       </span>
       <span ng-if="!information.email_frequency">Immediately</span>
-      <br>
-      <span>(click to change)</span>
     </p>
 
     <div class="form-group" ng-show='updateFieldForEmailFrequency'
