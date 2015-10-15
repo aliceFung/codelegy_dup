@@ -40,7 +40,8 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Sessi
     $scope.displayPage = 0;
 
     $scope.nextPage = function () {
-      $scope.displayPage += 24;
+      if (($scope.displayPage+24) < $scope.filtered.length)
+        $scope.displayPage += 24;
     };
 
     $scope.prevPage = function () {
