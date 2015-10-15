@@ -45,7 +45,9 @@
         </div>
         <div class="panel-body">
           <span ng-hide="availEdit">{{project.description}}</span>
-          <span ng-show="availEdit"><textarea ng-model='description'></textarea></span>
+          <span ng-show="availEdit">
+            <textarea class="form-control" ng-model='description'></textarea>
+          </span>
         </div>
       </div>
     </div>

@@ -44,9 +44,17 @@ class User < ActiveRecord::Base
     end
     user
   end
+  # returns an Active Record Object of active user memberships
+  def participating_memberships
+    self.memberships.where('participant_type IN (?)', ['owner', 'member'])
+  end
 
-  # returns an Active Record Object, of projects user is active in (owner or member or pending)
-  def participating_projects
+  def project_group_access?(project_id)
+    self.participating_memberships.where('project_id = ?', project_id).any?
+  end
+
+  # returns an Active Record Object, of projects user requested membership in, but not rejected
+  def memberships_in_projects
     self.memberships.includes(:user, project: [:languages,
                                               :difficulty,
                                               :project_languages,
@@ -61,7 +69,7 @@ class User < ActiveRecord::Base
   # returns all participating projects with limited associated info
   # only project owner has membership details
   def project_dashboard_membership
-    list = self.participating_projects
+    list = self.memberships_in_projects
 
     list.map do |proj|
 
