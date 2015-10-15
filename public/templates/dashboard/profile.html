@@ -10,8 +10,8 @@
   <div class="panel-body text-center">
 
     <a href="profile/index.html">
-      <img class="panel-profile-img"
-        src="assets/avatar-dhg.png">
+      <img class="panel-profile-img img-responsive"
+        src="{{information.photo_url || 'assets/avatar.png'}}">
     </a>
 
     <h5 class="panel-title">
@@ -102,7 +102,7 @@
         </small>
       </h5>
     </div>
-    
+
     <div add-dashboard-programming-language ng-if='addLanguage.userInput'>
     </div>
 

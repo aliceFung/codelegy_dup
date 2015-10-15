@@ -19,7 +19,7 @@ class Profile < ActiveRecord::Base
   end
 
   def photo_url
-    photos.first.picture.url
+    photos.first.picture.url if photos.first
   end
 
 end

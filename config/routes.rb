@@ -9,16 +9,16 @@ Rails.application.routes.draw do
                                             :registrations => 'users/registrations',
                                             :passwords => 'users/passwords',
                                             :confirmations => 'users/confirmations' }
+      put 'profiles' => 'profiles#update'
+      get 'profiles' => 'profiles#show'
+      post 'resubscribe', to: 'subscriptions#resubscribe'
+
       resources :projects, only: [:index, :show, :create, :update]
       resources :languages, only: [:index]
       resources :timeslots, only: [:create]
       resources :memberships, except: [:new, :edit, :destroy]
       resources :mailbox, only: [:index, :create, :destroy]
       resources :photos, only: [:create, :update, :destroy]
-
-      put 'profiles' => 'profiles#update'
-      get 'profiles' => 'profiles#show'
-      post 'resubscribe', to: 'subscriptions#resubscribe'
     end
   end
 

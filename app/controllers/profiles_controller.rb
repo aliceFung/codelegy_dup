@@ -30,7 +30,6 @@ class ProfilesController < ApplicationController
   private
 
   def whitelisted_profile_params
-    params[:profile][:photos_attributes] = JSON.parse(params[:profile][:photos_attributes])
     params.require(:profile).permit(:about,
                                     :user_id,
                                     :availability,
@@ -39,10 +38,7 @@ class ProfilesController < ApplicationController
                                     {profile_languages_attributes:[
                                       :language_id,
                                       :difficulty_id, :id, :_destroy]
-                                    },
-                                    {photos_attributes:[
-                                      :picture, :id, :_destroy]})
-
+                                    })
   end
 
 
