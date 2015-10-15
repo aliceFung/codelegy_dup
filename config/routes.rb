@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
       resources :projects, only: [:index, :show, :create, :update]
       resources :languages, only: [:index]
-      resources :timeslots, only: [:create]
+      resources :timeslots, only: [:create, :update]
       resources :memberships, except: [:new, :edit, :destroy]
       resources :mailbox, only: [:index, :create, :destroy]
       resources :photos, only: [:create, :update, :destroy]
