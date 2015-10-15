@@ -1,14 +1,28 @@
 class ProjectsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
-  def index
-    @projects = Project.paginate(page: params[:page], per_page: 24).order(created_at: 'DESC')
+  def index #eager loading testing needed later
+    @projects = Project.includes(:languages, :difficulty, :memberships, :members, :day_timeslots => [:day, :timeslot]).paginate(page: params[:page], per_page: 24).order(created_at: 'DESC')
     render json: @projects, methods: [:difficulty_name, :owner, :language_urls, :times]
   end
 
   def show
     @project = Project.find(params[:id])
     render json: @project, methods: [:difficulty_name, :owner, :language_urls, :times]
+  end
+
+  def update
+    @project = Project.find(params[:id])
+    @project.difficulty_id = params[:difficulty_id]
+
+    @project.description = params[:description]
+    update_languages(params[:languages], @project)
+    update_timeslots(params[:timeslots], @project)
+    if current_user && @project.save
+      render json: @project, methods: [:difficulty_name, :owner, :language_urls, :times]
+    else
+      render json: { errors: @project.errors.full_messages }
+    end
   end
 
   def create
@@ -35,10 +49,10 @@ class ProjectsController < ApplicationController
 
   def create_timeslots(timeslots, project)
     timeslots.each do |timeslot|
-      start_time = Time.at(timeslot[:start_time]).utc
-      end_time = Time.at(timeslot[:end_time]).utc
+      start_time = Time.at(timeslot['start_time']).utc
+      end_time = Time.at(timeslot['end_time']).utc
       new_timeslot = Timeslot.find_or_create_by(start_time: start_time, end_time: end_time)
-      new_day = Day.find_by_name(timeslot[:day])
+      new_day = Day.find_by_name(timeslot['day'])
       DayTimeslot.find_or_create_by(day_id: new_day.id, timeslot_id: new_timeslot.id,
                           owner_id: project.id, owner_type: project.class)
     end
@@ -58,6 +72,24 @@ class ProjectsController < ApplicationController
       project_id: project.id,
       user_id: current_user.id,
       participant_type: "owner")
+  end
+
+  def update_languages(languages_params, project)
+    languages = JSON.parse(languages_params)
+    arr = []
+    languages.each do |lang|
+      lang_id = Language.find_by_name(lang).id
+      if lang_id
+        arr.push(lang_id)
+      end
+    end
+    project.language_ids = arr;
+  end
+
+  def update_timeslots(timeslot_params, project)
+    timeslots = JSON.parse(timeslot_params)
+    project.timeslots.destroy_all
+    create_timeslots(timeslots, project)
   end
 
 end

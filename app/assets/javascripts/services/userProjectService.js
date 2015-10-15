@@ -13,8 +13,20 @@ app.factory('userProjectService', ['Restangular',
     }
   );
 
+  var update = function(project){
+    obj = {
+      description: project.description,
+      timeslots: JSON.stringify(project.timeslots),
+      languages: JSON.stringify(project.languages),
+      difficulty_id: project.difficulty_id
+    }
+    // debugger
+    return Restangular.one('projects', project.id).put(obj);
+  }
+
   return {
-    projectList: projectList
+    projectList: projectList,
+    update: update
   };
 
 }]);
