@@ -103,7 +103,7 @@ var app = angular.module('app',
       })
 
       .state('profiles.show', {
-        url: '/:id',
+        url: '/show/:id',
         templateUrl: 'templates/profiles/show.html',
         controller: 'dashboardProfileCtrl',
               resolve: {

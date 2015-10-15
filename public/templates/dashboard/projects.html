@@ -1,3 +1,10 @@
+<div ng-if="list.projectList.projects.length">
+  <p>Looks like you haven't joined any projects yet!</p>
+  <p>Go to the
+    <a ui-sref="projects">Projects</a>
+    to find one you like or
+    <a ui-sref="projects.new">make your own</a>.</p>
+</div>
 
 <ul class="list-group media-list media-list-stream" ng-repeat="project in list.projectList.projects | orderBy : 'created_at' : true">
   <li class="media list-group-item p-a" >
