@@ -4,15 +4,16 @@ body                            { padding-top:20px; }
 pre                             { margin-bottom:20px; }
 
 /* form styling */                
-#form-container                { background:#f5f8fa; margin-bottom:20px; border-radius:5px; border: 1px solid #3097d1; }
-#form-container .page-header   { background:#3097d1; margin:0; padding:30px; 
-    border-top-left-radius:5px; border-top-right-radius:5px; }
+#form-container                { background:#f5f8fa; margin-bottom:20px; border-radius:5px; border: 1px solid #34495E; }
+#form-container .page-header   { background:#34495E; margin:0; padding:30px; 
+    border-top-left-radius:5px; border-top-right-radius:5px;
+    color: #FFF; }
 
 /* numbered buttons */
 #status-buttons                 {  }
 #status-buttons a               { color:#FFF; display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; }
 #status-buttons a:hover         { text-decoration:none; }
-#status-buttons span            { color:#3097d1; background:#FFF; display:block; height:30px; margin:0 auto 10px; padding-top:5px; width:30px; 
+#status-buttons span            { color:#34495E; background:#FFF; display:block; height:30px; margin:0 auto 10px; padding-top:5px; width:30px; 
     border-radius:50%; }
 
 /* active buttons */
