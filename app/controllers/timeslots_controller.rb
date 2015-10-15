@@ -1,16 +1,16 @@
 class TimeslotsController < ApplicationController
   def update
-    if params[:class] == "Profile" && params[:id].to_i == current_user.id
+    if params[:class] == "Profile" && params[:id].to_i == current_user.profile.id
       profile = Profile.find(params[:id])
       profile.timeslots.destroy_all
       times = create_timeslots(profile, params[:timeslots])
       if profile.save
         render json: times
       else
-        render nothing: true
+        render profile.errors.messages
       end
     else
-      render nothing: true
+      render nothing: true, status: 401
     end
 
   end
