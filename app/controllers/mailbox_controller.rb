@@ -1,6 +1,6 @@
 class MailboxController < ApplicationController
 
-  # before_action :get_mailbox
+  before_action :require_project_membership
 
   def index
     @inbox_msgs = current_user.get_emails(:inbox)
@@ -14,7 +14,6 @@ class MailboxController < ApplicationController
   # creates a new mailboxer message
   def create
     recipients, subject = build_email_msg
-    # binding.pry
     respond_to do |format|
       if recipients && recipients.any?
         current_user.send_message(recipients, params[:body], subject)
@@ -27,7 +26,7 @@ class MailboxController < ApplicationController
   end
 
   # updates user settings for email frequency
-  # 0 == immediate, 1 == daily digest, 7 == weekly digest
+  # nil == immediate, 1 == daily digest, 7 == weekly digest
   def update
     params[:email_frequency]
   end
@@ -54,11 +53,14 @@ class MailboxController < ApplicationController
     return recipients, subject
   end
 
-  # def message_contents
-  #   params.require(:message).permit(:body, :subject, :to)
-  # end
+  def require_project_membership
+    if params[:project_id]
+      if !current_user.project_group_access?(params[:project_id])
+        respond_to do |format|
+          format.json {render json: {errors: ["You must be a member first!"]}, status: 403}
+        end
+      end
+    end
+  end
 
-  # def get_mailbox
-  #   @mailbox ||= current_user.mailbox
-  # end
 end
