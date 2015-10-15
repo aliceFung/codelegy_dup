@@ -3,13 +3,13 @@
       ng-click='updateFieldForLanguage = !updateFieldForLanguage'>
 
   <div class='row'>
-    <div class='col-sm-3 col-sm-offset-1'>
+    <div class='col-sm-3'>
       <img  src="{{languages[pl.language_id-1].url}}"
             style="width:20px;margin:5px">
     </div>
 
     <div class='col-sm-6 text-left'>
-      {{expLevel[pl.difficulty_id]}}
+      <p>{{expLevel[pl.difficulty_id]}}</p>
     </div>
 
   </div> <!-- end of row -->
@@ -19,7 +19,7 @@
       ng-show='updateFieldForLanguage'>
   <div class='row'>
 
-        <div class='col-sm-3 col-sm-offset-1'>
+        <div class='col-sm-3'>
           <img  src="{{languages[pl.language_id-1].url}}"
                 style="width:20px;margin:5px">
         </div>
@@ -43,28 +43,24 @@
           </ul>
         </div>
 
-        <div class='col-sm-2'>
-          <div class='row'>
-            <div class='col-sm-8'>
+        <div class='col-sm-4'>
+
               <small>
-                <span class="glyphicon glyphicon-ok"
+                <span class="glyphicon glyphicon-ok" style="margin-right: 5px;"
                     aria-hidden="true"
                     ng-click='update(); updateFieldForLanguage = false'>
                 </span>
               </small>
-            </div>
-          </div>
 
-          <div class='row'>
-            <div class='col-sm-10 col-sm-offset-6'>
+
+
               <small><small>
                 <span class="glyphicon glyphicon-remove"
                     aria-hidden="true"
                     ng-click='updateFieldForLanguage = false'>
                 </span>
               </small></small>
-            </div>
-          </div>
+
         </div>
 
   </div> <!-- End of row -->
