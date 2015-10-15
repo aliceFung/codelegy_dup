@@ -123,6 +123,8 @@ app.controller("projectModalCtrl", ['$scope', 'userProjectService', 'Timeslot',
     initialize();
   };
 
+  $scope.changeMembership = $scope.$parent.changeMembership;
+
 
 
 }]);
