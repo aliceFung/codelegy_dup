@@ -1,6 +1,7 @@
 class EmailDigest < ActiveRecord::Base
 
   after_create :check_job_exists
+  after_update :check_job_exists
 
   validates :user_id, :presence => true,
                       :uniqueness => true
@@ -10,7 +11,6 @@ class EmailDigest < ActiveRecord::Base
   delegate :profile, to: :user
 
   def check_job_exists
-    # binding.pry
     if self.days_delayed == 7
       add_to_DJ_queue(:weekly)
     else
