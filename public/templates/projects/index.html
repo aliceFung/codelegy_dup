@@ -52,16 +52,15 @@
 
 </div>
 
-<nav>
-  <a ng-click="prevPage()" aria-label="Previous">
+<nav class="row">
+  <a ng-click="prevPage()" ng-show="displayPage > 0" aria-label="Previous">
     <span aria-hidden="true">&laquo;</span>Previous Page
   </a>
-  <a  class="pull-right" ng-click="nextPage()" aria-label="Next">
+  <a  class="pull-right" ng-show="(displayPage+24) < filtered.length" ng-click="nextPage()" aria-label="Next">
     Next Page<span aria-hidden="true">&raquo;</span>
   </a>
 </nav>
 <br>
-
 <div class="row">
   <div class="col-sm-9">
    <div ng-class="{row: ($index%3 == 2)}" ng-repeat="project in filtered | filter: filter |orderBy:'-created_at': false | limitTo : 24 : displayPage">

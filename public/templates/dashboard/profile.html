@@ -20,7 +20,7 @@
       <div class="panel-title text-center"
           ng-hide='updateFieldForAbout'
           ng-click='updateFieldForAbout = !updateFieldForAbout'>
-          {{information.about || "click to add a note"}}
+          {{information.about || "click to add something here about you"}}
       </div>
 
       <div class="panel-title text-center"
@@ -128,6 +128,8 @@
         {{information.email_frequency == 7 ? 'Weekly' : 'Daily'}}
       </span>
       <span ng-if="!information.email_frequency">Immediately</span>
+      <br>
+      <span>(click to change)</span>
     </p>
 
     <div class="form-group" ng-show='updateFieldForEmailFrequency'
