@@ -15,8 +15,9 @@
       <div ng-repeat="email in inbox">
 
         <div ui-sref = "email({'id': email.id})">
-          <h5>From: {{email.sender_username}}  at {{email.date | date}}</h5>
-          <h4>{{email.subject | limitCharDisplayFilter}}</h4>
+          <h6>From: {{email.sender_username}}  at {{email.date | date}}</h6>
+          <p><strong>{{email.subject | limitCharDisplayFilter}}</strong></p>
+          <p>{{email.body | limitCharDisplayFilter}}</p>
         </div>
         <hr>
 
