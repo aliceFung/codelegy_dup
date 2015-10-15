@@ -1,3 +1,5 @@
+require "rvm/capistrano"
+
 # Change these
 server '104.131.17.140', port: 22, roles: [:web, :app, :db], primary: true
 
