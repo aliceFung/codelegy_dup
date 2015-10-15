@@ -1,8 +1,7 @@
 <form>
-
 <div ng-repeat="(languageId, language) in languages" class="row">
-  <div class='col-sm-3'>
-  <h4>{{language}}</h4>
+  <div class='col-sm-3 col-sm-offset-3'>
+    <h6 style="padding-top: 20px !important;">{{language}}</h6>
   </div>
   <div class="dropdown col-sm-6">
     <button class="btn btn-default dropdown-toggle"
@@ -32,13 +31,3 @@
     </a>
 </div>
 </div>
-
-    <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" dropdown-toggle type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            {{selectedItem}}
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li ng-repeat="a in subjects"><a ng-click="dropboxitemselected(a)">{{a}}</a></li>
-        </ul>
-    </div>
