@@ -103,8 +103,32 @@ var app = angular.module('app',
       })
 
       .state('profiles.show', {
-        url: '/show/:userid',
-        templateUrl: 'templates/profiles/show.html'
+        url: '/:id',
+        templateUrl: 'templates/profiles/show.html',
+        controller: 'dashboardProfileCtrl',
+              resolve: {
+                profileInfo: [ 'Restangular','$stateParams', function(Restangular, $stateParams){
+                    return Restangular.all('profiles').customGET(null, {user_id: $stateParams.id})
+                    .then(function(response){
+                      console.log(response)
+                      return response;
+                    }, function(error){
+                      console.log(error)
+                      return error;
+                    });
+                }],
+
+                languageList: [ 'Language', function(Language){
+                  return Language.get()
+                  .then(function(response){
+                      Language.languages = response;
+                      return response;
+                  }, function(error){
+                      return error;
+                  });
+                }]
+              }
+
       })
 
       .state('profiles.settings', {
