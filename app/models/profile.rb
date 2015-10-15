@@ -2,6 +2,7 @@ class Profile < ActiveRecord::Base
 
   has_many :profile_languages, dependent: :destroy
   has_many :day_timeslots, as: :owner
+  has_many :timeslots, through: :day_timeslots
   has_many :photos, dependent: :destroy
   belongs_to :user
 
