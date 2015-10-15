@@ -12,9 +12,10 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :projects, through: :memberships
 
+  has_many :co_memberships, through: :projects, source: :memberships
+  has_many :co_members, through: :co_memberships, source: :user
 
   has_one :email_digest, dependent: :destroy
-  # has_one :email_digest, through: :profile, dependent: :destroy
 
   after_create :create_profile
 
@@ -38,16 +39,29 @@ class User < ActiveRecord::Base
     if user.profile.photos.empty?
       picture = user.profile.photos.build
       picture.picture_from_url(auth.extra.raw_info.avatar_url) if auth.extra &&
-                                                                  auth.extra.raw_info &&
-                                                                  auth.extra.raw_info.avatar_url
+                      auth.extra.raw_info &&
+                      auth.extra.raw_info.avatar_url
     end
     user
+  end
+
+  # returns an Active Record Object, of projects user is active in (owner or member or pending)
+  def participating_projects
+    self.memberships.includes(:user, project: [:languages,
+                                              :difficulty,
+                                              :project_languages,
+                                              :members,
+                                              :memberships => :user])
+                    .where('participant_type IN (?)', [ 'owner',
+                                                        'member',
+                                                        'pending'] )
+                    .map{|mem| mem.project}
   end
 
   # returns all participating projects with limited associated info
   # only project owner has membership details
   def project_dashboard_membership
-    list = self.projects.includes(:difficulty, :languages, :project_languages, memberships: :user)
+    list = self.participating_projects
 
     list.map do |proj|
 
@@ -61,6 +75,7 @@ class User < ActiveRecord::Base
               created_at:    proj.created_at
             }
 
+      #methods proj.owner, below cause n+1 queries
       if obj[:owner?]
         obj[:memberships] = proj.memberships.map do |m|
           { id: m.id,
@@ -78,17 +93,16 @@ class User < ActiveRecord::Base
 
 
   #returns an array of user messages with limited details
+    #query for message and creates array of messages
   def get_emails(box_type)
-    #query for message
     Mailboxer::Notification.includes(:sender).where('id IN (?)',
-      #create array of Conversations objs
       self.mailbox.send(box_type).inject([]){|acc, el| acc.push(el)})
-        .map do |c|
-            { date: c.created_at,
-              subject: c.subject,
-              sender_username: c.sender.username,
-              body: c.body,
-              id: c.id
+        .map do |msg|
+            { date: msg.created_at,
+              subject: msg.subject,
+              sender_username: msg.sender.username,
+              body: msg.body,
+              id: msg.id
             }
         end # array of messages
   end
@@ -120,28 +134,4 @@ class User < ActiveRecord::Base
     self.username
   end
 
-
-  ## unused instance methods below
-
-  # returns a collection of projects user is the owner of
-  # eager loading to prevent n+1 queries
-  def projects_owned
-    self.memberships.includes(:project =>
-                              [:languages, :memberships => :user])
-                    .where('participant_type = ?', 'owner')
-  end
-
-  # returns a collection of projects user is a member of
-  # eager loading to prevent n+1 queries
-  def project_member_of
-    self.memberships.includes(:project => :languages).where('participant_type = ?', 'member')
-  end
-
-  # returns an array, not an Active Record Object, of projects user is active in (owner or member)
-  def participating_projects
-    # projects_owned + project_member_of
-    self.memberships.includes(:project =>
-                              [:languages, :memberships => :user])
-                    .where('participant_type = ? OR participant_type = ?', 'owner', 'member')
-  end
 end
