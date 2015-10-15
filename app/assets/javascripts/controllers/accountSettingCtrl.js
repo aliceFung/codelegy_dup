@@ -13,8 +13,6 @@ app.controller('accountSettingCtrl',
   $scope.emailRegex = EmailRegEx.check;
   $scope.photo_url = profileInfo.photo_url;
 
-  $scope.profileInfo = profileInfo;
-
   $scope.userInfo = {};
   $scope.profileUpdate = {};
 
