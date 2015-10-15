@@ -12,9 +12,10 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :projects, through: :memberships
 
+  has_many :co_memberships, through: :projects, source: :memberships
+  has_many :co_members, through: :co_memberships, source: :user
 
   has_one :email_digest, dependent: :destroy
-  # has_one :email_digest, through: :profile, dependent: :destroy
 
   after_create :create_profile
 
@@ -44,10 +45,26 @@ class User < ActiveRecord::Base
     user
   end
 
+  # returns an Active Record Object, of projects user is active in (owner or member or pending)
+  def participating_projects
+    # projects_owned + project_member_of
+    self.memberships.includes(:user, project: [:languages,
+                                              :difficulty,
+                                              :project_languages,
+                                              :members,
+                                              :memberships => :user])
+                    .where('participant_type = ? OR
+                            participant_type = ? OR
+                            participant_type = ?',  'owner',
+                                                    'member',
+                                                    'pending')
+                    .map{|mem| mem.project}
+  end
+
   # returns all participating projects with limited associated info
   # only project owner has membership details
   def project_dashboard_membership
-    list = self.projects.includes(:difficulty, :languages, :project_languages, memberships: :user)
+    list = self.participating_projects #.includes(:difficulty, :languages, :project_languages, memberships: :user)
 
     list.map do |proj|
 
@@ -61,6 +78,7 @@ class User < ActiveRecord::Base
               created_at:    proj.created_at
             }
 
+      #methods proj.owner, below cause n+1 queries
       if obj[:owner?]
         obj[:memberships] = proj.memberships.map do |m|
           { id: m.id,
@@ -129,19 +147,18 @@ class User < ActiveRecord::Base
     self.memberships.includes(:project =>
                               [:languages, :memberships => :user])
                     .where('participant_type = ?', 'owner')
+                    .map{|mem| mem.project}
   end
 
   # returns a collection of projects user is a member of
   # eager loading to prevent n+1 queries
   def project_member_of
-    self.memberships.includes(:project => :languages).where('participant_type = ?', 'member')
-  end
-
-  # returns an array, not an Active Record Object, of projects user is active in (owner or member)
-  def participating_projects
-    # projects_owned + project_member_of
-    self.memberships.includes(:project =>
-                              [:languages, :memberships => :user])
-                    .where('participant_type = ? OR participant_type = ?', 'owner', 'member')
+    self.memberships.includes(:project => :languages)
+              .where('participant_type = ?', 'member')
+              .map{|mem| mem.project}
   end
 end
+
+# User.last.memberships.includes(:project =>[:languages, :memberships => :user]).where('participant_type = ? OR participant_type = ?', 'owner', 'member').map{|mem| mem.project}
+
+# list = self.projects.includes(:difficulty, :languages, :project_languages, memberships: :user)
