@@ -38,8 +38,8 @@ class User < ActiveRecord::Base
     if user.profile.photos.empty?
       picture = user.profile.photos.build
       picture.picture_from_url(auth.extra.raw_info.avatar_url) if auth.extra &&
-                                                                  auth.extra.raw_info &&
-                                                                  auth.extra.raw_info.avatar_url
+                      auth.extra.raw_info &&
+                      auth.extra.raw_info.avatar_url
     end
     user
   end
