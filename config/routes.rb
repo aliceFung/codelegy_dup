@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-
   root to: 'main#index'
-
 
   scope :api do
     scope :v1 do
@@ -11,19 +9,16 @@ Rails.application.routes.draw do
                                             :registrations => 'users/registrations',
                                             :passwords => 'users/passwords',
                                             :confirmations => 'users/confirmations' }
-      resources :projects, only: [:index, :show, :create]
+      resources :projects, only: [:index, :show, :create, :update]
       resources :languages, only: [:index]
+      resources :timeslots, only: [:create]
+      resources :memberships, except: [:new, :edit, :destroy]
+      resources :mailbox, only: [:index, :create, :destroy]
+      resources :photos, only: [:create, :update, :destroy]
 
       put 'profiles' => 'profiles#update'
       get 'profiles' => 'profiles#show'
-
-      resources :timeslots, only: [:create]
-
-      resources :memberships, except: [:new, :edit, :destroy]
-      resources :mailbox, only: [:index, :create, :destroy]
-
-      resources :photos, only: [:create, :update, :destroy]
-
+      post 'resubscribe', to: 'subscriptions#resubscribe'
     end
   end
 

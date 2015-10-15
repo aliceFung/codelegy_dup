@@ -37,7 +37,9 @@ class User < ActiveRecord::Base
     end
     if user.profile.photos.empty?
       picture = user.profile.photos.build
-      picture.picture_from_url(auth.extra.raw_info.avatar_url) if auth.extra.raw_info.avatar_url
+      picture.picture_from_url(auth.extra.raw_info.avatar_url) if auth.extra &&
+                                                                  auth.extra.raw_info &&
+                                                                  auth.extra.raw_info.avatar_url
     end
     user
   end
@@ -45,18 +47,18 @@ class User < ActiveRecord::Base
   # returns all participating projects with limited associated info
   # only project owner has membership details
   def project_dashboard_membership
-    list = self.projects.includes(:difficulty, :languages, memberships: :user)
+    list = self.projects.includes(:difficulty, :languages, :project_languages, memberships: :user)
 
     list.map do |proj|
 
-      obj = { id:           proj.id,
-              title:        proj.title,
-              description:  proj.description,
-              times:        proj.times,
+      obj = { id:            proj.id,
+              title:         proj.title,
+              description:   proj.description,
+              times:         proj.times,
               difficulty_name:   proj.difficulty_name,
-              owner?:       proj.owner == self,
-              languages:    proj.languages,
-              created_at:   proj.created_at
+              owner?:        proj.owner == self,
+              language_urls: proj.language_urls,
+              created_at:    proj.created_at
             }
 
       if obj[:owner?]
