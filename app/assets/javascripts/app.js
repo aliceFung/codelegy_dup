@@ -330,7 +330,7 @@ var app = angular.module('app',
         }
       })
 
-  }]);
+  }])
 
   .run(['$rootScope', '$location', '$window', function($rootScope, $location, $window){
      $rootScope
@@ -342,4 +342,4 @@ var app = angular.module('app',
  
                 $window.ga('send', 'pageview', { page: $location.path() });
         });
-  }
+  }]);
