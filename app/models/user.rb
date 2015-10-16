@@ -44,6 +44,8 @@ class User < ActiveRecord::Base
     end
     user
   end
+
+
   # returns an Active Record Object of active user memberships
   def participating_memberships
     self.memberships.where('participant_type IN (?)', ['owner', 'member'])
@@ -83,7 +85,8 @@ class User < ActiveRecord::Base
               created_at:    proj.created_at
             }
 
-      #methods proj.owner, below cause n+1 queries
+      #current user member statuss
+      #(if owner, includes other member info)
       if obj[:owner?]
         obj[:memberships] = proj.memberships.map do |m|
           { id: m.id,

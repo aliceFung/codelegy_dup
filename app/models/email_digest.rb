@@ -10,6 +10,7 @@ class EmailDigest < ActiveRecord::Base
   belongs_to :user
   delegate :profile, to: :user
 
+
   def check_job_exists
     if self.days_delayed == 7
       add_to_DJ_queue(:weekly)
@@ -17,6 +18,7 @@ class EmailDigest < ActiveRecord::Base
       add_to_DJ_queue(:daily)
     end
   end
+
 
   # adds a Delayed Job only if it doesn't exist yet.
   def add_to_DJ_queue(type)
@@ -42,6 +44,7 @@ class EmailDigest < ActiveRecord::Base
     end
     digests.destroy_all
   end
+
 
   def self.digests_to_send(queue)
     days = queue == :weekly ? 7 : 1

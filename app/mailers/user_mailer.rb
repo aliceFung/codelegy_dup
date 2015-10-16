@@ -7,14 +7,9 @@ class UserMailer < ApplicationMailer
     mail(to: @project.owner.email, subject: "#{@user.username} wants to join #{@project.title}!")
   end
 
-  # Simple way to test production mailing. Remove once in production.
-  def test_production_mail(target)
-    mail(to: target, subject: "Hi.")
-  end
-
+  # generic inbox notification
   def mailboxer_msg(recipient)
     @recipient = recipient
-    # @project = project
     mail(to: @recipient.email, subject: "You have a new message at Codelegy")
   end
 
