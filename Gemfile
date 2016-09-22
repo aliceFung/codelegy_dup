@@ -1,7 +1,32 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
+ruby '2.2.1'
+
+# Devise
+gem 'devise'
+source "https://rails-assets.org" do
+  gem "rails-assets-angular-devise"
+end
+
+gem 'will_paginate'
+
+gem 'mailboxer'
+
+# omniauth
+gem 'omniauth'
+gem 'omniauth-github'
+
+
+gem 'daemons'
+gem 'delayed_job_active_record'
+
+#front-end
+gem "font-awesome-rails"
+
 
 gem 'git-hooks'
 gem 'figaro'
+gem 'angularjs-rails'
+gem 'angular_rails_csrf'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use postgresql as the database for Active Record
@@ -23,7 +48,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
+gem 'tzinfo-data'
+gem 'tzinfo', '~> 1.2.2'
 gem 'puma'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -42,8 +68,13 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'guard-rspec'
   gem 'guard-jasmine'
-  gem 'angularjs-rails'
-  gem 'pry'
+  # gem 'pry' # included in jazz-hands as a dependency
+  gem 'jazz_hands',
+    github: 'nixme/jazz_hands',
+    branch: 'bring-your-own-debugger'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
 end
 
 group :development do
@@ -52,10 +83,12 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'letter_opener'
+
   gem 'capistrano',         require: false
   gem 'capistrano-rvm',     require: false
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
+  gem 'capistrano3-delayed-job', require: false
   gem 'capistrano3-puma',   require: false
 end
-

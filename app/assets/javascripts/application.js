@@ -12,5 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require moment
+//= require angular
+//= require angular-devise
+//= require angular-moment
+//= require ui-router
+//= require angular-animate
+//= require lodash
+//= require restangular
+//= require flat-ui-pro
+
 //= require_tree .

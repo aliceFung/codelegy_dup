@@ -1,0 +1,49 @@
+
+<ul class="list-group media-list media-list-stream" ng-repeat="project in list.projectList.projects">
+  <li class="media list-group-item p-a" >
+    <div class="wide-container">
+      <div class="row">
+        <h5 class="pull-right label label-important">Owner</h5>
+        <h5 class="bangers p-text">{{project.title}}</h5>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <h6>Project Info:</h6>
+          <div class="media-body">
+
+              <div ng-hide="moreThan24HrsAgo(project.created_at)">
+                <i class="fa fa-clock-o fa-fw"></i>
+                <time am-time-ago="project.created_at"></time>
+              </div>
+              <div ng-show="moreThan24HrsAgo(project.created_at)">
+                <i class="fa fa-calendar fa-fw"></i>
+                <time title="{{ project.created_at | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{ project.created_at | amCalendar }}</time>
+              </div>
+              <strong>Project Owner:</strong>
+              <a ui-sref="profiles.show({id: project.owner.id})">{{project.owner.username}}</a><br>
+              <strong>Est. Difficulty:</strong>{{project.difficulty_name}} <br>
+              <strong>Times:</strong> <br>
+              <div ng-repeat="time in project.times">
+                {{time[0]}} {{time[1] | date : 'shortTime'}} - {{time[2] | date : 'shortTime'}}
+              </div>
+              <strong>Languages:</strong>
+              <img ng-repeat="lang in project.language_urls" ng-src="{{lang.url}}" alt="{{lang.name}}"
+              style="width:20px;margin:5px"> <br>
+            <!-- </p>   -->
+          </div>
+        </div>
+        <div class="col-md-5">
+        <h6>Members:</h6>
+          <ul>
+            <li ng-repeat="members in project.memberships">
+              {{members.user}}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+
+    </div>
+  </li>
+</ul>

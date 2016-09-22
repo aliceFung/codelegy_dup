@@ -1,0 +1,165 @@
+
+
+<!-- Profile info -->
+<div class="panel panel-default panel-profile m-b-md">
+
+  <div  class="panel-heading"
+        style="background-image: url(assets/iceland.jpg);">
+  </div>
+
+  <div class="panel-body text-center">
+
+    <a href="profile/index.html">
+      <img class="panel-profile-img"
+        src="assets/avatar-dhg.png">
+    </a>
+
+    <h5 class="panel-title">
+      <a class="text-inherit bangers p-text" href="">{{information.user.username}}
+      </a>
+    </h5>
+
+    <div class="m-b-md">
+
+      <div class="panel-title text-center"
+          ng-hide='updateFieldForAbout'
+          ng-click='updateFieldForAbout = !updateFieldForAbout'>
+          {{information.about || "Add a note"}}
+      </div>
+
+      <div class="panel-title text-center"
+            ng-show='updateFieldForAbout'>
+        <div class='row'>
+
+          <div class='col-sm-8'>
+            <input  type='text'
+                    id='updatedAbout'
+                    ng-model='profileUpdates.about'
+                    ng-value='information.about'
+                    placeholder="{{information.about}}">
+          </div>
+
+          <div class='col-sm-2'>
+            <span class="glyphicon glyphicon-ok"
+                  aria-hidden="true"
+                  ng-click='update(); updateFieldForAbout = false'>
+            </span>
+          </div>
+
+          <div class='col-sm-2'>
+            <span class="glyphicon glyphicon-remove"
+                  aria-hidden="true"
+                  ng-click='updateFieldForAbout = false'>
+            </span>
+          </div>
+
+        </div> <!-- end of row -->
+      </div> <!-- end of panel-title -->
+    </div> <!-- end of div m-b-md -->
+
+<!--     <ul class="panel-menu">
+      <li class="panel-menu-item">
+        <a href="#userModal" class="text-inherit" data-toggle="modal">
+          Friends
+          <h5 class="m-y-0">12M</h5>
+        </a>
+      </li>
+
+    </ul> -->
+
+  </div> <!-- End of Panel body -->
+</div> <!-- End of Profile info -->
+
+<!-- Availability -->
+<div class="panel panel-default visible-md-block visible-lg-block">
+
+  <div class="panel-body">
+
+    <h5 class="m-t-0 bangers p-text">
+      Availability
+    </h5>
+
+    <div ng-repeat="time in information.times">
+      <p>&emsp;{{time[0]}} {{time[1] | date : 'shortTime'}} - {{time[2] | date : 'shortTime'}}</p>
+    </div>
+
+
+  </div> <!-- End of panel body -->
+</div> <!-- End of Availability  -->
+
+<!-- For each language create a directive and seperate update function as a result -->
+<!-- Then have a div below that allows additions -->
+
+<!-- Programming languages -->
+<div class="panel panel-default visible-md-block visible-lg-block">
+  <div class="panel-body">
+
+    <div>
+      <h5 class="m-t-0 bangers p-text">
+        Languages
+        <small>·
+        <a ng-click="addLanguage={'userInput':true}">Add</a>
+        </small>
+      </h5>
+    </div>
+
+    <div add-dashboard-programming-language ng-if='addLanguage.userInput'>
+    </div>
+
+    <div edit-dashboard-programming-language
+          ng-repeat="pl in information.profile_languages"
+          ng-model="profileUpdates.languages">
+    </div>
+
+  </div>
+</div>
+
+
+<!-- EmailFrequency -->
+<div class="panel panel-default visible-md-block visible-lg-block">
+
+  <div class="panel-body">
+
+    <h5 class="m-t-0 bangers p-text">
+      Email Notification Preference
+    </h5>
+
+    <p ng-hide='updateFieldForEmailFrequency'
+          ng-click='updateFieldForEmailFrequency = !updateFieldForEmailFrequency'>
+      <span ng-if="information.email_frequency">
+        {{information.email_frequency == 7 ? 'Weekly' : 'Daily'}}
+      </span>
+      <span ng-if="!information.email_frequency">Immediately</span>
+    </p>
+
+    <div class="form-group" ng-show='updateFieldForEmailFrequency'
+      ng-init="profileUpdates.email_frequency=information.email_frequency">
+      <div>
+        <p>
+          When do you want to us notify you about new inbox messages?
+        </p>
+
+        <input type="radio" name="immediately" value="" ng-model="profileUpdates.email_frequency">
+        <label for='daily'>Immediately!</label><br>
+
+        <input type="radio" name="daily" value="1" ng-model="profileUpdates.email_frequency">
+        <label for='daily'>Once a Day</label><br>
+
+        <input type="radio" name="weekly" value="7" ng-model="profileUpdates.email_frequency">
+        <label for='weekly'>Once a week</label>
+      </div>
+
+      <div class='pull-right'>
+        <span class="glyphicon glyphicon-ok"
+              aria-hidden="true"
+              ng-click='update(); updateFieldForEmailFrequency = false'>
+        </span>
+
+        <span class="glyphicon glyphicon-remove"
+              aria-hidden="true"
+              ng-click='updateFieldForEmailFrequency = false'>
+        </span>
+      </div>
+    </div><!-- End of form-group -->
+  </div> <!-- End of panel body -->
+</div> <!-- End of EmailFrequency  -->

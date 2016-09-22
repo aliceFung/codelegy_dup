@@ -1,0 +1,13 @@
+// Place all the styles related to the profiles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
+#updatedAbout, #updatedAvailability, #updatedLanguage{
+  border: 0;
+  outline: 0;
+  margin: 0px;
+  padding-bottom: 0px;
+  border-bottom: 2px solid gray;
+}

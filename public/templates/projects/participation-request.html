@@ -1,0 +1,17 @@
+<main>
+  <br>
+  <div class="container-content-middle">
+    <h3>Code with {{project.owner_username}}</h3>
+    <h4>{{project.title}}</h4>
+
+    <textarea placeholder="Why do you want to work on this project?"
+    ng-model="content" class='form-control'>
+    </textarea>
+    <br>
+
+    <button type="button" class="btn btn-default" ng-click="sendRequest()">
+      Send
+    </button>
+
+  </div>
+</main>
