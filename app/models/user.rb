@@ -12,9 +12,10 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :projects, through: :memberships
 
+  has_many :co_memberships, through: :projects, source: :memberships
+  has_many :co_members, through: :co_memberships, source: :user
 
   has_one :email_digest, dependent: :destroy
-  # has_one :email_digest, through: :profile, dependent: :destroy
 
   after_create :create_profile
 
@@ -33,29 +34,59 @@ class User < ActiveRecord::Base
         user.email = auth.info.email
         user.username = auth.info.name
         user.password = Devise.friendly_token[0,20]
-        # profile.photo_url = auth.extra.raw_info.avatar_url
       end
     end
+    if user.profile.photos.empty?
+      picture = user.profile.photos.build
+      picture.picture_from_url(auth.extra.raw_info.avatar_url) if auth.extra &&
+                      auth.extra.raw_info &&
+                      auth.extra.raw_info.avatar_url
+    end
     user
+  end
+
+
+  # returns an Active Record Object of active user memberships
+  def participating_memberships
+    self.memberships.where('participant_type IN (?)', ['owner', 'member'])
+  end
+
+  def project_group_access?(project_id)
+    self.participating_memberships.where('project_id = ?', project_id).any?
+  end
+
+  # returns an Active Record Object, of projects user requested membership in, but not rejected
+  def memberships_in_projects
+    self.memberships.includes(:user, project: [:languages,
+                                              :difficulty,
+                                              :project_languages,
+                                              :members,
+                                              :memberships => :user])
+                    .where('participant_type IN (?)', [ 'owner',
+                                                        'member',
+                                                        'pending'] )
+                    .map{|mem| mem.project}
   end
 
   # returns all participating projects with limited associated info
   # only project owner has membership details
   def project_dashboard_membership
-    list = self.projects.includes(:difficulty, :languages, memberships: :user)
+    list = self.memberships_in_projects
 
     list.map do |proj|
 
-      obj = { id:           proj.id,
-              title:        proj.title,
-              description:  proj.description,
-              times:        proj.times,
+      obj = { id:            proj.id,
+              title:         proj.title,
+              description:   proj.description,
+              times:         proj.times,
               difficulty_name:   proj.difficulty_name,
-              owner?:       proj.owner == self,
-              languages:    proj.languages,
-              created_at:   proj.created_at
+              owner?:        proj.owner == self,
+              language_urls: proj.language_urls,
+              created_at:    proj.created_at
             }
 
+      #current user member statuss
+      #(if owner, includes other member info)
       if obj[:owner?]
         obj[:memberships] = proj.memberships.map do |m|
           { id: m.id,
@@ -73,17 +104,16 @@ class User < ActiveRecord::Base
 
 
   #returns an array of user messages with limited details
+    #query for message and creates array of messages
   def get_emails(box_type)
-    #query for message
     Mailboxer::Notification.includes(:sender).where('id IN (?)',
-      #create array of Conversations objs
       self.mailbox.send(box_type).inject([]){|acc, el| acc.push(el)})
-        .map do |c|
-            { date: c.created_at,
-              subject: c.subject,
-              sender_username: c.sender.username,
-              body: c.body,
-              id: c.id
+        .map do |msg|
+            { date: msg.created_at,
+              subject: msg.subject,
+              sender_username: msg.sender.username,
+              body: msg.body,
+              id: msg.id
             }
         end # array of messages
   end
@@ -115,28 +145,4 @@ class User < ActiveRecord::Base
     self.username
   end
 
-
-  ## unused instance methods below
-
-  # returns a collection of projects user is the owner of
-  # eager loading to prevent n+1 queries
-  def projects_owned
-    self.memberships.includes(:project =>
-                              [:languages, :memberships => :user])
-                    .where('participant_type = ?', 'owner')
-  end
-
-  # returns a collection of projects user is a member of
-  # eager loading to prevent n+1 queries
-  def project_member_of
-    self.memberships.includes(:project => :languages).where('participant_type = ?', 'member')
-  end
-
-  # returns an array, not an Active Record Object, of projects user is active in (owner or member)
-  def participating_projects
-    # projects_owned + project_member_of
-    self.memberships.includes(:project =>
-                              [:languages, :memberships => :user])
-                    .where('participant_type = ? OR participant_type = ?', 'owner', 'member')
-  end
 end

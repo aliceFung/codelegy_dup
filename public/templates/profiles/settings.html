@@ -1,28 +1,28 @@
-<div class="wide-container"> 
+<div class="wide-container">
 <div class="panel">
   <div class="panel-heading">
-    <h2 class="bangers page-header p-text">Account Settings</h2>  
+    <h2 class="bangers page-header p-text">Account Settings</h2>
   </div>
   <div class="panel-body row">
 
   <div class="col-sm-5 col-sm-offset-1">
-
-    <h3>Username: {{currentUser.user.username}}</h3> 
-    <h3>Email: {{currentUser.user.email}}</h3>
+    <h5>Username: {{currentUser.user.username}}</h5>
+    <h5>Email: {{currentUser.user.email}}</h5>
     <a href="" ng-click="showEditForm=!showEditForm">Edit</a> <br>
-    <a href="" ng-click="cancelAccount()">Delete Account</a>
+    <a href="" ng-click="cancelAccount()">Delete Account</a> <br>
+    <img src="{{ photo_url || 'images/avatar.png' }}" class='img-responsive'/>
   </div>
 
-  <div class="col-sm-5">  
+  <div class="col-sm-5">
     <form name="userForm" ng-show="showEditForm" ng-submit="processForm(userForm.$valid)">
 
       <!-- Username -->
       <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid
                                           && !userForm.username.$pristine }">
         <label>Username
-          <input type="text" name="username" class="form-control" 
-                  ng-value="currentUser.user.username" 
-                  ng-model="userInfo.username" 
+          <input type="text" name="username" class="form-control"
+                  ng-value="currentUser.user.username"
+                  ng-model="userInfo.username"
                   ng-minlength="2" ng-maxlength="100">
         </label>
 
@@ -41,9 +41,9 @@
                                           && !userForm.email.$pristine }">
 
         <label>Email
-          <input type="text" name="email" class="form-control" 
-                  ng-value="currentUser.user.email" 
-                  ng-model="userInfo.email" 
+          <input type="text" name="email" class="form-control"
+                  ng-value="currentUser.user.email"
+                  ng-model="userInfo.email"
                   ng-pattern="emailRegex">
         </label>
 
@@ -55,14 +55,14 @@
       </div>
 
       <!-- New Password -->
-      <div class="form-group" 
+      <div class="form-group"
             ng-if="!currentUser.user.provider"
             ng-class="{ 'has-error' : userForm.password.$invalid &&
                                       !userForm.password.$pristine }">
 
 
         <label>New Password (leave it blank if you don't want to change)
-          <input type="password" name="password" class="form-control" 
+          <input type="password" name="password" class="form-control"
                   ng-model="userInfo.password"
                   ng-minlength="8" ng-maxlength="25">
         </label>
@@ -77,13 +77,13 @@
       </div>
 
       <!-- Password Confirmation -->
-      <div class="form-group" 
+      <div class="form-group"
             ng-if="!currentUser.user.provider"
             ng-class="{ 'has-error' : userForm.password_confirmation.$invalid &&
                                       !userForm.password_confirmation.$pristine }">
 
         <label>Password Confirmation
-          <input type="password" name="password_confirmation" class="form-control" 
+          <input type="password" name="password_confirmation" class="form-control"
                   ng-model="userInfo.password_confirmation"
                   compare-to="userInfo.password">
         </label>
@@ -97,17 +97,16 @@
       </div>
 
       <!-- Current Password -->
-      <div class="form-group" 
+      <div class="form-group"
             ng-if="!currentUser.user.provider"
             ng-class="{ 'has-error' : userForm.current_password.$invalid
                                             && !userForm.$pristine }">
 
         <label>Current Password
-          <input type="password" name="current_password" class="form-control" 
-                  ng-model="userInfo.current_password" 
+          <input type="password" name="current_password" class="form-control"
+                  ng-model="userInfo.current_password"
                   required ng-minlength="8" ng-maxlength="25">
         </label>
-{{currentUser.user.provider}}
         <p  class="help-block"
             ng-show="!userForm.$pristine        &&
                     userForm.current_password.$invalid         &&
@@ -124,6 +123,14 @@
           Your password contains at most 25 characters
         </p>
 
+      </div>
+
+      <!-- Photo -->
+      <div class="form-group">
+        <label>Change photo
+          <input  type="file" class="form-control"
+                  ngf-select ng-model="profileUpdate.photoFile">
+        </label>
       </div>
 
       <button type="submit" class="btn btn-info">Update</button>

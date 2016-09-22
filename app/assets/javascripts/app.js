@@ -1,4 +1,5 @@
-var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angularMoment', 'Devise'])
+var app = angular.module('app',
+  ['ngAnimate','ui.router', 'restangular','angularMoment', 'Devise', 'ngFileUpload'])
 
 
 .config(["AuthProvider", function(AuthProvider) {
@@ -44,11 +45,7 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
             templateUrl: 'templates/registration/form.html',
             controller: 'signUpCtrl'
         })
-        .state('home.tour', {
-            url: 'tour',
-            templateUrl: 'templates/registration/tour.html',
-            controller: 'signUpCtrl'
-        })
+
 
         // nested states  for our form
         .state('home.form.signup', {
@@ -106,17 +103,63 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
       })
 
       .state('profiles.show', {
-        url: '/show/:userid',
-        templateUrl: 'templates/profiles/show.html'
+        url: '/show/:id',
+        templateUrl: 'templates/profiles/show.html',
+        controller: 'dashboardProfileCtrl',
+              resolve: {
+                profileInfo: [ 'Restangular','$stateParams', function(Restangular, $stateParams){
+                    return Restangular.all('profiles').customGET(null, {user_id: $stateParams.id})
+                    .then(function(response){
+                      console.log(response)
+                      return response;
+                    }, function(error){
+                      console.log(error)
+                      return error;
+                    });
+                }],
+
+                languageList: [ 'Language', function(Language){
+                  return Language.get()
+                  .then(function(response){
+                      Language.languages = response;
+                      return response;
+                  }, function(error){
+                      return error;
+                  });
+                }]
+              }
+
       })
 
       .state('profiles.settings', {
         url: '/settings',
-        templateUrl: 'templates/profiles/settings.html', 
-        controller: 'accountSettingCtrl'
+        templateUrl: 'templates/profiles/settings.html',
+        controller: 'accountSettingCtrl',
+        resolve: {
+          profileInfo: [ 'Restangular', 'Auth', function(Restangular, Auth){
+            return Auth.currentUser().then(function(user){
+              return Restangular.all('profiles').customGET(null, {user_id: user.id})
+              .then(function(response){
+                return response;
+              }, function(error){
+                return error;
+              });
+            });
+          }],
+        }
       });
+    $stateProvider
+          .state('tour', {
+            url: '/tour',
+            views:{
+              '':{templateUrl: 'templates/registration/tour.html'},
+              'navbar': {
+                templateUrl: 'templates/header-1.html',
+                controller: 'sessionCtrl'
+            }
 
-
+            }
+       });
     $stateProvider
       .state('dashboard', {
           url: '/dashboard',
@@ -287,4 +330,16 @@ var app = angular.module('app', ['ngAnimate','ui.router', 'restangular','angular
         }
       })
 
+  }])
+
+  .run(['$rootScope', '$location', '$window', function($rootScope, $location, $window){
+     $rootScope
+        .$on('$stateChangeSuccess',
+            function(event){
+ 
+                if (!$window.ga)
+                    return;
+ 
+                $window.ga('send', 'pageview', { page: $location.path() });
+        });
   }]);

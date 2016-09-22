@@ -3,8 +3,8 @@ app.controller('signUpCtrl',
    'Session',
    '$scope',
    'ProfileRegistration',
-   '$state', 
-   'Timeslot', 
+   '$state',
+   'Timeslot',
    function(SignUp, Session, $scope, ProfileRegistration, $state, Timeslot){
 
   $scope.credentials = SignUp.credentials;
@@ -40,7 +40,7 @@ app.controller('signUpCtrl',
   $scope.$on('devise:new-registration', function(event, user) {
     $scope.currentUser.user = user;
     $scope.authenticated.status = true;
-    $state.go('projects');
+    $state.go('tour');
   });
 
 }]);

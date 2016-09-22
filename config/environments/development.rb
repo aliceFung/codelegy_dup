@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  Paperclip.options[:command_path] = "/usr/local/bin/convert"
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -9,7 +9,7 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
   config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-   config.assets.precompile += %w( .svg .eot .woff .ttf)
+  config.assets.precompile += %w( .svg .eot .woff .ttf)
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
@@ -43,4 +43,17 @@ Rails.application.configure do
 
   #devise config for emailing
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  #use amazon s3 to store photos through paperclip
+  config.paperclip_defaults = {
+    :storage => :s3,
+
+    :s3_credentials => {
+      :s3_host_name => "s3-us-west-2.amazonaws.com",
+
+      :bucket => Rails.application.secrets.s3_bucket_name,
+      :access_key_id => Rails.application.secrets.aws_access_key_id,
+      :secret_access_key => Rails.application.secrets.aws_secret_access_key
+    }
+  }
 end

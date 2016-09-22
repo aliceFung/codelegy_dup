@@ -1,5 +1,5 @@
-app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Session', 'Timeslot', 'projects', 'languages',
-  function($scope, $state, $filter, Project, Session, Timeslot, projects, languages){
+app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Session', 'Timeslot', 'projects', 'languages', 'userProjectService',
+  function($scope, $state, $filter, Project, Session, Timeslot, projects, languages, userProjectService){
     $scope.authenticated = Session.authenticated;
 
     $scope.projects = projects;
@@ -40,7 +40,8 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Sessi
     $scope.displayPage = 0;
 
     $scope.nextPage = function () {
-      $scope.displayPage += 24;
+      if (($scope.displayPage+24) < $scope.filtered.length)
+        $scope.displayPage += 24;
     };
 
     $scope.prevPage = function () {
@@ -108,7 +109,11 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Sessi
                     $scope.timeslots,
                     $scope.newProjectLanguagesSelected).then(function(response){
         $scope.projects.push(response);
-
+        var new_project = response;
+        // debugger
+        // new_project.member_status = 'owner';
+        new_project['owner?'] = true;
+        userProjectService.projectList.projects.push(new_project);
         $state.go('projects');
       }, function(error){
         console.log(error);
@@ -136,7 +141,7 @@ app.controller("projectsCtrl", ['$scope', '$state', '$filter', 'Project', 'Sessi
       $scope.displayPage = 0;
     };
 
-      $scope.updateLangFilter = function(language){
+    $scope.updateLangFilter = function(language){
       $(event.target).toggleClass('active');
       var idx = $scope.langFilter.indexOf(language);
       if ( idx === -1){

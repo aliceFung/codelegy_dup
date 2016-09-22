@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+
 ruby '2.2.1'
 
 # Devise
@@ -22,6 +23,13 @@ gem 'delayed_job_active_record'
 #front-end
 gem "font-awesome-rails"
 
+gem 'paperclip'
+# Using Amazon S3 to store images
+gem 'aws-sdk', '< 2.0'
+
+gem 'httparty'
+
+gem 'simple_form'
 
 gem 'git-hooks'
 gem 'figaro'
@@ -59,6 +67,8 @@ gem 'puma'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+gem 'rvm-capistrano'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

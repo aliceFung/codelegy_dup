@@ -3,15 +3,11 @@
 <!-- Profile info -->
 <div class="panel panel-default panel-profile m-b-md">
 
-  <div  class="panel-heading"
-        style="background-image: url(assets/iceland.jpg);">
-  </div>
-
   <div class="panel-body text-center">
 
-    <a href="profile/index.html">
-      <img class="panel-profile-img"
-        src="assets/avatar-dhg.png">
+    <a ui-sref="profiles.settings">
+      <img class="panel-profile-img img-responsive"
+        ng-src="{{information.photo_url || 'images/avatar.png'}}">
     </a>
 
     <h5 class="panel-title">
@@ -24,7 +20,7 @@
       <div class="panel-title text-center"
           ng-hide='updateFieldForAbout'
           ng-click='updateFieldForAbout = !updateFieldForAbout'>
-          {{information.about || "Add a note"}}
+          {{information.about || "click to add something here about you"}}
       </div>
 
       <div class="panel-title text-center"
@@ -77,8 +73,10 @@
 
     <h5 class="m-t-0 bangers p-text">
       Availability
+      <small>·
+        <a type="button" data-toggle="modal" data-target="#availModal">Add</a>
+      </small>
     </h5>
-
     <div ng-repeat="time in information.times">
       <p>&emsp;{{time[0]}} {{time[1] | date : 'shortTime'}} - {{time[2] | date : 'shortTime'}}</p>
     </div>
@@ -122,10 +120,12 @@
 
     <h5 class="m-t-0 bangers p-text">
       Email Notification Preference
+      <small>·
+        <a ng-click='updateFieldForEmailFrequency = !updateFieldForEmailFrequency'>Edit</a>
+      </small>
     </h5>
 
-    <p ng-hide='updateFieldForEmailFrequency'
-          ng-click='updateFieldForEmailFrequency = !updateFieldForEmailFrequency'>
+    <p ng-hide='updateFieldForEmailFrequency'>
       <span ng-if="information.email_frequency">
         {{information.email_frequency == 7 ? 'Weekly' : 'Daily'}}
       </span>
@@ -163,3 +163,25 @@
     </div><!-- End of form-group -->
   </div> <!-- End of panel body -->
 </div> <!-- End of EmailFrequency  -->
+
+<div class="row">
+  <div class="modal fade bs-example-modal-lg" id="availModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Change Availabilty</h4>
+      </div>
+      <div class="modal-body">
+      <div availability-selector style="width:70%;margin-left:15%"></div>
+      </div> <!-- end modal body-->
+       <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <span ng-click ="cancel()" data-dismiss="modal" class="pull-right btn btn-danger">Cancel</span>
+        <span ng-click ="submit()" data-dismiss="modal" class="pull-right btn btn-success">Save</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+

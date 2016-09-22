@@ -26,7 +26,10 @@ class Project < ActiveRecord::Base
   end
 
   def language_urls
-    self.languages.select(:name, :url)
+    self.languages.select(:name, :url, :id)
+    # self.languages.map{|lang| {name: lang.name,
+    #                           url: lang.url,
+    #                           id: lang.id}}
   end
 
   def group_members

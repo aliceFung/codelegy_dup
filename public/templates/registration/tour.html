@@ -1,0 +1,102 @@
+<div class="wide-container">
+  <h1 class="bangers p-text page-header">Tour</h1>
+  <div >
+
+    <div class="row">
+      <button class="btn btn-primary" ng-click="myExp='one'">Signing Up</button>
+      <button class="btn btn-primary" ng-click="myExp='two'">Find/Join a Project</button>
+      <button class="btn btn-primary" ng-click="myExp='three'">Edit Settings </button>
+      <button class="btn btn-primary" ng-click="myExp='four'">Edit Profile </button>
+      <button class="btn btn-primary" ng-click="myExp='five'">Edit Project</button>
+    </div>
+    <br>
+    <div  ng-switch="myExp" >
+
+      <div ng-switch-when="one" class="my-switch-animation">
+        <table style="height: 170px;">
+          <tr><td style="width: 170px;">
+           <img src="/images/signup.gif" alt="signing up" style="width: 606px; height: 354px;" />
+         </td>
+         <td style="width: 470px;">
+          <h2 class="bangers p-text">Signing Up</h2>
+          <blockquote>
+           <p style="font-size: 13px">Signing up is easy, click on sign up on the header, then either fill out your information or sign up with github!.</p>
+
+         </blockquote>
+       </td>
+     </tr>
+   </table>
+
+ </div>
+ <div ng-switch-when="two" class="my-switch-animation">
+   <table style="height: 170px;">
+    <tr><td style="width: 170px;">
+     <img src="/images/joinproject.gif" alt="joining a project" style="width: 606px; height: 354px;" />
+   </td>
+   <td style="width: 470px;">
+    <h2 class="p-text bangers">Joining A Project</h2>
+    <blockquote>
+     <p style="font-size: 13px">
+       To find a project, go to the projects page, adjust the filters for the language you want, the appropriate difficulty and availability and click "Code Together". You will then be prompted to send a message to the project's owner. That owner will get a notification, and can add you to the project (or let you know if it is full).
+     </p>
+
+   </blockquote>
+
+ </td>
+</tr>
+</table>
+</div>
+
+<div ng-switch-when="three" class="my-switch-animation">
+ <table style="height: 170px;">
+  <tr><td style="width: 170px;">
+   <img src="/images/edituser.gif" alt="editing user settings" style="width: 606px; height: 354px;" />
+ </td>
+ <td style="width: 470px;">
+ <h2 class="p-text bangers">Editing User Settings</h2>
+  <blockquote>
+   <p style="font-size: 13px">To edit your user settings, click on the user icon on the navigation bar. Once loaded you will find an edit button to change your password or your photo.</p>
+    </blockquote>
+  </td>
+</tr>
+</table>
+
+</div>
+
+<div ng-switch-when="four" class="my-switch-animation">
+ <table style="height: 170px;">
+  <tr><td style="width: 170px;">
+   <img src="/images/editprofile.gif" alt="editing profile" style="width: 606px; height: 354px;" />
+ </td>
+ <td style="width: 470px;">
+  <h2 class="p-text bangers">Editing Your Profile</h2>
+  <blockquote>
+   <p style="font-size: 13px">
+     To edit your profile, go to your dashboard, and click the Add link next to the corresponding section. To change your status click on the text under your avatar. 
+   </p>
+
+    </blockquote>
+  </td>
+</tr>
+</table>
+
+</div>
+<div ng-switch-when="five" class="my-switch-animation">
+ <table style="height: 170px;">
+  <tr><td style="width: 170px;">
+   <img src="/images/editproject.gif" alt="editing project" style="width: 606px; height: 354px;" />
+ </td>
+ <td style="width: 470px;">
+  <h2 class="p-text bangers">Editing Your Projects</h2>
+  <blockquote>
+   <p style="font-size: 13px">To edit projects you are the owner of go to your dashboard, under a project you own, click on the details link. Make the changes you want and save, then close. All set!</p>
+    
+    </blockquote>
+  </td>
+</tr>
+</table>
+
+</div>
+
+</div>
+</div>

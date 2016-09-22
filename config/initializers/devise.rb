@@ -6,7 +6,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '86b1e78c0b7216556c7117a9de72781994cd960f832b9da896a689c7f4824d93d64afc5fe4cb50d08c877aca152da88805e71b4f161973f8bba1c3da67a43012'
+  config.secret_key = '86b1e78c0b7216556c7117a9de72781994cd960f832b9da896a689c7f4824d93d64afc5fe4cb50d08c877aca152da88805e71b4f161973f8bba1c3da67a43012'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -107,7 +107,7 @@ Devise.setup do |config|
   # able to access the website for two days without confirming their account,
   # access will be blocked just in the third day. Default is 0.days, meaning
   # the user cannot access the website without confirming their account.
-  config.allow_unconfirmed_access_for = 2.days
+  config.allow_unconfirmed_access_for = 7.days
 
   # A period that the user is allowed to confirm their account before their
   # token becomes invalid. For example, if set to 3.days, the user can confirm

@@ -21,5 +21,7 @@
 //= require lodash
 //= require restangular
 //= require flat-ui-pro
+//= require ng-file-upload.min.js
+//= require ng-file-upload-shim.min.js
 
 //= require_tree .

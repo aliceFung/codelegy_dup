@@ -1,32 +1,45 @@
+<div class="wide-container">
 <div class="panel">
   <div class="panel-heading">
-    <h1>Profile</h1>
+    <h1 class="page-header bangers p-text">{{information.user.username}}</h1>
     <img src="{{information.photo_id}}">
+  </div>
+
+  <div class="col-md-6">
+      <img class="panel-profile-img img-responsive"
+        src="{{information.photo_url || 'images/avatar.png'}}">
   </div>
   <div class="panel-body row">
     <div class="col-md-6">
       <div >
-        <h3>About Me:</h3>
-        <div>
-          {{information.about}}
+        <h3 class="p-text bangers">About Me:</h3>
+        <div nf-if="!information.about">
+           <p>Nothing provided</p>
+        </div>
+        <div nf-if="information.about">
+          <p>{{information.about}}</p>
         </div>
       </div>
 
       <div >
-        <h3>Availability: </h3>
-        <div>
-          {{information.availability}}
-        </div>
+        <h3 class="p-text bangers">Availability: </h3>
+          <div ng-repeat="time in information.times">
+           <p>{{time[0]}} {{time[1] | date : 'shortTime'}} - {{time[2] | date : 'shortTime'}}</p>
+          </div>
       </div>
     </div>
-
-    <div class="col-md-6">
+    <br>
+    <div class="col-md-6 col-md-offset-6">
       <div>
-        <h3>Programming Languages: </h3>
+        <h3 class="p-text bangers">Programming Languages:</h3>
+        <div ng-if="information.profile_languages == null">
+          <p>Nothing Provided</p>
+        </div>
         <div ng-repeat="pl in information.profile_languages" >
-          {{languages[pl.language_id]}}: {{expLevel[pl.difficulty_id]}}
+          <p>{{languages[pl.language_id]}}: {{expLevel[pl.difficulty_id]}}
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>

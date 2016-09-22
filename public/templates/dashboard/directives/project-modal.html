@@ -1,0 +1,97 @@
+<div class="modal fade" id="memberModal{{project.id}}" tabindex="-1" role="dialog" aria-labelledby="memberModalLabel">
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title" id="memberModalLabel">{{project.title}}</h4>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+
+        <div class="col-md-5">
+          <div class=" panel panel-default">
+            <div class = 'panel-heading'>
+              <h4 class ='panel-title'>Project Members</h4>
+            </div>
+            <div class="panel-body">
+              <ul>
+                <li>You</li>
+                <li ng-repeat="membership in project.memberships" ng-hide="membership.participant_type=='owner'">
+                  {{membership.user}}
+                  <button class="btn btn-success btn-xs"
+                  ng-show="membership.participant_type=='pending'"
+                  ng-click="changeMembership(membership, project, true)"
+                  >
+                  Accept
+                </button>
+                <button class="btn btn-danger btn-xs"
+                ng-show="membership.participant_type=='pending'"
+                ng-click="changeMembership(membership, project, false)"
+                >
+                Reject
+              </button>
+              <span ng-show="membership.participant_type == 'rejected'">
+                (Rejected)
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class= "col-md-7">
+      <div class="panel panel-default">
+        <div class = 'panel-heading'>
+          <h4 class ='panel-title'>Project Description</h4>
+        </div>
+        <div class="panel-body">
+          <span ng-hide="availEdit">{{project.description}}</span>
+          <span ng-show="availEdit">
+            <textarea class="form-control" ng-model='description'></textarea>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="panel panel-default">
+        <div class = 'panel-heading'>
+          <div class='h4 panel-title'>Project Info
+
+          </div>
+
+        </div>
+        <div class="panel-body">
+          <strong>Est. Difficulty: </strong><span ng-hide='availEdit'>{{project.difficulty_name}}</span>
+          <span ng-show='availEdit'>
+            <select ng-model="project.difficulty.id" ng-options="difficulty.id as difficulty.name for difficulty in difficulties">
+            </select>
+          </span> <br>
+          <strong>Times:</strong> <br>
+          <div ng-repeat="time in project.times">
+            {{time[0]}} {{time[1] | date : 'shortTime'}} - {{time[2] | date : 'shortTime'}}
+          </div>
+          <strong>Languages:</strong>
+          <span ng-hide="availEdit" ng-repeat="lang in project.language_urls"> {{lang.name}} </span>
+          <span ng-show="availEdit">
+            <div ng-repeat="lang in languages" ><input type="checkbox" ng-model="langHash[lang.name]"> {{lang.name}}</div>
+          </span> <br>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div ng-show="availEdit" availability-selector></div>
+    </div>
+  </div>
+</div> <!-- end modal body-->
+
+       <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <span ng-hide='availEdit' ng-click ="availEdit = true" class="pull-right btn btn-info">Edit</span>
+        <span ng-show='availEdit' ng-click ="availEdit = false;cancel()" class="pull-right btn btn-danger">Cancel</span>
+        <span ng-show='availEdit' ng-click ="availEdit = false; submit()" class="pull-right btn btn-success">Save</span>
+      </div>
+
+    </div>
+  </div>
+</div><!-- end modal -->
